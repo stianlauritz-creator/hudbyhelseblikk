@@ -1,0 +1,284 @@
+"use client";
+
+import AnimatedSection from "@/components/AnimatedSection";
+import BookingButton from "@/components/BookingButton";
+import { motion } from "framer-motion";
+
+const sections = [
+  {
+    id: "konsultasjon",
+    title: "Hudkonsultasjon",
+    intro:
+      "En grundig gjennomgang av hudens tilstand. Vi lager en individuell plan og anbefaler riktige behandlinger for deg.",
+    behandlinger: [
+      {
+        navn: "Konsultasjon",
+        desc: "Grundig hudanalyse og behandlingsplan. Konsultasjonsprisen trekkes fra ved behandling eller produktkjøp samme dag.",
+        pris: "490,-",
+      },
+    ],
+  },
+  {
+    id: "vipper-bryn",
+    title: "Vipper & Bryn",
+    intro:
+      "Fra enkel farging til avansert laminering — vi former og definerer blikket ditt.",
+    behandlinger: [
+      {
+        navn: "Farging/forming vipper og bryn inkl. voks",
+        desc: "Komplett pakke for vipper og bryn med farging, forming og voks.",
+        pris: "590,-",
+      },
+      {
+        navn: "Brynslaminering",
+        desc: "Gir fulle, velformede bryn i 4–8 uker. Inkluderer farge, forming og voks.",
+        pris: "890,-",
+      },
+      {
+        navn: "Farging og forming bryn inkl. voks",
+        desc: "Perfekt definerte bryn med farging og forming.",
+        pris: "490,-",
+      },
+      {
+        navn: "Farging vipper",
+        desc: "Naturlig, varig farge på vippene.",
+        pris: "290,-",
+      },
+    ],
+  },
+  {
+    id: "pmu",
+    title: "Permanent Makeup",
+    intro:
+      "Semi-permanent makeup som gir naturlige resultater med lang varighet. Inkluderer refill-behandling.",
+    behandlinger: [
+      {
+        navn: "PMU Powderbrows inkl. refill",
+        desc: "Gir fulle, pulvermyke bryn. Resultat som varer 1–2 år. Refill inkludert.",
+        pris: "6.500,-",
+      },
+      {
+        navn: "PMU Lepper inkl. refill",
+        desc: "Definerer leppekontur og gir naturlig fyllde. Refill inkludert.",
+        pris: "6.500,-",
+      },
+    ],
+  },
+  {
+    id: "hudbehandlinger",
+    title: "Hudbehandlinger",
+    intro:
+      "Avanserte behandlinger som forynger huden, stimulerer kollagenproduksjon og gir synlige resultater.",
+    behandlinger: [
+      {
+        navn: "Kjemisk peeling",
+        desc: "Fjerner døde hudceller, jevner ut hudtonen og stimulerer cellefornying. Tilpasset din hudtype.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Microneedling (Dermapen)",
+        desc: "Stimulerer hudens naturlige kollagenproduksjon. Effektivt mot arr, porer, rynker og ujevn hudtone.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Mesoterapi",
+        desc: "Tilføring av vitaminer, hyaluronsyre og næringsstoffer direkte i huden for økt fuktighet og glød.",
+        pris: "Pris ved konsultasjon",
+      },
+    ],
+  },
+  {
+    id: "laser",
+    title: "Laserbehandlinger",
+    intro:
+      "Medisinsk laser for en rekke hudtilstander. Trygge, dokumenterte behandlinger med varige resultater.",
+    behandlinger: [
+      {
+        navn: "Aknebehandling (Nd:YAG)",
+        desc: "Reduserer inflammatorisk akne effektivt. 4–6 behandlinger anbefalt, hver 2–4. uke.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Blodkarbehandling",
+        desc: "Behandler sprengte blodkar og diffus rødhet. Rask og effektiv.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Hårfjerning med laser",
+        desc: "Permanent reduksjon av uønsket hår. Tilpasset hudtype og hårfarge.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Lipplaser",
+        desc: "Øker kollagenproduksjon, fuktighet og gir plumpere lepper. 3–4 behandlinger anbefalt, hver 2–3. uke.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Øyelokk-laser",
+        desc: "Reduserer rynker rundt øynene og øker kollagenproduktion via ablasjon.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Rosacea-behandling",
+        desc: "Reduserer vedvarende rødhet og synlige blodkar ved rosacea.",
+        pris: "Pris ved konsultasjon",
+      },
+    ],
+  },
+  {
+    id: "injeksjon",
+    title: "Injeksjonsbehandlinger",
+    intro:
+      "Trygge, FDA-godkjente behandlinger med naturlige resultater. Alltid under ansvar av autorisert helsepersonell.",
+    behandlinger: [
+      {
+        navn: "Restylane (filler)",
+        desc: "Hyaluronsyrebasert filler for naturlig volum og konturering.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Fjerning av filler",
+        desc: "Trygg oppløsning av hyaluronsyrefiller med hyaluronidase.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "Muskelavslappende injeksjoner",
+        desc: "Reduserer dynamiske rynker og gir et ferskere utseende. Gjelder ikke studentrabatt.",
+        pris: "Pris ved konsultasjon",
+      },
+      {
+        navn: "PRP-behandling",
+        desc: "Platelet Rich Plasma — kroppens egne vekstfaktorer stimulerer kollagen og cellefornyelse.",
+        pris: "Pris ved konsultasjon",
+      },
+    ],
+  },
+  {
+    id: "produkter",
+    title: "Hudprodukter",
+    intro:
+      "Vi fører kun produkter med dokumentert effekt og trygge ingredienser.",
+    behandlinger: [
+      {
+        navn: "Elixir Cosmeceuticals",
+        desc: "Norskutviklet hudpleie med dokumenterte virkestoffer. Anbefales av hudeksperter.",
+        pris: "Fra 399,-",
+      },
+      {
+        navn: "MeLine",
+        desc: "Spesialist på ujevn hudtone, pigmentflekker og melasma. 90–95% reduksjon på 60–90 dager.",
+        pris: "Fra 609,-",
+      },
+    ],
+  },
+];
+
+export default function BehandlingerPage() {
+  return (
+    <>
+      {/* Header */}
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
+        <div className="max-w-3xl mx-auto text-center">
+          <AnimatedSection>
+            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+              Hva vi tilbyr
+            </p>
+            <h1
+              className="text-4xl md:text-5xl font-normal mb-6"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Behandlinger
+            </h1>
+            <p className="text-[#1a1a1a]/60 leading-relaxed text-lg">
+              Vi tilbyr et bredt spekter av medisinsk hudpleie — fra enkel
+              farging til avanserte laserbehandlinger og injeksjoner.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Navigasjon */}
+      <section className="sticky top-16 z-40 bg-white/90 backdrop-blur-md border-b border-[#e8d5b0]/30">
+        <div className="max-w-6xl mx-auto px-6 py-3 flex gap-4 overflow-x-auto scrollbar-hide text-sm">
+          {sections.map((s) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className="whitespace-nowrap text-[#1a1a1a]/50 hover:text-[#c9a96e] transition-colors py-1 px-2 rounded-full hover:bg-[#c9a96e]/5"
+            >
+              {s.title}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Behandlingsseksjoner */}
+      <div className="max-w-6xl mx-auto px-6 py-16 space-y-24">
+        {sections.map((seksjon, si) => (
+          <section key={seksjon.id} id={seksjon.id}>
+            <AnimatedSection>
+              <div className="mb-10">
+                <p className="text-xs tracking-[0.2em] uppercase text-[#c9a96e] mb-2">
+                  {String(si + 1).padStart(2, "0")}
+                </p>
+                <h2
+                  className="text-2xl md:text-3xl font-normal mb-3"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  {seksjon.title}
+                </h2>
+                <p className="text-[#1a1a1a]/55 leading-relaxed max-w-xl">
+                  {seksjon.intro}
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {seksjon.behandlinger.map((b, bi) => (
+                <AnimatedSection key={b.navn} delay={bi * 0.1}>
+                  <motion.div
+                    whileHover={{ y: -3, boxShadow: "0 16px 32px -8px rgba(0,0,0,0.06)" }}
+                    transition={{ duration: 0.25 }}
+                    className="p-7 rounded-2xl bg-white border border-[#e8d5b0]/30 hover:border-[#c9a96e]/30 transition-colors"
+                  >
+                    <div className="flex justify-between items-start gap-4">
+                      <h3
+                        className="font-normal text-lg leading-snug"
+                        style={{ fontFamily: "var(--font-playfair)" }}
+                      >
+                        {b.navn}
+                      </h3>
+                      <span className="text-[#c9a96e] font-medium text-sm whitespace-nowrap">
+                        {b.pris}
+                      </span>
+                    </div>
+                    <p className="text-sm text-[#1a1a1a]/55 leading-relaxed mt-3">
+                      {b.desc}
+                    </p>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </div>
+
+            <AnimatedSection delay={0.3} className="mt-6">
+              <BookingButton label={`Bestill ${seksjon.title.toLowerCase()}`} />
+            </AnimatedSection>
+          </section>
+        ))}
+      </div>
+
+      {/* Studentrabatt-banner */}
+      <section className="py-12 px-6 bg-[#f5f2ed]">
+        <AnimatedSection className="max-w-3xl mx-auto text-center">
+          <p className="text-xs tracking-[0.25em] uppercase text-[#3d4a3e] mb-2">
+            Studentrabatt
+          </p>
+          <p className="text-[#1a1a1a]/70">
+            <strong>20% rabatt</strong> på alle behandlinger med gyldig
+            studentbevis. Gjelder ikke muskelavslappende og PMU.
+          </p>
+        </AnimatedSection>
+      </section>
+    </>
+  );
+}

@@ -1,65 +1,306 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import AnimatedSection from "@/components/AnimatedSection";
+import BookingButton from "@/components/BookingButton";
+import {
+  Sparkles,
+  Zap,
+  Droplets,
+  Syringe,
+  ShoppingBag,
+  Eye,
+} from "lucide-react";
+
+const behandlingsKategorier = [
+  {
+    icon: Eye,
+    title: "Vipper & Bryn",
+    desc: "Farging, forming, brynslaminering og PMU for perfekte bryn",
+    href: "/behandlinger#vipper-bryn",
+  },
+  {
+    icon: Droplets,
+    title: "Hudbehandlinger",
+    desc: "Kjemisk peeling, microneedling og mesoterapi for strålende hud",
+    href: "/behandlinger#hudbehandlinger",
+  },
+  {
+    icon: Zap,
+    title: "Laserbehandlinger",
+    desc: "Akne, rødhet, hårfjerning og rosacea med medisinsk laser",
+    href: "/behandlinger#laser",
+  },
+  {
+    icon: Syringe,
+    title: "Injeksjonsbehandlinger",
+    desc: "Filler, muskelavslappende, PRP og Restylane",
+    href: "/behandlinger#injeksjon",
+  },
+  {
+    icon: Sparkles,
+    title: "Permanent Makeup",
+    desc: "Powderbrows og lepper — naturlige resultater som varer",
+    href: "/behandlinger#pmu",
+  },
+  {
+    icon: ShoppingBag,
+    title: "Hudprodukter",
+    desc: "Elixir Cosmeceuticals og MeLine — dokumenterte resultater",
+    href: "/behandlinger#produkter",
+  },
+];
+
+const testimonials = [
+  {
+    text: "Mabel er nøyaktig, ærlig og imøtekommende. Resultatet overgikk forventningene mine.",
+    name: "Camilla H.",
+  },
+  {
+    text: "Endelig en klinikk i Grimstad som tar hudpleie på alvor. Profesjonell og trygg.",
+    name: "Line S.",
+  },
+  {
+    text: "Fantastisk resultat etter laserbehandling. Rødhet og blodkar er borte etter tre behandlinger.",
+    name: "Karianne L.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      {/* Hero */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background */}
+        <motion.div
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute inset-0 bg-gradient-to-br from-[#f5ede4] via-[#ecddd0] to-[#e0cfc2]"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+        {/* Decorative gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f7]/60 via-transparent to-transparent" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#3d4a3e]/5 to-transparent" />
+
+        {/* Floating orb */}
+        <motion.div
+          animate={{ y: [-12, 12, -12], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#c9a96e]/10 blur-3xl"
+        />
+
+        <div className="relative max-w-4xl mx-auto px-6 text-center pt-24 pb-16">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-6"
+          >
+            Medisinsk hudpleie · Grimstad
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-7xl font-normal leading-tight mb-6"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            Naturlig skjønnhet,
+            <br />
+            <em className="text-[#c9a96e] not-italic">medisinsk kvalitet</em>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="text-lg md:text-xl text-[#1a1a1a]/60 max-w-xl mx-auto mb-10 leading-relaxed"
+          >
+            Vi kombinerer medisinsk kompetanse med estetisk presisjon.
+            Hos oss er forebygging, naturlig skjønnhet og faglig forsvarlighet i fokus.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <BookingButton label="Bestill time" />
+            <Link
+              href="/behandlinger"
+              className="text-sm tracking-wide text-[#1a1a1a]/60 hover:text-[#c9a96e] transition-colors border-b border-[#1a1a1a]/20 hover:border-[#c9a96e] pb-0.5"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Se alle behandlinger →
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+        >
+          <div className="w-px h-12 bg-gradient-to-b from-[#c9a96e]/60 to-transparent" />
+          <span className="text-[10px] tracking-[0.2em] uppercase text-[#1a1a1a]/30">
+            Scroll
+          </span>
+        </motion.div>
+      </section>
+
+      {/* Behandlingskategorier */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+              Våre tjenester
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-normal"
+              style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Learning
-            </a>{" "}
-            center.
+              Behandlinger
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {behandlingsKategorier.map((k, i) => (
+              <AnimatedSection key={k.title} delay={i * 0.1}>
+                <Link href={k.href} className="group block">
+                  <motion.div
+                    whileHover={{ y: -4, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.08)" }}
+                    transition={{ duration: 0.3 }}
+                    className="p-8 rounded-2xl border border-[#e8d5b0]/40 bg-[#faf9f7] hover:border-[#c9a96e]/40 transition-colors duration-300 h-full"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center mb-5">
+                      <k.icon size={18} className="text-[#c9a96e]" />
+                    </div>
+                    <h3
+                      className="text-lg font-normal mb-2 group-hover:text-[#c9a96e] transition-colors"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {k.title}
+                    </h3>
+                    <p className="text-sm text-[#1a1a1a]/55 leading-relaxed">
+                      {k.desc}
+                    </p>
+                  </motion.div>
+                </Link>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Om Mabel – kort seksjon */}
+      <section className="py-24 px-6 bg-[#f5f2ed]">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <AnimatedSection direction="left">
+              {/* Bildeplass */}
+              <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/30 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjYzlhOTZlMjAiLz48L3N2Zz4=')] opacity-40" />
+                <p className="text-[#c9a96e]/60 text-sm tracking-wide text-center px-8">
+                  Bilde av Mabel Lorine King
+                  <br />
+                  <span className="text-xs text-[#c9a96e]/40">Kommer snart</span>
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="right">
+              <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+                Møt din behandler
+              </p>
+              <h2
+                className="text-3xl md:text-4xl font-normal mb-2"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Mabel Lorine King
+              </h2>
+              <p className="text-sm text-[#c9a96e] mb-6 tracking-wide">
+                Kosmetisk Dermatologisk Sykepleier
+              </p>
+              <p className="text-[#1a1a1a]/65 leading-relaxed mb-4">
+                Mabel er utdannet sykepleier med videreutdanning i kosmetisk
+                dermatologi. Med bakgrunn fra akuttmottak bringer hun medisinsk
+                presisjon inn i estetisk behandling.
+              </p>
+              <p className="text-[#1a1a1a]/65 leading-relaxed mb-8">
+                Hun har jobbet som kosmetisk dermatologisk sykepleier siden 2019
+                og brenner for forebygging, naturlige resultater og faglig
+                forsvarlighet.
+              </p>
+              <Link
+                href="/om-mabel"
+                className="text-sm tracking-wide text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors"
+              >
+                Les mer om Mabel →
+              </Link>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+              Hva kundene sier
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-normal"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Kundeomtaler
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <AnimatedSection key={t.name} delay={i * 0.15}>
+                <div className="p-8 rounded-2xl bg-[#faf9f7] border border-[#e8d5b0]/30">
+                  <p className="text-2xl text-[#c9a96e]/40 mb-4 leading-none"
+                    style={{ fontFamily: "var(--font-playfair)" }}>
+                    "
+                  </p>
+                  <p className="text-[#1a1a1a]/70 leading-relaxed text-sm mb-6">
+                    {t.text}
+                  </p>
+                  <p className="text-xs tracking-wide text-[#c9a96e]">
+                    — {t.name}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA-banner */}
+      <section className="py-24 px-6 bg-[#1e2d3d]">
+        <AnimatedSection className="max-w-2xl mx-auto text-center">
+          <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            Klar for å starte?
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <h2
+            className="text-3xl md:text-4xl font-normal text-white mb-6"
+            style={{ fontFamily: "var(--font-playfair)" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Book en hudkonsultasjon
+          </h2>
+          <p className="text-white/50 mb-10 leading-relaxed">
+            En konsultasjon koster 490,- og trekkes fra ved behandling eller
+            produktkjøp samme dag. Vi tar deg med på en gjennomgang av hudens
+            tilstand og lager en plan som passer deg.
+          </p>
+          <BookingButton label="Bestill konsultasjon" />
+        </AnimatedSection>
+      </section>
+    </>
   );
 }
