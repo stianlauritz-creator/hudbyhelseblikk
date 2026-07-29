@@ -93,7 +93,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Hud By Helseblikk · Helseblikk AS
           </p>
           <p className="text-xs text-white/30">
-            Ansvarlig lege: Bjørn Thomas Kjølsrud
+            Ansvarlig lege: Débora Dias De Oliveira
           </p>
         </div>
       </div>

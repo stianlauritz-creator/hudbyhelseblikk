@@ -159,7 +159,7 @@ export default function OmChristinaPage() {
             <AnimatedSection direction="right" delay={0.25}>
               <div className="pt-4 border-t border-[#e8d5b0]/30">
                 <p className="text-xs text-[#1a1a1a]/40 mb-6">
-                  Ansvarlig lege: Bjørn Thomas Kjølsrud
+                  Ansvarlig lege: Débora Dias De Oliveira
                 </p>
                 <BookingButton label="Bestill time hos Christina" />
               </div>
