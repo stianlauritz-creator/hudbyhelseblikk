@@ -16,7 +16,6 @@ const spesialiteter = [
 const utdanning = [
   "Sykepleier, Universitetet i Agder",
   "Videreutdanning kosmetisk dermatologi, USN",
-  "Bakgrunn fra akuttmottak",
   "Kosmetisk dermatologisk sykepleier siden 2019",
 ];
 
@@ -86,8 +85,8 @@ export default function OmMabelPage() {
                 <p>
                   Mabel er utdannet sykepleier ved Universitetet i Agder og har
                   siden tatt videreutdanning i kosmetisk dermatologi ved USN.
-                  Med bakgrunn fra akuttmottak bringer hun medisinsk presisjon
-                  og trygghet inn i estetisk behandling.
+                  Hun bringer medisinsk presisjon og trygghet inn i alt hun
+                  gjør, med et øye for detaljene som gir naturlige resultater.
                 </p>
                 <p>
                   Hun har jobbet som kosmetisk dermatologisk sykepleier siden

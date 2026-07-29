@@ -14,7 +14,7 @@ const behandlere = [
     bilde: "/mabel.jpg",
     bildePos: "object-[center_45%]",
     tekst:
-      "Utdannet sykepleier med videreutdanning i kosmetisk dermatologi. Med bakgrunn fra akuttmottak bringer hun medisinsk presisjon inn i estetisk behandling — og har jobbet i faget siden 2019.",
+      "Utdannet sykepleier med videreutdanning i kosmetisk dermatologi. Hun har jobbet i faget siden 2019 og er kjent for medisinsk presisjon, et godt estetisk blikk og naturlige resultater.",
     fokus: "Laser · hudbehandlinger · PMU · injeksjoner",
   },
   {

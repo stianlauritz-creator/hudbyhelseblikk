@@ -235,8 +235,8 @@ export default function Home() {
                     Kosmetisk Dermatologisk Sykepleier
                   </p>
                   <p className="text-sm text-[#1a1a1a]/60 leading-relaxed mb-5">
-                    Sykepleier med videreutdanning i kosmetisk dermatologi og
-                    bakgrunn fra akuttmottak. I faget siden 2019 — brenner for
+                    Sykepleier med videreutdanning i kosmetisk dermatologi.
+                    I faget siden 2019 — kjent for et godt estetisk blikk,
                     forebygging og faglig forsvarlighet.
                   </p>
                   <Link

@@ -63,6 +63,7 @@ const priskategorier = [
     items: [
       { navn: "Face Formula (tidl. Elixir Cosmeceuticals)", pris: "Fra 249,-", note: "Se hele utvalget i nettbutikken" },
       { navn: "ZO Skin Health", pris: "Fra 645,-", note: "Se hele utvalget i nettbutikken" },
+      { navn: "ColoreScience", pris: "Fra 495,-", note: "Se hele utvalget i nettbutikken" },
     ],
   },
 ];

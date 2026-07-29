@@ -170,6 +170,11 @@ const sections = [
         desc: "Norskutviklet hudpleie med dokumenterte virkestoffer, utviklet for nordisk hud. Hele sortimentet i nettbutikken.",
         pris: "Fra 249,-",
       },
+      {
+        navn: "ColoreScience",
+        desc: "100 % mineralsk solbeskyttelse og korrigerende SPF-produkter — beskytter, behandler og perfeksjonerer i ett.",
+        pris: "Fra 495,-",
+      },
     ],
   },
 ];

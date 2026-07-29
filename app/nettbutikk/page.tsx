@@ -21,6 +21,7 @@ const filters: { id: Filter; label: string }[] = [
   { id: "alle", label: "Alle produkter" },
   { id: "zo", label: "ZO Skin Health" },
   { id: "face-formula", label: "Face Formula" },
+  { id: "colorescience", label: "ColoreScience" },
 ];
 
 function ProductCard({ product, index }: { product: Product; index: number }) {
@@ -101,9 +102,9 @@ export default function NettbutikkPage() {
             </h1>
             <p className="text-[#1a1a1a]/55 leading-relaxed">
               Produktene vi bruker og anbefaler i klinikken — medisinsk hudpleie
-              fra ZO Skin Health og norskutviklede Face Formula (tidligere
-              Elixir Cosmeceuticals). Bestill med levering hjem, eller hent
-              gratis hos oss i Grimstad.
+              fra ZO Skin Health, norskutviklede Face Formula (tidligere Elixir
+              Cosmeceuticals) og mineralsk solbeskyttelse fra ColoreScience.
+              Bestill med levering hjem, eller hent gratis hos oss i Grimstad.
             </p>
           </AnimatedSection>
         </div>
