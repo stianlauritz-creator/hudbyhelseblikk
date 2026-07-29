@@ -160,14 +160,14 @@ const sections = [
       "Vi fører kun produkter med dokumentert effekt og trygge ingredienser.",
     behandlinger: [
       {
-        navn: "Elixir Cosmeceuticals",
-        desc: "Norskutviklet hudpleie med dokumenterte virkestoffer. Anbefales av hudeksperter.",
-        pris: "Fra 399,-",
+        navn: "ZO Skin Health",
+        desc: "Medisinsk hudpleie utviklet av dermatolog Dr. Zein Obagi — hudfornyelse, pigmentering, rosacea og solbeskyttelse.",
+        pris: "Fra 645,-",
       },
       {
-        navn: "MeLine",
-        desc: "Spesialist på ujevn hudtone, pigmentflekker og melasma. 90–95% reduksjon på 60–90 dager.",
-        pris: "Fra 609,-",
+        navn: "Face Formula (tidl. Elixir Cosmeceuticals)",
+        desc: "Norskutviklet hudpleie med dokumenterte virkestoffer, utviklet for nordisk hud. Hele sortimentet i nettbutikken.",
+        pris: "Fra 249,-",
       },
     ],
   },

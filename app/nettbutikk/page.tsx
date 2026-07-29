@@ -1,0 +1,222 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ShoppingBag, Truck, Store, CreditCard } from "lucide-react";
+import AnimatedSection from "@/components/AnimatedSection";
+import { useCart } from "@/components/CartProvider";
+import {
+  PRODUCTS,
+  BRAND_INFO,
+  formatPrice,
+  type Brand,
+  type Product,
+} from "@/lib/products";
+
+type Filter = "alle" | Brand;
+
+const filters: { id: Filter; label: string }[] = [
+  { id: "alle", label: "Alle produkter" },
+  { id: "zo", label: "ZO Skin Health" },
+  { id: "face-formula", label: "Face Formula" },
+];
+
+function ProductCard({ product, index }: { product: Product; index: number }) {
+  const cart = useCart();
+  return (
+    <AnimatedSection delay={Math.min(index % 4, 3) * 0.06}>
+      <motion.div
+        whileHover={{ y: -4, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.08)" }}
+        transition={{ duration: 0.3 }}
+        className="group h-full flex flex-col rounded-2xl border border-[#e8d5b0]/40 bg-white overflow-hidden hover:border-[#c9a96e]/40 transition-colors duration-300"
+      >
+        <div className="relative aspect-square bg-[#faf9f7]">
+          <Image
+            src={product.image}
+            alt={`${BRAND_INFO[product.brand].label} ${product.name}`}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-contain p-6 group-hover:scale-[1.03] transition-transform duration-500"
+          />
+        </div>
+        <div className="flex-1 flex flex-col p-5">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-[#c9a96e] mb-1.5">
+            {BRAND_INFO[product.brand].label}
+          </p>
+          <h3
+            className="text-base leading-snug mb-1"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            {product.name}
+          </h3>
+          <p className="text-xs text-[#1a1a1a]/40 mb-3">{product.size}</p>
+          <p className="text-xs text-[#1a1a1a]/55 leading-relaxed mb-4 line-clamp-3">
+            {product.desc}
+          </p>
+          <div className="mt-auto flex items-center justify-between gap-3">
+            <p className="text-sm font-medium text-[#1a1a1a]">
+              {formatPrice(product.price)}
+            </p>
+            <button
+              onClick={() => cart.add(product.sku)}
+              className="px-4 py-2 bg-[#c9a96e] text-white text-xs tracking-wide rounded-full hover:bg-[#b8955a] transition-colors flex items-center gap-1.5"
+            >
+              <ShoppingBag size={13} />
+              Legg i kurv
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatedSection>
+  );
+}
+
+export default function NettbutikkPage() {
+  const [filter, setFilter] = useState<Filter>("alle");
+
+  const visible = useMemo(
+    () =>
+      filter === "alle"
+        ? PRODUCTS
+        : PRODUCTS.filter((p) => p.brand === filter),
+    [filter]
+  );
+
+  return (
+    <>
+      {/* Header */}
+      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
+        <div className="max-w-3xl mx-auto text-center">
+          <AnimatedSection>
+            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+              Hudprodukter
+            </p>
+            <h1
+              className="text-4xl md:text-5xl font-normal mb-6"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Nettbutikk
+            </h1>
+            <p className="text-[#1a1a1a]/55 leading-relaxed">
+              Produktene vi bruker og anbefaler i klinikken — medisinsk hudpleie
+              fra ZO Skin Health og norskutviklede Face Formula (tidligere
+              Elixir Cosmeceuticals). Bestill med levering hjem, eller hent
+              gratis hos oss i Grimstad.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Veilednings-banner */}
+      <div className="bg-[#3d4a3e] text-white">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
+          <span className="text-xs tracking-[0.2em] uppercase text-[#c9a96e]">
+            Usikker på valget?
+          </span>
+          <span className="text-sm text-white/80">
+            Vår kosmetiske sykepleier Christina hjelper deg gjerne med
+            produktveiledning —{" "}
+            <Link href="/kontakt" className="underline hover:text-[#c9a96e]">
+              ta kontakt
+            </Link>{" "}
+            eller spør ved neste besøk.
+          </span>
+        </div>
+      </div>
+
+      {/* Filter + produkter */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="flex flex-wrap justify-center gap-2 mb-6">
+            {filters.map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setFilter(f.id)}
+                className={`px-5 py-2 rounded-full text-sm tracking-wide border transition-colors duration-200 ${
+                  filter === f.id
+                    ? "bg-[#c9a96e] text-white border-[#c9a96e]"
+                    : "bg-white text-[#1a1a1a]/60 border-[#e8d5b0]/60 hover:border-[#c9a96e]/60 hover:text-[#c9a96e]"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </AnimatedSection>
+
+          {filter !== "alle" && (
+            <AnimatedSection className="text-center mb-10">
+              <p className="text-sm text-[#1a1a1a]/50 max-w-2xl mx-auto leading-relaxed">
+                {BRAND_INFO[filter].tagline}
+              </p>
+            </AnimatedSection>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+            {visible.map((p, i) => (
+              <ProductCard key={p.sku} product={p} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Levering og betaling */}
+      <section className="py-20 px-6 bg-[#f5f2ed]">
+        <div className="max-w-5xl mx-auto">
+          <AnimatedSection className="text-center mb-12">
+            <h2
+              className="text-2xl md:text-3xl font-normal"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Levering og betaling
+            </h2>
+          </AnimatedSection>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Truck,
+                title: "Levering i hele Norge",
+                desc: "79,- i standard frakt — gratis frakt ved kjøp over 1.000,-",
+              },
+              {
+                icon: Store,
+                title: "Hent i klinikken",
+                desc: "Hent bestillingen gratis hos oss i Odden 1D, Grimstad",
+              },
+              {
+                icon: CreditCard,
+                title: "Trygg betaling",
+                desc: "Betal enkelt og sikkert med kort i kassen",
+              },
+            ].map((f, i) => (
+              <AnimatedSection key={f.title} delay={i * 0.1}>
+                <div className="p-7 rounded-2xl bg-white border border-[#e8d5b0]/30 h-full">
+                  <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center mb-4">
+                    <f.icon size={18} className="text-[#c9a96e]" />
+                  </div>
+                  <h3
+                    className="text-base mb-2"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {f.title}
+                  </h3>
+                  <p className="text-sm text-[#1a1a1a]/55 leading-relaxed">
+                    {f.desc}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+          <AnimatedSection delay={0.2} className="text-center mt-12">
+            <p className="text-xs text-[#1a1a1a]/40 max-w-xl mx-auto leading-relaxed">
+              Aktive produkter med retinol og syrer bør tilpasses din hud. Er du
+              i tvil, anbefaler vi en hudkonsultasjon før du starter — den
+              trekkes fra ved produktkjøp samme dag.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+    </>
+  );
+}

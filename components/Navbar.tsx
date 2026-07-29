@@ -2,16 +2,36 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/components/CartProvider";
 
 const links = [
   { href: "/behandlinger", label: "Behandlinger" },
-  { href: "/om-mabel", label: "Om Mabel" },
+  { href: "/nettbutikk", label: "Nettbutikk" },
+  { href: "/behandlere", label: "Behandlere" },
   { href: "/prisliste", label: "Prisliste" },
   { href: "/faq", label: "FAQ" },
   { href: "/kontakt", label: "Kontakt" },
 ];
+
+function CartButton() {
+  const cart = useCart();
+  return (
+    <button
+      onClick={() => cart.setOpen(true)}
+      aria-label="Åpne handlekurv"
+      className="relative p-2 text-[#1a1a1a]/70 hover:text-[#c9a96e] transition-colors"
+    >
+      <ShoppingBag size={19} />
+      {cart.count > 0 && (
+        <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#c9a96e] text-white text-[10px] flex items-center justify-center">
+          {cart.count}
+        </span>
+      )}
+    </button>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,22 +76,26 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
+          <CartButton />
           <a
             href="/kontakt"
-            className="ml-2 px-5 py-2.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors duration-200"
+            className="ml-1 px-5 py-2.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors duration-200"
           >
             Bestill time
           </a>
         </nav>
 
         {/* Mobile menu toggle */}
-        <button
-          className="md:hidden p-2 text-[#1a1a1a]"
-          onClick={() => setOpen(!open)}
-          aria-label="Meny"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <CartButton />
+          <button
+            className="p-2 text-[#1a1a1a]"
+            onClick={() => setOpen(!open)}
+            aria-label="Meny"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

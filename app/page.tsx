@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import {
@@ -47,8 +48,8 @@ const behandlingsKategorier = [
   {
     icon: ShoppingBag,
     title: "Hudprodukter",
-    desc: "Elixir Cosmeceuticals og MeLine — dokumenterte resultater",
-    href: "/behandlinger#produkter",
+    desc: "ZO Skin Health og Face Formula — kjøp i klinikken eller i nettbutikken",
+    href: "/nettbutikk",
   },
 ];
 
@@ -195,51 +196,94 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Om Mabel – kort seksjon */}
+      {/* Behandlere – kort seksjon */}
       <section className="py-24 px-6 bg-[#f5f2ed]">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+              Møt dine behandlere
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-normal"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Kvalifisert helsepersonell
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Mabel */}
             <AnimatedSection direction="left">
-              {/* Bildeplass */}
-              <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/30 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjYzlhOTZlMjAiLz48L3N2Zz4=')] opacity-40" />
-                <p className="text-[#c9a96e]/60 text-sm tracking-wide text-center px-8">
-                  Bilde av Mabel Lorine King
-                  <br />
-                  <span className="text-xs text-[#c9a96e]/40">Kommer snart</span>
-                </p>
+              <div className="rounded-2xl bg-white border border-[#e8d5b0]/40 overflow-hidden h-full flex flex-col">
+                <div className="aspect-[4/3] bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/30 flex items-center justify-center relative">
+                  <p className="text-[#c9a96e]/60 text-sm tracking-wide text-center px-8">
+                    Bilde av Mabel Lorine King
+                    <br />
+                    <span className="text-xs text-[#c9a96e]/40">
+                      Kommer snart
+                    </span>
+                  </p>
+                </div>
+                <div className="p-7 flex-1 flex flex-col">
+                  <h3
+                    className="text-xl mb-1"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    Mabel Lorine King
+                  </h3>
+                  <p className="text-xs text-[#c9a96e] tracking-wide mb-4">
+                    Kosmetisk Dermatologisk Sykepleier
+                  </p>
+                  <p className="text-sm text-[#1a1a1a]/60 leading-relaxed mb-5">
+                    Sykepleier med videreutdanning i kosmetisk dermatologi og
+                    bakgrunn fra akuttmottak. I faget siden 2019 — brenner for
+                    forebygging og faglig forsvarlighet.
+                  </p>
+                  <Link
+                    href="/om-mabel"
+                    className="text-sm tracking-wide text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
+                  >
+                    Les mer om Mabel →
+                  </Link>
+                </div>
               </div>
             </AnimatedSection>
 
+            {/* Christina */}
             <AnimatedSection direction="right">
-              <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
-                Møt din behandler
-              </p>
-              <h2
-                className="text-3xl md:text-4xl font-normal mb-2"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Mabel Lorine King
-              </h2>
-              <p className="text-sm text-[#c9a96e] mb-6 tracking-wide">
-                Kosmetisk Dermatologisk Sykepleier
-              </p>
-              <p className="text-[#1a1a1a]/65 leading-relaxed mb-4">
-                Mabel er utdannet sykepleier med videreutdanning i kosmetisk
-                dermatologi. Med bakgrunn fra akuttmottak bringer hun medisinsk
-                presisjon inn i estetisk behandling.
-              </p>
-              <p className="text-[#1a1a1a]/65 leading-relaxed mb-8">
-                Hun har jobbet som kosmetisk dermatologisk sykepleier siden 2019
-                og brenner for forebygging, naturlige resultater og faglig
-                forsvarlighet.
-              </p>
-              <Link
-                href="/om-mabel"
-                className="text-sm tracking-wide text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors"
-              >
-                Les mer om Mabel →
-              </Link>
+              <div className="rounded-2xl bg-white border border-[#e8d5b0]/40 overflow-hidden h-full flex flex-col">
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <Image
+                    src="/christina-dalen.jpg"
+                    alt="Christina Dalen, kosmetisk sykepleier"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-7 flex-1 flex flex-col">
+                  <h3
+                    className="text-xl mb-1"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    Christina Dalen
+                  </h3>
+                  <p className="text-xs text-[#c9a96e] tracking-wide mb-4">
+                    Kosmetisk Sykepleier
+                  </p>
+                  <p className="text-sm text-[#1a1a1a]/60 leading-relaxed mb-5">
+                    Sertifisert Restylane Injector med særlig lidenskap for
+                    leppebehandlinger. Naturlige resultater som fremhever dine
+                    egne trekk.
+                  </p>
+                  <Link
+                    href="/om-christina"
+                    className="text-sm tracking-wide text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
+                  >
+                    Les mer om Christina →
+                  </Link>
+                </div>
+              </div>
             </AnimatedSection>
           </div>
         </div>

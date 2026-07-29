@@ -61,8 +61,8 @@ const priskategorier = [
   {
     kategori: "Hudprodukter",
     items: [
-      { navn: "Elixir Cosmeceuticals", pris: "Fra 399,-" },
-      { navn: "MeLine", pris: "Fra 609,-" },
+      { navn: "Face Formula (tidl. Elixir Cosmeceuticals)", pris: "Fra 249,-", note: "Se hele utvalget i nettbutikken" },
+      { navn: "ZO Skin Health", pris: "Fra 645,-", note: "Se hele utvalget i nettbutikken" },
     ],
   },
 ];
