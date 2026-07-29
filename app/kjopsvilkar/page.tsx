@@ -38,10 +38,10 @@ const sections: { title: string; body: React.ReactNode }[] = [
         <p>
           Alle priser er oppgitt i norske kroner og inkluderer merverdiavgift.
           Totalkostnaden, inkludert eventuell frakt, vises før du fullfører
-          bestillingen. Betaling skjer med kort eller andre betalingsmetoder som
-          tilbys i kassen, og beløpet belastes ved bestilling. Betalingen
-          håndteres av vår betalingsleverandør (Stripe); vi lagrer aldri
-          kortinformasjonen din selv.
+          bestillingen. Betaling skjer med kort, Vipps eller andre
+          betalingsmetoder som tilbys i kassen, og beløpet belastes ved
+          bestilling. Betalingen håndteres av vår betalingsleverandør; vi
+          lagrer aldri kortinformasjonen din selv.
         </p>
       </>
     ),

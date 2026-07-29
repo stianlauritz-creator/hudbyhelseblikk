@@ -27,6 +27,7 @@ interface CartContextValue {
   shipping: number;
   total: number;
   items: { product: Product; qty: number }[];
+  catalog: Product[];
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -36,7 +37,15 @@ export const SHIPPING_COST = 79;
 
 const STORAGE_KEY = "hbh-cart";
 
-export function CartProvider({ children }: { children: React.ReactNode }) {
+export function CartProvider({
+  children,
+  catalog = PRODUCTS,
+}: {
+  children: React.ReactNode;
+  // Sendes fra rot-layouten: Shopify-katalogen når den er koblet til,
+  // ellers den statiske produktlisten.
+  catalog?: Product[];
+}) {
   const [lines, setLines] = useState<CartLine[]>([]);
   const [open, setOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -46,12 +55,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed: CartLine[] = JSON.parse(raw);
-        setLines(parsed.filter((l) => PRODUCTS.some((p) => p.sku === l.sku)));
+        setLines(parsed.filter((l) => catalog.some((p) => p.sku === l.sku)));
       }
     } catch {
       // korrupt lagring — start tomt
     }
     setLoaded(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -85,7 +95,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<CartContextValue>(() => {
     const items = lines
       .map((l) => ({
-        product: PRODUCTS.find((p) => p.sku === l.sku)!,
+        product: catalog.find((p) => p.sku === l.sku)!,
         qty: l.qty,
       }))
       .filter((i) => i.product);
@@ -105,8 +115,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       shipping,
       total: subtotal + shipping,
       items,
+      catalog,
     };
-  }, [lines, open]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lines, open, catalog]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

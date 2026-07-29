@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/components/CartProvider";
 import CartDrawer from "@/components/CartDrawer";
+import { getCatalog } from "@/lib/shopify";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -69,11 +70,12 @@ const structuredData = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const catalog = await getCatalog();
   return (
     <html
       lang="nb"
@@ -92,7 +94,7 @@ export default function RootLayout({
           background: "#faf9f7",
         }}
       >
-        <CartProvider>
+        <CartProvider catalog={catalog}>
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

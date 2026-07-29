@@ -1,21 +1,14 @@
 import { NextResponse } from "next/server";
 import { PRODUCTS } from "@/lib/products";
+import { createShopifyCheckout, shopifyConfigured } from "@/lib/shopify";
 import {
   FREE_SHIPPING_LIMIT,
   SHIPPING_COST,
 } from "@/components/CartProvider";
 
-// Oppretter en Stripe Checkout-sesjon. Prisene slås alltid opp server-side.
-// Uten STRIPE_SECRET_KEY svarer ruten 503 og klienten faller tilbake til e-postbestilling.
+// Checkout-kjede: Shopify (når koblet til) → Stripe → 503 (klienten faller
+// tilbake til e-postbestilling). Prisene slås alltid opp server-side.
 export async function POST(req: Request) {
-  const key = process.env.STRIPE_SECRET_KEY;
-  if (!key) {
-    return NextResponse.json(
-      { error: "Betaling er ikke konfigurert" },
-      { status: 503 }
-    );
-  }
-
   let lines: { sku: string; qty: number }[];
   try {
     const body = await req.json();
@@ -23,6 +16,23 @@ export async function POST(req: Request) {
     if (!Array.isArray(lines) || lines.length === 0) throw new Error();
   } catch {
     return NextResponse.json({ error: "Ugyldig handlekurv" }, { status: 400 });
+  }
+
+  if (shopifyConfigured()) {
+    const url = await createShopifyCheckout(lines);
+    if (url) return NextResponse.json({ url });
+    return NextResponse.json(
+      { error: "Kunne ikke starte betaling" },
+      { status: 502 }
+    );
+  }
+
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    return NextResponse.json(
+      { error: "Betaling er ikke konfigurert" },
+      { status: 503 }
+    );
   }
 
   const items = lines

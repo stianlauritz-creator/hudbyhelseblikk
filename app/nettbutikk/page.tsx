@@ -8,7 +8,6 @@ import { ShoppingBag, Truck, Store, CreditCard } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import {
-  PRODUCTS,
   BRAND_INFO,
   formatPrice,
   type Brand,
@@ -23,6 +22,7 @@ const filters: { id: Filter; label: string }[] = [
   { id: "face-formula", label: "Face Formula" },
   { id: "colorescience", label: "ColoreScience" },
   { id: "gavekort", label: "Gavekort" },
+  { id: "annet", label: "Annet" },
 ];
 
 function ProductCard({ product, index }: { product: Product; index: number }) {
@@ -81,6 +81,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 }
 
 export default function NettbutikkPage() {
+  const { catalog } = useCart();
   const [filter, setFilter] = useState<Filter>("alle");
 
   // ?merke=zo|face-formula|colorescience fra f.eks. produktsidenes breadcrumb
@@ -94,9 +95,18 @@ export default function NettbutikkPage() {
   const visible = useMemo(
     () =>
       filter === "alle"
-        ? PRODUCTS
-        : PRODUCTS.filter((p) => p.brand === filter),
-    [filter]
+        ? catalog
+        : catalog.filter((p) => p.brand === filter),
+    [filter, catalog]
+  );
+
+  // Vis bare filterknapper det finnes produkter for
+  const activeFilters = useMemo(
+    () =>
+      filters.filter(
+        (f) => f.id === "alle" || catalog.some((p) => p.brand === f.id)
+      ),
+    [catalog]
   );
 
   return (
@@ -145,7 +155,7 @@ export default function NettbutikkPage() {
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="flex flex-wrap justify-center gap-2 mb-6">
-            {filters.map((f) => (
+            {activeFilters.map((f) => (
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}

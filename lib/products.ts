@@ -1,6 +1,6 @@
 // Produktkatalog Hud By Helseblikk — priser matchet mot Klinikk Arendal / Skinsation (Grimstad) / Studio 5, juli 2026
 
-export type Brand = "zo" | "face-formula" | "colorescience" | "gavekort";
+export type Brand = "zo" | "face-formula" | "colorescience" | "gavekort" | "annet";
 
 export interface Product {
   sku: string;
@@ -28,6 +28,10 @@ export const BRAND_INFO: Record<Brand, { label: string; tagline: string }> = {
   gavekort: {
     label: "Gavekort",
     tagline: "Gi bort god hudhelse — gavekortet gjelder både behandlinger og produkter hos Hud By Helseblikk, og er gyldig i 12 måneder.",
+  },
+  annet: {
+    label: "Annet",
+    tagline: "Utvalgte produkter fra klinikken.",
   },
 };
 

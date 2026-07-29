@@ -26,7 +26,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
       <>
         <p>
           <strong>Kjøp i nettbutikken:</strong> Når du handler hos oss, behandler
-          betalingsleverandøren vår (Stripe) navn, e-postadresse,
+          betalingsleverandøren vår navn, e-postadresse,
           leveringsadresse og betalingsinformasjon for å gjennomføre kjøpet.
           Vi mottar ordreopplysningene (ikke kortinformasjon) og bruker dem til
           å levere bestillingen, sende ordrebekreftelse og oppfylle
@@ -66,7 +66,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
       <>
         <p>
           Vi deler kun opplysninger med databehandlere som er nødvendige for
-          driften: Stripe (betaling), Vercel (drift av nettsiden) og
+          driften: betalingsleverandøren vår, Vercel (drift av nettsiden) og
           fraktleverandør ved forsendelse. Vi selger aldri personopplysninger
           videre.
         </p>
