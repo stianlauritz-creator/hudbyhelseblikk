@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { motion } from "framer-motion";
@@ -195,6 +196,26 @@ export default function BehandlingerPage() {
             </p>
           </AnimatedSection>
         </div>
+      </section>
+
+      {/* Fra klinikken */}
+      <section className="px-6 -mb-4">
+        <AnimatedSection className="max-w-5xl mx-auto">
+          <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
+            <Image
+              src="/behandling-banner.jpg"
+              alt="Microneedling-behandling med Dermapen hos Hud By Helseblikk"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1e2d3d]/30 to-transparent" />
+            <p className="absolute bottom-4 left-6 text-white/90 text-xs tracking-[0.2em] uppercase">
+              Fra klinikken — microneedling med Dermapen
+            </p>
+          </div>
+        </AnimatedSection>
       </section>
 
       {/* Navigasjon */}

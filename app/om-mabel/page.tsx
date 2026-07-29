@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 
@@ -47,14 +48,16 @@ export default function OmMabelPage() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           {/* Bilde */}
           <AnimatedSection direction="left" className="sticky top-28">
-            <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/20 flex items-center justify-center relative overflow-hidden">
+            <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/20 relative overflow-hidden">
+              <Image
+                src="/mabel.jpg"
+                alt="Mabel Lorine King i behandling, kosmetisk dermatologisk sykepleier"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1e2d3d]/10 to-transparent" />
-              <div className="text-center px-8">
-                <p className="text-[#c9a96e]/60 text-sm">
-                  Portrettbilde av Mabel
-                </p>
-                <p className="text-[#c9a96e]/40 text-xs mt-1">Kommer snart</p>
-              </div>
               {/* Dekorativt element */}
               <div className="absolute bottom-6 left-6 right-6 bg-white/80 backdrop-blur-sm rounded-xl p-4">
                 <p

@@ -11,7 +11,8 @@ const behandlere = [
     navn: "Mabel Lorine King",
     tittel: "Kosmetisk Dermatologisk Sykepleier",
     href: "/om-mabel",
-    bilde: null,
+    bilde: "/mabel.jpg",
+    bildePos: "object-[center_45%]",
     tekst:
       "Utdannet sykepleier med videreutdanning i kosmetisk dermatologi. Med bakgrunn fra akuttmottak bringer hun medisinsk presisjon inn i estetisk behandling — og har jobbet i faget siden 2019.",
     fokus: "Laser · hudbehandlinger · PMU · injeksjoner",
@@ -21,6 +22,7 @@ const behandlere = [
     tittel: "Kosmetisk Sykepleier",
     href: "/om-christina",
     bilde: "/christina-dalen.jpg",
+    bildePos: "object-top",
     tekst:
       "Sertifisert Restylane Injector med Julie Horne Lips Masterclass i bagasjen. Christina har en særlig lidenskap for leppebehandlinger og naturlige resultater som fremhever dine egne trekk.",
     fokus: "Lepper · filler · skinboostere · hudpleieveiledning",
@@ -73,7 +75,7 @@ export default function BehandlerePage() {
                         alt={b.navn}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                        className={`object-cover ${b.bildePos} group-hover:scale-[1.02] transition-transform duration-500`}
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">

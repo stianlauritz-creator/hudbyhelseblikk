@@ -215,14 +215,14 @@ export default function Home() {
             {/* Mabel */}
             <AnimatedSection direction="left">
               <div className="rounded-2xl bg-white border border-[#e8d5b0]/40 overflow-hidden h-full flex flex-col">
-                <div className="aspect-[4/3] bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/30 flex items-center justify-center relative">
-                  <p className="text-[#c9a96e]/60 text-sm tracking-wide text-center px-8">
-                    Bilde av Mabel Lorine King
-                    <br />
-                    <span className="text-xs text-[#c9a96e]/40">
-                      Kommer snart
-                    </span>
-                  </p>
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <Image
+                    src="/mabel.jpg"
+                    alt="Mabel Lorine King, kosmetisk dermatologisk sykepleier"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-[center_45%]"
+                  />
                 </div>
                 <div className="p-7 flex-1 flex flex-col">
                   <h3
