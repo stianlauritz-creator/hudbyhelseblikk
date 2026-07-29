@@ -1,7 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -80,12 +79,16 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   );
 }
 
-function NettbutikkContent() {
-  const params = useSearchParams();
-  const merke = params.get("merke");
-  const [filter, setFilter] = useState<Filter>(
-    merke && filters.some((f) => f.id === merke) ? (merke as Filter) : "alle"
-  );
+export default function NettbutikkPage() {
+  const [filter, setFilter] = useState<Filter>("alle");
+
+  // ?merke=zo|face-formula|colorescience fra f.eks. produktsidenes breadcrumb
+  useEffect(() => {
+    const merke = new URLSearchParams(window.location.search).get("merke");
+    if (merke && filters.some((f) => f.id === merke)) {
+      setFilter(merke as Filter);
+    }
+  }, []);
 
   const visible = useMemo(
     () =>
@@ -232,10 +235,3 @@ function NettbutikkContent() {
   );
 }
 
-export default function NettbutikkPage() {
-  return (
-    <Suspense>
-      <NettbutikkContent />
-    </Suspense>
-  );
-}
