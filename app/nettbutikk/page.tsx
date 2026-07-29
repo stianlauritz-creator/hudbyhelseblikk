@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -31,8 +32,13 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       <motion.div
         whileHover={{ y: -4, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.08)" }}
         transition={{ duration: 0.3 }}
-        className="group h-full flex flex-col rounded-2xl border border-[#e8d5b0]/40 bg-white overflow-hidden hover:border-[#c9a96e]/40 transition-colors duration-300"
+        className="group relative h-full flex flex-col rounded-2xl border border-[#e8d5b0]/40 bg-white overflow-hidden hover:border-[#c9a96e]/40 transition-colors duration-300"
       >
+        <Link
+          href={`/nettbutikk/${product.sku}`}
+          className="absolute inset-0 z-10"
+          aria-label={`${BRAND_INFO[product.brand].label} ${product.name}`}
+        />
         <div className="relative aspect-square bg-[#faf9f7]">
           <Image
             src={product.image}
@@ -62,7 +68,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             </p>
             <button
               onClick={() => cart.add(product.sku)}
-              className="px-4 py-2 bg-[#c9a96e] text-white text-xs tracking-wide rounded-full hover:bg-[#b8955a] transition-colors flex items-center gap-1.5"
+              className="relative z-20 px-4 py-2 bg-[#c9a96e] text-white text-xs tracking-wide rounded-full hover:bg-[#b8955a] transition-colors flex items-center gap-1.5"
             >
               <ShoppingBag size={13} />
               Legg i kurv
@@ -74,8 +80,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   );
 }
 
-export default function NettbutikkPage() {
-  const [filter, setFilter] = useState<Filter>("alle");
+function NettbutikkContent() {
+  const params = useSearchParams();
+  const merke = params.get("merke");
+  const [filter, setFilter] = useState<Filter>(
+    merke && filters.some((f) => f.id === merke) ? (merke as Filter) : "alle"
+  );
 
   const visible = useMemo(
     () =>
@@ -219,5 +229,13 @@ export default function NettbutikkPage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function NettbutikkPage() {
+  return (
+    <Suspense>
+      <NettbutikkContent />
+    </Suspense>
   );
 }

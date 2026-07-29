@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/components/CartProvider";
@@ -21,16 +22,19 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Hud By Helseblikk — Naturlig skjønnhet, medisinsk kvalitet",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Hud By Helseblikk — Hudklinikk i Grimstad",
+    template: "%s | Hud By Helseblikk",
+  },
   description:
-    "Premium medisinsk hudklinikk i Grimstad. Vi tilbyr laserbehandlinger, injeksjonsbehandlinger, microneedling, kjemisk peeling og hudkonsultasjoner. Bestill time i dag.",
-  keywords:
-    "hudklinikk grimstad, laserbehandling, botox, filler, microneedling, medisinsk hudpleie, hud by helseblikk",
+    "Medisinsk hudklinikk i Grimstad. Laserbehandlinger, injeksjonsbehandlinger, microneedling, kjemisk peeling og nettbutikk med ZO Skin Health, Face Formula og ColoreScience.",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Hud By Helseblikk — Naturlig skjønnhet, medisinsk kvalitet",
+    title: "Hud By Helseblikk — Hudklinikk i Grimstad",
     description:
-      "Premium medisinsk hudklinikk i Grimstad. Laserbehandlinger, injeksjonsbehandlinger og avansert hudpleie.",
-    url: "https://hudbyhelseblikk.no",
+      "Medisinsk hudklinikk i Grimstad med nettbutikk for medisinsk hudpleie.",
+    url: SITE_URL,
     siteName: "Hud By Helseblikk",
     locale: "nb_NO",
     type: "website",
@@ -39,13 +43,16 @@ export const metadata: Metadata = {
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": ["MedicalBusiness", "HealthAndBeautyBusiness"],
+  "@id": `${SITE_URL}/#klinikk`,
   name: "Hud By Helseblikk",
   description:
     "Premium medisinsk hudklinikk i Grimstad. Laserbehandlinger, injeksjonsbehandlinger, microneedling og avansert hudpleie.",
-  url: "https://hudbyhelseblikk.no",
+  url: SITE_URL,
+  image: `${SITE_URL}/behandling-banner.jpg`,
   telephone: "+4737040500",
   email: "hei@helseblikk.no",
+  priceRange: "kr 490 – kr 5 000",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Odden 1D",
