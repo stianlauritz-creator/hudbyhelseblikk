@@ -17,6 +17,8 @@ const STATIC_ROUTES: {
   { path: "/om-mabel", priority: 0.6, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.6, changeFrequency: "monthly" },
   { path: "/kontakt", priority: 0.7, changeFrequency: "yearly" },
+  { path: "/kjopsvilkar", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/personvern", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

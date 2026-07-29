@@ -22,6 +22,7 @@ const filters: { id: Filter; label: string }[] = [
   { id: "zo", label: "ZO Skin Health" },
   { id: "face-formula", label: "Face Formula" },
   { id: "colorescience", label: "ColoreScience" },
+  { id: "gavekort", label: "Gavekort" },
 ];
 
 function ProductCard({ product, index }: { product: Product; index: number }) {

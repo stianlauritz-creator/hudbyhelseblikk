@@ -1,20 +1,43 @@
-"use client";
-
-import { useEffect } from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import AnimatedSection from "@/components/AnimatedSection";
-import { useCart } from "@/components/CartProvider";
+import ClearCart from "@/components/ClearCart";
 
-export default function TakkPage() {
-  const cart = useCart();
+// Ordrebekreftelse. Verifiserer Stripe-sesjonen server-side så siden ikke
+// kan vise «betaling mottatt» uten at en faktisk betaling ligger bak.
+export default async function TakkPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ session_id?: string }>;
+}) {
+  const { session_id } = await searchParams;
+  const key = process.env.STRIPE_SECRET_KEY;
 
-  useEffect(() => {
-    cart.clear();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  if (!session_id || !key) redirect("/nettbutikk");
+
+  let paid = false;
+  let email: string | null = null;
+  try {
+    const res = await fetch(
+      `https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(
+        session_id
+      )}`,
+      { headers: { Authorization: `Bearer ${key}` }, cache: "no-store" }
+    );
+    if (res.ok) {
+      const session = await res.json();
+      paid = session.payment_status === "paid";
+      email = session.customer_details?.email ?? null;
+    }
+  } catch {
+    // Nettverksfeil mot Stripe — behandles som uverifisert
+  }
+
+  if (!paid) redirect("/nettbutikk");
 
   return (
     <section className="pt-40 pb-32 px-6 min-h-[70vh] bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
+      <ClearCart />
       <div className="max-w-2xl mx-auto text-center">
         <AnimatedSection>
           <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
@@ -27,9 +50,16 @@ export default function TakkPage() {
             Tusen takk!
           </h1>
           <p className="text-[#1a1a1a]/55 leading-relaxed mb-10">
-            Vi har mottatt bestillingen din og sender deg en bekreftelse på
-            e-post. Valgte du henting i klinikken, gir vi beskjed så snart
-            produktene er klare i Odden 1D, Grimstad.
+            Betalingen er gjennomført
+            {email ? (
+              <>
+                , og kvittering sendes til <strong>{email}</strong>
+              </>
+            ) : (
+              " og kvittering sendes på e-post"
+            )}
+            . Valgte du henting i klinikken, gir vi beskjed så snart produktene
+            er klare i Odden 1D, Grimstad.
           </p>
           <Link
             href="/nettbutikk"

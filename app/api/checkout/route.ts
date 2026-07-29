@@ -44,9 +44,12 @@ export async function POST(req: Request) {
   const origin = req.headers.get("origin") ?? "https://hudbyhelseblikk.vercel.app";
   const params = new URLSearchParams({
     mode: "payment",
-    success_url: `${origin}/nettbutikk/takk`,
+    // {CHECKOUT_SESSION_ID} erstattes av Stripe — takk-siden verifiserer
+    // sesjonen server-side før den viser ordrebekreftelse.
+    success_url: `${origin}/nettbutikk/takk?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/nettbutikk`,
     currency: "nok",
+    locale: "nb",
     "shipping_address_collection[allowed_countries][0]": "NO",
     "shipping_options[0][shipping_rate_data][type]": "fixed_amount",
     "shipping_options[0][shipping_rate_data][display_name]":

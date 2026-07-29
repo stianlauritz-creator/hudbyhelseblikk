@@ -176,13 +176,24 @@ export default function CartDrawer() {
                       </a>
                     </div>
                   ) : (
-                    <button
-                      onClick={checkout}
-                      disabled={busy}
-                      className="w-full px-6 py-3.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors disabled:opacity-60"
-                    >
-                      {busy ? "Et øyeblikk …" : "Til betaling"}
-                    </button>
+                    <>
+                      <button
+                        onClick={checkout}
+                        disabled={busy}
+                        className="w-full px-6 py-3.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors disabled:opacity-60"
+                      >
+                        {busy ? "Et øyeblikk …" : "Til betaling"}
+                      </button>
+                      <p className="text-[11px] text-[#1a1a1a]/35 text-center">
+                        Ved å fullføre kjøpet godtar du våre{" "}
+                        <a
+                          href="/kjopsvilkar"
+                          className="underline hover:text-[#c9a96e]"
+                        >
+                          kjøpsvilkår
+                        </a>
+                      </p>
+                    </>
                   )}
                   <button
                     onClick={cart.clear}

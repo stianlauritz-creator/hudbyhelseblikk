@@ -43,6 +43,8 @@ export default function Footer() {
                 ["Prisliste", "/prisliste"],
                 ["FAQ", "/faq"],
                 ["Kontakt", "/kontakt"],
+                ["Kjøpsvilkår", "/kjopsvilkar"],
+                ["Personvern", "/personvern"],
               ].map(([label, href]) => (
                 <li key={href}>
                   <Link
@@ -90,7 +92,8 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} Hud By Helseblikk · Helseblikk AS
+            © {new Date().getFullYear()} Hud By Helseblikk · Helseblikk Hud AS
+            · Org.nr. 830 724 052
           </p>
           <p className="text-xs text-white/30">
             Ansvarlig lege: Débora Dias De Oliveira
