@@ -29,33 +29,43 @@ const priskategorier = [
   {
     kategori: "Hudbehandlinger",
     items: [
-      { navn: "Kjemisk peeling", pris: "Pris ved konsultasjon" },
-      { navn: "Microneedling (Dermapen)", pris: "Pris ved konsultasjon" },
-      { navn: "Mesoterapi", pris: "Pris ved konsultasjon" },
+      { navn: "Kjemisk peeling", pris: "Fra 1.500,-", note: "ZO-peeling tilpasset din hud — type avklares ved konsultasjon" },
+      { navn: "Microneedling (Dermapen)", pris: "Fra 2.690,-", note: "Kurpris ved 3 behandlinger — spør oss" },
+      { navn: "Mesoterapi", pris: "Fra 1.900,-" },
     ],
   },
   {
     kategori: "Laserbehandlinger",
     items: [
-      { navn: "Aknebehandling (Nd:YAG)", pris: "Pris ved konsultasjon" },
-      { navn: "Blodkarbehandling", pris: "Pris ved konsultasjon" },
-      { navn: "Hårfjerning med laser", pris: "Pris ved konsultasjon" },
-      { navn: "Lipplaser", pris: "Pris ved konsultasjon" },
-      { navn: "Øyelokk-laser", pris: "Pris ved konsultasjon" },
-      { navn: "Rosacea-behandling", pris: "Pris ved konsultasjon" },
+      { navn: "Aknebehandling (Nd:YAG)", pris: "Fra 1.800,-", note: "Flere behandlinger anbefales — kurpris ved konsultasjon" },
+      { navn: "Blodkarbehandling", pris: "Fra 1.500,-" },
+      { navn: "Hårfjerning med laser", pris: "Fra 650,- pr. område", note: "Pris avhenger av områdets størrelse — se full oversikt ved booking" },
+      { navn: "Lipplaser", pris: "Fra 1.900,-" },
+      { navn: "Øyelokk-laser", pris: "Fra 2.900,-" },
+      { navn: "Rosacea-behandling", pris: "Fra 1.900,-" },
     ],
   },
   {
     kategori: "Injeksjonsbehandlinger",
     items: [
-      { navn: "Restylane (filler)", pris: "Pris ved konsultasjon" },
-      { navn: "Fjerning av filler", pris: "Pris ved konsultasjon" },
+      { navn: "Restylane (filler)", pris: "Fra 2.400,- (0,5 ml)", note: "1 ml fra 3.500,- — prises per ml" },
+      { navn: "Fjerning av filler", pris: "1.500,-" },
       {
-        navn: "Muskelavslappende injeksjoner",
-        pris: "Pris ved konsultasjon",
+        navn: "Muskelavslappende injeksjoner — 1 område",
+        pris: "2.200,-",
         note: "Gjelder ikke studentrabatt",
       },
-      { navn: "PRP-behandling", pris: "Pris ved konsultasjon" },
+      {
+        navn: "Muskelavslappende injeksjoner — 2 områder",
+        pris: "3.400,-",
+        note: "Gjelder ikke studentrabatt",
+      },
+      {
+        navn: "Muskelavslappende injeksjoner — 3 områder",
+        pris: "4.300,-",
+        note: "Gjelder ikke studentrabatt",
+      },
+      { navn: "PRP-behandling", pris: "Fra 3.900,-" },
     ],
   },
   {
