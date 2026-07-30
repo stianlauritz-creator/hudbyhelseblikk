@@ -45,7 +45,7 @@ export default function OmMabelPage() {
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           {/* Bilde */}
-          <AnimatedSection direction="left" className="sticky top-28">
+          <AnimatedSection direction="left" className="md:sticky md:top-28">
             <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/20 relative overflow-hidden">
               <Image
                 src="/mabel.jpg"
