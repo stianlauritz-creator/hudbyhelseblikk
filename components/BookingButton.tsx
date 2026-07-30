@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { BOOKING_URL } from "@/lib/site";
 
 interface Props {
   className?: string;
@@ -13,7 +14,9 @@ export default function BookingButton({
 }: Props) {
   return (
     <motion.a
-      href="/kontakt"
+      href={BOOKING_URL}
+      target="_blank"
+      rel="noopener noreferrer"
       animate={{
         boxShadow: [
           "0 0 0 0 rgba(201, 169, 110, 0.4)",

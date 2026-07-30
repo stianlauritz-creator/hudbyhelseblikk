@@ -16,3 +16,8 @@ export const ORG = {
   phoneHref: "tel:37040500",
   address: "Odden 1D, 4876 Grimstad",
 };
+
+// Midlertidig PasientSky-booking (Mabels kalender fra helseblikk.no).
+// Byttes til Timma-lenke når Timma er satt opp.
+export const BOOKING_URL =
+  "https://psno-patient-platform-fe.svc.pasientsky.no/embedded/planner/booking?serviceProviderId=24a78dc0-9caf-11ed-a4d7-727736e10ded&calendarId=d6218414-b66a-11ed-9c4d-8ef8f73e23fe";

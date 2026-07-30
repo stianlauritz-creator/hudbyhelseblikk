@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/components/CartProvider";
+import { BOOKING_URL } from "@/lib/site";
 
 const links = [
   { href: "/behandlinger", label: "Behandlinger" },
@@ -78,7 +79,9 @@ export default function Navbar() {
           ))}
           <CartButton />
           <a
-            href="/kontakt"
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-1 px-5 py-2.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors duration-200"
           >
             Bestill time
@@ -120,7 +123,9 @@ export default function Navbar() {
                 </Link>
               ))}
               <a
-                href="/kontakt"
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-2 px-5 py-3 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full text-center hover:bg-[#b8955a] transition-colors"
                 onClick={() => setOpen(false)}
               >

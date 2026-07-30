@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ShoppingBag, Truck, Store, CreditCard } from "lucide-react";
+import { ShoppingBag, Truck, Store, CreditCard, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import {
@@ -111,8 +111,22 @@ export default function NettbutikkPage() {
 
   return (
     <>
+      {/* Kommer snart-teaser */}
+      <div className="pt-20 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
+        <div className="bg-[#1e2d3d] text-white">
+          <div className="max-w-6xl mx-auto px-6 py-3.5 flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
+            <Sparkles size={15} className="text-[#c9a96e] shrink-0" />
+            <span className="text-sm text-white/85">
+              <span className="text-[#c9a96e] font-medium">Åpner snart:</span>{" "}
+              hele nettbutikken med levering rett hjem — utforsk utvalget
+              allerede nå, og hent produktene dine hos oss i klinikken.
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
-      <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
+      <section className="pt-12 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection>
             <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">

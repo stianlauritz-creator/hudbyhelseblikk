@@ -1,7 +1,8 @@
 "use client";
 
 import AnimatedSection from "@/components/AnimatedSection";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, CalendarCheck } from "lucide-react";
+import { BOOKING_URL } from "@/lib/site";
 
 const aapningstider = [
   { dag: "Mandag", tid: "09:00 – 18:00" },
@@ -141,8 +142,17 @@ export default function KontaktPage() {
                 </p>
                 <div className="space-y-3">
                   <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#c9a96e] text-white rounded-full text-sm tracking-wide hover:bg-[#b8955a] transition-colors"
+                  >
+                    <CalendarCheck size={16} />
+                    Book time online
+                  </a>
+                  <a
                     href="tel:37040500"
-                    className="flex items-center justify-center w-full py-3.5 bg-[#c9a96e] text-white rounded-full text-sm tracking-wide hover:bg-[#b8955a] transition-colors"
+                    className="flex items-center justify-center w-full py-3.5 bg-white/10 text-white rounded-full text-sm tracking-wide hover:bg-white/20 transition-colors"
                   >
                     Ring oss: 370 40 500
                   </a>
