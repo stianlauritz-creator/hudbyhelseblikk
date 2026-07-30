@@ -48,24 +48,6 @@ const sections = [
     ],
   },
   {
-    id: "pmu",
-    title: "Permanent Makeup",
-    intro:
-      "Semi-permanent makeup som gir naturlige resultater med lang varighet. Inkluderer refill-behandling.",
-    behandlinger: [
-      {
-        navn: "PMU Powderbrows inkl. refill",
-        desc: "Gir fulle, pulvermyke bryn. Resultat som varer 1–2 år. Refill inkludert.",
-        pris: "6.500,-",
-      },
-      {
-        navn: "PMU Lepper inkl. refill",
-        desc: "Definerer leppekontur og gir naturlig fyllde. Refill inkludert.",
-        pris: "6.500,-",
-      },
-    ],
-  },
-  {
     id: "hudbehandlinger",
     title: "Hudbehandlinger",
     intro:
@@ -301,7 +283,7 @@ export default function BehandlingerPage() {
           </p>
           <p className="text-[#1a1a1a]/70">
             <strong>20% rabatt</strong> på alle behandlinger med gyldig
-            studentbevis. Gjelder ikke muskelavslappende og PMU.
+            studentbevis. Gjelder ikke muskelavslappende injeksjoner.
           </p>
         </AnimatedSection>
       </section>

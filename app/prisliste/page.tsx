@@ -20,13 +20,6 @@ const priskategorier = [
     ],
   },
   {
-    kategori: "Permanent Makeup",
-    items: [
-      { navn: "PMU Powderbrows inkl. refill", pris: "6.500,-", note: "Gjelder ikke studentrabatt" },
-      { navn: "PMU Lepper inkl. refill", pris: "6.500,-", note: "Gjelder ikke studentrabatt" },
-    ],
-  },
-  {
     kategori: "Hudbehandlinger",
     items: [
       { navn: "Kjemisk peeling", pris: "Fra 1.500,-", note: "ZO-peeling tilpasset din hud — type avklares ved konsultasjon" },
@@ -109,7 +102,7 @@ export default function PrislistePage() {
           </span>
           <span className="text-sm text-white/80">
             20% rabatt på alle behandlinger med gyldig studentbevis.
-            Gjelder ikke muskelavslappende injeksjoner og PMU.
+            Gjelder ikke muskelavslappende injeksjoner.
           </span>
         </div>
       </div>

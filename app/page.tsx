@@ -18,7 +18,7 @@ const behandlingsKategorier = [
   {
     icon: Eye,
     title: "Vipper & Bryn",
-    desc: "Farging, forming, brynslaminering og PMU for perfekte bryn",
+    desc: "Farging, forming og brynslaminering for perfekte bryn",
     href: "/behandlinger#vipper-bryn",
   },
   {
@@ -38,12 +38,6 @@ const behandlingsKategorier = [
     title: "Injeksjonsbehandlinger",
     desc: "Filler, muskelavslappende, PRP og Restylane",
     href: "/behandlinger#injeksjon",
-  },
-  {
-    icon: Sparkles,
-    title: "Permanent Makeup",
-    desc: "Powderbrows og lepper — naturlige resultater som varer",
-    href: "/behandlinger#pmu",
   },
   {
     icon: ShoppingBag,

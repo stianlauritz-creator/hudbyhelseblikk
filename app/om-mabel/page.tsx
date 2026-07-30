@@ -10,7 +10,6 @@ const spesialiteter = [
   "Dermapen / Microneedling",
   "Kjemiske peelinger",
   "Injeksjonsbehandlinger (filler, PRP, muskelavslappende)",
-  "Permanent Makeup",
 ];
 
 const utdanning = [

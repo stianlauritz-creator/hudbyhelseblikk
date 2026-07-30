@@ -15,7 +15,7 @@ const behandlere = [
     bildePos: "object-[center_45%]",
     tekst:
       "Utdannet sykepleier med videreutdanning i kosmetisk dermatologi. Hun har jobbet i faget siden 2019 og er kjent for medisinsk presisjon, et godt estetisk blikk og naturlige resultater.",
-    fokus: "Laser · hudbehandlinger · PMU · injeksjoner",
+    fokus: "Laser · hudbehandlinger · injeksjoner",
   },
   {
     navn: "Christina Dalen",
