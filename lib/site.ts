@@ -19,7 +19,7 @@ export const ORG = {
 
 // Timma-nettbooking. Bookingen er bakt inn på /bestill-time;
 // TIMMA_URL brukes som direkte-lenke/reserve hvis innbakingen feiler.
-export const TIMMA_URL = "https://bestill.timma.no/reservation/helseblikkhudas";
+export const TIMMA_URL = "https://bestill.timma.no/helseblikkhudas";
 export const BOOKING_URL = "/bestill-time";
 
 // Timmas ansatt-ID-er — ?user-id=... forhåndsvelger behandler i timeboken
