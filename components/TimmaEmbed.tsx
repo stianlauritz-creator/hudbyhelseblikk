@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Script from "next/script";
 import { TIMMA_URL } from "@/lib/site";
 
@@ -17,6 +17,22 @@ declare global {
 export default function TimmaEmbed({ userId }: { userId?: string }) {
   const [loaded, setLoaded] = useState(false);
   const src = userId ? `${TIMMA_URL}?user-id=${userId}` : TIMMA_URL;
+
+  // Timma-appen spør foreldresiden «are-you-genie?» ved oppstart. Uten svaret
+  // «i-am-genie» viser den en avkortet kategorivisning som åpner booking i ny
+  // fane; med svaret rendres hele bookingflyten inne i rammen.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      if (e.data === "are-you-genie?" && e.origin === "https://bestill.timma.no") {
+        const frame = document.getElementById(
+          "timma-booking"
+        ) as HTMLIFrameElement | null;
+        frame?.contentWindow?.postMessage("i-am-genie", "https://bestill.timma.no");
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   const initResizer = () => {
     if (window.iFrameResize) {
