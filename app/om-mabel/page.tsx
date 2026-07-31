@@ -153,7 +153,10 @@ export default function OmMabelPage() {
                 <p className="text-xs text-[#1a1a1a]/40 mb-6">
                   Ansvarlig lege: Débora Dias De Oliveira
                 </p>
-                <BookingButton label="Bestill time hos Mabel" />
+                <BookingButton
+                  label="Bestill time hos Mabel"
+                  href="/bestill-time?behandler=mabel"
+                />
               </div>
             </AnimatedSection>
           </div>

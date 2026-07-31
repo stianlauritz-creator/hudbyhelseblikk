@@ -143,8 +143,6 @@ export default function KontaktPage() {
                 <div className="space-y-3">
                   <a
                     href={BOOKING_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#c9a96e] text-white rounded-full text-sm tracking-wide hover:bg-[#b8955a] transition-colors"
                   >
                     <CalendarCheck size={16} />

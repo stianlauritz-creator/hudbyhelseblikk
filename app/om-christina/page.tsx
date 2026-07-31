@@ -161,7 +161,10 @@ export default function OmChristinaPage() {
                 <p className="text-xs text-[#1a1a1a]/40 mb-6">
                   Ansvarlig lege: Débora Dias De Oliveira
                 </p>
-                <BookingButton label="Bestill time hos Christina" />
+                <BookingButton
+                  label="Bestill time hos Christina"
+                  href="/bestill-time?behandler=christina"
+                />
               </div>
             </AnimatedSection>
           </div>

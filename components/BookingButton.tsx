@@ -6,17 +6,17 @@ import { BOOKING_URL } from "@/lib/site";
 interface Props {
   className?: string;
   label?: string;
+  href?: string;
 }
 
 export default function BookingButton({
   className = "",
   label = "Bestill time",
+  href = BOOKING_URL,
 }: Props) {
   return (
     <motion.a
-      href={BOOKING_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={href}
       animate={{
         boxShadow: [
           "0 0 0 0 rgba(201, 169, 110, 0.4)",

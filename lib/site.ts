@@ -17,7 +17,14 @@ export const ORG = {
   address: "Odden 1D, 4876 Grimstad",
 };
 
-// Midlertidig PasientSky-booking (Mabels kalender fra helseblikk.no).
-// Byttes til Timma-lenke når Timma er satt opp.
-export const BOOKING_URL =
-  "https://psno-patient-platform-fe.svc.pasientsky.no/embedded/planner/booking?serviceProviderId=24a78dc0-9caf-11ed-a4d7-727736e10ded&calendarId=d6218414-b66a-11ed-9c4d-8ef8f73e23fe";
+// Timma-nettbooking. Bookingen er bakt inn på /bestill-time;
+// TIMMA_URL brukes som direkte-lenke/reserve hvis innbakingen feiler.
+export const TIMMA_URL = "https://bestill.timma.no/reservation/helseblikkhudas";
+export const BOOKING_URL = "/bestill-time";
+
+// Timmas ansatt-ID-er — ?user-id=... forhåndsvelger behandler i timeboken
+export const TIMMA_STAFF: Record<string, string> = {
+  mabel: "6a6d006f6c90d51876177b74",
+  christina: "6a6d002687e3fa187092d8d7",
+  stian: "6a6cfef533130c186ada8c94",
+};

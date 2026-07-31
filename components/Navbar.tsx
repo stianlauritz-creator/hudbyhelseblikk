@@ -80,8 +80,6 @@ export default function Navbar() {
           <CartButton />
           <a
             href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="ml-1 px-5 py-2.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors duration-200"
           >
             Bestill time
@@ -124,8 +122,6 @@ export default function Navbar() {
               ))}
               <a
                 href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="mt-2 px-5 py-3 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full text-center hover:bg-[#b8955a] transition-colors"
                 onClick={() => setOpen(false)}
               >
