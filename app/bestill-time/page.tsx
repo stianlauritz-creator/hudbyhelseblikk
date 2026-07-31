@@ -37,6 +37,29 @@ export default async function BestillTimePage({
         </div>
       </section>
 
+      {/* Steg-indikator — viser kunden hvor enkel bookingen er */}
+      <section className="pb-8 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
+        <div className="max-w-3xl mx-auto">
+          <ol className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {["Velg behandling", "Velg behandler", "Velg tid", "Bekreft"].map(
+              (steg, i) => (
+                <li
+                  key={steg}
+                  className="flex items-center gap-2.5 rounded-xl bg-white/70 border border-[#e8d5b0]/40 px-3.5 py-2.5"
+                >
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#c9a96e] text-white text-xs flex items-center justify-center font-medium">
+                    {i + 1}
+                  </span>
+                  <span className="text-xs sm:text-sm text-[#1a1a1a]/70">
+                    {steg}
+                  </span>
+                </li>
+              )
+            )}
+          </ol>
+        </div>
+      </section>
+
       <section className="pb-24 px-6 bg-gradient-to-b from-[#faf9f7] to-white">
         <div className="max-w-3xl mx-auto">
           <TimmaEmbed userId={userId} />
