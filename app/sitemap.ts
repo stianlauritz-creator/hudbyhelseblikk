@@ -34,7 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  const productEntries: MetadataRoute.Sitemap = PRODUCTS.map((product) => ({
+  // Gavekort selges via Shopifys egen gavekortfunksjon og har ingen
+  // produktside — de skal derfor ikke ligge i sitemap.
+  const productEntries: MetadataRoute.Sitemap = PRODUCTS.filter(
+    (p) => p.brand !== "gavekort"
+  ).map((product) => ({
     url: `${SITE_URL}/nettbutikk/${product.sku}`,
     lastModified,
     changeFrequency: "monthly",

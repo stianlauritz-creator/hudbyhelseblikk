@@ -71,7 +71,7 @@ export default async function BestillTimePage({
           className="pointer-events-none absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-[#c9a96e]/12 blur-3xl"
         />
         <div className="relative mx-auto max-w-3xl text-center">
-          <AnimatedSection>
+          <AnimatedSection eager>
             <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-[#c9a96e]">
               Timebestilling
             </p>

@@ -87,30 +87,27 @@ export default function Home() {
 
         <div className="relative max-w-4xl mx-auto px-6 text-center pt-24 pb-16">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-6"
           >
             Medisinsk hudpleie · Grimstad
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             className="text-5xl md:text-7xl font-normal leading-tight mb-6"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Naturlig skjønnhet,
+            Naturlig skjønnhet, 
             <br />
             <em className="text-[#c9a96e] not-italic">medisinsk kvalitet</em>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             className="text-lg md:text-xl text-[#1a1a1a]/60 max-w-xl mx-auto mb-10 leading-relaxed"
           >
             Vi kombinerer medisinsk kompetanse med estetisk presisjon.
@@ -149,7 +146,7 @@ export default function Home() {
       {/* Behandlingskategorier */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <AnimatedSection className="text-center mb-16">
+          <AnimatedSection eager className="text-center mb-16">
             <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
               Våre tjenester
             </p>

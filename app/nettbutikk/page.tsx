@@ -45,19 +45,19 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             alt={`${BRAND_INFO[product.brand].label} ${product.name}`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-contain p-6 group-hover:scale-[1.03] transition-transform duration-500"
+            className="object-contain p-3 sm:p-6 group-hover:scale-[1.03] transition-transform duration-500"
           />
         </div>
-        <div className="flex-1 flex flex-col p-5">
+        <div className="flex-1 flex flex-col p-3.5 sm:p-5">
           <p className="text-[10px] tracking-[0.2em] uppercase text-[#c9a96e] mb-1.5">
             {BRAND_INFO[product.brand].label}
           </p>
-          <h3
+          <h2
             className="text-base leading-snug mb-1"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             {product.name}
-          </h3>
+          </h2>
           <p className="text-xs text-[#1a1a1a]/40 mb-3">{product.size}</p>
           <p className="text-xs text-[#1a1a1a]/55 leading-relaxed mb-4 line-clamp-3">
             {product.desc}
@@ -128,7 +128,7 @@ export default function NettbutikkPage() {
       {/* Header */}
       <section className="pt-12 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
-          <AnimatedSection>
+          <AnimatedSection eager>
             <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
               Hudprodukter
             </p>
@@ -192,7 +192,7 @@ export default function NettbutikkPage() {
             </AnimatedSection>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mt-10">
             {visible.map((p, i) => (
               <ProductCard key={p.sku} product={p} index={i} />
             ))}

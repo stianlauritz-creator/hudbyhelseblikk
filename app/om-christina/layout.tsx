@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   description:
     "Bli kjent med Christina Dalen, kosmetisk sykepleier hos Hud By Helseblikk i Grimstad.",
   alternates: { canonical: "/om-christina" },
+  openGraph: {
+    title: "Christina Dalen | Hud By Helseblikk",
+    url: "/om-christina",
+    siteName: "Hud By Helseblikk",
+    locale: "nb_NO",
+    type: "website",
+  },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

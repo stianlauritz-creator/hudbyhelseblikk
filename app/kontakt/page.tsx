@@ -20,7 +20,7 @@ export default function KontaktPage() {
       {/* Header */}
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
-          <AnimatedSection>
+          <AnimatedSection eager>
             <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
               Vi hører fra deg
             </p>
@@ -168,7 +168,7 @@ export default function KontaktPage() {
             <AnimatedSection direction="right" delay={0.15}>
               <div className="rounded-2xl overflow-hidden border border-[#e8d5b0]/30">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2046.5!2d8.5923!3d58.3421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sOdden+1D%2C+4876+Grimstad!5e0!3m2!1snb!2sno!4v1"
+                  src="https://maps.google.com/maps?q=Odden+1D,+4876+Grimstad&hl=nb&z=16&output=embed"
                   width="100%"
                   height="280"
                   style={{ border: 0 }}

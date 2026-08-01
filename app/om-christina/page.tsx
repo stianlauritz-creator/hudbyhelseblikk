@@ -26,7 +26,7 @@ export default function OmChristinaPage() {
       {/* Header */}
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
-          <AnimatedSection>
+          <AnimatedSection eager>
             <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
               Din behandler
             </p>

@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   description:
     "Svar på vanlige spørsmål om hudbehandlinger, konsultasjon, priser og etterbehandling hos Hud By Helseblikk.",
   alternates: { canonical: "/faq" },
+  openGraph: {
+    title: "Ofte stilte spørsmål | Hud By Helseblikk",
+    url: "/faq",
+    siteName: "Hud By Helseblikk",
+    locale: "nb_NO",
+    type: "website",
+  },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
