@@ -39,9 +39,29 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
     );
   };
 
+  // Timma spør «are-you-genie?» rett etter oppstart — ofte før React har
+  // rukket å registrere lytteren. Vi svarer derfor proaktivt i noen sekunder;
+  // barnet reagerer på «i-am-genie» når som helst.
+  useEffect(() => {
+    const frame = document.getElementById(
+      "timma-booking"
+    ) as HTMLIFrameElement | null;
+    let forsøk = 0;
+    const id = setInterval(() => {
+      frame?.contentWindow?.postMessage("i-am-genie", TIMMA_ORIGIN);
+      if (++forsøk > 24) clearInterval(id); // ~6 sekunder
+    }, 250);
+    const ferdig = setTimeout(() => setLoaded(true), 2500);
+    return () => {
+      clearInterval(id);
+      clearTimeout(ferdig);
+    };
+  }, []);
+
   useEffect(() => {
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== TIMMA_ORIGIN) return;
+      setLoaded(true);
       const frame = document.getElementById(
         "timma-booking"
       ) as HTMLIFrameElement | null;
