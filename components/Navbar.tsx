@@ -12,6 +12,7 @@ const links = [
   { href: "/nettbutikk", label: "Nettbutikk" },
   { href: "/behandlere", label: "Behandlere" },
   { href: "/prisliste", label: "Prisliste" },
+  { href: "/gavekort", label: "Gavekort" },
   { href: "/faq", label: "FAQ" },
   { href: "/kontakt", label: "Kontakt" },
 ];

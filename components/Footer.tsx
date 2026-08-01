@@ -41,6 +41,7 @@ export default function Footer() {
                 ["Nettbutikk", "/nettbutikk"],
                 ["Behandlere", "/behandlere"],
                 ["Prisliste", "/prisliste"],
+                ["Gavekort", "/gavekort"],
                 ["FAQ", "/faq"],
                 ["Kontakt", "/kontakt"],
                 ["Kjøpsvilkår", "/kjopsvilkar"],

@@ -80,9 +80,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   );
 }
 
+const SIDESTORRELSE = 24;
+
 export default function NettbutikkPage() {
   const { catalog } = useCart();
   const [filter, setFilter] = useState<Filter>("alle");
+  const [antallVist, setAntallVist] = useState(SIDESTORRELSE);
 
   // ?merke=zo|face-formula|colorescience fra f.eks. produktsidenes breadcrumb
   useEffect(() => {
@@ -99,6 +102,15 @@ export default function NettbutikkPage() {
         : catalog.filter((p) => p.brand === filter),
     [filter, catalog]
   );
+
+  // Vis et utsnitt først — 73 produkter på én gang er tungt på mobil
+  const synlige = visible.slice(0, antallVist);
+  const harFlere = visible.length > antallVist;
+
+  const velgFilter = (id: Filter) => {
+    setFilter(id);
+    setAntallVist(SIDESTORRELSE);
+  };
 
   // Vis bare filterknapper det finnes produkter for
   const activeFilters = useMemo(
@@ -172,7 +184,7 @@ export default function NettbutikkPage() {
             {activeFilters.map((f) => (
               <button
                 key={f.id}
-                onClick={() => setFilter(f.id)}
+                onClick={() => velgFilter(f.id)}
                 className={`px-5 py-2 rounded-full text-sm tracking-wide border transition-colors duration-200 ${
                   filter === f.id
                     ? "bg-[#c9a96e] text-white border-[#c9a96e]"
@@ -193,10 +205,24 @@ export default function NettbutikkPage() {
           )}
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mt-10">
-            {visible.map((p, i) => (
+            {synlige.map((p, i) => (
               <ProductCard key={p.sku} product={p} index={i} />
             ))}
           </div>
+
+          {harFlere && (
+            <div className="mt-12 flex flex-col items-center gap-3">
+              <p className="text-xs text-[#1a1a1a]/40">
+                Viser {synlige.length} av {visible.length} produkter
+              </p>
+              <button
+                onClick={() => setAntallVist((n) => n + SIDESTORRELSE)}
+                className="rounded-full border border-[#c9a96e] px-8 py-3 text-sm tracking-wide text-[#c9a96e] transition-colors hover:bg-[#c9a96e] hover:text-white"
+              >
+                Vis flere produkter
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

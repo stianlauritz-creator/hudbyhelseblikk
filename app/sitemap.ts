@@ -13,6 +13,7 @@ const STATIC_ROUTES: {
   { path: "/behandlinger", priority: 0.9, changeFrequency: "monthly" },
   { path: "/nettbutikk", priority: 0.9, changeFrequency: "weekly" },
   { path: "/prisliste", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/gavekort", priority: 0.7, changeFrequency: "monthly" },
   { path: "/behandlere", priority: 0.7, changeFrequency: "monthly" },
   { path: "/om-christina", priority: 0.6, changeFrequency: "monthly" },
   { path: "/om-mabel", priority: 0.6, changeFrequency: "monthly" },
