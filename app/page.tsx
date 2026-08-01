@@ -114,12 +114,7 @@ export default function Home() {
             Hos oss er forebygging, naturlig skjønnhet og faglig forsvarlighet i fokus.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <BookingButton label="Bestill time" />
             <Link
               href="/behandlinger"
@@ -127,7 +122,7 @@ export default function Home() {
             >
               Se alle behandlinger →
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
