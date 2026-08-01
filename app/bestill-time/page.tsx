@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { CalendarCheck, ShieldCheck, Clock3, MapPin } from "lucide-react";
 import TimmaEmbed from "@/components/TimmaEmbed";
+import BookingSteps from "@/components/BookingSteps";
+import AnimatedSection from "@/components/AnimatedSection";
 import { TIMMA_STAFF } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,6 +14,43 @@ export const metadata: Metadata = {
   alternates: { canonical: "/bestill-time" },
 };
 
+const behandlere = [
+  {
+    navn: "Mabel",
+    fullt: "Mabel Lorine King",
+    tittel: "Kosmetisk dermatologisk sykepleier",
+    bilde: "/mabel.jpg",
+    pos: "object-[center_35%]",
+    href: "/om-mabel",
+  },
+  {
+    navn: "Christina",
+    fullt: "Christina Dalen",
+    tittel: "Kosmetisk sykepleier",
+    bilde: "/christina-dalen.jpg",
+    pos: "object-center",
+    href: "/om-christina",
+  },
+];
+
+const trygghet = [
+  {
+    icon: CalendarCheck,
+    tittel: "Bekreftelse med én gang",
+    tekst: "Du får bekreftelse på e-post i det timen er booket, og påminnelse før besøket.",
+  },
+  {
+    icon: ShieldCheck,
+    tittel: "Fri avbestilling",
+    tekst: "Endre eller avbestill gebyrfritt inntil 24 timer før timen din.",
+  },
+  {
+    icon: Clock3,
+    tittel: "Kort ventetid",
+    tekst: "Vi holder av tid til nye pasienter hver uke — ofte ledig samme uke.",
+  },
+];
+
 // ?behandler=mabel|christina forhåndsvelger behandler i timeboken
 export default async function BestillTimePage({
   searchParams,
@@ -16,53 +58,150 @@ export default async function BestillTimePage({
   searchParams: Promise<{ behandler?: string }>;
 }) {
   const { behandler } = await searchParams;
-  const userId = behandler ? TIMMA_STAFF[behandler.toLowerCase()] : undefined;
+  const valgt = behandler?.toLowerCase();
+  const userId = valgt ? TIMMA_STAFF[valgt] : undefined;
+  const valgtNavn = behandlere.find((b) => b.navn.toLowerCase() === valgt)?.navn;
+
   return (
     <>
-      <section className="pt-32 pb-10 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
-            Timebestilling
-          </p>
-          <h1
-            className="text-4xl md:text-5xl font-normal mb-5"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Bestill time
-          </h1>
-          <p className="text-[#1a1a1a]/55 leading-relaxed">
-            Velg behandling og finn en tid som passer deg — timeboken viser
-            alltid oppdatert tilgjengelighet. Du får bekreftelse med én gang.
-          </p>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-[#1e2d3d] pt-36 pb-40 px-6">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-[#c9a96e]/12 blur-3xl"
+        />
+        <div className="relative mx-auto max-w-3xl text-center">
+          <AnimatedSection>
+            <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-[#c9a96e]">
+              Timebestilling
+            </p>
+            <h1
+              className="text-4xl leading-[1.1] text-white md:text-6xl"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              {valgtNavn ? `Bestill time hos ${valgtNavn}` : "Bestill time"}
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-white/60 md:text-base">
+              Velg behandling, finn en tid som passer — og få bekreftelsen med én
+              gang. Timeboken viser alltid oppdatert tilgjengelighet.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Steg-indikator — viser kunden hvor enkel bookingen er */}
-      <section className="pb-8 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
-        <div className="max-w-3xl mx-auto">
-          <ol className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {["Velg behandling", "Velg behandler", "Velg tid", "Bekreft"].map(
-              (steg, i) => (
-                <li
-                  key={steg}
-                  className="flex items-center gap-2.5 rounded-xl bg-white/70 border border-[#e8d5b0]/40 px-3.5 py-2.5"
-                >
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#c9a96e] text-white text-xs flex items-center justify-center font-medium">
-                    {i + 1}
-                  </span>
-                  <span className="text-xs sm:text-sm text-[#1a1a1a]/70">
-                    {steg}
-                  </span>
-                </li>
-              )
-            )}
-          </ol>
+      {/* Veiviser + timebok, løftet opp over heroen */}
+      <section className="relative -mt-24 px-6 pb-24">
+        <div className="mx-auto max-w-5xl">
+          <AnimatedSection>
+            <div className="rounded-[28px] bg-[#faf9f7] p-6 shadow-[0_28px_70px_-30px_rgba(30,45,61,0.45)] ring-1 ring-[#e8d5b0]/40 sm:p-9">
+              <BookingSteps />
+            </div>
+          </AnimatedSection>
+
+          <div className="mt-8">
+            <TimmaEmbed userId={userId} />
+          </div>
         </div>
       </section>
 
-      <section className="pb-24 px-6 bg-gradient-to-b from-[#faf9f7] to-white">
-        <div className="max-w-3xl mx-auto">
-          <TimmaEmbed userId={userId} />
+      {/* Behandlere */}
+      <section className="border-t border-[#e8d5b0]/40 bg-white px-6 py-20">
+        <div className="mx-auto max-w-5xl">
+          <AnimatedSection className="mb-10 text-center">
+            <p className="mb-3 text-[11px] uppercase tracking-[0.3em] text-[#c9a96e]">
+              Hvem møter deg
+            </p>
+            <h2
+              className="text-2xl text-[#1e2d3d] md:text-3xl"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Dine behandlere
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {behandlere.map((b, i) => (
+              <AnimatedSection key={b.navn} delay={i * 0.1}>
+                <div className="group flex h-full items-center gap-5 rounded-2xl border border-[#e8d5b0]/40 bg-[#faf9f7] p-5 transition-colors duration-300 hover:border-[#c9a96e]/50">
+                  <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-white">
+                    <Image
+                      src={b.bilde}
+                      alt={b.fullt}
+                      fill
+                      sizes="80px"
+                      className={`object-cover ${b.pos}`}
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <p
+                      className="text-lg text-[#1e2d3d]"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {b.fullt}
+                    </p>
+                    <p className="mt-0.5 text-xs text-[#1a1a1a]/45">{b.tittel}</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <Link
+                        href={`/bestill-time?behandler=${b.navn.toLowerCase()}`}
+                        className="rounded-full bg-[#c9a96e] px-4 py-1.5 text-xs tracking-wide text-white transition-colors hover:bg-[#b8955a]"
+                      >
+                        Book hos {b.navn}
+                      </Link>
+                      <Link
+                        href={b.href}
+                        className="rounded-full border border-[#e8d5b0] px-4 py-1.5 text-xs tracking-wide text-[#1a1a1a]/60 transition-colors hover:border-[#c9a96e] hover:text-[#c9a96e]"
+                      >
+                        Les mer
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trygghet */}
+      <section className="bg-[#f5f2ed] px-6 py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-5 md:grid-cols-3">
+            {trygghet.map((t, i) => (
+              <AnimatedSection key={t.tittel} delay={i * 0.1}>
+                <div className="h-full rounded-2xl border border-[#e8d5b0]/30 bg-white p-7">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#c9a96e]/10">
+                    <t.icon size={18} className="text-[#c9a96e]" />
+                  </div>
+                  <h3
+                    className="mb-2 text-base text-[#1e2d3d]"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {t.tittel}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[#1a1a1a]/55">
+                    {t.tekst}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection delay={0.2}>
+            <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl bg-[#1e2d3d] px-7 py-6 text-center sm:flex-row sm:text-left">
+              <div className="flex items-center gap-3">
+                <MapPin size={18} className="flex-shrink-0 text-[#c9a96e]" />
+                <p className="text-sm text-white/75">
+                  Odden 1D, 4876 Grimstad — 3. etasje på Oddensenteret
+                </p>
+              </div>
+              <a
+                href="tel:37040500"
+                className="whitespace-nowrap rounded-full border border-white/20 px-5 py-2.5 text-sm tracking-wide text-white transition-colors hover:bg-white/10"
+              >
+                Ring oss: 370 40 500
+              </a>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </>
