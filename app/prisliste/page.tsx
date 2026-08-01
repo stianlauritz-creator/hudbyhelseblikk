@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 
@@ -121,24 +122,40 @@ export default function PrislistePage() {
                 </h2>
                 <div className="h-px bg-[#e8d5b0]/60 mb-4" />
                 <div className="space-y-1">
-                  {kat.items.map((item) => (
-                    <div
-                      key={item.navn}
-                      className="flex justify-between items-start gap-8 py-3 border-b border-[#faf9f7]"
-                    >
-                      <div>
-                        <p className="text-sm text-[#1a1a1a]/80">{item.navn}</p>
-                        {item.note && (
-                          <p className="text-xs text-[#1a1a1a]/35 mt-0.5">
-                            {item.note}
+                  {kat.items.map((item) => {
+                    const erProdukt = kat.kategori === "Hudprodukter";
+                    return (
+                      <div
+                        key={item.navn}
+                        className="group flex items-start justify-between gap-6 border-b border-[#faf9f7] py-3"
+                      >
+                        <div className="min-w-0">
+                          <p className="text-sm text-[#1a1a1a]/80">{item.navn}</p>
+                          {item.note && (
+                            <p className="mt-0.5 text-xs text-[#1a1a1a]/35">
+                              {item.note}
+                            </p>
+                          )}
+                        </div>
+                        <div className="flex flex-shrink-0 items-center gap-4">
+                          <p className="whitespace-nowrap text-sm font-medium text-[#c9a96e]">
+                            {item.pris}
                           </p>
-                        )}
+                          <Link
+                            href={erProdukt ? "/nettbutikk" : "/bestill-time"}
+                            aria-label={
+                              erProdukt
+                                ? `Se ${item.navn} i nettbutikken`
+                                : `Bestill time for ${item.navn}`
+                            }
+                            className="whitespace-nowrap rounded-full border border-[#e8d5b0] px-3.5 py-1.5 text-xs tracking-wide text-[#1a1a1a]/50 transition-colors hover:border-[#c9a96e] hover:bg-[#c9a96e] hover:text-white"
+                          >
+                            {erProdukt ? "Se i butikk" : "Bestill"}
+                          </Link>
+                        </div>
                       </div>
-                      <p className="text-sm font-medium text-[#c9a96e] whitespace-nowrap">
-                        {item.pris}
-                      </p>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </AnimatedSection>

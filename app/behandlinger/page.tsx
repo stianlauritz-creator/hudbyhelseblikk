@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { motion } from "framer-motion";
@@ -56,17 +58,17 @@ const sections = [
       {
         navn: "Kjemisk peeling",
         desc: "Fjerner døde hudceller, jevner ut hudtonen og stimulerer cellefornying. Tilpasset din hudtype.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 1.500,-",
       },
       {
         navn: "Microneedling (Dermapen)",
         desc: "Stimulerer hudens naturlige kollagenproduksjon. Effektivt mot arr, porer, rynker og ujevn hudtone.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 2.690,-",
       },
       {
         navn: "Mesoterapi",
         desc: "Tilføring av vitaminer, hyaluronsyre og næringsstoffer direkte i huden for økt fuktighet og glød.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 1.900,-",
       },
     ],
   },
@@ -79,32 +81,32 @@ const sections = [
       {
         navn: "Aknebehandling (Nd:YAG)",
         desc: "Reduserer inflammatorisk akne effektivt. 4–6 behandlinger anbefalt, hver 2–4. uke.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 1.800,-",
       },
       {
         navn: "Blodkarbehandling",
         desc: "Behandler sprengte blodkar og diffus rødhet. Rask og effektiv.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 1.500,-",
       },
       {
         navn: "Hårfjerning med laser",
         desc: "Permanent reduksjon av uønsket hår. Tilpasset hudtype og hårfarge.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 650,- pr. område",
       },
       {
         navn: "Lipplaser",
         desc: "Øker kollagenproduksjon, fuktighet og gir plumpere lepper. 3–4 behandlinger anbefalt, hver 2–3. uke.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 1.900,-",
       },
       {
         navn: "Øyelokk-laser",
         desc: "Reduserer rynker rundt øynene og øker kollagenproduktion via ablasjon.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 2.900,-",
       },
       {
         navn: "Rosacea-behandling",
         desc: "Reduserer vedvarende rødhet og synlige blodkar ved rosacea.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 1.900,-",
       },
     ],
   },
@@ -117,22 +119,22 @@ const sections = [
       {
         navn: "Restylane (filler)",
         desc: "Hyaluronsyrebasert filler for naturlig volum og konturering.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 2.400,-",
       },
       {
         navn: "Fjerning av filler",
         desc: "Trygg oppløsning av hyaluronsyrefiller med hyaluronidase.",
-        pris: "Pris ved konsultasjon",
+        pris: "1.500,-",
       },
       {
         navn: "Muskelavslappende injeksjoner",
         desc: "Reduserer dynamiske rynker og gir et ferskere utseende. Gjelder ikke studentrabatt.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 2.200,-",
       },
       {
         navn: "PRP-behandling",
         desc: "Platelet Rich Plasma — kroppens egne vekstfaktorer stimulerer kollagen og cellefornyelse.",
-        pris: "Pris ved konsultasjon",
+        pris: "Fra 3.900,-",
       },
     ],
   },
@@ -263,6 +265,24 @@ export default function BehandlingerPage() {
                     <p className="text-sm text-[#1a1a1a]/55 leading-relaxed mt-3">
                       {b.desc}
                     </p>
+                    {seksjon.id !== "produkter" && (
+                      <Link
+                        href="/bestill-time"
+                        className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#c9a96e] transition-colors hover:text-[#b8955a]"
+                      >
+                        Bestill time
+                        <ArrowRight size={14} />
+                      </Link>
+                    )}
+                    {seksjon.id === "produkter" && (
+                      <Link
+                        href="/nettbutikk"
+                        className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#c9a96e] transition-colors hover:text-[#b8955a]"
+                      >
+                        Se i nettbutikken
+                        <ArrowRight size={14} />
+                      </Link>
+                    )}
                   </motion.div>
                 </AnimatedSection>
               ))}
