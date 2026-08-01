@@ -1,46 +1,68 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import { TIMMA_URL } from "@/lib/site";
 
 const TIMMA_ORIGIN = "https://bestill.timma.no";
 
-// Timma-timeboken innbakt uten iframe-resizer: vi lytter direkte på
-// høyde-meldingene fra Timmas child-script og setter høyden selv. Det gir
-// samme auto-høyde, men uten resizer-biblioteket som overstyrte sidens scroll.
+declare global {
+  interface Window {
+    iFrameResize?: (options: object, selector: string) => void;
+  }
+}
+
+// Timma-timeboken innbakt i sidens design.
 //
-// Timma-appen spør «are-you-genie?» ved oppstart; svarer vi «i-am-genie»
-// rendres hele bookingflyten inline i stedet for en teaser som åpner ny fane.
+// Tre ting må stemme for at dette skal oppføre seg som en del av siden:
+//  1. Svare «i-am-genie» på Timmas «are-you-genie?» — ellers vises bare en
+//     teaser som åpner bookingen i ny fane.
+//  2. heightCalculationMethod «lowestElement». Timmas CSS setter height:100%
+//     på body, så standardmetoden (bodyOffset) måler iframens egen høyde og
+//     rammen vokser aldri — innholdet ble klippet og scrollen låste seg.
+//  3. Svare på «give-cookie-preferences», ellers viser Timma sin egen
+//     cookiebanner oppå vår.
 export default function TimmaEmbed({ userId }: { userId?: string }) {
   const [loaded, setLoaded] = useState(false);
-  const [height, setHeight] = useState(900);
-  const frameRef = useRef<HTMLIFrameElement>(null);
   const src = userId ? `${TIMMA_URL}?user-id=${userId}` : TIMMA_URL;
+
+  const initResizer = () => {
+    window.iFrameResize?.(
+      {
+        checkOrigin: [TIMMA_ORIGIN],
+        heightCalculationMethod: "lowestElement",
+        scrolling: false,
+        minHeight: 620,
+      },
+      "#timma-booking"
+    );
+  };
 
   useEffect(() => {
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== TIMMA_ORIGIN) return;
-      const frame = frameRef.current;
+      const frame = document.getElementById(
+        "timma-booking"
+      ) as HTMLIFrameElement | null;
+      const barn = frame?.contentWindow;
+      if (!barn) return;
 
       if (e.data === "are-you-genie?") {
-        frame?.contentWindow?.postMessage("i-am-genie", TIMMA_ORIGIN);
-        return;
+        barn.postMessage("i-am-genie", TIMMA_ORIGIN);
       }
 
-      // iframe-resizer-protokollen: "[iFrameSizer]<id>:<høyde>:<bredde>:..."
-      if (typeof e.data === "string" && e.data.startsWith("[iFrameSizer]")) {
-        const tall = e.data.split(":");
-        const h = Number(tall[1]);
-        if (Number.isFinite(h) && h > 200) setHeight(Math.ceil(h) + 24);
-        return;
+      if (e.data === "give-cookie-preferences") {
+        barn.postMessage(
+          { type: "cookie-preferences", value: { GA4: true, pixel: true } },
+          TIMMA_ORIGIN
+        );
       }
 
-      // Timma sender også scrollY når brukeren navigerer mellom steg —
-      // rull da toppen av timeboken inn i bildet på vår side.
-      if (e.data && typeof e.data === "object" && "scrollY" in e.data) {
-        const top = frame?.getBoundingClientRect().top ?? 0;
-        if (top < -40) frame?.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Timmas datovelger o.l. åpnes øverst i rammen — rull den i syne
+      if (e.data === "modal-open" && frame) {
+        const top = frame.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: Math.max(top - 24, 0), behavior: "smooth" });
       }
     };
 
@@ -54,10 +76,10 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative rounded-[28px] bg-white p-1.5 sm:p-3 shadow-[0_24px_60px_-24px_rgba(30,45,61,0.28)] ring-1 ring-[#e8d5b0]/50"
+        className="relative rounded-[28px] bg-white p-1.5 shadow-[0_24px_60px_-24px_rgba(30,45,61,0.28)] ring-1 ring-[#e8d5b0]/50 sm:p-3"
       >
         {!loaded && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 rounded-[28px] bg-[#faf9f7]">
+          <div className="absolute inset-0 z-10 flex min-h-[620px] flex-col items-center justify-center gap-3 rounded-[28px] bg-[#faf9f7]">
             <div className="flex gap-1.5">
               {[0, 1, 2].map((i) => (
                 <motion.span
@@ -72,16 +94,23 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
           </div>
         )}
         <iframe
-          ref={frameRef}
           id="timma-booking"
           src={src}
           title="Bestill time hos Hud By Helseblikk"
-          onLoad={() => setLoaded(true)}
-          scrolling="no"
-          className="w-full rounded-[22px] border-0 block"
-          style={{ height }}
+          onLoad={() => {
+            setLoaded(true);
+            initResizer();
+          }}
+          className="block w-full rounded-[22px] border-0"
+          style={{ minHeight: 620 }}
         />
       </motion.div>
+
+      <Script
+        src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/2.8.3/iframeResizer.min.js"
+        strategy="afterInteractive"
+        onLoad={initResizer}
+      />
 
       <p className="mt-5 text-center text-xs text-[#1a1a1a]/40">
         Vises ikke timeboken?{" "}
