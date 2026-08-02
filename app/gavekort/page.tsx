@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Gift, Mail, Phone, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import GavekortKjop from "@/components/GavekortKjop";
 
 export const metadata: Metadata = {
   title: "Gavekort",
@@ -17,13 +18,11 @@ export const metadata: Metadata = {
   },
 };
 
-const valorer = ["500,-", "1.000,-", "2.000,-", "Valgfritt beløp"];
-
 const punkter = [
   "Gjelder alle behandlinger og hele produktutvalget",
-  "Gyldig i 12 måneder fra kjøpsdato",
-  "Sendes som PDF på e-post, eller hentes som fysisk kort i klinikken",
-  "Kan brukes av flere ganger til beløpet er brukt opp",
+  "Sendes som kode på e-post rett etter kjøp",
+  "Kan brukes flere ganger til beløpet er brukt opp",
+  "Ønsker du et annet beløp, eller kortet i papir? Ta kontakt, så ordner vi det",
 ];
 
 export default function GavekortPage() {
@@ -78,24 +77,14 @@ export default function GavekortPage() {
                 ))}
               </ul>
 
-              <p className="mb-3 text-[11px] uppercase tracking-[0.2em] text-[#c9a96e]">
-                Vanlige valører
-              </p>
-              <div className="mb-10 flex flex-wrap gap-2.5">
-                {valorer.map((v) => (
-                  <span
-                    key={v}
-                    className="rounded-full border border-[#e8d5b0] bg-[#faf9f7] px-5 py-2 text-sm text-[#1e2d3d]"
-                  >
-                    {v}
-                  </span>
-                ))}
+              <div className="mb-10">
+                <GavekortKjop />
               </div>
 
               <div className="rounded-2xl bg-[#faf9f7] p-6 ring-1 ring-[#e8d5b0]/40">
                 <p className="mb-5 text-sm leading-relaxed text-[#1a1a1a]/65">
-                  Gavekort bestilles ved å ta kontakt — vi sender det på e-post
-                  samme dag, eller du henter det i klinikken.
+                  Vil du ha et annet beløp, kortet i papir, eller trenger du
+                  hjelp til å velge? Ta kontakt, så ordner vi det.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <a

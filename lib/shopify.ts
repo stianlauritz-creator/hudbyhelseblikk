@@ -165,3 +165,51 @@ export async function createShopifyCheckout(
   }
   return data.cartCreate.cart.checkoutUrl;
 }
+
+// Gavekortet ligger som eget Shopify-produkt med én variant per valør.
+// Slår opp varianten som matcher beløpet og oppretter handlekurv for den.
+export async function createGavekortCheckout(
+  amount: number
+): Promise<string | null> {
+  if (!shopifyConfigured()) return null;
+
+  const data = await storefront<{
+    products: {
+      edges: {
+        node: {
+          variants: {
+            edges: { node: { id: string; price: { amount: string } } }[];
+          };
+        };
+      }[];
+    };
+  }>(`{
+    products(first: 5, query: "gavekort") {
+      edges {
+        node {
+          variants(first: 20) { edges { node { id price { amount } } } }
+        }
+      }
+    }
+  }`);
+
+  const variants =
+    data?.products.edges.flatMap((e) =>
+      e.node.variants.edges.map((v) => v.node)
+    ) ?? [];
+  const hit = variants.find(
+    (v) => Math.round(Number(v.price.amount)) === amount
+  );
+  if (!hit) return null;
+
+  const cart = await storefront<CartCreateResult>(
+    `mutation cartCreate($input: CartInput!) {
+      cartCreate(input: $input) {
+        cart { checkoutUrl }
+        userErrors { message }
+      }
+    }`,
+    { input: { lines: [{ merchandiseId: hit.id, quantity: 1 }] } }
+  );
+  return cart?.cartCreate.cart?.checkoutUrl ?? null;
+}
