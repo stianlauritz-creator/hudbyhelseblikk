@@ -75,20 +75,19 @@ export default function Home() {
           className="absolute inset-0"
         >
           <Image
-            src="/hero-smil.jpg"
+            src="/mabel.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[45%_55%] md:object-[0%_95%]"
+            className="object-cover object-[center_38%]"
           />
         </motion.div>
         {/* Mørkt overlegg for lesbarhet */}
         <div className="absolute inset-0 bg-[#1e2d3d]/35" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1e2d3d]/60 via-[#1e2d3d]/10 to-[#1e2d3d]/25" />
 
-        <div className="relative w-full max-w-6xl mx-auto px-6 pt-24 pb-16 flex justify-center md:justify-end">
-          <div className="max-w-xl text-center md:text-left">
+        <div className="relative max-w-4xl mx-auto px-6 text-center pt-24 pb-16">
           <motion.p
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
@@ -100,7 +99,7 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            className="text-5xl md:text-6xl font-normal leading-tight mb-6 text-white"
+            className="text-5xl md:text-7xl font-normal leading-tight mb-6 text-white"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Naturlig skjønnhet,
@@ -117,7 +116,7 @@ export default function Home() {
             Hos oss er forebygging, naturlig skjønnhet og faglig forsvarlighet i fokus.
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <BookingButton label="Bestill time" />
             <Link
               href="/behandlinger"
@@ -125,7 +124,6 @@ export default function Home() {
             >
               Se alle behandlinger →
             </Link>
-            </div>
           </div>
         </div>
 
