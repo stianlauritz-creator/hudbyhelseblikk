@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,13 +18,13 @@ const links = [
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-function CartButton() {
+function CartButton({ light = false }: { light?: boolean }) {
   const cart = useCart();
   return (
     <button
       onClick={() => cart.setOpen(true)}
       aria-label="Åpne handlekurv"
-      className="relative p-2 text-[#1a1a1a]/70 hover:text-[#c9a96e] transition-colors"
+      className={`relative p-2 transition-colors ${light ? "text-white/85 hover:text-[#e5c78f]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
     >
       <ShoppingBag size={19} />
       {cart.count > 0 && (
@@ -38,6 +39,9 @@ function CartButton() {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  // Forsiden har mørkt hero-bilde — lys tekst til man scroller
+  const light = pathname === "/" && !scrolled && !open;
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -57,12 +61,12 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-none group">
           <span
-            className="text-xl tracking-wide text-[#1a1a1a]"
+            className={`text-xl tracking-wide transition-colors duration-500 ${light ? "text-white" : "text-[#1a1a1a]"}`}
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Hud By Helseblikk
           </span>
-          <span className="text-[10px] tracking-[0.2em] uppercase text-[#c9a96e] font-light mt-0.5">
+          <span className={`text-[10px] tracking-[0.2em] uppercase font-light mt-0.5 transition-colors duration-500 ${light ? "text-[#e5c78f]" : "text-[#c9a96e]"}`}>
             Medisinsk hudpleie · Grimstad
           </span>
         </Link>
@@ -73,12 +77,12 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm tracking-wide text-[#1a1a1a]/70 hover:text-[#c9a96e] transition-colors duration-200"
+              className={`text-sm tracking-wide transition-colors duration-200 ${light ? "text-white/85 hover:text-[#e5c78f]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
             >
               {l.label}
             </Link>
           ))}
-          <CartButton />
+          <CartButton light={light} />
           <a
             href={BOOKING_URL}
             className="ml-1 px-5 py-2.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors duration-200"
@@ -89,9 +93,9 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <div className="md:hidden flex items-center gap-1">
-          <CartButton />
+          <CartButton light={light} />
           <button
-            className="p-2 text-[#1a1a1a]"
+            className={`p-2 transition-colors duration-500 ${light ? "text-white" : "text-[#1a1a1a]"}`}
             onClick={() => setOpen(!open)}
             aria-label="Meny"
           >
