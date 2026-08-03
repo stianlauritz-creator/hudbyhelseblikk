@@ -1,0 +1,24 @@
+name: Deploy til Vercel
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: vercel-prod
+  cancel-in-progress: false
+
+env:
+  VERCEL_ORG_ID: team_ZEv2EZ6QdGiAkpyaJiUqxSGI
+  VERCEL_PROJECT_ID: prj_M13F9yjK5EsgoWoQiLAwkLkqxitk
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Bygger på Vercels servere (ikke --prebuilt): sensitive env-vars
+      # kan ikke hentes ut med `vercel pull`, så lokal CI-build ville feilet.
+      - name: Deploy til produksjon
+        run: npx vercel@latest deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
