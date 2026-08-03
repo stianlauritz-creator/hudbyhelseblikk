@@ -7,7 +7,17 @@ import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { motion } from "framer-motion";
 
-const sections = [
+interface Seksjon {
+  id: string;
+  title: string;
+  intro: string;
+  bilde?: string;
+  bildeAlt?: string;
+  bildeAspekt?: string;
+  behandlinger: { navn: string; desc: string; pris: string }[];
+}
+
+const sections: Seksjon[] = [
   {
     id: "konsultasjon",
     title: "Hudkonsultasjon",
@@ -52,6 +62,9 @@ const sections = [
   {
     id: "hudbehandlinger",
     title: "Hudbehandlinger",
+    bilde: "/hudbehandling.jpg",
+    bildeAlt: "Hudbehandling i klinikken",
+    bildeAspekt: "aspect-[4/3] sm:aspect-[16/9]",
     intro:
       "Avanserte behandlinger som forynger huden, stimulerer kollagenproduksjon og gir synlige resultater.",
     behandlinger: [
@@ -75,6 +88,9 @@ const sections = [
   {
     id: "laser",
     title: "Laserbehandlinger",
+    bilde: "/laserbehandling.jpg",
+    bildeAlt: "Laserbehandling i klinikken",
+    bildeAspekt: "aspect-[16/9] sm:aspect-[21/9]",
     intro:
       "Medisinsk laser for en rekke hudtilstander. Trygge, dokumenterte behandlinger med varige resultater.",
     behandlinger: [
@@ -141,6 +157,9 @@ const sections = [
   {
     id: "produkter",
     title: "Hudprodukter",
+    bilde: "/produkter-benk.jpg",
+    bildeAlt: "ZO Skin Health — klargjøring i klinikken",
+    bildeAspekt: "aspect-[16/9] sm:aspect-[21/9]",
     intro:
       "Vi fører kun produkter med dokumentert effekt og trygge ingredienser.",
     behandlinger: [
@@ -242,6 +261,22 @@ export default function BehandlingerPage() {
                 </p>
               </div>
             </AnimatedSection>
+
+            {seksjon.bilde && (
+              <AnimatedSection className="mb-10">
+                <div
+                  className={`relative overflow-hidden rounded-2xl ${seksjon.bildeAspekt}`}
+                >
+                  <Image
+                    src={seksjon.bilde}
+                    alt={seksjon.bildeAlt ?? seksjon.title}
+                    fill
+                    sizes="(max-width: 1152px) 100vw, 1104px"
+                    className="object-cover"
+                  />
+                </div>
+              </AnimatedSection>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {seksjon.behandlinger.map((b, bi) => (

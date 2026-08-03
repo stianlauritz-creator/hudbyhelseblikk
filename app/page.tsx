@@ -7,6 +7,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import {
   Sparkles,
+  Star,
   Zap,
   Droplets,
   Syringe,
@@ -47,20 +48,33 @@ const behandlingsKategorier = [
   },
 ];
 
+// Ekte Google-omtaler (Helseblikk samlet)
+const GOOGLE_OMTALER_URL = "https://maps.google.com/?cid=1808162704109245046";
+
 const testimonials = [
   {
-    text: "Mabel er nøyaktig, ærlig og imøtekommende. Resultatet overgikk forventningene mine.",
-    name: "Camilla H.",
+    text: "Her blir egne ønsker og behov ivaretatt uten å kjenne på følelsen av å bli pakket på behandlinger. God informasjon og oppfølging, og det merkes at kompetansen er høy. Super fornøyd med Mabel!",
+    name: "Mari Sigvaldsen",
   },
   {
-    text: "Endelig en klinikk i Grimstad som tar hudpleie på alvor. Profesjonell og trygg.",
-    name: "Line S.",
+    text: "Er veldig fornøyd behandlinger på Helseblikk og servicen man får der ☺️ Kosmetisk sykepleier Mabel er kjempedyktig og kan anbefales på det varmeste ❤️",
+    name: "Victoria Dec",
   },
   {
-    text: "Fantastisk resultat etter laserbehandling. Rødhet og blodkar er borte etter tre behandlinger.",
-    name: "Karianne L.",
+    text: "Kjempefornøyd etter hudpleiebehandling her! Fikk god informasjon og veiledning. Mabel er kjempedyktig 👍🏼",
+    name: "Carmen Keen",
   },
 ];
+
+function Stjerner() {
+  return (
+    <span className="flex gap-0.5">
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} size={14} className="fill-[#c9a96e] text-[#c9a96e]" />
+      ))}
+    </span>
+  );
+}
 
 export default function Home() {
   return (
@@ -281,7 +295,7 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <AnimatedSection className="text-center mb-16">
+          <AnimatedSection className="text-center mb-12">
             <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
               Hva kundene sier
             </p>
@@ -291,23 +305,41 @@ export default function Home() {
             >
               Kundeomtaler
             </h2>
+            <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-full border border-[#e8d5b0]/60 bg-[#faf9f7] px-6 py-3">
+              <span className="flex items-center gap-2">
+                <Stjerner />
+                <span className="text-sm text-[#1a1a1a]/80">5,0 av 5</span>
+              </span>
+              <a
+                href={GOOGLE_OMTALER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#c9a96e] underline underline-offset-2 hover:no-underline"
+              >
+                15 omtaler på Google →
+              </a>
+            </div>
+            <p className="mt-3 text-xs text-[#1a1a1a]/65">
+              Omtalene gjelder Helseblikk samlet — legesenter, gynekolog,
+              fysioterapi og hudklinikk.
+            </p>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
               <AnimatedSection key={t.name} delay={i * 0.15}>
-                <div className="p-8 rounded-2xl bg-[#faf9f7] border border-[#e8d5b0]/30">
-                  <p className="text-2xl text-[#c9a96e]/40 mb-4 leading-none"
-                    style={{ fontFamily: "var(--font-playfair)" }}>
-                    "
-                  </p>
-                  <p className="text-[#1a1a1a]/70 leading-relaxed text-sm mb-6">
+                <figure className="h-full flex flex-col p-8 rounded-2xl bg-[#faf9f7] border border-[#e8d5b0]/30">
+                  <Stjerner />
+                  <blockquote className="text-[#1a1a1a]/70 leading-relaxed text-sm mt-5 mb-6">
                     {t.text}
-                  </p>
-                  <p className="text-xs tracking-wide text-[#c9a96e]">
+                  </blockquote>
+                  <figcaption className="mt-auto text-xs tracking-wide text-[#c9a96e]">
                     — {t.name}
-                  </p>
-                </div>
+                    <span className="block text-[#1a1a1a]/40 mt-0.5">
+                      Google-omtale
+                    </span>
+                  </figcaption>
+                </figure>
               </AnimatedSection>
             ))}
           </div>
