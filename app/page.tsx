@@ -75,19 +75,19 @@ export default function Home() {
           className="absolute inset-0"
         >
           <Image
-            src="/mabel.jpg"
+            src="/hero-konsultasjon.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[center_38%]"
+            className="object-cover object-[88%_center] md:object-center"
           />
         </motion.div>
-        {/* Mørkt overlegg for lesbarhet */}
-        <div className="absolute inset-0 bg-[#1e2d3d]/35" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1e2d3d]/60 via-[#1e2d3d]/10 to-[#1e2d3d]/25" />
+        {/* Mørk gradient venstre — teksten der, Mabel synlig til høyre */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1e2d3d]/85 via-[#1e2d3d]/72 to-[#1e2d3d]/60 md:bg-gradient-to-r md:from-[#1e2d3d]/95 md:from-15% md:via-[#1e2d3d]/60 md:via-45% md:to-transparent md:to-80%" />
 
-        <div className="relative max-w-4xl mx-auto px-6 text-center pt-24 pb-16">
+        <div className="relative w-full max-w-6xl mx-auto px-6 pt-28 pb-20">
+          <div className="max-w-2xl text-center md:text-left">
           <motion.p
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
@@ -99,7 +99,7 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            className="text-5xl md:text-7xl font-normal leading-tight mb-6 text-white"
+            className="text-5xl md:text-7xl font-normal leading-[1.08] mb-6 text-white"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Naturlig skjønnhet,
@@ -110,13 +110,13 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed"
           >
             Vi kombinerer medisinsk kompetanse med estetisk presisjon.
             Hos oss er forebygging, naturlig skjønnhet og faglig forsvarlighet i fokus.
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
             <BookingButton label="Bestill time" />
             <Link
               href="/behandlinger"
@@ -124,6 +124,7 @@ export default function Home() {
             >
               Se alle behandlinger →
             </Link>
+            </div>
           </div>
         </div>
 
