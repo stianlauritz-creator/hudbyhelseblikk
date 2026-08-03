@@ -67,29 +67,31 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
+        {/* Background: Mabel i behandling, rolig push-out */}
         <motion.div
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute inset-0 bg-gradient-to-br from-[#f5ede4] via-[#ecddd0] to-[#e0cfc2]"
-        />
-        {/* Decorative gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f7]/60 via-transparent to-transparent" />
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#3d4a3e]/5 to-transparent" />
-
-        {/* Floating orb */}
-        <motion.div
-          animate={{ y: [-12, 12, -12], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#c9a96e]/10 blur-3xl"
-        />
+          className="absolute inset-0"
+        >
+          <Image
+            src="/mabel.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_38%]"
+          />
+        </motion.div>
+        {/* Mørkt overlegg for lesbarhet */}
+        <div className="absolute inset-0 bg-[#1e2d3d]/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1e2d3d]/60 via-[#1e2d3d]/10 to-[#1e2d3d]/25" />
 
         <div className="relative max-w-4xl mx-auto px-6 text-center pt-24 pb-16">
           <motion.p
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-6"
+            className="text-xs tracking-[0.3em] uppercase text-[#e5c78f] mb-6"
           >
             Medisinsk hudpleie · Grimstad
           </motion.p>
@@ -97,18 +99,18 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            className="text-5xl md:text-7xl font-normal leading-tight mb-6"
+            className="text-5xl md:text-7xl font-normal leading-tight mb-6 text-white"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Naturlig skjønnhet, 
+            Naturlig skjønnhet,
             <br />
-            <em className="text-[#c9a96e] not-italic">medisinsk kvalitet</em>
+            <em className="text-[#e5c78f] not-italic">medisinsk kvalitet</em>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            className="text-lg md:text-xl text-[#1a1a1a]/60 max-w-xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-10 leading-relaxed"
           >
             Vi kombinerer medisinsk kompetanse med estetisk presisjon.
             Hos oss er forebygging, naturlig skjønnhet og faglig forsvarlighet i fokus.
@@ -118,7 +120,7 @@ export default function Home() {
             <BookingButton label="Bestill time" />
             <Link
               href="/behandlinger"
-              className="text-sm tracking-wide text-[#1a1a1a]/60 hover:text-[#c9a96e] transition-colors border-b border-[#1a1a1a]/20 hover:border-[#c9a96e] pb-0.5"
+              className="text-sm tracking-wide text-white/80 hover:text-[#e5c78f] transition-colors border-b border-white/30 hover:border-[#e5c78f] pb-0.5"
             >
               Se alle behandlinger →
             </Link>
@@ -131,8 +133,8 @@ export default function Home() {
           transition={{ duration: 2, repeat: Infinity }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
         >
-          <div className="w-px h-12 bg-gradient-to-b from-[#c9a96e]/60 to-transparent" />
-          <span className="text-[10px] tracking-[0.2em] uppercase text-[#1a1a1a]/30">
+          <div className="w-px h-12 bg-gradient-to-b from-white/60 to-transparent" />
+          <span className="text-[10px] tracking-[0.2em] uppercase text-white/50">
             Scroll
           </span>
         </motion.div>
