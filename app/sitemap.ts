@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PRODUCTS } from "@/lib/products";
+import { BEHANDLINGER } from "@/lib/behandling-detaljer";
 import { SITE_URL } from "@/lib/site";
 
 // Statiske ruter. /nettbutikk/takk (ordrebekreftelse) holdes bevisst utenfor.
@@ -47,5 +48,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     images: [`${SITE_URL}${product.image}`],
   }));
 
-  return [...staticEntries, ...productEntries];
+  const behandlingEntries: MetadataRoute.Sitemap = BEHANDLINGER.map((b) => ({
+    url: `${SITE_URL}/behandlinger/${b.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...behandlingEntries, ...productEntries];
 }

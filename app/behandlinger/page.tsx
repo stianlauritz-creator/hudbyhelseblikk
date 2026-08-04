@@ -14,7 +14,7 @@ interface Seksjon {
   bilde?: string;
   bildeAlt?: string;
   bildeAspekt?: string;
-  behandlinger: { navn: string; desc: string; pris: string }[];
+  behandlinger: { navn: string; desc: string; pris: string; slug?: string }[];
 }
 
 const sections: Seksjon[] = [
@@ -26,6 +26,7 @@ const sections: Seksjon[] = [
     behandlinger: [
       {
         navn: "Konsultasjon",
+        slug: "hudkonsultasjon",
         desc: "Grundig hudanalyse og behandlingsplan. Konsultasjonsprisen trekkes fra ved behandling eller produktkjøp samme dag.",
         pris: "490,-",
       },
@@ -39,21 +40,25 @@ const sections: Seksjon[] = [
     behandlinger: [
       {
         navn: "Farging/forming vipper og bryn inkl. voks",
+        slug: "farging-forming-vipper-bryn",
         desc: "Komplett pakke for vipper og bryn med farging, forming og voks.",
         pris: "590,-",
       },
       {
         navn: "Brynslaminering",
+        slug: "brynslaminering",
         desc: "Gir fulle, velformede bryn i 4–8 uker. Inkluderer farge, forming og voks.",
         pris: "890,-",
       },
       {
         navn: "Farging og forming bryn inkl. voks",
+        slug: "farging-forming-bryn",
         desc: "Perfekt definerte bryn med farging og forming.",
         pris: "490,-",
       },
       {
         navn: "Farging vipper",
+        slug: "farging-vipper",
         desc: "Naturlig, varig farge på vippene.",
         pris: "290,-",
       },
@@ -70,16 +75,19 @@ const sections: Seksjon[] = [
     behandlinger: [
       {
         navn: "Kjemisk peeling",
+        slug: "kjemisk-peeling",
         desc: "Fjerner døde hudceller, jevner ut hudtonen og stimulerer cellefornying. Tilpasset din hudtype.",
         pris: "Fra 1.500,-",
       },
       {
         navn: "Microneedling (Dermapen)",
+        slug: "dermapen",
         desc: "Stimulerer hudens naturlige kollagenproduksjon. Effektivt mot arr, porer, rynker og ujevn hudtone.",
         pris: "Fra 2.690,-",
       },
       {
         navn: "Mesoterapi",
+        slug: "mesoterapi",
         desc: "Tilføring av vitaminer, hyaluronsyre og næringsstoffer direkte i huden for økt fuktighet og glød.",
         pris: "Fra 1.900,-",
       },
@@ -96,31 +104,37 @@ const sections: Seksjon[] = [
     behandlinger: [
       {
         navn: "Aknebehandling (Nd:YAG)",
+        slug: "aknebehandling-laser",
         desc: "Reduserer inflammatorisk akne effektivt. 4–6 behandlinger anbefalt, hver 2–4. uke.",
         pris: "Fra 1.800,-",
       },
       {
         navn: "Blodkarbehandling",
+        slug: "blodkarbehandling-laser",
         desc: "Behandler sprengte blodkar og diffus rødhet. Rask og effektiv.",
         pris: "Fra 1.500,-",
       },
       {
         navn: "Hårfjerning med laser",
+        slug: "harfjerning-laser",
         desc: "Permanent reduksjon av uønsket hår. Tilpasset hudtype og hårfarge.",
         pris: "Fra 650,- pr. område",
       },
       {
         navn: "Lipplaser",
+        slug: "leppelaser",
         desc: "Øker kollagenproduksjon, fuktighet og gir plumpere lepper. 3–4 behandlinger anbefalt, hver 2–3. uke.",
         pris: "Fra 1.900,-",
       },
       {
         navn: "Øyelokk-laser",
+        slug: "oyelokk-laser",
         desc: "Reduserer rynker rundt øynene og øker kollagenproduktion via ablasjon.",
         pris: "Fra 2.900,-",
       },
       {
         navn: "Rosacea-behandling",
+        slug: "rosacea-behandling-laser",
         desc: "Reduserer vedvarende rødhet og synlige blodkar ved rosacea.",
         pris: "Fra 1.900,-",
       },
@@ -134,21 +148,25 @@ const sections: Seksjon[] = [
     behandlinger: [
       {
         navn: "Restylane (filler)",
+        slug: "filler",
         desc: "Hyaluronsyrebasert filler for naturlig volum og konturering.",
         pris: "Fra 2.400,-",
       },
       {
         navn: "Fjerning av filler",
+        slug: "fjerning-av-filler",
         desc: "Trygg oppløsning av hyaluronsyrefiller med hyaluronidase.",
         pris: "1.500,-",
       },
       {
         navn: "Muskelavslappende injeksjoner",
+        slug: "muskelavslappende-behandling",
         desc: "Reduserer dynamiske rynker og gir et ferskere utseende. Gjelder ikke studentrabatt.",
         pris: "Fra 2.200,-",
       },
       {
         navn: "PRP-behandling",
+        slug: "prp-behandling",
         desc: "Platelet Rich Plasma — kroppens egne vekstfaktorer stimulerer kollagen og cellefornyelse.",
         pris: "Fra 3.900,-",
       },
@@ -301,13 +319,23 @@ export default function BehandlingerPage() {
                       {b.desc}
                     </p>
                     {seksjon.id !== "produkter" && (
-                      <Link
-                        href="/bestill-time"
-                        className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#c9a96e] transition-colors hover:text-[#b8955a]"
-                      >
-                        Bestill time
-                        <ArrowRight size={14} />
-                      </Link>
+                      <div className="mt-5 flex items-center gap-5">
+                        {b.slug && (
+                          <Link
+                            href={`/behandlinger/${b.slug}`}
+                            className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#c9a96e] transition-colors hover:text-[#b8955a]"
+                          >
+                            Les mer
+                            <ArrowRight size={14} />
+                          </Link>
+                        )}
+                        <Link
+                          href="/bestill-time"
+                          className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#1a1a1a]/45 transition-colors hover:text-[#c9a96e]"
+                        >
+                          Bestill time
+                        </Link>
+                      </div>
                     )}
                     {seksjon.id === "produkter" && (
                       <Link
