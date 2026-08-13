@@ -24,7 +24,7 @@ function CartButton({ light = false }: { light?: boolean }) {
     <button
       onClick={() => cart.setOpen(true)}
       aria-label="Åpne handlekurv"
-      className={`relative p-2 transition-colors ${light ? "text-white/85 hover:text-[#e5c78f]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
+      className={`relative p-2 transition-colors ${light ? "text-white hover:text-[#e5c78f] drop-shadow-[0_1px_6px_rgba(30,45,61,0.7)]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
     >
       <ShoppingBag size={19} />
       {cart.count > 0 && (
@@ -40,8 +40,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  // usePathname() er ikke pålitelig ved første klientrender (menyen ble stående
+  // mørk over hero-bildet til man scrollet) — korriger mot faktisk URL ved mount
+  const [path, setPath] = useState(pathname);
+  useEffect(() => {
+    setPath(window.location.pathname);
+  }, [pathname]);
+
   // Forsiden har mørkt hero-bilde — lys tekst til man scroller
-  const light = pathname === "/" && !scrolled && !open;
+  const light = path === "/" && !scrolled && !open;
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -57,16 +64,22 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      {/* Mørk gradient bak menyen på forsiden — hero-bildet er lyst til høyre,
+          og uten denne forsvinner «Behandlere» og «Kontakt» inn i bildet */}
+      {light && (
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#1e2d3d]/75 via-[#1e2d3d]/35 to-transparent pointer-events-none" />
+      )}
+
+      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-none group">
           <span
-            className={`text-xl tracking-wide transition-colors duration-500 ${light ? "text-white" : "text-[#1a1a1a]"}`}
+            className={`text-xl tracking-wide transition-colors duration-500 ${light ? "text-white [text-shadow:0_1px_12px_rgba(30,45,61,0.65)]" : "text-[#1a1a1a]"}`}
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Hud By Helseblikk
           </span>
-          <span className={`text-[10px] tracking-[0.2em] uppercase font-light mt-0.5 transition-colors duration-500 ${light ? "text-[#e5c78f]" : "text-[#c9a96e]"}`}>
+          <span className={`text-[10px] tracking-[0.2em] uppercase font-light mt-0.5 transition-colors duration-500 ${light ? "text-[#e5c78f] [text-shadow:0_1px_10px_rgba(30,45,61,0.7)]" : "text-[#c9a96e]"}`}>
             Medisinsk hudpleie · Grimstad
           </span>
         </Link>
@@ -77,7 +90,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm tracking-wide transition-colors duration-200 ${light ? "text-white/85 hover:text-[#e5c78f]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
+              className={`text-sm tracking-wide transition-colors duration-200 ${light ? "text-white [text-shadow:0_1px_10px_rgba(30,45,61,0.7)] hover:text-[#e5c78f]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
             >
               {l.label}
             </Link>
@@ -95,7 +108,7 @@ export default function Navbar() {
         <div className="md:hidden flex items-center gap-1">
           <CartButton light={light} />
           <button
-            className={`p-2 transition-colors duration-500 ${light ? "text-white" : "text-[#1a1a1a]"}`}
+            className={`p-2 transition-colors duration-500 ${light ? "text-white drop-shadow-[0_1px_6px_rgba(30,45,61,0.7)]" : "text-[#1a1a1a]"}`}
             onClick={() => setOpen(!open)}
             aria-label="Meny"
           >
