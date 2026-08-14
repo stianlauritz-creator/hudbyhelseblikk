@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { validerPaamelding, lagRabattkode } from "@/lib/kundeklubb";
 import { adminGraphql, adminKonfigurert } from "@/lib/shopify-admin";
+import { sendVelkomstEpost } from "@/lib/klubb-epost";
 
 const RABATT_PROSENT = 0.1;
 
@@ -160,8 +161,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, utenKode: true });
   }
 
-  // Task 4 kobler på e-postutsending her, når DNS er verifisert.
-  console.log("Kundeklubb: opprettet medlem med kode", kode);
+  const sendt = await sendVelkomstEpost({ til: epost, fornavn, kode });
+  if (!sendt) {
+    // Kunden og koden finnes — bare e-posten sviktet. Logg tydelig slik at
+    // koden kan sendes for hånd.
+    console.error("Kundeklubb: E-POST FEILET — send", kode, "manuelt til", epost);
+  }
 
   return NextResponse.json({ ok: true });
 }
