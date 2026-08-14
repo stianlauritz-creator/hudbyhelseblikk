@@ -135,8 +135,10 @@ export async function POST(req: Request) {
         startsAt: naa,
         usageLimit: 1,
         appliesOncePerCustomer: true,
-        // `customerSelection` finnes ikke i 2026-07. Engangsbruk sikres av
-        // usageLimit, ikke av kundebegrensning.
+        // `context` erstattet `customerSelection` i 2026-07 og er PÅKREVD —
+        // uten den svarer Shopify «Context can't be blank». ALL = alle kjøpere;
+        // engangsbruken sikres av usageLimit, ikke av kundebegrensning.
+        context: { all: "ALL" },
         customerGets: {
           value: { percentage: RABATT_PROSENT },
           items: { collections: { add: [kolleksjon] } },

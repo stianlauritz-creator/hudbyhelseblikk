@@ -696,8 +696,9 @@ export async function POST(req: Request) {
         startsAt: naa,
         usageLimit: 1,
         appliesOncePerCustomer: true,
-        // `customerSelection` finnes IKKE i 2026-07 — verifisert med proben.
-        // Engangsbruk sikres av usageLimit, ikke av kundebegrensning.
+        // `customerSelection` finnes IKKE i 2026-07 — erstattet av `context`,
+        // som er PÅKREVD. Uten den: «Context can't be blank».
+        context: { all: "ALL" },
         customerGets: {
           value: { percentage: RABATT_PROSENT },
           items: { collections: { add: [kolleksjon] } },
