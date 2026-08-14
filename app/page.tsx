@@ -257,7 +257,7 @@ export default function Home() {
               <div className="rounded-2xl bg-white border border-[#e8d5b0]/40 overflow-hidden h-full flex flex-col">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
-                    src="/christina-dalen.jpg"
+                    src="/christina-portrett.jpg"
                     alt="Christina Dalen, kosmetisk sykepleier"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"

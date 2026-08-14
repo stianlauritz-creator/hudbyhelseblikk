@@ -27,7 +27,7 @@ const behandlere = [
     navn: "Christina",
     fullt: "Christina Dalen",
     tittel: "Kosmetisk sykepleier",
-    bilde: "/christina-dalen.jpg",
+    bilde: "/christina-portrett.jpg",
     pos: "object-center",
     href: "/om-christina",
   },

@@ -50,7 +50,7 @@ export default function OmChristinaPage() {
           <AnimatedSection direction="left" className="md:sticky md:top-28">
             <div className="aspect-[3/4] rounded-2xl relative overflow-hidden bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/20">
               <Image
-                src="/christina-dalen.jpg"
+                src="/christina-portrett.jpg"
                 alt="Christina Dalen, kosmetisk sykepleier"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

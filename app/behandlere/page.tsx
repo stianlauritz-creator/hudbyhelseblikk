@@ -21,7 +21,7 @@ const behandlere = [
     navn: "Christina Dalen",
     tittel: "Kosmetisk Sykepleier",
     href: "/om-christina",
-    bilde: "/christina-dalen.jpg",
+    bilde: "/christina-portrett.jpg",
     bildePos: "object-top",
     tekst:
       "Sertifisert Restylane Injector med Julie Horne Lips Masterclass i bagasjen. Christina har en særlig lidenskap for leppebehandlinger og naturlige resultater som fremhever dine egne trekk.",
