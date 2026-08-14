@@ -1,0 +1,422 @@
+<title>Markedsføringshåndboka</title>
+<style>
+  :root {
+    --ground: #faf9f7;
+    --surface: #ffffff;
+    --sunk: #f3f0ea;
+    --ink: #16212c;
+    --ink-soft: #45535f;
+    --muted: #6f7c88;
+    --line: #e3ddd2;
+    --gold: #b08d4d;
+    --gold-soft: #c9a96e;
+    --ok: #3f7d55;
+    --wait: #9a6b28;
+    --stopp: #a6402f;
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --body: ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #141b23; --surface: #1b242e; --sunk: #202b36;
+      --ink: #ece8e1; --ink-soft: #c3c9d0; --muted: #94a0ac; --line: #2c3844;
+      --gold: #d8bd85; --gold-soft: #c9a96e;
+      --ok: #7fbd94; --wait: #d9a95e; --stopp: #e08876;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #141b23; --surface: #1b242e; --sunk: #202b36;
+    --ink: #ece8e1; --ink-soft: #c3c9d0; --muted: #94a0ac; --line: #2c3844;
+    --gold: #d8bd85; --gold-soft: #c9a96e;
+    --ok: #7fbd94; --wait: #d9a95e; --stopp: #e08876;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 1.5rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 48rem; margin: 0 auto; }
+
+  header.top {
+    padding: 4.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .eyebrow {
+    font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(2.1rem, 5.5vw, 3rem); line-height: 1.12;
+    text-wrap: balance; margin: 0; letter-spacing: -.01em;
+  }
+  .standfirst { font-size: 1.06rem; color: var(--ink-soft); max-width: 34rem; margin: 0; }
+
+  section { padding: 3rem 0 0; display: flex; flex-direction: column; gap: 1.1rem; }
+  section + section { border-top: 1px solid var(--line); margin-top: 3rem; }
+
+  h2 {
+    font-family: var(--display); font-weight: 400; font-size: 1.6rem;
+    line-height: 1.2; margin: 0; text-wrap: balance;
+  }
+  h3 { font-size: .98rem; font-weight: 650; margin: 0; }
+  p { margin: 0; }
+  strong { font-weight: 650; }
+  code {
+    font-family: var(--mono); font-size: .86em;
+    background: var(--sunk); padding: .1em .35em; border-radius: 3px;
+  }
+
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 32rem; }
+  th, td { text-align: left; padding: .7rem .85rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    font-size: .69rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; border-bottom-color: var(--ink-soft);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.sys { font-weight: 650; white-space: nowrap; }
+  td a { word-break: break-all; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+    padding: 1.35rem 1.5rem; display: flex; flex-direction: column; gap: .7rem;
+  }
+  .card.sunk { background: var(--sunk); }
+
+  ol.steg {
+    list-style: none; counter-reset: s; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: .8rem;
+  }
+  ol.steg li {
+    counter-increment: s; display: grid; grid-template-columns: 1.7rem 1fr;
+    gap: .8rem; align-items: baseline;
+  }
+  ol.steg li::before {
+    content: counter(s); font-family: var(--display); font-size: 1rem;
+    color: var(--gold); border-bottom: 1px solid var(--line); padding-bottom: .1rem;
+  }
+
+  ul.plain { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: .5rem; }
+  ul.plain li::marker { color: var(--gold-soft); }
+
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 42rem) { .grid2 { grid-template-columns: 1fr 1fr; } }
+
+  .chip {
+    font-size: .67rem; letter-spacing: .1em; text-transform: uppercase;
+    font-weight: 650; padding: .26rem .58rem; border-radius: 2px;
+    white-space: nowrap; display: inline-block;
+  }
+  .chip.ok { color: var(--ok); border: 1px solid var(--ok); }
+  .chip.vent { color: var(--wait); border: 1px solid var(--wait); }
+
+  .statusrad {
+    display: grid; grid-template-columns: auto 1fr; gap: .85rem;
+    align-items: start; padding: .75rem 0; border-bottom: 1px solid var(--line);
+  }
+  .statusrad:last-child { border-bottom: none; }
+
+  .flagg {
+    border: 1px solid var(--stopp); border-radius: 3px;
+    padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: .6rem;
+  }
+  .flagg .eyebrow { color: var(--stopp); }
+
+  a { color: var(--gold); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  footer.slutt {
+    margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line);
+    font-size: .85rem; color: var(--muted);
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <span class="eyebrow">Hud by Helseblikk</span>
+    <h1>Markedsføringshåndboka</h1>
+    <p class="standfirst">Hvordan dere når kundene på e-post og SMS — hvilke systemer som gjør hva, hvor dere logger inn, og hva dere har lov til å sende.</p>
+    <p class="standfirst" style="font-size:.85rem;color:var(--muted)">Oppdatert 14. august 2026</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">Grunnprinsippet</span>
+    <h2>To systemer, to grupper mennesker</h2>
+    <p>Klinikken har to kunderegistre, og de inneholder ikke de samme menneskene. Det er ikke rot — det er selve arbeidsdelingen, og forstår dere den, blir resten enkelt.</p>
+
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>System</th><th>Hvem ligger der</th><th>Hva dere sender</th><th>Kanal</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sys">Timma</td>
+            <td>Alle som har hatt time hos dere</td>
+            <td>«Ledig time i morgen kl 14», påminnelser, oppfølging</td>
+            <td>SMS + e-post</td>
+          </tr>
+          <tr>
+            <td class="sys">Shopify</td>
+            <td>Nettbutikk-kunder og klubbmedlemmer som ikke har booket ennå</td>
+            <td>Kampanjer, produktnyheter, medlemstilbud</td>
+            <td>E-post</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card sunk">
+      <h3>Tommelfingerregelen</h3>
+      <p><strong>Haster det, og gjelder det en time?</strong> Bruk Timma og send SMS. Folk ser SMS innen minutter.</p>
+      <p><strong>Handler det om produkter, tilbud eller nyheter?</strong> Bruk Shopify og send e-post. Der kan dere vise bilder og lenke rett til kjøp.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Innlogging</span>
+    <h2>Hvor dere logger inn</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>System</th><th>Adresse</th><th>Til hva</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sys">Shopify</td>
+            <td><a href="https://admin.shopify.com/store/hud-by-helseblikk">admin.shopify.com</a><br><span style="color:var(--muted)">bruker: hei@hudbyhelseblikk.no</span></td>
+            <td>Produkter, ordre, kunder, rabattkoder, e-postkampanjer</td>
+          </tr>
+          <tr>
+            <td class="sys">Timma Pro</td>
+            <td><a href="https://timma.no/pro/">timma.no/pro</a></td>
+            <td>Timebok, kunderegister, SMS- og e-postkampanjer, kasse</td>
+          </tr>
+          <tr>
+            <td class="sys">Resend</td>
+            <td><a href="https://resend.com/domains">resend.com</a></td>
+            <td>Sender velkomst-e-posten med rabattkoden. Sjekkes bare hvis noe ikke kommer fram</td>
+          </tr>
+          <tr>
+            <td class="sys">Vercel</td>
+            <td><a href="https://vercel.com">vercel.com</a></td>
+            <td>Drift av nettsiden. Stians område — klinikken trenger den ikke</td>
+          </tr>
+          <tr>
+            <td class="sys">one.com</td>
+            <td><a href="https://one.com">one.com</a></td>
+            <td>Domenet og klinikkens e-post. Røres kun ved behov</td>
+          </tr>
+          <tr>
+            <td class="sys">Google-profilen</td>
+            <td><a href="https://business.google.com">business.google.com</a></td>
+            <td>Åpningstider, bilder, omtaler i Google-søk og kart</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Fylle ledige timer</span>
+    <h2>Sende SMS fra Timma</h2>
+    <p>Dette er det mest lønnsomme verktøyet dere har, og det er allerede betalt for. Et hull i morgendagens timebok er tapt omsetning — en SMS koster noen kroner.</p>
+
+    <div class="card">
+      <ol class="steg">
+        <li>Logg inn i Timma Pro</li>
+        <li>Gå til markedsføringsverktøyet</li>
+        <li>Velg hvem meldingen skal til. Dere kan filtrere på for eksempel «alle som tok Dermapen siste seks måneder» — det er mye bedre enn å sende til alle</li>
+        <li>Skriv meldingen. <strong>Maks 160 tegn</strong>, ellers blir det to meldinger og dobbel pris</li>
+        <li>Timma viser et kostnadsestimat før du sender. Se på det</li>
+        <li>Send</li>
+      </ol>
+    </div>
+
+    <div class="grid2">
+      <div class="card sunk">
+        <h3>Eksempel som virker</h3>
+        <p style="font-family:var(--mono);font-size:.85rem">«Hei! Vi har fått en ledig time i morgen kl 14 til hudpleie. Først til mølla — svar eller ring 370 40 500. Hilsen Hud by Helseblikk»</p>
+      </div>
+      <div class="card sunk">
+        <h3>Hvorfor det virker</h3>
+        <p>Konkret tid, lav terskel for å svare, og avsender er tydelig. Ingen rabatt nevnt — dere trenger ikke gi avslag for å fylle en time samme uke.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Viktig om samtykke</h3>
+      <p>Timma sender bare til dem som har sagt ja til markedsføring. Det håndteres automatisk — men det betyr også at lista er mindre enn kunderegisteret. Spør gjerne kundene i resepsjonen om de vil ha beskjed om ledige timer, så vokser den.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Kampanjer og nyheter</span>
+    <h2>Sende e-post fra Shopify</h2>
+    <p>E-post er gratis i praksis — Shopify Email dekker rundt 10 000 utsendelser i måneden uten kostnad, langt mer enn dere kommer til å bruke.</p>
+
+    <div class="card">
+      <ol class="steg">
+        <li>Shopify-admin → <strong>Markedsføring</strong> → <strong>Opprett kampanje</strong> → <strong>Shopify Email</strong></li>
+        <li>Velg mottakere. Bruk segmenter — for eksempel «kunder med taggen <code>kundeklubb</code>» eller «har kjøpt de siste 90 dagene»</li>
+        <li>Velg en mal og bytt ut bilder og tekst</li>
+        <li>Send en testversjon til deg selv først. Alltid</li>
+        <li>Send</li>
+      </ol>
+    </div>
+
+    <div class="card sunk">
+      <h3>Klubbmedlemmene finner dere slik</h3>
+      <p>Alle som melder seg inn via nettsiden får taggen <code>kundeklubb</code> i Shopify. Lag et segment på den taggen, så treffer dere nøyaktig medlemmene — ikke alle som noen gang har handlet.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Broen</span>
+    <h2>Få klubbmedlemmene inn i Timma</h2>
+    <p>Klubbmedlemmer som aldri har hatt time, finnes ikke i Timma. Skal de også få SMS om ledige timer, må de flyttes over. Det finnes ingen automatisk kobling — Timma har ikke åpnet for det.</p>
+
+    <div class="card">
+      <h3>Gjør dette én gang i kvartalet</h3>
+      <ol class="steg">
+        <li>Shopify-admin → <strong>Kunder</strong> → filtrer på taggen <code>kundeklubb</code></li>
+        <li><strong>Eksporter</strong> til CSV</li>
+        <li>Timma → kunderegisteret → <strong>Importer</strong> og last opp fila</li>
+        <li>Timmas supportteam behandler fila og legger den inn — det tar litt tid</li>
+      </ol>
+      <p>Eksportfila inneholder markedsføringstillatelsene, så samtykket følger med. Ingen mister rettighetene sine på veien.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Ideer</span>
+    <h2>Hva mer dere kan bruke dette til</h2>
+    <p>Når lista først finnes, er den verdt mer enn én kampanje i året. Her er det som pleier å gi mest igjen, sortert etter innsats:</p>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Påfyll av produkter</h3>
+        <p>En serumflaske varer typisk to–tre måneder. Send en e-post til dem som kjøpte for tre måneder siden: «på tide med påfyll?». Dere vet allerede hva de kjøpte.</p>
+      </div>
+      <div class="card">
+        <h3>Oppfølging etter behandling</h3>
+        <p>Dermapen gir best resultat i kur. En melding fire uker etter behandlingen, med tilbud om neste time, fyller timeboka og gir kunden bedre resultat.</p>
+      </div>
+      <div class="card">
+        <h3>Vi savner deg</h3>
+        <p>Filtrer på kunder som ikke har vært hos dere på seks–tolv måneder. En vennlig melding henter tilbake flere enn folk tror.</p>
+      </div>
+      <div class="card">
+        <h3>Ny behandling på menyen</h3>
+        <p>Når dere tar inn noe nytt, send det til klubben først. Det gir en følelse av å være innenfor, og dere får testet interessen før dere annonserer bredt.</p>
+      </div>
+      <div class="card">
+        <h3>Venteliste før Mabels retur</h3>
+        <p>Åtte uker før hun er tilbake: en melding til dem som har hatt time hos henne. Da er kalenderen full fra dag én.</p>
+      </div>
+      <div class="card">
+        <h3>Sesong</h3>
+        <p>Solkrem i mai, pigmentbehandling i oktober når sola er borte, gavekort i desember. Legg tre–fire faste utsendelser i årshjulet, så slipper dere å finne på noe hver gang.</p>
+      </div>
+    </div>
+
+    <div class="card sunk">
+      <h3>Hvor ofte?</h3>
+      <p><strong>E-post:</strong> én til to ganger i måneden er nok. Oftere, og folk melder seg av.</p>
+      <p><strong>SMS:</strong> spar den til noe som haster eller er verdt pengene. Maks én i måneden utenom ledige timer — SMS oppleves som mer påtrengende enn e-post, og det er nettopp derfor den virker.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Reglene</span>
+    <h2>Hva dere har lov til</h2>
+
+    <div class="card">
+      <h3>Samtykke er et krav, ikke en høflighet</h3>
+      <p>Markedsføring på e-post og SMS krever at mottakeren har sagt ja på forhånd, og at dere <strong>kan dokumentere det</strong>. Derfor lagres det hvem som sa ja til hva, og når. Systemene håndterer dette — men ikke legg inn adresser eller numre manuelt fra en lapp i resepsjonen uten at personen faktisk har sagt ja.</p>
+    </div>
+
+    <div class="card">
+      <h3>Avmelding i hver eneste utsendelse</h3>
+      <p>Alle e-poster må ha en avmeldingslenke. Shopify Email og velkomst-e-posten har det innebygd. Ber noen om å bli fjernet på annen måte — i resepsjonen, på telefon — skal det gjøres med én gang.</p>
+    </div>
+
+    <div class="flagg">
+      <span class="eyebrow">Vær forsiktig her</span>
+      <h3>Rabatt på kosmetiske inngrep</h3>
+      <p>Markedsføring av kosmetiske inngrep er strengere regulert enn vanlig varehandel, og reglene rammer markedsføring som spiller på kroppspress.</p>
+      <p><strong>Trygg grunn:</strong> hudpleieprodukter, hudbehandlinger, konsultasjon.</p>
+      <p><strong>Ikke send ut uten å sjekke først:</strong> rabatt- og kampanjetilbud på filler og muskelavslappende. Er dere i tvil, la det være — eller skriv om behandlingen saklig uten å prise den ned.</p>
+    </div>
+
+    <div class="card">
+      <h3>Aldri røp at noen er kunde</h3>
+      <p>En SMS skal kunne leses av hvem som helst som ser skjermen. Skriv «vi har en ledig time» — ikke «tid for din neste fillerbehandling». Det er både god folkeskikk og et krav når man jobber med helse.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Kundeklubben</span>
+    <h2>Slik virker den</h2>
+    <ol class="steg">
+      <li>En besøkende i nettbutikken får opp et vindu etter en stund — ikke med en gang</li>
+      <li>Hun fyller inn e-post, og eventuelt navn og telefon, og krysser av for hva hun vil motta</li>
+      <li>Hun opprettes som kunde i Shopify med taggen <code>kundeklubb</code></li>
+      <li>Hun får en personlig rabattkode på e-post: 10 % på første produktkjøp</li>
+      <li>Koden virker én gang, og <strong>ikke på gavekort</strong></li>
+    </ol>
+    <p>Medlemssiden ligger på <strong>hudbyhelseblikk.no/kundeklubb</strong>. Den kan deles fritt — i Instagram-bio, på en plakat i resepsjonen, eller i en e-post.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Status</span>
+    <h2>Hvor vi står nå</h2>
+    <div>
+      <div class="statusrad">
+        <span class="chip ok">Klart</span>
+        <div><h3>Nettbutikk og kasse</h3><p>Åpen, med kort, Klarna, PayPal og Vipps. Posten-frakt og henting i klinikken.</p></div>
+      </div>
+      <div class="statusrad">
+        <span class="chip ok">Klart</span>
+        <div><h3>Timmas kampanjeverktøy</h3><p>Ligger klart til bruk. Krever ingen oppsett — bare at noen tar det i bruk.</p></div>
+      </div>
+      <div class="statusrad">
+        <span class="chip vent">Gjenstår</span>
+        <div><h3>Kundeklubben</h3><p>Bygget og testet, men ikke publisert. Venter på at e-postavsenderen blir godkjent.</p></div>
+      </div>
+      <div class="statusrad">
+        <span class="chip vent">Gjenstår</span>
+        <div><h3>Rabattkoden «testrabatt»</h3><p>Ligger aktiv i butikken med 99 % avslag og ingen begrensninger. Bør slettes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Når noe skurrer</span>
+    <h2>Feilsøking</h2>
+    <ul class="plain">
+      <li><strong>Kunden fikk ikke rabattkoden.</strong> Be henne sjekke søppelposten. Kom den ikke, finn kunden i Shopify → Rabatter, og send koden manuelt.</li>
+      <li><strong>Koden virker ikke i kassen.</strong> Sjekk at kurven inneholder produkter — koden gjelder ikke gavekort, og heller ikke behandlinger.</li>
+      <li><strong>Koden er brukt opp.</strong> Hver kode virker én gang. Har hun allerede handlet, er det riktig at den avvises.</li>
+      <li><strong>SMS-en kom ikke fram.</strong> Sjekk i Timma at kunden har sagt ja til markedsføring og har telefonnummer i kundekortet.</li>
+      <li><strong>E-postene havner i søppelpost.</strong> Si fra til Stian — det er et teknisk oppsett som må sjekkes, ikke noe dere kan løse i Shopify.</li>
+    </ul>
+  </section>
+
+  <footer class="slutt">
+    Spørsmål om innholdet i utsendelsene: klinikken bestemmer selv. Spørsmål om systemene, oppsett eller noe som ikke virker: Stian.
+  </footer>
+
+</div>

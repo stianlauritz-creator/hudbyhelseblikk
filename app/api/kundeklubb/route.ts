@@ -12,6 +12,10 @@ type KundeSvar = {
   };
 };
 
+type FinnKundeSvar = {
+  customers: { edges: { node: { id: string; tags: string[] } }[] };
+};
+
 type RabattSvar = {
   discountCodeBasicCreate: {
     codeDiscountNode: { id: string } | null;
@@ -31,6 +35,34 @@ const OPPRETT_RABATT = `
 mutation opprettRabatt($input: DiscountCodeBasicInput!) {
   discountCodeBasicCreate(basicCodeDiscount: $input) {
     codeDiscountNode { id }
+    userErrors { field message }
+  }
+}`;
+
+const FINN_KUNDE = `
+query finnKunde($sok: String!) {
+  customers(first: 1, query: $sok) {
+    edges { node { id tags } }
+  }
+}`;
+
+const LEGG_TIL_TAGG = `
+mutation leggTilTagg($id: ID!, $tags: [String!]!) {
+  tagsAdd(id: $id, tags: $tags) {
+    userErrors { field message }
+  }
+}`;
+
+const OPPDATER_EPOSTSAMTYKKE = `
+mutation epostSamtykke($input: CustomerEmailMarketingConsentUpdateInput!) {
+  customerEmailMarketingConsentUpdate(input: $input) {
+    userErrors { field message }
+  }
+}`;
+
+const OPPDATER_SMSSAMTYKKE = `
+mutation smsSamtykke($input: CustomerSmsMarketingConsentUpdateInput!) {
+  customerSmsMarketingConsentUpdate(input: $input) {
     userErrors { field message }
   }
 }`;
@@ -86,18 +118,68 @@ export async function POST(req: Request) {
     };
   }
 
-  let alleredeMedlem = false;
+  // Finnes kunden fra før? Mange har handlet i nettbutikken uten å være
+  // klubbmedlem — de skal kunne melde seg inn, ikke avvises.
+  let eksisterende: { id: string; tags: string[] } | null = null;
   try {
-    const svar = await adminGraphql<KundeSvar>(OPPRETT_KUNDE, {
-      input: kundeInput,
+    const svar = await adminGraphql<FinnKundeSvar>(FINN_KUNDE, {
+      sok: `email:${epost}`,
     });
-    const feil = svar.customerCreate.userErrors;
-    if (feil.length > 0) {
-      const teksten = feil.map((f) => f.message).join(" ");
-      if (/taken|allerede/i.test(teksten)) {
-        alleredeMedlem = true;
-      } else {
-        console.error("Kundeklubb: customerCreate userErrors", teksten);
+    eksisterende = svar.customers.edges[0]?.node ?? null;
+  } catch (e) {
+    console.error("Kundeklubb: kundeoppslag feilet", e);
+    return NextResponse.json(
+      { feil: "Vi fikk ikke registrert deg. Prøv igjen om litt." },
+      { status: 502 }
+    );
+  }
+
+  // Allerede medlem: ingen ny kode. Svar nøytralt, slik at skjemaet ikke
+  // røper hvem som står i registeret.
+  if (eksisterende?.tags.includes("kundeklubb")) {
+    return NextResponse.json({ ok: true, alleredeMedlem: true });
+  }
+
+  try {
+    if (eksisterende) {
+      // Eksisterende kunde melder seg inn i klubben: tagg og samtykke må
+      // oppdateres hver for seg — customerCreate ville feilet på e-posten.
+      await adminGraphql(LEGG_TIL_TAGG, {
+        id: eksisterende.id,
+        tags: ["kundeklubb"],
+      });
+      await adminGraphql(OPPDATER_EPOSTSAMTYKKE, {
+        input: {
+          customerId: eksisterende.id,
+          emailMarketingConsent: {
+            marketingState: "SUBSCRIBED",
+            marketingOptInLevel: "SINGLE_OPT_IN",
+            consentUpdatedAt: naa,
+          },
+        },
+      });
+      if (telefon && samtykkeSms) {
+        await adminGraphql(OPPDATER_SMSSAMTYKKE, {
+          input: {
+            customerId: eksisterende.id,
+            smsMarketingConsent: {
+              marketingState: "SUBSCRIBED",
+              marketingOptInLevel: "SINGLE_OPT_IN",
+              consentUpdatedAt: naa,
+            },
+          },
+        });
+      }
+    } else {
+      const svar = await adminGraphql<KundeSvar>(OPPRETT_KUNDE, {
+        input: kundeInput,
+      });
+      const feil = svar.customerCreate.userErrors;
+      if (feil.length > 0) {
+        console.error(
+          "Kundeklubb: customerCreate userErrors",
+          feil.map((f) => f.message).join(" ")
+        );
         return NextResponse.json(
           { feil: "Vi fikk ikke registrert deg. Prøv igjen om litt." },
           { status: 502 }
@@ -105,17 +187,11 @@ export async function POST(req: Request) {
       }
     }
   } catch (e) {
-    console.error("Kundeklubb: customerCreate feilet", e);
+    console.error("Kundeklubb: innmelding feilet", e);
     return NextResponse.json(
       { feil: "Vi fikk ikke registrert deg. Prøv igjen om litt." },
       { status: 502 }
     );
-  }
-
-  // Er hun allerede medlem, skal hun ikke få en ny rabattkode. Svar likevel
-  // nøytralt, slik at skjemaet ikke røper hvem som står i registeret.
-  if (alleredeMedlem) {
-    return NextResponse.json({ ok: true, alleredeMedlem: true });
   }
 
   const kode = lagRabattkode();
