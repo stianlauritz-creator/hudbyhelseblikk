@@ -48,6 +48,30 @@ async function hentToken(): Promise<string> {
   return data.access_token;
 }
 
+export type Kunde = { id: string; email: string | null; tags: string[] };
+
+// Shopify-søket er uskarpt: «email:stian+test@gmail.com» tokeniseres på + @ og
+// . og treffer også stian@gmail.com. Derfor henter vi flere treff og krever
+// eksakt match — ellers risikerer vi å røre feil kunde.
+const FINN_KUNDE = `
+query finnKunde($sok: String!) {
+  customers(first: 25, query: $sok) {
+    edges { node { id email tags } }
+  }
+}`;
+
+export async function finnKundeEksakt(epost: string): Promise<Kunde | null> {
+  const e = epost.trim().toLowerCase();
+  const svar = await adminGraphql<{
+    customers: { edges: { node: Kunde }[] };
+  }>(FINN_KUNDE, { sok: `email:"${e}"` });
+  return (
+    svar.customers.edges
+      .map((k) => k.node)
+      .find((n) => n.email?.trim().toLowerCase() === e) ?? null
+  );
+}
+
 export async function adminGraphql<T>(
   query: string,
   variables?: Record<string, unknown>

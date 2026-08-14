@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import {
   validerPaamelding,
   normaliserTelefon,
@@ -103,5 +103,56 @@ describe("lagRabattkode", () => {
   it("gir forskjellige koder", () => {
     const sett = new Set(Array.from({ length: 100 }, () => lagRabattkode()));
     expect(sett.size).toBeGreaterThan(90);
+  });
+});
+
+describe("avmeldingstoken", () => {
+  beforeEach(() => {
+    process.env.KLUBB_HEMMELIGHET = "test-hemmelighet";
+    vi.resetModules();
+  });
+
+  it("godtar sitt eget token", async () => {
+    const { lagAvmeldingstoken, sjekkAvmeldingstoken } = await import(
+      "../avmelding"
+    );
+    const t = lagAvmeldingstoken("kari@example.no")!;
+    expect(sjekkAvmeldingstoken("kari@example.no", t)).toBe(true);
+  });
+
+  it("bryr seg ikke om store bokstaver og mellomrom", async () => {
+    const { lagAvmeldingstoken, sjekkAvmeldingstoken } = await import(
+      "../avmelding"
+    );
+    const t = lagAvmeldingstoken("kari@example.no")!;
+    expect(sjekkAvmeldingstoken("  Kari@Example.NO ", t)).toBe(true);
+  });
+
+  it("avviser token som hoerer til en annen adresse", async () => {
+    const { lagAvmeldingstoken, sjekkAvmeldingstoken } = await import(
+      "../avmelding"
+    );
+    const t = lagAvmeldingstoken("kari@example.no")!;
+    expect(sjekkAvmeldingstoken("ola@example.no", t)).toBe(false);
+  });
+
+  it("avviser tomt og forkortet token", async () => {
+    const { lagAvmeldingstoken, sjekkAvmeldingstoken } = await import(
+      "../avmelding"
+    );
+    const t = lagAvmeldingstoken("kari@example.no")!;
+    expect(sjekkAvmeldingstoken("kari@example.no", "")).toBe(false);
+    expect(sjekkAvmeldingstoken("kari@example.no", t.slice(0, 31))).toBe(false);
+  });
+
+  it("gir ingen lenke naar hemmeligheten mangler", async () => {
+    delete process.env.KLUBB_HEMMELIGHET;
+    vi.resetModules();
+    const { avmeldingsUrl, sjekkAvmeldingstoken } = await import(
+      "../avmelding"
+    );
+    expect(avmeldingsUrl("kari@example.no")).toBeNull();
+    // ...og da skal ingenting kunne valideres heller
+    expect(sjekkAvmeldingstoken("kari@example.no", "a".repeat(32))).toBe(false);
   });
 });

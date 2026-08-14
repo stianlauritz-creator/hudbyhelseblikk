@@ -1,10 +1,34 @@
 import { Resend } from "resend";
+import { avmeldingsUrl } from "@/lib/avmelding";
+import { SITE_URL } from "@/lib/site";
 
 // Underdomenet klubb.hudbyhelseblikk.no er det som er verifisert hos Resend —
 // ikke hoveddomenet. Endres dette, slutter utsendingen å virke.
 const AVSENDER = "Hud by Helseblikk <klubb@klubb.hudbyhelseblikk.no>";
 
-function mal(kode: string, fornavn?: string): string {
+function tekstmal(kode: string, fornavn: string | undefined, avmeld: string | null): string {
+  const hilsen = fornavn ? `Hei ${fornavn}!` : "Hei!";
+  return `Velkommen i kundeklubben
+
+${hilsen} Så hyggelig at du ble medlem. Her er rabattkoden din på 10 % til ditt
+første produktkjøp:
+
+    ${kode}
+
+Koden gjelder produkter i nettbutikken og kan brukes én gang. Skriv den inn i
+kassen: ${SITE_URL}/nettbutikk
+
+Som medlem får du beskjed først om kampanjer og nyheter, og medlemspris på
+utvalgte produkter.
+
+--
+Du får denne e-posten fordi du meldte deg inn i kundeklubben på
+hudbyhelseblikk.no.
+Meld deg av: ${avmeld ?? `${SITE_URL}/kundeklubb#avmelding`}
+Helseblikk Hud AS · Odden 1D, 4876 Grimstad`;
+}
+
+function mal(kode: string, fornavn: string | undefined, avmeld: string | null): string {
   const hilsen = fornavn ? `Hei ${fornavn}!` : "Hei!";
   return `<!doctype html>
 <html lang="nb">
@@ -31,7 +55,7 @@ function mal(kode: string, fornavn?: string): string {
     <hr style="border:0;border-top:1px solid #e8d5b0;margin:0 0 16px;">
     <p style="font-size:12px;line-height:1.6;color:#8a8a8a;margin:0;">
       Du får denne e-posten fordi du meldte deg inn i kundeklubben på hudbyhelseblikk.no.<br>
-      <a href="https://hudbyhelseblikk.no/kundeklubb#avmelding" style="color:#8a8a8a;">Meld deg av</a> ·
+      <a href="${avmeld ?? `${SITE_URL}/kundeklubb#avmelding`}" style="color:#8a8a8a;">Meld deg av</a> ·
       Helseblikk Hud AS · Odden 1D, 4876 Grimstad
     </p>
   </div>
@@ -53,13 +77,33 @@ export async function sendVelkomstEpost(args: {
     return false;
   }
 
+  const avmeld = avmeldingsUrl(args.til);
+  if (!avmeld) {
+    console.error(
+      "Kundeklubb: KLUBB_HEMMELIGHET mangler — sender uten ett-klikks avmelding"
+    );
+  }
+
   try {
     const resend = new Resend(noekkel);
     const { error } = await resend.emails.send({
       from: AVSENDER,
       to: args.til,
       subject: "Velkommen i kundeklubben — her er rabattkoden din",
-      html: mal(args.kode, args.fornavn),
+      html: mal(args.kode, args.fornavn, avmeld),
+      // Ren tekst i tillegg til HTML: rene HTML-e-poster scorer dårligere hos
+      // spamfiltrene, og noen lesere viser bare tekstdelen.
+      text: tekstmal(args.kode, args.fornavn, avmeld),
+      // Ett-klikks avmelding. Gmail og Yahoo krever dette av masseutsendere og
+      // straffer plasseringen uten. POST-en havner på /api/avmelding.
+      ...(avmeld
+        ? {
+            headers: {
+              "List-Unsubscribe": `<${avmeld}>`,
+              "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+            },
+          }
+        : {}),
     });
     if (error) {
       console.error("Kundeklubb: Resend-feil for", args.til, error);

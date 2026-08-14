@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { validerPaamelding, lagRabattkode } from "@/lib/kundeklubb";
-import { adminGraphql, adminKonfigurert } from "@/lib/shopify-admin";
+import {
+  adminGraphql,
+  adminKonfigurert,
+  finnKundeEksakt,
+  type Kunde,
+} from "@/lib/shopify-admin";
 import { sendVelkomstEpost } from "@/lib/klubb-epost";
 
 const RABATT_PROSENT = 0.1;
@@ -10,10 +15,6 @@ type KundeSvar = {
     customer: { id: string; email: string } | null;
     userErrors: { field: string[] | null; message: string }[];
   };
-};
-
-type FinnKundeSvar = {
-  customers: { edges: { node: { id: string; email: string | null; tags: string[] } }[] };
 };
 
 type RabattSvar = {
@@ -36,17 +37,6 @@ mutation opprettRabatt($input: DiscountCodeBasicInput!) {
   discountCodeBasicCreate(basicCodeDiscount: $input) {
     codeDiscountNode { id }
     userErrors { field message }
-  }
-}`;
-
-// Shopify-søket er uskarpt: «email:stian+test@gmail.com» tokeniseres på + @ og
-// . og treffer også stian@gmail.com. Vi henter derfor flere treff og krever
-// eksakt e-postmatch under — ellers ville en ny kunde blitt avvist som medlem,
-// eller verre: tagget på en annen persons record.
-const FINN_KUNDE = `
-query finnKunde($sok: String!) {
-  customers(first: 25, query: $sok) {
-    edges { node { id email tags } }
   }
 }`;
 
@@ -124,16 +114,9 @@ export async function POST(req: Request) {
 
   // Finnes kunden fra før? Mange har handlet i nettbutikken uten å være
   // klubbmedlem — de skal kunne melde seg inn, ikke avvises.
-  let eksisterende: { id: string; email: string | null; tags: string[] } | null =
-    null;
+  let eksisterende: Kunde | null = null;
   try {
-    const svar = await adminGraphql<FinnKundeSvar>(FINN_KUNDE, {
-      sok: `email:"${epost}"`,
-    });
-    eksisterende =
-      svar.customers.edges
-        .map((e) => e.node)
-        .find((n) => n.email?.trim().toLowerCase() === epost) ?? null;
+    eksisterende = await finnKundeEksakt(epost);
   } catch (e) {
     console.error("Kundeklubb: kundeoppslag feilet", e);
     return NextResponse.json(
