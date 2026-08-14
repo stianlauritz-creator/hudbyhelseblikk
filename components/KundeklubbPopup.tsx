@@ -7,7 +7,7 @@ import KundeklubbSkjema from "@/components/KundeklubbSkjema";
 
 const NOKKEL = "kundeklubb-popup";
 const DAGER_SKJULT = 30;
-const SEKUNDER_FOR_VISNING = 25;
+const SEKUNDER_FOR_VISNING = 12;
 const SCROLL_TERSKEL = 0.5;
 
 function skalSkjules(): boolean {
