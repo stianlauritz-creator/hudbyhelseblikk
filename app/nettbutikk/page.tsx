@@ -124,15 +124,15 @@ export default function NettbutikkPage() {
 
   return (
     <>
-      {/* Kommer snart-teaser */}
+      {/* Fraktbanner — butikken er åpen, dette er det kunden trenger å vite */}
       <div className="pt-20 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="bg-[#1e2d3d] text-white">
           <div className="max-w-6xl mx-auto px-6 py-3.5 flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
             <Sparkles size={15} className="text-[#c9a96e] shrink-0" />
             <span className="text-sm text-white/85">
-              <span className="text-[#c9a96e] font-medium">Åpner snart:</span>{" "}
-              hele nettbutikken med levering rett hjem — utforsk utvalget
-              allerede nå, og hent produktene dine hos oss i klinikken.
+              <span className="text-[#c9a96e] font-medium">Gratis frakt</span>{" "}
+              på ordre over 1 000 kr — eller hent bestillingen gratis hos oss i
+              Grimstad.
             </span>
           </div>
         </div>
@@ -243,7 +243,7 @@ export default function NettbutikkPage() {
               {
                 icon: Truck,
                 title: "Levering i hele Norge",
-                desc: "79,- i standard frakt — gratis frakt ved kjøp over 1.000,-",
+                desc: "Frakt med Posten fra 59,- — gratis ved kjøp over 1.000,-",
               },
               {
                 icon: Store,
