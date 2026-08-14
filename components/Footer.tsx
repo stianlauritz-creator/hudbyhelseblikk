@@ -11,7 +11,7 @@ export default function Footer() {
               className="text-2xl text-white mb-3"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Hud By Helseblikk
+              Hud by Helseblikk
             </h3>
             <p className="text-sm leading-relaxed max-w-xs">
               Vi kombinerer medisinsk kompetanse med estetisk presisjon.
@@ -93,7 +93,7 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} Hud By Helseblikk · Helseblikk Hud AS
+            © {new Date().getFullYear()} Hud by Helseblikk · Helseblikk Hud AS
             · Org.nr. 830 724 052
           </p>
           <p className="text-xs text-white/30">

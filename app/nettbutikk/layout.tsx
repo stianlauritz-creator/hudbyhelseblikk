@@ -6,9 +6,9 @@ export const metadata: Metadata = {
     "Kjøp ZO Skin Health, Face Formula og ColoreScience fra autorisert klinikk. 73 produkter, rask levering eller gratis henting i Grimstad.",
   alternates: { canonical: "/nettbutikk" },
   openGraph: {
-    title: "Nettbutikk | Hud By Helseblikk",
+    title: "Nettbutikk | Hud by Helseblikk",
     url: "/nettbutikk",
-    siteName: "Hud By Helseblikk",
+    siteName: "Hud by Helseblikk",
     locale: "nb_NO",
     type: "website",
   },

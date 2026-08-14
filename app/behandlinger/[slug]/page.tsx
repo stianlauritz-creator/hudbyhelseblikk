@@ -28,10 +28,10 @@ export async function generateMetadata({
     description: b.kort,
     alternates: { canonical: `/behandlinger/${b.slug}` },
     openGraph: {
-      title: `${title} | Hud By Helseblikk`,
+      title: `${title} | Hud by Helseblikk`,
       description: b.kort,
       url: `/behandlinger/${b.slug}`,
-      siteName: "Hud By Helseblikk",
+      siteName: "Hud by Helseblikk",
       locale: "nb_NO",
       type: "website",
     },

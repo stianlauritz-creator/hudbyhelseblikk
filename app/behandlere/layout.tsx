@@ -6,9 +6,9 @@ export const metadata: Metadata = {
     "Møt Mabel Lorine King og Christina Dalen — kvalifisert helsepersonell innen kosmetisk dermatologi i Grimstad.",
   alternates: { canonical: "/behandlere" },
   openGraph: {
-    title: "Behandlere | Hud By Helseblikk",
+    title: "Behandlere | Hud by Helseblikk",
     url: "/behandlere",
-    siteName: "Hud By Helseblikk",
+    siteName: "Hud by Helseblikk",
     locale: "nb_NO",
     type: "website",
   },

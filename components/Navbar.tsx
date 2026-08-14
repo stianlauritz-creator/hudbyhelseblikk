@@ -77,7 +77,7 @@ export default function Navbar() {
             className={`text-xl tracking-wide transition-colors duration-500 ${light ? "text-white [text-shadow:0_1px_12px_rgba(30,45,61,0.65)]" : "text-[#1a1a1a]"}`}
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Hud By Helseblikk
+            Hud by Helseblikk
           </span>
           <span className={`text-[10px] tracking-[0.2em] uppercase font-light mt-0.5 transition-colors duration-500 ${light ? "text-[#e5c78f] [text-shadow:0_1px_10px_rgba(30,45,61,0.7)]" : "text-[#c9a96e]"}`}>
             Medisinsk hudpleie · Grimstad

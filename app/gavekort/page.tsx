@@ -7,12 +7,12 @@ import GavekortKjop from "@/components/GavekortKjop";
 export const metadata: Metadata = {
   title: "Gavekort",
   description:
-    "Gi bort god hudhelse. Gavekort hos Hud By Helseblikk i Grimstad gjelder både behandlinger og hudpleieprodukter, og er gyldig i 12 måneder.",
+    "Gi bort god hudhelse. Gavekort hos Hud by Helseblikk i Grimstad gjelder både behandlinger og hudpleieprodukter, og er gyldig i 12 måneder.",
   alternates: { canonical: "/gavekort" },
   openGraph: {
-    title: "Gavekort | Hud By Helseblikk",
+    title: "Gavekort | Hud by Helseblikk",
     url: "/gavekort",
-    siteName: "Hud By Helseblikk",
+    siteName: "Hud by Helseblikk",
     locale: "nb_NO",
     type: "website",
   },

@@ -5,7 +5,7 @@ import { ORG } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Kjøpsvilkår",
   description:
-    "Salgsbetingelser for kjøp i nettbutikken til Hud By Helseblikk — levering, betaling, angrerett og reklamasjon.",
+    "Salgsbetingelser for kjøp i nettbutikken til Hud by Helseblikk — levering, betaling, angrerett og reklamasjon.",
   alternates: { canonical: "/kjopsvilkar" },
 };
 

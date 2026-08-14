@@ -1,4 +1,4 @@
-// Produktkatalog Hud By Helseblikk — priser matchet mot Klinikk Arendal / Skinsation (Grimstad) / Studio 5, juli 2026
+// Produktkatalog Hud by Helseblikk — priser matchet mot Klinikk Arendal / Skinsation (Grimstad) / Studio 5, juli 2026
 
 export type Brand = "zo" | "face-formula" | "colorescience" | "gavekort" | "annet";
 
@@ -27,7 +27,7 @@ export const BRAND_INFO: Record<Brand, { label: string; tagline: string }> = {
   },
   gavekort: {
     label: "Gavekort",
-    tagline: "Gi bort god hudhelse — gavekortet gjelder både behandlinger og produkter hos Hud By Helseblikk, og er gyldig i 12 måneder.",
+    tagline: "Gi bort god hudhelse — gavekortet gjelder både behandlinger og produkter hos Hud by Helseblikk, og er gyldig i 12 måneder.",
   },
   annet: {
     label: "Annet",
@@ -109,9 +109,9 @@ export const PRODUCTS: Product[] = [
   { sku: "CS-013", brand: "colorescience", name: "Pep Up Collagen Boost Face & Neck Serum", size: "30 ml", price: 1695, desc: "Serum med 10 peptider som stimulerer hudens egen kollagen- og elastinproduksjon for fastere hud på ansikt og hals.", image: "/produkter/CS-013.jpg" },
   { sku: "CS-014", brand: "colorescience", name: "Total Protection Sport Stick SPF 50", size: "18 g", price: 495, desc: "Praktisk solstift for utsatte områder; vann- og svettebestandig i 80 minutter.", image: "/produkter/CS-014.jpg" },
   { sku: "CS-015", brand: "colorescience", name: "Total Protection No-Show Mineral Sunscreen SPF 50", size: "78 ml", price: 895, desc: "Markedets tynneste helmineralske solkrem — usynlig på huden, med ikke-nano sinkoksid.", image: "/produkter/CS-015.jpg" },
-  { sku: "GK-0500", brand: "gavekort", name: "Gavekort 500,-", size: "PDF eller fysisk kort", price: 500, desc: "Gavekort på 500 kroner til behandlinger og produkter hos Hud By Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-0500.jpg" },
-  { sku: "GK-1000", brand: "gavekort", name: "Gavekort 1.000,-", size: "PDF eller fysisk kort", price: 1000, desc: "Gavekort på 1.000 kroner til behandlinger og produkter hos Hud By Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-1000.jpg" },
-  { sku: "GK-2000", brand: "gavekort", name: "Gavekort 2.000,-", size: "PDF eller fysisk kort", price: 2000, desc: "Gavekort på 2.000 kroner til behandlinger og produkter hos Hud By Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-2000.jpg" },
+  { sku: "GK-0500", brand: "gavekort", name: "Gavekort 500,-", size: "PDF eller fysisk kort", price: 500, desc: "Gavekort på 500 kroner til behandlinger og produkter hos Hud by Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-0500.jpg" },
+  { sku: "GK-1000", brand: "gavekort", name: "Gavekort 1.000,-", size: "PDF eller fysisk kort", price: 1000, desc: "Gavekort på 1.000 kroner til behandlinger og produkter hos Hud by Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-1000.jpg" },
+  { sku: "GK-2000", brand: "gavekort", name: "Gavekort 2.000,-", size: "PDF eller fysisk kort", price: 2000, desc: "Gavekort på 2.000 kroner til behandlinger og produkter hos Hud by Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-2000.jpg" },
 ];
 
 export const formatPrice = (n: number) =>

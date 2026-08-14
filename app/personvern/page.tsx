@@ -5,7 +5,7 @@ import { ORG } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Personvernerklæring",
   description:
-    "Hvordan Hud By Helseblikk behandler personopplysninger på nettsiden og i nettbutikken.",
+    "Hvordan Hud by Helseblikk behandler personopplysninger på nettsiden og i nettbutikken.",
   alternates: { canonical: "/personvern" },
 };
 

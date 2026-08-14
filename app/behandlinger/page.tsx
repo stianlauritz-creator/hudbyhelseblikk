@@ -230,7 +230,7 @@ export default function BehandlingerPage() {
           <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
             <Image
               src="/behandling-banner.jpg"
-              alt="Microneedling-behandling med Dermapen hos Hud By Helseblikk"
+              alt="Microneedling-behandling med Dermapen hos Hud by Helseblikk"
               fill
               sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-cover"

@@ -97,7 +97,7 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
         <iframe
           id="timma-booking"
           src={src}
-          title="Bestill time hos Hud By Helseblikk"
+          title="Bestill time hos Hud by Helseblikk"
           onLoad={() => setLoaded(true)}
           className="block h-[calc(100vh-140px)] max-h-[1000px] min-h-[640px] w-full rounded-[22px] border-0"
         />

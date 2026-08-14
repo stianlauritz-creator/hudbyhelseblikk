@@ -74,7 +74,7 @@ export default async function ProductPage({
       price: product.price,
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
-      seller: { "@type": "Organization", name: "Hud By Helseblikk" },
+      seller: { "@type": "Organization", name: "Hud by Helseblikk" },
     },
   };
 

@@ -10,7 +10,7 @@ import { TIMMA_STAFF } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Bestill time",
   description:
-    "Bestill time hos Hud By Helseblikk i Grimstad — se ledige timer og book direkte i timeboken vår. Hudkonsultasjon, laser, injeksjoner og hudbehandlinger.",
+    "Bestill time hos Hud by Helseblikk i Grimstad — se ledige timer og book direkte i timeboken vår. Hudkonsultasjon, laser, injeksjoner og hudbehandlinger.",
   alternates: { canonical: "/bestill-time" },
 };
 

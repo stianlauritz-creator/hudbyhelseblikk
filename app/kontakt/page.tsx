@@ -175,7 +175,7 @@ export default function KontaktPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Kart til Hud By Helseblikk"
+                  title="Kart til Hud by Helseblikk"
                 />
               </div>
               <p className="text-xs text-[#1a1a1a]/35 mt-2 text-center">

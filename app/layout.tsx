@@ -25,18 +25,18 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Hud By Helseblikk — Hudklinikk i Grimstad",
-    template: "%s | Hud By Helseblikk",
+    default: "Hud by Helseblikk — Hudklinikk i Grimstad",
+    template: "%s | Hud by Helseblikk",
   },
   description:
     "Medisinsk hudklinikk i Grimstad. Laserbehandlinger, injeksjonsbehandlinger, microneedling, kjemisk peeling og nettbutikk med ZO Skin Health, Face Formula og ColoreScience.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Hud By Helseblikk — Hudklinikk i Grimstad",
+    title: "Hud by Helseblikk — Hudklinikk i Grimstad",
     description:
       "Medisinsk hudklinikk i Grimstad med nettbutikk for medisinsk hudpleie.",
     url: SITE_URL,
-    siteName: "Hud By Helseblikk",
+    siteName: "Hud by Helseblikk",
     locale: "nb_NO",
     type: "website",
   },
@@ -46,7 +46,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": ["MedicalBusiness", "HealthAndBeautyBusiness"],
   "@id": `${SITE_URL}/#klinikk`,
-  name: "Hud By Helseblikk",
+  name: "Hud by Helseblikk",
   description:
     "Premium medisinsk hudklinikk i Grimstad. Laserbehandlinger, injeksjonsbehandlinger, microneedling og avansert hudpleie.",
   url: SITE_URL,
