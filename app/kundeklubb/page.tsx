@@ -67,6 +67,38 @@ export default function KundeklubbPage() {
         </div>
       </section>
 
+      <section className="pb-16 px-6">
+        <div className="max-w-3xl mx-auto bg-[#f5ede4] rounded-2xl p-8 md:p-10">
+          <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+            Er du student?
+          </p>
+          <h2
+            className="text-2xl md:text-3xl font-normal mb-4"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            20 % studentrabatt
+          </h2>
+          <p className="text-[#1a1a1a]/60 leading-relaxed mb-6">
+            Studenter får 20 % på hudpleieprodukter og hudbehandlinger hos oss.
+            Rabatten gjelder hver gang du er innom — ikke bare første besøk.
+          </p>
+          <div className="space-y-2.5 text-sm text-[#1a1a1a]/70">
+            <p className="flex gap-3">
+              <span className="text-[#c9a96e]">1.</span>
+              <span>Du må være medlem i kundeklubben — meld deg inn nedenfor</span>
+            </p>
+            <p className="flex gap-3">
+              <span className="text-[#c9a96e]">2.</span>
+              <span>Vis gyldig studentbevis i klinikken, så trekker vi fra ved betaling</span>
+            </p>
+          </div>
+          <p className="text-xs text-[#1a1a1a]/45 leading-relaxed mt-6">
+            Gjelder ikke injeksjonsbehandlinger som filler og muskelavslappende,
+            og kan ikke kombineres med andre tilbud.
+          </p>
+        </div>
+      </section>
+
       <section className="pb-24 px-6">
         <div className="max-w-md mx-auto bg-[#faf9f7] border border-[#e8d5b0]/60 rounded-2xl p-8">
           <h2
