@@ -5,6 +5,7 @@ import { getCatalog } from "@/lib/shopify";
 import { PRODUCT_DETAILS } from "@/lib/product-details";
 import { SITE_URL } from "@/lib/site";
 import ProductView from "@/components/ProductView";
+import KundeklubbPopup from "@/components/KundeklubbPopup";
 
 // Statisk kjente produkter prerendres; produkter staben legger til i
 // Shopify etterpå rendres på forespørsel (dynamicParams er på som standard).
@@ -87,6 +88,7 @@ export default async function ProductPage({
         }}
       />
       <ProductView product={product} details={details} related={related} />
+      <KundeklubbPopup />
     </>
   );
 }

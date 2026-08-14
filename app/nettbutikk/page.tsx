@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ShoppingBag, Truck, Store, CreditCard, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
+import KundeklubbPopup from "@/components/KundeklubbPopup";
 import {
   BRAND_INFO,
   formatPrice,
@@ -282,6 +283,8 @@ export default function NettbutikkPage() {
           </AnimatedSection>
         </div>
       </section>
+
+      <KundeklubbPopup />
     </>
   );
 }

@@ -42,6 +42,7 @@ export default function Footer() {
                 ["Behandlere", "/behandlere"],
                 ["Prisliste", "/prisliste"],
                 ["Gavekort", "/gavekort"],
+                ["Kundeklubb", "/kundeklubb"],
                 ["FAQ", "/faq"],
                 ["Kontakt", "/kontakt"],
                 ["Kjøpsvilkår", "/kjopsvilkar"],

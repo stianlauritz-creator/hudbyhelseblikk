@@ -61,6 +61,31 @@ const sections: { title: string; body: React.ReactNode }[] = [
     ),
   },
   {
+    title: "Kundeklubben",
+    body: (
+      <>
+        <p>
+          Melder du deg inn i kundeklubben, lagrer vi e-postadressen din, og
+          fornavn og telefonnummer dersom du oppgir det. Vi lagrer også hva du
+          har sagt ja til — e-post, SMS, eller begge — og når du sa det.
+          Opplysningene brukes til å sende deg tilbud, nyheter og beskjed om
+          ledige timer.
+        </p>
+        <p>
+          Grunnlaget for behandlingen er samtykket ditt. Du kan trekke det når
+          som helst, uten å oppgi noen grunn: bruk avmeldingslenken nederst i
+          e-postene fra oss, eller send en e-post til {ORG.email}. Da sletter vi
+          deg fra listene.
+        </p>
+        <p>
+          Medlemslista lagres hos Shopify, som er databehandler for nettbutikken
+          vår, og e-post sendes via Resend. Opplysningene oppbevares til du
+          melder deg av.
+        </p>
+      </>
+    ),
+  },
+  {
     title: "Deling og lagringstid",
     body: (
       <>
