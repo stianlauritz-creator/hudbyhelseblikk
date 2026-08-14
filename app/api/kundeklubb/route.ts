@@ -13,7 +13,7 @@ type KundeSvar = {
 };
 
 type FinnKundeSvar = {
-  customers: { edges: { node: { id: string; tags: string[] } }[] };
+  customers: { edges: { node: { id: string; email: string | null; tags: string[] } }[] };
 };
 
 type RabattSvar = {
@@ -39,10 +39,14 @@ mutation opprettRabatt($input: DiscountCodeBasicInput!) {
   }
 }`;
 
+// Shopify-søket er uskarpt: «email:stian+test@gmail.com» tokeniseres på + @ og
+// . og treffer også stian@gmail.com. Vi henter derfor flere treff og krever
+// eksakt e-postmatch under — ellers ville en ny kunde blitt avvist som medlem,
+// eller verre: tagget på en annen persons record.
 const FINN_KUNDE = `
 query finnKunde($sok: String!) {
-  customers(first: 1, query: $sok) {
-    edges { node { id tags } }
+  customers(first: 25, query: $sok) {
+    edges { node { id email tags } }
   }
 }`;
 
@@ -120,12 +124,16 @@ export async function POST(req: Request) {
 
   // Finnes kunden fra før? Mange har handlet i nettbutikken uten å være
   // klubbmedlem — de skal kunne melde seg inn, ikke avvises.
-  let eksisterende: { id: string; tags: string[] } | null = null;
+  let eksisterende: { id: string; email: string | null; tags: string[] } | null =
+    null;
   try {
     const svar = await adminGraphql<FinnKundeSvar>(FINN_KUNDE, {
-      sok: `email:${epost}`,
+      sok: `email:"${epost}"`,
     });
-    eksisterende = svar.customers.edges[0]?.node ?? null;
+    eksisterende =
+      svar.customers.edges
+        .map((e) => e.node)
+        .find((n) => n.email?.trim().toLowerCase() === epost) ?? null;
   } catch (e) {
     console.error("Kundeklubb: kundeoppslag feilet", e);
     return NextResponse.json(
