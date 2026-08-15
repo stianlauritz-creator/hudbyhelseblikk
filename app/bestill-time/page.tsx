@@ -91,14 +91,19 @@ export default async function BestillTimePage({
 
       {/* Veiviser + timebok, løftet opp over heroen */}
       <section className="relative -mt-24 px-6 pb-24">
-        <div className="mx-auto max-w-5xl">
-          <AnimatedSection>
+        {/* På mobil kommer timeboken først — veiviseren er fin, men den skal
+            ikke stå mellom kunden og de ledige timene. På desktop er det plass
+            til begge, og rekkefølgen er som før. */}
+        <div className="mx-auto flex max-w-5xl flex-col">
+          <AnimatedSection className="order-2 mt-8 md:order-1 md:mt-0">
             <div className="rounded-[28px] bg-[#faf9f7] p-6 shadow-[0_28px_70px_-30px_rgba(30,45,61,0.45)] ring-1 ring-[#e8d5b0]/40 sm:p-9">
               <BookingSteps />
             </div>
           </AnimatedSection>
 
-          <div className="mt-8">
+          {/* Full bredde på mobil: timeboken mistet 60 px til sidemarg og
+              ramme, og Timmas egne knapper brakk midt i ordet. */}
+          <div className="order-1 -mx-6 sm:mx-0 md:order-2 md:mt-8">
             <TimmaEmbed userId={userId} />
           </div>
         </div>

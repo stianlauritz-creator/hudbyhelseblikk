@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
 import KundeklubbSkjema from "@/components/KundeklubbSkjema";
+import { useCart } from "@/components/CartProvider";
 
 const NOKKEL = "kundeklubb-popup";
 const DAGER_SKJULT = 30;
@@ -41,6 +42,23 @@ export default function KundeklubbPopup() {
   const panelRef = useRef<HTMLDivElement>(null);
   const reduserBevegelse = useReducedMotion();
 
+  // Aldri mas midt i et kjøp. Popupen la seg tidligere oppå den åpne
+  // handlekurven og dekket «Til betaling»-knappen — kunden sto klar til å
+  // betale og fikk et påmeldingsskjema i stedet. Har hun varer i kurven, er
+  // hun allerede i ferd med å konvertere; da skal vi ikke avbryte.
+  const kurv = useCart();
+  const blokkert = kurv.open || kurv.count > 0;
+  const blokkertRef = useRef(blokkert);
+  useEffect(() => {
+    blokkertRef.current = blokkert;
+  }, [blokkert]);
+
+  // Åpnes kurven mens popupen står fremme, viker popupen — uten å telle som
+  // «lukket», slik at den kan komme tilbake senere.
+  useEffect(() => {
+    if (kurv.open) setAapen(false);
+  }, [kurv.open]);
+
   useEffect(() => {
     if (skalSkjules()) return;
 
@@ -54,6 +72,9 @@ export default function KundeklubbPopup() {
 
     function vis() {
       if (vist) return;
+      // Handler kunden akkurat nå? La lytteren stå, så kan popupen komme
+      // senere i besøket i stedet for å gå tapt.
+      if (blokkertRef.current) return;
       vist = true;
       setAapen(true);
       window.removeEventListener("scroll", vedScroll);

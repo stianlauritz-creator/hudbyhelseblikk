@@ -77,10 +77,10 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative rounded-[28px] bg-white p-1.5 shadow-[0_24px_60px_-24px_rgba(30,45,61,0.28)] ring-1 ring-[#e8d5b0]/50 sm:p-3"
+        className="relative bg-white p-0 shadow-[0_24px_60px_-24px_rgba(30,45,61,0.28)] ring-0 sm:rounded-[28px] sm:p-3 sm:ring-1 sm:ring-[#e8d5b0]/50"
       >
         {!loaded && (
-          <div className="absolute inset-0 z-10 flex min-h-[620px] flex-col items-center justify-center gap-3 rounded-[28px] bg-[#faf9f7]">
+          <div className="absolute inset-0 z-10 flex min-h-[620px] flex-col items-center justify-center gap-3 bg-[#faf9f7] sm:rounded-[28px]">
             <div className="flex gap-1.5">
               {[0, 1, 2].map((i) => (
                 <motion.span
@@ -99,12 +99,13 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
           src={src}
           title="Bestill time hos Hud by Helseblikk"
           onLoad={() => setLoaded(true)}
-          className="block h-[calc(100vh-140px)] max-h-[1000px] min-h-[640px] w-full rounded-[22px] border-0"
+          className="block h-[calc(100vh-140px)] max-h-[1000px] min-h-[640px] w-full border-0 sm:rounded-[22px]"
         />
       </motion.div>
 
 
-      <p className="mt-5 text-center text-xs text-[#1a1a1a]/65">
+      {/* Rammen er full bredde på mobil, så hjelpeteksten trenger egen marg */}
+      <p className="mt-5 px-6 text-center text-xs text-[#1a1a1a]/65 sm:px-0">
         Vises ikke timeboken?{" "}
         <a
           href={TIMMA_URL}
