@@ -125,12 +125,12 @@ export default function KundeklubbPopup() {
             <button
               onClick={lukk}
               aria-label="Lukk"
-              className="absolute top-4 right-4 p-2 text-[#1a1a1a]/40 hover:text-[#1a1a1a] transition-colors"
+              className="absolute top-4 right-4 p-2 text-[#1a1a1a]/65 hover:text-[#1a1a1a] transition-colors"
             >
               <X size={18} />
             </button>
 
-            <p className="text-[10px] tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-[#8f6b28] mb-3">
               Kundeklubben
             </p>
             <h2
@@ -140,14 +140,14 @@ export default function KundeklubbPopup() {
             >
               Få 10 % på ditt første kjøp
             </h2>
-            <p className="text-sm text-[#1a1a1a]/55 leading-relaxed mb-6">
+            <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-6">
               Bli medlem, så sender vi rabattkoden på e-post — og du hører fra
               oss først når det skjer noe hos oss.
             </p>
 
             <KundeklubbSkjema variant="popup" onFerdig={bleMedlem} />
 
-            <p className="text-[11px] text-[#1a1a1a]/40 text-center mt-4">
+            <p className="text-[11px] text-[#1a1a1a]/65 text-center mt-4">
               <a href="/kundeklubb" className="underline">
                 Les mer om klubben
               </a>

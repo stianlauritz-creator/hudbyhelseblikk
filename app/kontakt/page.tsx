@@ -21,7 +21,7 @@ export default function KontaktPage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               Vi hører fra deg
             </p>
             <h1
@@ -30,7 +30,7 @@ export default function KontaktPage() {
             >
               Kontakt & Bestill time
             </h1>
-            <p className="text-[#1a1a1a]/55 leading-relaxed">
+            <p className="text-[#1a1a1a]/65 leading-relaxed">
               Ta kontakt for å bestille time, stille spørsmål eller høre mer
               om våre behandlinger.
             </p>
@@ -53,10 +53,10 @@ export default function KontaktPage() {
               <div className="space-y-6">
                 <div className="flex gap-4 items-start">
                   <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin size={16} className="text-[#c9a96e]" />
+                    <MapPin size={16} className="text-[#8f6b28]" />
                   </div>
                   <div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/40 mb-1">
+                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/65 mb-1">
                       Adresse
                     </p>
                     <p className="text-sm text-[#1a1a1a]/75">
@@ -67,15 +67,15 @@ export default function KontaktPage() {
 
                 <div className="flex gap-4 items-start">
                   <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center flex-shrink-0">
-                    <Phone size={16} className="text-[#c9a96e]" />
+                    <Phone size={16} className="text-[#8f6b28]" />
                   </div>
                   <div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/40 mb-1">
+                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/65 mb-1">
                       Telefon
                     </p>
                     <a
                       href="tel:37040500"
-                      className="text-sm text-[#1a1a1a]/75 hover:text-[#c9a96e] transition-colors"
+                      className="text-sm text-[#1a1a1a]/75 hover:text-[#8f6b28] transition-colors"
                     >
                       370 40 500
                     </a>
@@ -84,15 +84,15 @@ export default function KontaktPage() {
 
                 <div className="flex gap-4 items-start">
                   <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center flex-shrink-0">
-                    <Mail size={16} className="text-[#c9a96e]" />
+                    <Mail size={16} className="text-[#8f6b28]" />
                   </div>
                   <div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/40 mb-1">
+                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/65 mb-1">
                       E-post
                     </p>
                     <a
                       href="mailto:hei@helseblikk.no"
-                      className="text-sm text-[#1a1a1a]/75 hover:text-[#c9a96e] transition-colors"
+                      className="text-sm text-[#1a1a1a]/75 hover:text-[#8f6b28] transition-colors"
                     >
                       hei@helseblikk.no
                     </a>
@@ -101,10 +101,10 @@ export default function KontaktPage() {
 
                 <div className="flex gap-4 items-start">
                   <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center flex-shrink-0">
-                    <Clock size={16} className="text-[#c9a96e]" />
+                    <Clock size={16} className="text-[#8f6b28]" />
                   </div>
                   <div>
-                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/40 mb-2">
+                    <p className="text-xs tracking-[0.15em] uppercase text-[#1a1a1a]/65 mb-2">
                       Åpningstider
                     </p>
                     <div className="space-y-1.5">
@@ -143,7 +143,7 @@ export default function KontaktPage() {
                 <div className="space-y-3">
                   <a
                     href={BOOKING_URL}
-                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#c9a96e] text-white rounded-full text-sm tracking-wide hover:bg-[#b8955a] transition-colors"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#8f6b28] text-white rounded-full text-sm tracking-wide hover:bg-[#7a5b20] transition-colors"
                   >
                     <CalendarCheck size={16} />
                     Book time online

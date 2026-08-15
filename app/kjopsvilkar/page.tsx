@@ -119,7 +119,7 @@ export default function KjopsvilkarPage() {
   return (
     <section className="pt-40 pb-24 px-6">
       <div className="max-w-3xl mx-auto">
-        <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+        <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
           Nettbutikken
         </p>
         <h1
@@ -143,11 +143,11 @@ export default function KjopsvilkarPage() {
             </div>
           ))}
         </div>
-        <p className="mt-12 text-sm text-[#1a1a1a]/50">
+        <p className="mt-12 text-sm text-[#1a1a1a]/65">
           Se også vår{" "}
           <Link
             href="/personvern"
-            className="text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e]"
+            className="text-[#8f6b28] border-b border-[#c9a96e]/40 hover:border-[#c9a96e]"
           >
             personvernerklæring
           </Link>

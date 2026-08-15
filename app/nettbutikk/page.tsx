@@ -50,7 +50,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           />
         </div>
         <div className="flex-1 flex flex-col p-3.5 sm:p-5">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-[#c9a96e] mb-1.5">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-[#8f6b28] mb-1.5">
             {BRAND_INFO[product.brand].label}
           </p>
           <h2
@@ -59,8 +59,8 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           >
             {product.name}
           </h2>
-          <p className="text-xs text-[#1a1a1a]/40 mb-3">{product.size}</p>
-          <p className="text-xs text-[#1a1a1a]/55 leading-relaxed mb-4 line-clamp-3">
+          <p className="text-xs text-[#1a1a1a]/65 mb-3">{product.size}</p>
+          <p className="text-xs text-[#1a1a1a]/65 leading-relaxed mb-4 line-clamp-3">
             {product.desc}
           </p>
           <div className="mt-auto flex items-center justify-between gap-3">
@@ -69,7 +69,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             </p>
             <button
               onClick={() => cart.add(product.sku)}
-              className="relative z-20 px-4 py-2 bg-[#c9a96e] text-white text-xs tracking-wide rounded-full hover:bg-[#b8955a] transition-colors flex items-center gap-1.5"
+              className="relative z-20 px-4 py-2 bg-[#8f6b28] text-white text-xs tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-1.5"
             >
               <ShoppingBag size={13} />
               Legg i kurv
@@ -142,7 +142,7 @@ export default function NettbutikkPage() {
       <section className="pt-12 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               Hudprodukter
             </p>
             <h1
@@ -151,7 +151,7 @@ export default function NettbutikkPage() {
             >
               Nettbutikk
             </h1>
-            <p className="text-[#1a1a1a]/55 leading-relaxed">
+            <p className="text-[#1a1a1a]/65 leading-relaxed">
               Produktene vi bruker og anbefaler i klinikken — medisinsk hudpleie
               fra ZO Skin Health, norskutviklede Face Formula (tidligere Elixir
               Cosmeceuticals) og mineralsk solbeskyttelse fra ColoreScience.
@@ -164,13 +164,13 @@ export default function NettbutikkPage() {
       {/* Veilednings-banner */}
       <div className="bg-[#3d4a3e] text-white">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
-          <span className="text-xs tracking-[0.2em] uppercase text-[#c9a96e]">
+          <span className="text-xs tracking-[0.2em] uppercase text-[#8f6b28]">
             Usikker på valget?
           </span>
           <span className="text-sm text-white/80">
             Vår kosmetiske sykepleier Christina hjelper deg gjerne med
             produktveiledning —{" "}
-            <Link href="/kontakt" className="underline hover:text-[#c9a96e]">
+            <Link href="/kontakt" className="underline hover:text-[#8f6b28]">
               ta kontakt
             </Link>{" "}
             eller spør ved neste besøk.
@@ -188,8 +188,8 @@ export default function NettbutikkPage() {
                 onClick={() => velgFilter(f.id)}
                 className={`px-5 py-2 rounded-full text-sm tracking-wide border transition-colors duration-200 ${
                   filter === f.id
-                    ? "bg-[#c9a96e] text-white border-[#c9a96e]"
-                    : "bg-white text-[#1a1a1a]/60 border-[#e8d5b0]/60 hover:border-[#c9a96e]/60 hover:text-[#c9a96e]"
+                    ? "bg-[#8f6b28] text-white border-[#c9a96e]"
+                    : "bg-white text-[#1a1a1a]/65 border-[#e8d5b0]/60 hover:border-[#c9a96e]/60 hover:text-[#8f6b28]"
                 }`}
               >
                 {f.label}
@@ -199,7 +199,7 @@ export default function NettbutikkPage() {
 
           {filter !== "alle" && (
             <AnimatedSection className="text-center mb-10">
-              <p className="text-sm text-[#1a1a1a]/50 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm text-[#1a1a1a]/65 max-w-2xl mx-auto leading-relaxed">
                 {BRAND_INFO[filter].tagline}
               </p>
             </AnimatedSection>
@@ -213,12 +213,12 @@ export default function NettbutikkPage() {
 
           {harFlere && (
             <div className="mt-12 flex flex-col items-center gap-3">
-              <p className="text-xs text-[#1a1a1a]/40">
+              <p className="text-xs text-[#1a1a1a]/65">
                 Viser {synlige.length} av {visible.length} produkter
               </p>
               <button
                 onClick={() => setAntallVist((n) => n + SIDESTORRELSE)}
-                className="rounded-full border border-[#c9a96e] px-8 py-3 text-sm tracking-wide text-[#c9a96e] transition-colors hover:bg-[#c9a96e] hover:text-white"
+                className="rounded-full border border-[#c9a96e] px-8 py-3 text-sm tracking-wide text-[#8f6b28] transition-colors hover:bg-[#8f6b28] hover:text-white"
               >
                 Vis flere produkter
               </button>
@@ -259,7 +259,7 @@ export default function NettbutikkPage() {
               <AnimatedSection key={f.title} delay={i * 0.1}>
                 <div className="p-7 rounded-2xl bg-white border border-[#e8d5b0]/30 h-full">
                   <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center mb-4">
-                    <f.icon size={18} className="text-[#c9a96e]" />
+                    <f.icon size={18} className="text-[#8f6b28]" />
                   </div>
                   <h3
                     className="text-base mb-2"
@@ -267,7 +267,7 @@ export default function NettbutikkPage() {
                   >
                     {f.title}
                   </h3>
-                  <p className="text-sm text-[#1a1a1a]/55 leading-relaxed">
+                  <p className="text-sm text-[#1a1a1a]/65 leading-relaxed">
                     {f.desc}
                   </p>
                 </div>
@@ -275,7 +275,7 @@ export default function NettbutikkPage() {
             ))}
           </div>
           <AnimatedSection delay={0.2} className="text-center mt-12">
-            <p className="text-xs text-[#1a1a1a]/40 max-w-xl mx-auto leading-relaxed">
+            <p className="text-xs text-[#1a1a1a]/65 max-w-xl mx-auto leading-relaxed">
               Aktive produkter med retinol og syrer bør tilpasses din hud. Er du
               i tvil, anbefaler vi en hudkonsultasjon før du starter — den
               trekkes fra ved produktkjøp samme dag.

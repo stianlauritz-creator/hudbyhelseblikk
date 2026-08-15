@@ -22,7 +22,7 @@ export default function BookingSteps() {
           transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="flex gap-3.5"
         >
-          <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#c9a96e] text-sm font-medium text-white shadow-[0_4px_12px_-4px_rgba(201,169,110,0.7)]">
+          <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#8f6b28] text-sm font-medium text-white shadow-[0_4px_12px_-4px_rgba(201,169,110,0.7)]">
             {i + 1}
           </span>
           <span className="min-w-0 pt-1">
@@ -32,7 +32,7 @@ export default function BookingSteps() {
             >
               {s.tittel}
             </span>
-            <span className="mt-1.5 block text-xs leading-relaxed text-[#1a1a1a]/45">
+            <span className="mt-1.5 block text-xs leading-relaxed text-[#1a1a1a]/65">
               {s.tekst}
             </span>
           </span>

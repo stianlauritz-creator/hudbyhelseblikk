@@ -85,13 +85,13 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
               {[0, 1, 2].map((i) => (
                 <motion.span
                   key={i}
-                  className="h-2 w-2 rounded-full bg-[#c9a96e]"
+                  className="h-2 w-2 rounded-full bg-[#8f6b28]"
                   animate={{ opacity: [0.25, 1, 0.25] }}
                   transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.18 }}
                 />
               ))}
             </div>
-            <p className="text-sm text-[#1a1a1a]/45">Henter ledige timer …</p>
+            <p className="text-sm text-[#1a1a1a]/65">Henter ledige timer …</p>
           </div>
         )}
         <iframe
@@ -104,20 +104,20 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
       </motion.div>
 
 
-      <p className="mt-5 text-center text-xs text-[#1a1a1a]/40">
+      <p className="mt-5 text-center text-xs text-[#1a1a1a]/65">
         Vises ikke timeboken?{" "}
         <a
           href={TIMMA_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#c9a96e] underline underline-offset-2 hover:no-underline"
+          className="text-[#8f6b28] underline underline-offset-2 hover:no-underline"
         >
           Åpne den i eget vindu
         </a>{" "}
         — eller ring oss på{" "}
         <a
           href="tel:37040500"
-          className="text-[#c9a96e] underline underline-offset-2 hover:no-underline"
+          className="text-[#8f6b28] underline underline-offset-2 hover:no-underline"
         >
           370 40 500
         </a>

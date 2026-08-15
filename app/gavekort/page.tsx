@@ -58,7 +58,7 @@ export default function GavekortPage() {
             <div className="rounded-[28px] bg-white p-8 shadow-[0_28px_70px_-30px_rgba(30,45,61,0.45)] ring-1 ring-[#e8d5b0]/40 sm:p-12">
               <div className="mb-8 flex items-center gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#c9a96e]/10">
-                  <Gift size={20} className="text-[#c9a96e]" />
+                  <Gift size={20} className="text-[#8f6b28]" />
                 </span>
                 <h2
                   className="text-xl text-[#1e2d3d]"
@@ -71,7 +71,7 @@ export default function GavekortPage() {
               <ul className="mb-10 space-y-3.5">
                 {punkter.map((p) => (
                   <li key={p} className="flex gap-3 text-sm leading-relaxed text-[#1a1a1a]/65">
-                    <Sparkles size={15} className="mt-0.5 flex-shrink-0 text-[#c9a96e]" />
+                    <Sparkles size={15} className="mt-0.5 flex-shrink-0 text-[#8f6b28]" />
                     {p}
                   </li>
                 ))}
@@ -89,14 +89,14 @@ export default function GavekortPage() {
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <a
                     href="tel:37040500"
-                    className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#c9a96e] px-6 py-3.5 text-sm tracking-wide text-white transition-colors hover:bg-[#b8955a]"
+                    className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#8f6b28] px-6 py-3.5 text-sm tracking-wide text-white transition-colors hover:bg-[#7a5b20]"
                   >
                     <Phone size={15} />
                     Ring 370 40 500
                   </a>
                   <a
                     href="mailto:hei@helseblikk.no?subject=Bestilling%20av%20gavekort"
-                    className="flex flex-1 items-center justify-center gap-2 rounded-full border border-[#e8d5b0] px-6 py-3.5 text-sm tracking-wide text-[#1a1a1a]/70 transition-colors hover:border-[#c9a96e] hover:text-[#c9a96e]"
+                    className="flex flex-1 items-center justify-center gap-2 rounded-full border border-[#e8d5b0] px-6 py-3.5 text-sm tracking-wide text-[#1a1a1a]/70 transition-colors hover:border-[#c9a96e] hover:text-[#8f6b28]"
                   >
                     <Mail size={15} />
                     Send e-post
@@ -107,11 +107,11 @@ export default function GavekortPage() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.15}>
-            <p className="mt-8 text-center text-sm text-[#1a1a1a]/45">
+            <p className="mt-8 text-center text-sm text-[#1a1a1a]/65">
               Usikker på hva du skal gi?{" "}
               <Link
                 href="/behandlinger"
-                className="text-[#c9a96e] underline underline-offset-2 hover:no-underline"
+                className="text-[#8f6b28] underline underline-offset-2 hover:no-underline"
               >
                 Se behandlingene våre
               </Link>{" "}

@@ -108,7 +108,7 @@ export default async function BestillTimePage({
       <section className="border-t border-[#e8d5b0]/40 bg-white px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection className="mb-10 text-center">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.3em] text-[#c9a96e]">
+            <p className="mb-3 text-[11px] uppercase tracking-[0.3em] text-[#8f6b28]">
               Hvem møter deg
             </p>
             <h2
@@ -139,17 +139,17 @@ export default async function BestillTimePage({
                     >
                       {b.fullt}
                     </p>
-                    <p className="mt-0.5 text-xs text-[#1a1a1a]/45">{b.tittel}</p>
+                    <p className="mt-0.5 text-xs text-[#1a1a1a]/65">{b.tittel}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       <Link
                         href={`/bestill-time?behandler=${b.navn.toLowerCase()}`}
-                        className="rounded-full bg-[#c9a96e] px-4 py-1.5 text-xs tracking-wide text-white transition-colors hover:bg-[#b8955a]"
+                        className="rounded-full bg-[#8f6b28] px-4 py-1.5 text-xs tracking-wide text-white transition-colors hover:bg-[#7a5b20]"
                       >
                         Book hos {b.navn}
                       </Link>
                       <Link
                         href={b.href}
-                        className="rounded-full border border-[#e8d5b0] px-4 py-1.5 text-xs tracking-wide text-[#1a1a1a]/60 transition-colors hover:border-[#c9a96e] hover:text-[#c9a96e]"
+                        className="rounded-full border border-[#e8d5b0] px-4 py-1.5 text-xs tracking-wide text-[#1a1a1a]/65 transition-colors hover:border-[#c9a96e] hover:text-[#8f6b28]"
                       >
                         Les mer
                       </Link>
@@ -170,7 +170,7 @@ export default async function BestillTimePage({
               <AnimatedSection key={t.tittel} delay={i * 0.1}>
                 <div className="h-full rounded-2xl border border-[#e8d5b0]/30 bg-white p-7">
                   <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#c9a96e]/10">
-                    <t.icon size={18} className="text-[#c9a96e]" />
+                    <t.icon size={18} className="text-[#8f6b28]" />
                   </div>
                   <h3
                     className="mb-2 text-base text-[#1e2d3d]"
@@ -178,7 +178,7 @@ export default async function BestillTimePage({
                   >
                     {t.tittel}
                   </h3>
-                  <p className="text-sm leading-relaxed text-[#1a1a1a]/55">
+                  <p className="text-sm leading-relaxed text-[#1a1a1a]/65">
                     {t.tekst}
                   </p>
                 </div>

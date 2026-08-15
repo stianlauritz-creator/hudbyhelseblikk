@@ -79,7 +79,7 @@ export default function PrislistePage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               Oversikt
             </p>
             <h1
@@ -88,7 +88,7 @@ export default function PrislistePage() {
             >
               Prisliste
             </h1>
-            <p className="text-[#1a1a1a]/55 leading-relaxed">
+            <p className="text-[#1a1a1a]/65 leading-relaxed">
               Alle priser er veiledende. Endelig pris avtales ved konsultasjon.
             </p>
           </AnimatedSection>
@@ -98,7 +98,7 @@ export default function PrislistePage() {
       {/* Studentrabatt-banner */}
       <div className="bg-[#3d4a3e] text-white">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
-          <span className="text-xs tracking-[0.2em] uppercase text-[#c9a96e]">
+          <span className="text-xs tracking-[0.2em] uppercase text-[#8f6b28]">
             Studentrabatt
           </span>
           <span className="text-sm text-white/80">
@@ -138,7 +138,7 @@ export default function PrislistePage() {
                           )}
                         </div>
                         <div className="flex flex-shrink-0 items-center gap-4">
-                          <p className="whitespace-nowrap text-sm font-medium text-[#c9a96e]">
+                          <p className="whitespace-nowrap text-sm font-medium text-[#8f6b28]">
                             {item.pris}
                           </p>
                           <Link
@@ -148,7 +148,7 @@ export default function PrislistePage() {
                                 ? `Se ${item.navn} i nettbutikken`
                                 : `Bestill time for ${item.navn}`
                             }
-                            className="whitespace-nowrap rounded-full border border-[#e8d5b0] px-3.5 py-1.5 text-xs tracking-wide text-[#1a1a1a]/50 transition-colors hover:border-[#c9a96e] hover:bg-[#c9a96e] hover:text-white"
+                            className="whitespace-nowrap rounded-full border border-[#e8d5b0] px-3.5 py-1.5 text-xs tracking-wide text-[#1a1a1a]/65 transition-colors hover:border-[#c9a96e] hover:bg-[#8f6b28] hover:text-white"
                           >
                             {erProdukt ? "Se i butikk" : "Bestill"}
                           </Link>
@@ -162,7 +162,7 @@ export default function PrislistePage() {
           ))}
 
           <AnimatedSection delay={0.4} className="pt-8 text-center">
-            <p className="text-sm text-[#1a1a1a]/40 mb-8">
+            <p className="text-sm text-[#1a1a1a]/65 mb-8">
               Usikker på hvilken behandling som passer deg? Book en
               hudkonsultasjon — vi hjelper deg å finne riktig løsning.
             </p>

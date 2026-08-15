@@ -76,13 +76,13 @@ export default function CartDrawer() {
               >
                 Handlekurv{" "}
                 {cart.count > 0 && (
-                  <span className="text-sm text-[#c9a96e]">({cart.count})</span>
+                  <span className="text-sm text-[#8f6b28]">({cart.count})</span>
                 )}
               </p>
               <button
                 onClick={() => cart.setOpen(false)}
                 aria-label="Lukk handlekurv"
-                className="p-2 text-[#1a1a1a]/60 hover:text-[#1a1a1a] transition-colors"
+                className="p-2 text-[#1a1a1a]/65 hover:text-[#1a1a1a] transition-colors"
               >
                 <X size={20} />
               </button>
@@ -90,8 +90,8 @@ export default function CartDrawer() {
 
             {/* Innhold */}
             {cart.items.length === 0 ? (
-              <div className="flex-1 flex flex-col items-center justify-center gap-4 text-[#1a1a1a]/40">
-                <ShoppingBag size={32} className="text-[#c9a96e]/40" />
+              <div className="flex-1 flex flex-col items-center justify-center gap-4 text-[#1a1a1a]/65">
+                <ShoppingBag size={32} className="text-[#8f6b28]/40" />
                 <p className="text-sm">Handlekurven er tom</p>
               </div>
             ) : (
@@ -112,7 +112,7 @@ export default function CartDrawer() {
                         <p className="text-sm text-[#1a1a1a]/85 truncate">
                           {product.name}
                         </p>
-                        <p className="text-xs text-[#1a1a1a]/40 mb-2">
+                        <p className="text-xs text-[#1a1a1a]/65 mb-2">
                           {product.size}
                         </p>
                         <div className="flex items-center justify-between">
@@ -120,7 +120,7 @@ export default function CartDrawer() {
                             <button
                               onClick={() => cart.setQty(product.sku, qty - 1)}
                               aria-label="Færre"
-                              className="text-[#1a1a1a]/50 hover:text-[#c9a96e]"
+                              className="text-[#1a1a1a]/65 hover:text-[#8f6b28]"
                             >
                               <Minus size={13} />
                             </button>
@@ -128,12 +128,12 @@ export default function CartDrawer() {
                             <button
                               onClick={() => cart.setQty(product.sku, qty + 1)}
                               aria-label="Flere"
-                              className="text-[#1a1a1a]/50 hover:text-[#c9a96e]"
+                              className="text-[#1a1a1a]/65 hover:text-[#8f6b28]"
                             >
                               <Plus size={13} />
                             </button>
                           </div>
-                          <p className="text-sm text-[#c9a96e]">
+                          <p className="text-sm text-[#8f6b28]">
                             {formatPrice(product.price * qty)}
                           </p>
                         </div>
@@ -145,7 +145,7 @@ export default function CartDrawer() {
                 {/* Bunn */}
                 <div className="border-t border-[#e8d5b0]/40 px-6 py-5 space-y-3">
                   {cart.shipping > 0 ? (
-                    <p className="text-xs text-[#1a1a1a]/45">
+                    <p className="text-xs text-[#1a1a1a]/65">
                       Frakt {formatPrice(cart.shipping)} — gratis frakt over{" "}
                       {formatPrice(FREE_SHIPPING_LIMIT)} (
                       {formatPrice(FREE_SHIPPING_LIMIT - cart.subtotal)} igjen)
@@ -156,7 +156,7 @@ export default function CartDrawer() {
                     </p>
                   )}
                   <div className="flex justify-between text-sm">
-                    <span className="text-[#1a1a1a]/60">Totalt</span>
+                    <span className="text-[#1a1a1a]/65">Totalt</span>
                     <span className="text-[#1a1a1a] font-medium">
                       {formatPrice(cart.total)}
                     </span>
@@ -164,13 +164,13 @@ export default function CartDrawer() {
 
                   {fallback ? (
                     <div className="space-y-2">
-                      <p className="text-xs text-[#1a1a1a]/50 leading-relaxed">
+                      <p className="text-xs text-[#1a1a1a]/65 leading-relaxed">
                         Online betaling er ikke aktivert ennå. Send bestillingen
                         på e-post, så tar vi kontakt for betaling og levering.
                       </p>
                       <a
                         href={mailtoOrder()}
-                        className="block w-full text-center px-6 py-3.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors"
+                        className="block w-full text-center px-6 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors"
                       >
                         Send bestilling på e-post
                       </a>
@@ -180,7 +180,7 @@ export default function CartDrawer() {
                       <button
                         onClick={checkout}
                         disabled={busy}
-                        className="w-full px-6 py-3.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors disabled:opacity-60"
+                        className="w-full px-6 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors disabled:opacity-60"
                       >
                         {busy ? "Et øyeblikk …" : "Til betaling"}
                       </button>
@@ -188,7 +188,7 @@ export default function CartDrawer() {
                         Ved å fullføre kjøpet godtar du våre{" "}
                         <a
                           href="/kjopsvilkar"
-                          className="underline hover:text-[#c9a96e]"
+                          className="underline hover:text-[#8f6b28]"
                         >
                           kjøpsvilkår
                         </a>
@@ -197,7 +197,7 @@ export default function CartDrawer() {
                   )}
                   <button
                     onClick={cart.clear}
-                    className="w-full text-center text-xs text-[#1a1a1a]/35 hover:text-[#1a1a1a]/60 transition-colors"
+                    className="w-full text-center text-xs text-[#1a1a1a]/35 hover:text-[#1a1a1a]/65 transition-colors"
                   >
                     Tøm handlekurven
                   </button>

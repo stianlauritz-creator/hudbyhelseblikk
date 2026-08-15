@@ -34,7 +34,7 @@ export default function GavekortKjop() {
 
   return (
     <div>
-      <p className="mb-3 text-[11px] uppercase tracking-[0.2em] text-[#c9a96e]">
+      <p className="mb-3 text-[11px] uppercase tracking-[0.2em] text-[#8f6b28]">
         Velg beløp
       </p>
       <div className="mb-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
@@ -43,7 +43,7 @@ export default function GavekortKjop() {
             key={v}
             onClick={() => kjop(v)}
             disabled={venter !== null}
-            className="flex items-center justify-center gap-2 rounded-full bg-[#c9a96e] px-5 py-3.5 text-sm tracking-wide text-white transition-colors hover:bg-[#b8955a] disabled:opacity-60"
+            className="flex items-center justify-center gap-2 rounded-full bg-[#8f6b28] px-5 py-3.5 text-sm tracking-wide text-white transition-colors hover:bg-[#7a5b20] disabled:opacity-60"
           >
             <Gift size={14} />
             {venter === v ? "Åpner kassen …" : fmt(v)}
@@ -55,7 +55,7 @@ export default function GavekortKjop() {
           Noe gikk galt — prøv igjen, eller ta kontakt så ordner vi det.
         </p>
       )}
-      <p className="text-xs leading-relaxed text-[#1a1a1a]/45">
+      <p className="text-xs leading-relaxed text-[#1a1a1a]/65">
         Du sendes til vår sikre kasse. Gavekortkoden kommer på e-post med én
         gang betalingen er gjennomført.
       </p>

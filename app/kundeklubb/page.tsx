@@ -29,7 +29,7 @@ export default function KundeklubbPage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               For deg som vil ha mer ut av huden din
             </p>
             <h1
@@ -38,7 +38,7 @@ export default function KundeklubbPage() {
             >
               Kundeklubben
             </h1>
-            <p className="text-[#1a1a1a]/55 leading-relaxed">
+            <p className="text-[#1a1a1a]/65 leading-relaxed">
               Bli medlem og få 10 % på ditt første produktkjøp — og beskjed
               først når det skjer noe hos oss.
             </p>
@@ -51,7 +51,7 @@ export default function KundeklubbPage() {
           {fordeler.map((f) => (
             <AnimatedSection key={f.tittel}>
               <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center mb-4">
-                <f.icon size={17} className="text-[#c9a96e]" />
+                <f.icon size={17} className="text-[#8f6b28]" />
               </div>
               <h2
                 className="text-lg font-normal mb-2"
@@ -59,7 +59,7 @@ export default function KundeklubbPage() {
               >
                 {f.tittel}
               </h2>
-              <p className="text-sm text-[#1a1a1a]/55 leading-relaxed">
+              <p className="text-sm text-[#1a1a1a]/65 leading-relaxed">
                 {f.tekst}
               </p>
             </AnimatedSection>
@@ -69,7 +69,7 @@ export default function KundeklubbPage() {
 
       <section className="pb-16 px-6">
         <div className="max-w-3xl mx-auto bg-[#f5ede4] rounded-2xl p-8 md:p-10">
-          <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+          <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-3">
             Er du student?
           </p>
           <h2
@@ -78,21 +78,21 @@ export default function KundeklubbPage() {
           >
             20 % studentrabatt
           </h2>
-          <p className="text-[#1a1a1a]/60 leading-relaxed mb-6">
+          <p className="text-[#1a1a1a]/65 leading-relaxed mb-6">
             Studenter får 20 % på hudpleieprodukter og hudbehandlinger hos oss.
             Rabatten gjelder hver gang du er innom — ikke bare første besøk.
           </p>
           <div className="space-y-2.5 text-sm text-[#1a1a1a]/70">
             <p className="flex gap-3">
-              <span className="text-[#c9a96e]">1.</span>
+              <span className="text-[#8f6b28]">1.</span>
               <span>Du må være medlem i kundeklubben — meld deg inn nedenfor</span>
             </p>
             <p className="flex gap-3">
-              <span className="text-[#c9a96e]">2.</span>
+              <span className="text-[#8f6b28]">2.</span>
               <span>Vis gyldig studentbevis i klinikken, så trekker vi fra ved betaling</span>
             </p>
           </div>
-          <p className="text-xs text-[#1a1a1a]/45 leading-relaxed mt-6">
+          <p className="text-xs text-[#1a1a1a]/65 leading-relaxed mt-6">
             Gjelder ikke injeksjonsbehandlinger som filler og muskelavslappende,
             og kan ikke kombineres med andre tilbud.
           </p>
@@ -119,12 +119,12 @@ export default function KundeklubbPage() {
           >
             Vil du melde deg av?
           </h2>
-          <p className="text-sm text-[#1a1a1a]/55 leading-relaxed">
+          <p className="text-sm text-[#1a1a1a]/65 leading-relaxed">
             Alle e-poster fra oss har en avmeldingslenke nederst. Du kan også
             sende en e-post til{" "}
             <a
               href="mailto:hei@helseblikk.no"
-              className="text-[#c9a96e] underline"
+              className="text-[#8f6b28] underline"
             >
               hei@helseblikk.no
             </a>

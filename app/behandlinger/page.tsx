@@ -207,7 +207,7 @@ export default function BehandlingerPage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               Hva vi tilbyr
             </p>
             <h1
@@ -216,7 +216,7 @@ export default function BehandlingerPage() {
             >
               Behandlinger
             </h1>
-            <p className="text-[#1a1a1a]/60 leading-relaxed text-lg">
+            <p className="text-[#1a1a1a]/65 leading-relaxed text-lg">
               Vi tilbyr et bredt spekter av medisinsk hudpleie — fra enkel
               farging til avanserte laserbehandlinger og injeksjoner.
             </p>
@@ -251,7 +251,7 @@ export default function BehandlingerPage() {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="whitespace-nowrap text-[#1a1a1a]/50 hover:text-[#c9a96e] transition-colors py-1 px-2 rounded-full hover:bg-[#c9a96e]/5"
+              className="whitespace-nowrap text-[#1a1a1a]/65 hover:text-[#8f6b28] transition-colors py-1 px-2 rounded-full hover:bg-[#c9a96e]/5"
             >
               {s.title}
             </a>
@@ -265,7 +265,7 @@ export default function BehandlingerPage() {
           <section key={seksjon.id} id={seksjon.id}>
             <AnimatedSection>
               <div className="mb-10">
-                <p className="text-xs tracking-[0.2em] uppercase text-[#c9a96e] mb-2">
+                <p className="text-xs tracking-[0.2em] uppercase text-[#8f6b28] mb-2">
                   {String(si + 1).padStart(2, "0")}
                 </p>
                 <h2
@@ -274,7 +274,7 @@ export default function BehandlingerPage() {
                 >
                   {seksjon.title}
                 </h2>
-                <p className="text-[#1a1a1a]/55 leading-relaxed max-w-xl">
+                <p className="text-[#1a1a1a]/65 leading-relaxed max-w-xl">
                   {seksjon.intro}
                 </p>
               </div>
@@ -311,11 +311,11 @@ export default function BehandlingerPage() {
                       >
                         {b.navn}
                       </h3>
-                      <span className="text-[#c9a96e] font-medium text-sm whitespace-nowrap">
+                      <span className="text-[#8f6b28] font-medium text-sm whitespace-nowrap">
                         {b.pris}
                       </span>
                     </div>
-                    <p className="text-sm text-[#1a1a1a]/55 leading-relaxed mt-3">
+                    <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mt-3">
                       {b.desc}
                     </p>
                     {seksjon.id !== "produkter" && (
@@ -323,7 +323,7 @@ export default function BehandlingerPage() {
                         {b.slug && (
                           <Link
                             href={`/behandlinger/${b.slug}`}
-                            className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#c9a96e] transition-colors hover:text-[#b8955a]"
+                            className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
                           >
                             Les mer
                             <ArrowRight size={14} />
@@ -331,7 +331,7 @@ export default function BehandlingerPage() {
                         )}
                         <Link
                           href="/bestill-time"
-                          className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#1a1a1a]/45 transition-colors hover:text-[#c9a96e]"
+                          className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#1a1a1a]/65 transition-colors hover:text-[#8f6b28]"
                         >
                           Bestill time
                         </Link>
@@ -340,7 +340,7 @@ export default function BehandlingerPage() {
                     {seksjon.id === "produkter" && (
                       <Link
                         href="/nettbutikk"
-                        className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#c9a96e] transition-colors hover:text-[#b8955a]"
+                        className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
                       >
                         Se i nettbutikken
                         <ArrowRight size={14} />

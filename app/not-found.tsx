@@ -17,7 +17,7 @@ export default function NotFound() {
   return (
     <section className="flex min-h-[70vh] items-center px-6 py-32">
       <div className="mx-auto max-w-xl text-center">
-        <p className="mb-4 text-[11px] uppercase tracking-[0.3em] text-[#c9a96e]">
+        <p className="mb-4 text-[11px] uppercase tracking-[0.3em] text-[#8f6b28]">
           Feil 404
         </p>
         <h1
@@ -26,12 +26,12 @@ export default function NotFound() {
         >
           Denne siden finnes ikke
         </h1>
-        <p className="mb-10 leading-relaxed text-[#1a1a1a]/55">
+        <p className="mb-10 leading-relaxed text-[#1a1a1a]/65">
           Siden kan ha blitt flyttet eller fjernet. Prøv en av lenkene under —
           eller ring oss på{" "}
           <a
             href="tel:37040500"
-            className="text-[#c9a96e] underline underline-offset-2 hover:no-underline"
+            className="text-[#8f6b28] underline underline-offset-2 hover:no-underline"
           >
             370 40 500
           </a>
@@ -41,7 +41,7 @@ export default function NotFound() {
         <div className="flex flex-wrap justify-center gap-3">
           <Link
             href="/"
-            className="rounded-full bg-[#c9a96e] px-7 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#b8955a]"
+            className="rounded-full bg-[#8f6b28] px-7 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#7a5b20]"
           >
             Til forsiden
           </Link>
@@ -49,7 +49,7 @@ export default function NotFound() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-full border border-[#e8d5b0] px-6 py-3 text-sm tracking-wide text-[#1a1a1a]/60 transition-colors hover:border-[#c9a96e] hover:text-[#c9a96e]"
+              className="rounded-full border border-[#e8d5b0] px-6 py-3 text-sm tracking-wide text-[#1a1a1a]/65 transition-colors hover:border-[#c9a96e] hover:text-[#8f6b28]"
             >
               {l.tekst}
             </Link>

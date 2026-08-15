@@ -36,7 +36,7 @@ export default function BehandlerePage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               Vårt team
             </p>
             <h1
@@ -45,7 +45,7 @@ export default function BehandlerePage() {
             >
               Behandlere
             </h1>
-            <p className="text-[#1a1a1a]/55 leading-relaxed">
+            <p className="text-[#1a1a1a]/65 leading-relaxed">
               Hos oss møter du kvalifisert helsepersonell med medisinsk
               bakgrunn — og et felles mål: naturlige resultater med faglig
               forsvarlighet.
@@ -79,10 +79,10 @@ export default function BehandlerePage() {
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <p className="text-[#c9a96e]/60 text-sm text-center px-6">
+                        <p className="text-[#8f6b28]/60 text-sm text-center px-6">
                           Bilde av {b.navn}
                           <br />
-                          <span className="text-xs text-[#c9a96e]/40">
+                          <span className="text-xs text-[#8f6b28]/40">
                             Kommer snart
                           </span>
                         </p>
@@ -91,18 +91,18 @@ export default function BehandlerePage() {
                   </div>
                   <div className="p-7 flex-1 flex flex-col">
                     <h2
-                      className="text-xl mb-1 group-hover:text-[#c9a96e] transition-colors"
+                      className="text-xl mb-1 group-hover:text-[#8f6b28] transition-colors"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       {b.navn}
                     </h2>
-                    <p className="text-xs text-[#c9a96e] tracking-wide mb-4">
+                    <p className="text-xs text-[#8f6b28] tracking-wide mb-4">
                       {b.tittel}
                     </p>
-                    <p className="text-sm text-[#1a1a1a]/60 leading-relaxed mb-4">
+                    <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-4">
                       {b.tekst}
                     </p>
-                    <p className="text-xs text-[#1a1a1a]/40 mt-auto">
+                    <p className="text-xs text-[#1a1a1a]/65 mt-auto">
                       {b.fokus}
                     </p>
                   </div>

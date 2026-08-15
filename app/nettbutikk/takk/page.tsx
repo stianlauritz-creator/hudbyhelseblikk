@@ -40,7 +40,7 @@ export default async function TakkPage({
       <ClearCart />
       <div className="max-w-2xl mx-auto text-center">
         <AnimatedSection>
-          <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+          <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
             Bestilling mottatt
           </p>
           <h1
@@ -49,7 +49,7 @@ export default async function TakkPage({
           >
             Tusen takk!
           </h1>
-          <p className="text-[#1a1a1a]/55 leading-relaxed mb-10">
+          <p className="text-[#1a1a1a]/65 leading-relaxed mb-10">
             Betalingen er gjennomført
             {email ? (
               <>
@@ -63,7 +63,7 @@ export default async function TakkPage({
           </p>
           <Link
             href="/nettbutikk"
-            className="text-sm tracking-wide text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors"
+            className="text-sm tracking-wide text-[#8f6b28] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors"
           >
             Tilbake til nettbutikken →
           </Link>

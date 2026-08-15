@@ -62,7 +62,7 @@ export default function KundeklubbSkjema({
         >
           Velkommen!
         </p>
-        <p className="text-[#1a1a1a]/60 text-sm leading-relaxed">
+        <p className="text-[#1a1a1a]/65 text-sm leading-relaxed">
           Rabattkoden ligger i innboksen din. Finner du den ikke, sjekk
           søppelposten.
         </p>
@@ -101,7 +101,7 @@ export default function KundeklubbSkjema({
           placeholder="Fornavn (valgfritt)"
           value={fornavn}
           onChange={(e) => setFornavn(e.target.value)}
-          className="w-full px-4 py-3 border border-[#e8d5b0] rounded-lg bg-white text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none focus:border-[#c9a96e]"
+          className="w-full px-4 py-3 border border-[#e8d5b0] rounded-lg bg-white text-[#1a1a1a] placeholder:text-[#1a1a1a]/65 focus:outline-none focus:border-[#c9a96e]"
         />
       </div>
 
@@ -117,7 +117,7 @@ export default function KundeklubbSkjema({
           placeholder="E-postadresse"
           value={epost}
           onChange={(e) => setEpost(e.target.value)}
-          className="w-full px-4 py-3 border border-[#e8d5b0] rounded-lg bg-white text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none focus:border-[#c9a96e]"
+          className="w-full px-4 py-3 border border-[#e8d5b0] rounded-lg bg-white text-[#1a1a1a] placeholder:text-[#1a1a1a]/65 focus:outline-none focus:border-[#c9a96e]"
         />
       </div>
 
@@ -132,7 +132,7 @@ export default function KundeklubbSkjema({
           placeholder="Telefon (valgfritt)"
           value={telefon}
           onChange={(e) => setTelefon(e.target.value)}
-          className="w-full px-4 py-3 border border-[#e8d5b0] rounded-lg bg-white text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none focus:border-[#c9a96e]"
+          className="w-full px-4 py-3 border border-[#e8d5b0] rounded-lg bg-white text-[#1a1a1a] placeholder:text-[#1a1a1a]/65 focus:outline-none focus:border-[#c9a96e]"
         />
       </div>
 
@@ -143,7 +143,7 @@ export default function KundeklubbSkjema({
           onChange={(e) => setSamtykkeEpost(e.target.checked)}
           className="mt-1 accent-[#c9a96e]"
         />
-        <span className="text-xs text-[#1a1a1a]/60 leading-relaxed">
+        <span className="text-xs text-[#1a1a1a]/65 leading-relaxed">
           Ja, send meg tilbud og nyheter på e-post.
         </span>
       </label>
@@ -155,7 +155,7 @@ export default function KundeklubbSkjema({
           onChange={(e) => setSamtykkeSms(e.target.checked)}
           className="mt-1 accent-[#c9a96e]"
         />
-        <span className="text-xs text-[#1a1a1a]/60 leading-relaxed">
+        <span className="text-xs text-[#1a1a1a]/65 leading-relaxed">
           Ja, send meg SMS om ledige timer og kampanjer.
         </span>
       </label>
@@ -169,12 +169,12 @@ export default function KundeklubbSkjema({
       <button
         type="submit"
         disabled={status === "sender"}
-        className="w-full px-6 py-3.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors disabled:opacity-60"
+        className="w-full px-6 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors disabled:opacity-60"
       >
         {status === "sender" ? "Melder deg inn …" : "Bli medlem"}
       </button>
 
-      <p className="text-[11px] text-[#1a1a1a]/40 leading-relaxed">
+      <p className="text-[11px] text-[#1a1a1a]/65 leading-relaxed">
         Du kan melde deg av når som helst. Se{" "}
         <a href="/personvern" className="underline">
           personvernerklæringen

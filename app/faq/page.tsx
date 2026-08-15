@@ -64,7 +64,7 @@ export default function FaqPage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               Ofte stilte spørsmål
             </p>
             <h1
@@ -98,7 +98,7 @@ export default function FaqPage() {
                     transition={{ duration: 0.3 }}
                     className="flex-shrink-0"
                   >
-                    <ChevronDown size={18} className="text-[#c9a96e]" />
+                    <ChevronDown size={18} className="text-[#8f6b28]" />
                   </motion.div>
                 </button>
                 <AnimatePresence>
@@ -125,7 +125,7 @@ export default function FaqPage() {
         </div>
 
         <AnimatedSection delay={0.5} className="mt-16 text-center">
-          <p className="text-sm text-[#1a1a1a]/45 mb-6">
+          <p className="text-sm text-[#1a1a1a]/65 mb-6">
             Har du et spørsmål som ikke er besvart her?
           </p>
           <BookingButton label="Kontakt oss" />

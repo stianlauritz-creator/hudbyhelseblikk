@@ -24,11 +24,11 @@ function CartButton({ light = false }: { light?: boolean }) {
     <button
       onClick={() => cart.setOpen(true)}
       aria-label="Åpne handlekurv"
-      className={`relative p-2 transition-colors ${light ? "text-white hover:text-[#e5c78f] drop-shadow-[0_1px_6px_rgba(30,45,61,0.7)]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
+      className={`relative p-2 transition-colors ${light ? "text-white hover:text-[#e5c78f] drop-shadow-[0_1px_6px_rgba(30,45,61,0.7)]" : "text-[#1a1a1a]/70 hover:text-[#8f6b28]"}`}
     >
       <ShoppingBag size={19} />
       {cart.count > 0 && (
-        <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#c9a96e] text-white text-[10px] flex items-center justify-center">
+        <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#8f6b28] text-white text-[10px] flex items-center justify-center">
           {cart.count}
         </span>
       )}
@@ -40,9 +40,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  // usePathname() er ikke pålitelig ved første klientrender (menyen ble stående
-  // mørk over hero-bildet til man scrollet) — korriger mot faktisk URL ved mount
-  const [path, setPath] = useState(pathname);
+  // usePathname() kan IKKE brukes til å bestemme hva som rendres her. Sidene er
+  // statisk prerendret, og da lages HTML-en for kilde-pathen — verdien i
+  // nettleseren kan avvike, og forsiden fikk hydreringsfeil (React #418) fordi
+  // serveren utelot gradienten som klienten tegnet. Next-dokumentasjonen
+  // (use-pathname.md) foreskriver en stabil fallback på serveren som først
+  // oppdateres etter mount: derfor null her, ikke `pathname`.
+  const [path, setPath] = useState<string | null>(null);
   useEffect(() => {
     setPath(window.location.pathname);
   }, [pathname]);
@@ -79,7 +83,7 @@ export default function Navbar() {
           >
             Hud by Helseblikk
           </span>
-          <span className={`text-[10px] tracking-[0.2em] uppercase font-light mt-0.5 transition-colors duration-500 ${light ? "text-[#e5c78f] [text-shadow:0_1px_10px_rgba(30,45,61,0.7)]" : "text-[#c9a96e]"}`}>
+          <span className={`text-[10px] tracking-[0.2em] uppercase font-light mt-0.5 transition-colors duration-500 ${light ? "text-[#e5c78f] [text-shadow:0_1px_10px_rgba(30,45,61,0.7)]" : "text-[#8f6b28]"}`}>
             Medisinsk hudpleie · Grimstad
           </span>
         </Link>
@@ -90,7 +94,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm tracking-wide transition-colors duration-200 ${light ? "text-white [text-shadow:0_1px_10px_rgba(30,45,61,0.7)] hover:text-[#e5c78f]" : "text-[#1a1a1a]/70 hover:text-[#c9a96e]"}`}
+              className={`text-sm tracking-wide transition-colors duration-200 ${light ? "text-white [text-shadow:0_1px_10px_rgba(30,45,61,0.7)] hover:text-[#e5c78f]" : "text-[#1a1a1a]/70 hover:text-[#8f6b28]"}`}
             >
               {l.label}
             </Link>
@@ -98,7 +102,7 @@ export default function Navbar() {
           <CartButton light={light} />
           <a
             href={BOOKING_URL}
-            className="ml-1 px-5 py-2.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors duration-200"
+            className="ml-1 px-5 py-2.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors duration-200"
           >
             Bestill time
           </a>
@@ -133,14 +137,14 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-base text-[#1a1a1a]/80 hover:text-[#c9a96e] transition-colors"
+                  className="text-base text-[#1a1a1a]/80 hover:text-[#8f6b28] transition-colors"
                 >
                   {l.label}
                 </Link>
               ))}
               <a
                 href={BOOKING_URL}
-                className="mt-2 px-5 py-3 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full text-center hover:bg-[#b8955a] transition-colors"
+                className="mt-2 px-5 py-3 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full text-center hover:bg-[#7a5b20] transition-colors"
                 onClick={() => setOpen(false)}
               >
                 Bestill time

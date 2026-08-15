@@ -25,7 +25,7 @@ export default function OmMabelPage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               Din behandler
             </p>
             <h1
@@ -34,7 +34,7 @@ export default function OmMabelPage() {
             >
               Mabel Lorine King
             </h1>
-            <p className="text-[#c9a96e] tracking-wide text-sm">
+            <p className="text-[#8f6b28] tracking-wide text-sm">
               Kosmetisk Dermatologisk Sykepleier
             </p>
           </AnimatedSection>
@@ -64,7 +64,7 @@ export default function OmMabelPage() {
                 >
                   Mabel Lorine King
                 </p>
-                <p className="text-xs text-[#c9a96e] mt-0.5">
+                <p className="text-xs text-[#8f6b28] mt-0.5">
                   Kosmetisk Dermatologisk Sykepleier
                 </p>
               </div>
@@ -104,13 +104,13 @@ export default function OmMabelPage() {
             <AnimatedSection direction="right" delay={0.1}>
               <div className="p-6 rounded-2xl bg-[#faf9f7] border border-[#e8d5b0]/30">
                 <p
-                  className="text-lg font-normal mb-1 text-[#c9a96e] italic"
+                  className="text-lg font-normal mb-1 text-[#8f6b28] italic"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   «Forebygging, naturlig skjønnhet, resultater
                   og faglig forsvarlighet.»
                 </p>
-                <p className="text-xs text-[#1a1a1a]/40 mt-3">— Mabels filosofi</p>
+                <p className="text-xs text-[#1a1a1a]/65 mt-3">— Mabels filosofi</p>
               </div>
             </AnimatedSection>
 
@@ -124,7 +124,7 @@ export default function OmMabelPage() {
               <ul className="space-y-2.5">
                 {spesialiteter.map((s) => (
                   <li key={s} className="flex items-center gap-3 text-sm text-[#1a1a1a]/65">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#c9a96e] flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8f6b28] flex-shrink-0" />
                     {s}
                   </li>
                 ))}
@@ -150,7 +150,7 @@ export default function OmMabelPage() {
 
             <AnimatedSection direction="right" delay={0.25}>
               <div className="pt-4 border-t border-[#e8d5b0]/30">
-                <p className="text-xs text-[#1a1a1a]/40 mb-6">
+                <p className="text-xs text-[#1a1a1a]/65 mb-6">
                   Ansvarlig lege: Débora Dias De Oliveira
                 </p>
                 <BookingButton

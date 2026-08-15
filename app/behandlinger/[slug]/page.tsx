@@ -100,7 +100,7 @@ export default async function BehandlingPage({
       <section className="pt-32 pb-14 px-6 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
         <div className="max-w-3xl mx-auto text-center">
           <AnimatedSection eager>
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-4">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-4">
               <Link
                 href="/behandlinger"
                 className="hover:text-[#b8955a] transition-colors"
@@ -116,12 +116,12 @@ export default async function BehandlingPage({
             >
               {b.navn}
             </h1>
-            <p className="text-[#1a1a1a]/60 leading-relaxed text-lg max-w-xl mx-auto mb-7">
+            <p className="text-[#1a1a1a]/65 leading-relaxed text-lg max-w-xl mx-auto mb-7">
               {b.kort}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <BookingButton label="Bestill time" />
-              <span className="text-[#c9a96e] font-medium">{b.pris}</span>
+              <span className="text-[#8f6b28] font-medium">{b.pris}</span>
             </div>
           </AnimatedSection>
         </div>
@@ -136,9 +136,9 @@ export default async function BehandlingPage({
                 key={f.label}
                 className="flex items-center gap-3 bg-white rounded-2xl border border-[#e8d5b0]/40 px-5 py-4"
               >
-                <f.icon size={18} className="text-[#c9a96e] shrink-0" />
+                <f.icon size={18} className="text-[#8f6b28] shrink-0" />
                 <div>
-                  <p className="text-[11px] tracking-[0.15em] uppercase text-[#1a1a1a]/40">
+                  <p className="text-[11px] tracking-[0.15em] uppercase text-[#1a1a1a]/65">
                     {f.label}
                   </p>
                   <p className="text-sm text-[#1a1a1a]/80">{f.verdi}</p>
@@ -189,7 +189,7 @@ export default async function BehandlingPage({
                 <ul className="space-y-3">
                   {b.passerFor.map((punkt) => (
                     <li key={punkt} className="flex gap-3 text-sm text-[#1a1a1a]/70 leading-relaxed">
-                      <Check size={16} className="text-[#c9a96e] shrink-0 mt-0.5" />
+                      <Check size={16} className="text-[#8f6b28] shrink-0 mt-0.5" />
                       {punkt}
                     </li>
                   ))}
@@ -197,12 +197,12 @@ export default async function BehandlingPage({
               </div>
               {b.passerIkkeFor && (
                 <div className="p-6 rounded-2xl bg-[#f5f2ed] border border-[#e8d5b0]/30">
-                  <p className="text-xs tracking-[0.2em] uppercase text-[#1a1a1a]/40 mb-4">
+                  <p className="text-xs tracking-[0.2em] uppercase text-[#1a1a1a]/65 mb-4">
                     Ikke egnet ved
                   </p>
                   <ul className="space-y-3">
                     {b.passerIkkeFor.map((punkt) => (
-                      <li key={punkt} className="flex gap-3 text-sm text-[#1a1a1a]/60 leading-relaxed">
+                      <li key={punkt} className="flex gap-3 text-sm text-[#1a1a1a]/65 leading-relaxed">
                         <Minus size={16} className="text-[#1a1a1a]/30 shrink-0 mt-0.5" />
                         {punkt}
                       </li>
@@ -211,11 +211,11 @@ export default async function BehandlingPage({
                 </div>
               )}
             </div>
-            <p className="text-sm text-[#1a1a1a]/45 mt-4 leading-relaxed">
+            <p className="text-sm text-[#1a1a1a]/65 mt-4 leading-relaxed">
               Usikker på om behandlingen passer for deg? Book en{" "}
               <Link
                 href="/behandlinger/hudkonsultasjon"
-                className="text-[#c9a96e] hover:text-[#b8955a] transition-colors"
+                className="text-[#8f6b28] hover:text-[#b8955a] transition-colors"
               >
                 hudkonsultasjon
               </Link>
@@ -237,7 +237,7 @@ export default async function BehandlingPage({
               {b.forlop.map((steg, i) => (
                 <div key={steg.tittel} className="flex gap-5">
                   <div className="flex flex-col items-center">
-                    <div className="w-9 h-9 rounded-full bg-[#c9a96e]/10 text-[#c9a96e] flex items-center justify-center text-sm font-medium shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-[#c9a96e]/10 text-[#8f6b28] flex items-center justify-center text-sm font-medium shrink-0">
                       {i + 1}
                     </div>
                     {i < b.forlop.length - 1 && (
@@ -251,7 +251,7 @@ export default async function BehandlingPage({
                     >
                       {steg.tittel}
                     </h3>
-                    <p className="text-sm text-[#1a1a1a]/60 leading-relaxed">
+                    <p className="text-sm text-[#1a1a1a]/65 leading-relaxed">
                       {steg.tekst}
                     </p>
                   </div>
@@ -264,7 +264,7 @@ export default async function BehandlingPage({
         {/* Resultat */}
         <AnimatedSection>
           <section className="p-7 rounded-2xl bg-gradient-to-br from-[#f5ede4] to-[#faf9f7] border border-[#e8d5b0]/30">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#c9a96e] mb-3">
+            <p className="text-xs tracking-[0.2em] uppercase text-[#8f6b28] mb-3">
               Hva kan du forvente?
             </p>
             <p className="text-[#1a1a1a]/70 leading-relaxed">{b.resultat}</p>
@@ -290,11 +290,11 @@ export default async function BehandlingPage({
                     <span className="text-sm font-medium leading-snug">
                       {f.q}
                     </span>
-                    <span className="text-[#c9a96e] transition-transform group-open:rotate-45 text-xl leading-none shrink-0">
+                    <span className="text-[#8f6b28] transition-transform group-open:rotate-45 text-xl leading-none shrink-0">
                       +
                     </span>
                   </summary>
-                  <p className="px-6 pb-5 text-sm text-[#1a1a1a]/60 leading-relaxed">
+                  <p className="px-6 pb-5 text-sm text-[#1a1a1a]/65 leading-relaxed">
                     {f.a}
                   </p>
                 </details>
@@ -326,8 +326,8 @@ export default async function BehandlingPage({
                     >
                       {r.kortNavn ?? r.navn}
                     </h3>
-                    <p className="text-xs text-[#c9a96e] mb-3">{r.pris}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-[#c9a96e] group-hover:text-[#b8955a] transition-colors">
+                    <p className="text-xs text-[#8f6b28] mb-3">{r.pris}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm text-[#8f6b28] group-hover:text-[#b8955a] transition-colors">
                       Les mer
                       <ArrowRight size={14} />
                     </span>
@@ -348,7 +348,7 @@ export default async function BehandlingPage({
           >
             Klar for å komme i gang?
           </h2>
-          <p className="text-[#1a1a1a]/60 mb-7 leading-relaxed">
+          <p className="text-[#1a1a1a]/65 mb-7 leading-relaxed">
             Bestill {(b.kortNavn ?? b.navn).toLowerCase()} eller start med en
             uforpliktende hudkonsultasjon — så finner vi ut hva som passer best
             for deg.

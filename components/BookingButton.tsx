@@ -30,7 +30,7 @@ export default function BookingButton({
       }}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.97 }}
-      className={`inline-flex items-center gap-2 px-8 py-4 bg-[#c9a96e] text-white rounded-full text-sm tracking-wide hover:bg-[#b8955a] transition-colors duration-200 cursor-pointer ${className}`}
+      className={`inline-flex items-center gap-2 px-8 py-4 bg-[#8f6b28] text-white rounded-full text-sm tracking-wide hover:bg-[#7a5b20] transition-colors duration-200 cursor-pointer ${className}`}
     >
       {label}
     </motion.a>

@@ -37,7 +37,7 @@ function Accordion({
         className="w-full flex items-center justify-between py-4 text-left group"
       >
         <span
-          className="text-lg text-[#1a1a1a] group-hover:text-[#c9a96e] transition-colors"
+          className="text-lg text-[#1a1a1a] group-hover:text-[#8f6b28] transition-colors"
           style={{ fontFamily: "var(--font-playfair)" }}
         >
           {title}
@@ -46,7 +46,7 @@ function Accordion({
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ChevronDown size={17} className="text-[#c9a96e]" />
+          <ChevronDown size={17} className="text-[#8f6b28]" />
         </motion.span>
       </button>
       <AnimatePresence initial={false}>
@@ -82,7 +82,7 @@ function RelatedCard({ product }: { product: Product }) {
         />
       </div>
       <div className="p-5">
-        <p className="text-[10px] tracking-[0.2em] uppercase text-[#c9a96e] mb-1.5">
+        <p className="text-[10px] tracking-[0.2em] uppercase text-[#8f6b28] mb-1.5">
           {BRAND_INFO[product.brand].label}
         </p>
         <h3
@@ -120,14 +120,14 @@ export default function ProductView({
     <>
       {/* Breadcrumb */}
       <div className="pt-28 px-6">
-        <nav className="max-w-6xl mx-auto flex items-center gap-1.5 text-xs text-[#1a1a1a]/45">
-          <Link href="/nettbutikk" className="hover:text-[#c9a96e] transition-colors">
+        <nav className="max-w-6xl mx-auto flex items-center gap-1.5 text-xs text-[#1a1a1a]/65">
+          <Link href="/nettbutikk" className="hover:text-[#8f6b28] transition-colors">
             Nettbutikk
           </Link>
           <ChevronRight size={12} />
           <Link
             href={`/nettbutikk?merke=${product.brand}`}
-            className="hover:text-[#c9a96e] transition-colors"
+            className="hover:text-[#8f6b28] transition-colors"
           >
             {brand.label}
           </Link>
@@ -164,7 +164,7 @@ export default function ProductView({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-3">
               {brand.label}
             </p>
             <h1
@@ -173,21 +173,21 @@ export default function ProductView({
             >
               {product.name}
             </h1>
-            <p className="text-sm text-[#1a1a1a]/40 mb-5">{product.size}</p>
+            <p className="text-sm text-[#1a1a1a]/65 mb-5">{product.size}</p>
 
-            <p className="text-[#1a1a1a]/60 leading-relaxed mb-5">
+            <p className="text-[#1a1a1a]/65 leading-relaxed mb-5">
               {details?.intro ?? product.desc}
             </p>
 
             {details && details.skinTypes.length > 0 && (
               <div className="flex flex-wrap items-center gap-2 mb-7">
-                <span className="text-xs tracking-wide uppercase text-[#1a1a1a]/40 mr-1">
+                <span className="text-xs tracking-wide uppercase text-[#1a1a1a]/65 mr-1">
                   Passer for
                 </span>
                 {details.skinTypes.map((s) => (
                   <span
                     key={s}
-                    className="px-3 py-1 rounded-full bg-[#f5ede4] text-xs text-[#1a1a1a]/60"
+                    className="px-3 py-1 rounded-full bg-[#f5ede4] text-xs text-[#1a1a1a]/65"
                   >
                     {s}
                   </span>
@@ -204,7 +204,7 @@ export default function ProductView({
               </p>
               <button
                 onClick={() => cart.add(product.sku)}
-                className="px-7 py-3.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors flex items-center gap-2"
+                className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2"
               >
                 <ShoppingBag size={16} />
                 Legg i kurv
@@ -212,24 +212,24 @@ export default function ProductView({
             </div>
 
             {/* Tillit */}
-            <ul className="space-y-2.5 mb-7 text-sm text-[#1a1a1a]/55">
+            <ul className="space-y-2.5 mb-7 text-sm text-[#1a1a1a]/65">
               <li className="flex items-center gap-2.5">
-                <Truck size={15} className="text-[#c9a96e] shrink-0" />
+                <Truck size={15} className="text-[#8f6b28] shrink-0" />
                 79,- i frakt — gratis ved kjøp over 1.000,-
               </li>
               <li className="flex items-center gap-2.5">
-                <Store size={15} className="text-[#c9a96e] shrink-0" />
+                <Store size={15} className="text-[#8f6b28] shrink-0" />
                 Hent gratis i klinikken i Odden 1D, Grimstad
               </li>
               <li className="flex items-center gap-2.5">
-                <CreditCard size={15} className="text-[#c9a96e] shrink-0" />
+                <CreditCard size={15} className="text-[#8f6b28] shrink-0" />
                 Trygg kortbetaling
               </li>
               <li className="flex items-center gap-2.5">
-                <MessageCircle size={15} className="text-[#c9a96e] shrink-0" />
+                <MessageCircle size={15} className="text-[#8f6b28] shrink-0" />
                 <span>
                   Usikker på valget?{" "}
-                  <Link href="/kontakt" className="underline hover:text-[#c9a96e]">
+                  <Link href="/kontakt" className="underline hover:text-[#8f6b28]">
                     Christina hjelper deg gjerne
                   </Link>
                 </span>
@@ -239,7 +239,7 @@ export default function ProductView({
             {/* Kuratert kryssalg */}
             {crossSell && (
               <div className="rounded-2xl bg-[#f5ede4]/60 border border-[#e8d5b0]/40 p-4 mb-8">
-                <p className="text-[10px] tracking-[0.2em] uppercase text-[#c9a96e] mb-3">
+                <p className="text-[10px] tracking-[0.2em] uppercase text-[#8f6b28] mb-3">
                   Anbefales sammen med
                 </p>
                 <div className="flex items-center gap-4">
@@ -258,19 +258,19 @@ export default function ProductView({
                   <div className="flex-1 min-w-0">
                     <Link
                       href={`/nettbutikk/${crossSell.sku}`}
-                      className="block text-sm leading-snug hover:text-[#c9a96e] transition-colors truncate"
+                      className="block text-sm leading-snug hover:text-[#8f6b28] transition-colors truncate"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       {crossSell.name}
                     </Link>
-                    <p className="text-xs text-[#1a1a1a]/50 mt-0.5">
+                    <p className="text-xs text-[#1a1a1a]/65 mt-0.5">
                       {formatPrice(crossSell.price)}
                     </p>
                   </div>
                   <button
                     onClick={() => cart.add(crossSell.sku)}
                     aria-label={`Legg ${crossSell.name} i kurv`}
-                    className="w-9 h-9 rounded-full bg-white border border-[#c9a96e]/40 text-[#c9a96e] hover:bg-[#c9a96e] hover:text-white transition-colors flex items-center justify-center shrink-0"
+                    className="w-9 h-9 rounded-full bg-white border border-[#c9a96e]/40 text-[#8f6b28] hover:bg-[#8f6b28] hover:text-white transition-colors flex items-center justify-center shrink-0"
                   >
                     <Plus size={15} />
                   </button>
@@ -284,9 +284,9 @@ export default function ProductView({
                 {details.benefits.map((b) => (
                   <li
                     key={b}
-                    className="flex items-start gap-2.5 text-sm text-[#1a1a1a]/60 leading-relaxed"
+                    className="flex items-start gap-2.5 text-sm text-[#1a1a1a]/65 leading-relaxed"
                   >
-                    <Check size={15} className="text-[#c9a96e] shrink-0 mt-0.5" />
+                    <Check size={15} className="text-[#8f6b28] shrink-0 mt-0.5" />
                     {b}
                   </li>
                 ))}
@@ -302,7 +302,7 @@ export default function ProductView({
                       {details.longDesc.map((p, i) => (
                         <p
                           key={i}
-                          className="text-sm text-[#1a1a1a]/60 leading-relaxed"
+                          className="text-sm text-[#1a1a1a]/65 leading-relaxed"
                         >
                           {p}
                         </p>
@@ -317,9 +317,9 @@ export default function ProductView({
                       {details.usage.map((u, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-sm text-[#1a1a1a]/60 leading-relaxed"
+                          className="flex items-start gap-3 text-sm text-[#1a1a1a]/65 leading-relaxed"
                         >
-                          <span className="w-5 h-5 rounded-full bg-[#c9a96e]/10 text-[#c9a96e] text-[11px] flex items-center justify-center shrink-0 mt-0.5">
+                          <span className="w-5 h-5 rounded-full bg-[#c9a96e]/10 text-[#8f6b28] text-[11px] flex items-center justify-center shrink-0 mt-0.5">
                             {i + 1}
                           </span>
                           {u}
@@ -337,7 +337,7 @@ export default function ProductView({
                           <dt className="text-sm font-medium text-[#1a1a1a]/80">
                             {ing.name}
                           </dt>
-                          <dd className="text-sm text-[#1a1a1a]/55 leading-relaxed">
+                          <dd className="text-sm text-[#1a1a1a]/65 leading-relaxed">
                             {ing.effect}
                           </dd>
                         </div>
@@ -392,13 +392,13 @@ export default function ProductView({
                 >
                   {product.name}
                 </p>
-                <p className="text-xs text-[#1a1a1a]/50">
+                <p className="text-xs text-[#1a1a1a]/65">
                   {formatPrice(product.price)}
                 </p>
               </div>
               <button
                 onClick={() => cart.add(product.sku)}
-                className="px-6 py-2.5 bg-[#c9a96e] text-white text-sm tracking-wide rounded-full hover:bg-[#b8955a] transition-colors flex items-center gap-2 shrink-0"
+                className="px-6 py-2.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2 shrink-0"
               >
                 <ShoppingBag size={15} />
                 Legg i kurv

@@ -18,7 +18,7 @@ export default function Footer() {
               Forebygging, naturlig skjønnhet og faglig forsvarlighet i fokus.
             </p>
             <div className="mt-6 pt-6 border-t border-white/10">
-              <p className="text-xs text-white/40">En del av</p>
+              <p className="text-xs text-white/70">En del av</p>
               <a
                 href="https://helseblikk.no"
                 target="_blank"
@@ -32,7 +32,7 @@ export default function Footer() {
 
           {/* Lenker */}
           <div>
-            <h4 className="text-sm tracking-[0.15em] uppercase text-white/40 mb-5">
+            <h4 className="text-sm tracking-[0.15em] uppercase text-white/70 mb-5">
               Navigasjon
             </h4>
             <ul className="space-y-3 text-sm">
@@ -62,7 +62,7 @@ export default function Footer() {
 
           {/* Kontakt */}
           <div>
-            <h4 className="text-sm tracking-[0.15em] uppercase text-white/40 mb-5">
+            <h4 className="text-sm tracking-[0.15em] uppercase text-white/70 mb-5">
               Kontakt
             </h4>
             <ul className="space-y-3 text-sm">
@@ -84,7 +84,7 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="mt-6 text-xs text-white/40 space-y-1">
+            <div className="mt-6 text-xs text-white/70 space-y-1">
               <p>Man 09–18 · Tir 09–16</p>
               <p>Ons 09–17 · Tor 09–16</p>
               <p>Fre 09–16 · Lør ved avtale</p>
@@ -93,11 +93,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-white/70">
             © {new Date().getFullYear()} Hud by Helseblikk · Helseblikk Hud AS
             · Org.nr. 830 724 052
           </p>
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-white/70">
             Ansvarlig lege: Débora Dias De Oliveira
           </p>
         </div>

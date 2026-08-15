@@ -159,7 +159,7 @@ export default function Home() {
       <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection eager className="text-center mb-16">
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-3">
               Våre tjenester
             </p>
             <h2
@@ -180,15 +180,15 @@ export default function Home() {
                     className="p-8 rounded-2xl border border-[#e8d5b0]/40 bg-[#faf9f7] hover:border-[#c9a96e]/40 transition-colors duration-300 h-full"
                   >
                     <div className="w-10 h-10 rounded-full bg-[#c9a96e]/10 flex items-center justify-center mb-5">
-                      <k.icon size={18} className="text-[#c9a96e]" />
+                      <k.icon size={18} className="text-[#8f6b28]" />
                     </div>
                     <h3
-                      className="text-lg font-normal mb-2 group-hover:text-[#c9a96e] transition-colors"
+                      className="text-lg font-normal mb-2 group-hover:text-[#8f6b28] transition-colors"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       {k.title}
                     </h3>
-                    <p className="text-sm text-[#1a1a1a]/55 leading-relaxed">
+                    <p className="text-sm text-[#1a1a1a]/65 leading-relaxed">
                       {k.desc}
                     </p>
                   </motion.div>
@@ -203,7 +203,7 @@ export default function Home() {
       <section className="py-24 px-6 bg-[#f5f2ed]">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-3">
               Møt dine behandlere
             </p>
             <h2
@@ -234,17 +234,17 @@ export default function Home() {
                   >
                     Mabel Lorine King
                   </h3>
-                  <p className="text-xs text-[#c9a96e] tracking-wide mb-4">
+                  <p className="text-xs text-[#8f6b28] tracking-wide mb-4">
                     Kosmetisk Dermatologisk Sykepleier
                   </p>
-                  <p className="text-sm text-[#1a1a1a]/60 leading-relaxed mb-5">
+                  <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-5">
                     Sykepleier med videreutdanning i kosmetisk dermatologi.
                     I faget siden 2019 — kjent for et godt estetisk blikk,
                     forebygging og faglig forsvarlighet.
                   </p>
                   <Link
                     href="/om-mabel"
-                    className="text-sm tracking-wide text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
+                    className="text-sm tracking-wide text-[#8f6b28] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
                   >
                     Les mer om Mabel →
                   </Link>
@@ -271,17 +271,17 @@ export default function Home() {
                   >
                     Christina Dalen
                   </h3>
-                  <p className="text-xs text-[#c9a96e] tracking-wide mb-4">
+                  <p className="text-xs text-[#8f6b28] tracking-wide mb-4">
                     Kosmetisk Sykepleier
                   </p>
-                  <p className="text-sm text-[#1a1a1a]/60 leading-relaxed mb-5">
+                  <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-5">
                     Sertifisert Restylane Injector med særlig lidenskap for
                     leppebehandlinger. Naturlige resultater som fremhever dine
                     egne trekk.
                   </p>
                   <Link
                     href="/om-christina"
-                    className="text-sm tracking-wide text-[#c9a96e] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
+                    className="text-sm tracking-wide text-[#8f6b28] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
                   >
                     Les mer om Christina →
                   </Link>
@@ -296,7 +296,7 @@ export default function Home() {
       <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="text-center mb-12">
-            <p className="text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-3">
+            <p className="text-xs tracking-[0.25em] uppercase text-[#8f6b28] mb-3">
               Hva kundene sier
             </p>
             <h2
@@ -314,7 +314,7 @@ export default function Home() {
                 href={GOOGLE_OMTALER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-[#c9a96e] underline underline-offset-2 hover:no-underline"
+                className="text-sm text-[#8f6b28] underline underline-offset-2 hover:no-underline"
               >
                 15 omtaler på Google →
               </a>
@@ -333,9 +333,9 @@ export default function Home() {
                   <blockquote className="text-[#1a1a1a]/70 leading-relaxed text-sm mt-5 mb-6">
                     {t.text}
                   </blockquote>
-                  <figcaption className="mt-auto text-xs tracking-wide text-[#c9a96e]">
+                  <figcaption className="mt-auto text-xs tracking-wide text-[#8f6b28]">
                     — {t.name}
-                    <span className="block text-[#1a1a1a]/40 mt-0.5">
+                    <span className="block text-[#1a1a1a]/65 mt-0.5">
                       Google-omtale
                     </span>
                   </figcaption>
