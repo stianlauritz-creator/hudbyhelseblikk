@@ -359,11 +359,11 @@ export default function Home() {
             Book en hudkonsultasjon
           </h2>
           <p className="text-white/50 mb-10 leading-relaxed">
-            En konsultasjon koster 490,- og trekkes fra ved behandling eller
-            produktkjøp samme dag. Vi tar deg med på en gjennomgang av hudens
-            tilstand og lager en plan som passer deg.
+            Konsultasjonen er gratis og helt uforpliktende. Vi tar deg med på en
+            gjennomgang av hudens tilstand og lager en plan som passer deg —
+            så bestemmer du selv om du vil gå videre.
           </p>
-          <BookingButton label="Bestill konsultasjon" />
+          <BookingButton label="Bestill gratis konsultasjon" />
         </AnimatedSection>
       </section>
     </>

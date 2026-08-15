@@ -36,8 +36,8 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
     navn: "Hudkonsultasjon",
     kategori: "konsultasjon",
     kategoriNavn: "Hudkonsultasjon",
-    kort: "Grundig hudanalyse hos kosmetisk sykepleier i Grimstad. Du får en individuell behandlingsplan — prisen trekkes fra ved behandling samme dag.",
-    pris: "490,-",
+    kort: "Gratis hudanalyse hos kosmetisk sykepleier i Grimstad. Du får en individuell behandlingsplan — uforpliktende.",
+    pris: "Gratis",
     varighet: "Ca. 30–45 minutter",
     hvaEr: [
       "En hudkonsultasjon er startpunktet for all behandling hos oss. Vi går systematisk gjennom hudens tilstand, historikk og det du ønsker å oppnå — enten det gjelder akne, pigmentering, rødhet, hudkvalitet eller aldringstegn.",
@@ -52,12 +52,12 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
     forlop: [
       { tittel: "Kartlegging", tekst: "Vi går gjennom hudhistorikk, tidligere behandlinger, medisiner og hva du ønsker å oppnå." },
       { tittel: "Hudanalyse", tekst: "Huden undersøkes i godt lys, og vi vurderer hudtype, tilstand og hva den trenger." },
-      { tittel: "Plan", tekst: "Du får en konkret anbefaling: behandlinger, rekkefølge, forventet resultat og pris. Konsultasjonsprisen trekkes fra hvis du bestiller behandling eller kjøper produkter samme dag." },
+      { tittel: "Plan", tekst: "Du får en konkret anbefaling: behandlinger, rekkefølge, forventet resultat og pris. Konsultasjonen er gratis, og du er ikke bundet til å bestille noe." },
     ],
     resultat: "Du går ut døren med en tydelig plan for huden din — hva som anbefales, hvorfor, i hvilken rekkefølge og hva det koster.",
     faq: [
       { q: "Må jeg ha konsultasjon før behandling?", a: "For laser- og injeksjonsbehandlinger gjør vi alltid en vurdering først — den kan ofte tas samme dag som behandlingen. For enklere behandlinger som vipper og bryn trenger du ikke konsultasjon." },
-      { q: "Koster konsultasjonen noe hvis jeg bestiller behandling?", a: "Konsultasjonsprisen på 490 kr trekkes fra hvis du bestiller behandling eller kjøper produkter samme dag. Da er den i praksis gratis." },
+      { q: "Hva koster konsultasjonen?", a: "Ingenting. Hudkonsultasjonen er gratis og uforpliktende — du får en ærlig vurdering og en plan, og bestemmer selv om du vil bestille behandling etterpå." },
       { q: "Kan jeg få konsultasjon uten å binde meg til noe?", a: "Ja. Konsultasjonen er uforpliktende, og du bestemmer selv om og når du vil gå videre." },
       { q: "Hva bør jeg tenke på før konsultasjonen?", a: "Kom gjerne uten sminke hvis mulig, og noter ned produkter du bruker i dag og eventuelle medisiner. Det gjør vurderingen mer presis." },
     ],

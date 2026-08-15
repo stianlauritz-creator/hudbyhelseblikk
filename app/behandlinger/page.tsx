@@ -27,8 +27,8 @@ const sections: Seksjon[] = [
       {
         navn: "Konsultasjon",
         slug: "hudkonsultasjon",
-        desc: "Grundig hudanalyse og behandlingsplan. Konsultasjonsprisen trekkes fra ved behandling eller produktkjøp samme dag.",
-        pris: "490,-",
+        desc: "Grundig hudanalyse og behandlingsplan — helt uforpliktende og uten kostnad.",
+        pris: "Gratis",
       },
     ],
   },

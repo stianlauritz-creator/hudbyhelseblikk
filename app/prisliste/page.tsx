@@ -8,7 +8,7 @@ const priskategorier = [
   {
     kategori: "Konsultasjon",
     items: [
-      { navn: "Hudkonsultasjon", pris: "490,-", note: "Trekkes fra ved behandling/kjøp samme dag" },
+      { navn: "Hudkonsultasjon", pris: "Gratis", note: "Uforpliktende — du bestemmer selv om du vil gå videre" },
     ],
   },
   {
@@ -166,7 +166,7 @@ export default function PrislistePage() {
               Usikker på hvilken behandling som passer deg? Book en
               hudkonsultasjon — vi hjelper deg å finne riktig løsning.
             </p>
-            <BookingButton label="Bestill konsultasjon — 490,-" />
+            <BookingButton label="Bestill gratis konsultasjon" />
           </AnimatedSection>
         </div>
       </section>

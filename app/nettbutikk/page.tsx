@@ -278,7 +278,7 @@ export default function NettbutikkPage() {
             <p className="text-xs text-[#1a1a1a]/65 max-w-xl mx-auto leading-relaxed">
               Aktive produkter med retinol og syrer bør tilpasses din hud. Er du
               i tvil, anbefaler vi en hudkonsultasjon før du starter — den
-              trekkes fra ved produktkjøp samme dag.
+              er gratis og uforpliktende.
             </p>
           </AnimatedSection>
         </div>

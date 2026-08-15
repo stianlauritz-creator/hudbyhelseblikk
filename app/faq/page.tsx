@@ -10,7 +10,7 @@ const faqs = [
   {
     sporsmal: "Hva skjer på en konsultasjon?",
     svar:
-      "Vi starter med en grundig gjennomgang av hudens tilstand — vi ser på tekstur, tone, fuktbalanse, porer og eventuelle problemområder. Deretter lager vi en individuell plan med anbefalte behandlinger og produkter. Konsultasjonen koster 490,- og dette trekkes fra dersom du velger behandling eller kjøper produkter samme dag.",
+      "Vi starter med en grundig gjennomgang av hudens tilstand — vi ser på tekstur, tone, fuktbalanse, porer og eventuelle problemområder. Deretter lager vi en individuell plan med anbefalte behandlinger og produkter. Konsultasjonen er gratis og helt uforpliktende — du bestemmer selv om du vil gå videre etterpå.",
   },
   {
     sporsmal: "Gjør behandlingene vondt?",

@@ -53,7 +53,7 @@ const structuredData = {
   image: `${SITE_URL}/behandling-banner.jpg`,
   telephone: "+4737040500",
   email: "hei@helseblikk.no",
-  priceRange: "kr 490 – kr 5 000",
+  priceRange: "kr 290 – kr 5 000",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Odden 1D",
