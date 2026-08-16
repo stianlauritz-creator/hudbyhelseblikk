@@ -107,6 +107,9 @@ function mapNode(
     price: Math.round(Number(variant.price.amount)),
     desc: local?.desc ?? node.description.slice(0, 300),
     image: node.featuredImage?.url ?? local?.image ?? "/produkter/placeholder.jpg",
+    // Retinol er klinisk merking vi eier selv — Shopify har den ikke
+    retinol: local?.retinol,
+    retinolStyrke: local?.retinolStyrke,
   };
 }
 
