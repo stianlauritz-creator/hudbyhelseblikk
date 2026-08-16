@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
+import RetinolVeiledning from "@/components/RetinolVeiledning";
 import { BRAND_INFO, formatPrice, type Product } from "@/lib/products";
 import type { ProductDetails } from "@/lib/product-details";
 
@@ -235,6 +236,9 @@ export default function ProductView({
                 </span>
               </li>
             </ul>
+
+            {/* Veiledning for retinolprodukter — informasjon, ikke kjøpssperre */}
+            <RetinolVeiledning product={product} />
 
             {/* Kuratert kryssalg */}
             {crossSell && (

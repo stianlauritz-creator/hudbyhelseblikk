@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ShoppingBag, Truck, Store, CreditCard, Sparkles } from "lucide-react";
+import { ShoppingBag, Truck, Store, CreditCard, Sparkles, Info } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import KundeklubbPopup from "@/components/KundeklubbPopup";
@@ -60,6 +60,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             {product.name}
           </h2>
           <p className="text-xs text-[#1a1a1a]/65 mb-3">{product.size}</p>
+          {product.retinol && (
+            <p className="inline-flex self-start items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full bg-[#f5ede4] border border-[#c9a96e]/40 text-[10px] text-[#8f6b28]">
+              <Info size={11} className="shrink-0" />
+              Retinol{product.retinolStyrke ? ` ${product.retinolStyrke}` : ""} — les før bruk
+            </p>
+          )}
           <p className="text-xs text-[#1a1a1a]/65 leading-relaxed mb-4 line-clamp-3">
             {product.desc}
           </p>

@@ -10,6 +10,8 @@ export interface Product {
   price: number;     // NOK inkl. mva
   desc: string;
   image: string;
+  retinol?: boolean;        // inneholder retinol — utløser veiledningsboks på produktsiden
+  retinolStyrke?: string;   // konsentrasjon der produsenten oppgir den, f.eks. "0,5 %"
 }
 
 export const BRAND_INFO: Record<Brand, { label: string; tagline: string }> = {
@@ -44,18 +46,18 @@ export const PRODUCTS: Product[] = [
   { sku: "ZO-006", brand: "zo", name: "Complexion Renewal Pads", size: "60 stk", price: 755, desc: "Eksfolierende pads med glykol- og salisylsyre som renser porene og forebygger urenheter.", image: "/produkter/ZO-006.jpg" },
   { sku: "ZO-007", brand: "zo", name: "Oil Control Pads", size: "60 stk", price: 935, desc: "Pads med 2 % salisylsyre som regulerer talg og motvirker uren hud.", image: "/produkter/ZO-007.jpg" },
   { sku: "ZO-008", brand: "zo", name: "Exfoliation Accelerator", size: "100 ml", price: 1075, desc: "Eksfolierende lotion med glykol- og melkesyre som jevner ut hudteksturen og gir glød.", image: "/produkter/ZO-008.jpg" },
-  { sku: "ZO-009", brand: "zo", name: "Daily Power Defense", size: "50 ml", price: 2175, desc: "ZOs signaturserum med retinol, peptider, enzymer og antioksidanter som styrker hudens barriere og reparasjon.", image: "/produkter/ZO-009.jpg" },
+  { sku: "ZO-009", brand: "zo", name: "Daily Power Defense", size: "50 ml", price: 2175, desc: "ZOs signaturserum med retinol, peptider, enzymer og antioksidanter som styrker hudens barriere og reparasjon.", image: "/produkter/ZO-009.jpg", retinol: true },
   { sku: "ZO-010", brand: "zo", name: "Growth Factor Serum", size: "30 ml", price: 2125, desc: "Vekstfaktor- og peptidserum mot fine linjer og volumtap. Storselger for hudfornyelse.", image: "/produkter/ZO-010.jpg" },
-  { sku: "ZO-011", brand: "zo", name: "Wrinkle + Texture Repair", size: "50 ml", price: 2080, desc: "Kraftig behandling med 0,5 % retinol mot rynker og ujevn hudtekstur.", image: "/produkter/ZO-011.jpg" },
-  { sku: "ZO-012", brand: "zo", name: "Radical Night Repair", size: "60 ml", price: 2485, desc: "Intensiv nattbehandling med 1 % retinol for markant hudfornyelse og jevnere pigmentering.", image: "/produkter/ZO-012.jpg" },
-  { sku: "ZO-013", brand: "zo", name: "Retinol Skin Brightener 0,5 %", size: "50 ml", price: 1615, desc: "Retinolkrem som jevner ut hudtonen og gir glød. Finnes også i 0,25 % og 1 % styrke – spør oss i klinikken.", image: "/produkter/ZO-013.jpg" },
+  { sku: "ZO-011", brand: "zo", name: "Wrinkle + Texture Repair", size: "50 ml", price: 2080, desc: "Kraftig behandling med 0,5 % retinol mot rynker og ujevn hudtekstur.", image: "/produkter/ZO-011.jpg", retinol: true, retinolStyrke: "0,5 %" },
+  { sku: "ZO-012", brand: "zo", name: "Radical Night Repair", size: "60 ml", price: 2485, desc: "Intensiv nattbehandling med 1 % retinol for markant hudfornyelse og jevnere pigmentering.", image: "/produkter/ZO-012.jpg", retinol: true, retinolStyrke: "1 %" },
+  { sku: "ZO-013", brand: "zo", name: "Retinol Skin Brightener 0,5 %", size: "50 ml", price: 1615, desc: "Retinolkrem som jevner ut hudtonen og gir glød. Finnes også i 0,25 % og 1 % styrke – spør oss i klinikken.", image: "/produkter/ZO-013.jpg", retinol: true, retinolStyrke: "0,5 %" },
   { sku: "ZO-014", brand: "zo", name: "Brightalive Skin Brightener", size: "50 ml", price: 1735, desc: "Lysnende serum mot pigmentflekker – uten retinol og hydrokinon.", image: "/produkter/ZO-014.jpg" },
   { sku: "ZO-015", brand: "zo", name: "10% Vitamin C Self-Activating", size: "50 ml", price: 1450, desc: "Selvaktiverende 10 % vitamin C som lysner, beskytter mot frie radikaler og jevner hudtonen.", image: "/produkter/ZO-015.jpg" },
   { sku: "ZO-016", brand: "zo", name: "Firming Serum", size: "47 ml", price: 2850, desc: "Oppstrammende peptidserum som bedrer hudens fasthet og definisjon.", image: "/produkter/ZO-016.jpg" },
   { sku: "ZO-017", brand: "zo", name: "Rozatrol", size: "50 ml", price: 1415, desc: "Normaliserende serum for rød og rosacea-utsatt hud. Roer huden og styrker barrieren.", image: "/produkter/ZO-017.jpg" },
   { sku: "ZO-018", brand: "zo", name: "Recovery Crème", size: "50 ml", price: 1595, desc: "Rik anti-age fuktighetskrem som gjenoppbygger fuktbarrieren, gjerne etter behandling.", image: "/produkter/ZO-018.jpg" },
   { sku: "ZO-019", brand: "zo", name: "Hydrating Crème", size: "113 g", price: 1295, desc: "Intensiv krem for svært tørr, irritert eller behandlingsstresset hud.", image: "/produkter/ZO-019.jpg" },
-  { sku: "ZO-020", brand: "zo", name: "Intense Eye Crème", size: "15 ml", price: 1585, desc: "Kraftig øyekrem med retinol og peptider mot linjer, poser og mørke ringer.", image: "/produkter/ZO-020.jpg" },
+  { sku: "ZO-020", brand: "zo", name: "Intense Eye Crème", size: "15 ml", price: 1585, desc: "Kraftig øyekrem med retinol og peptider mot linjer, poser og mørke ringer.", image: "/produkter/ZO-020.jpg", retinol: true },
   { sku: "ZO-021", brand: "zo", name: "Growth Factor Eye Serum", size: "15 ml", price: 1525, desc: "Vekstfaktor-øyeserum som styrker den tynne huden rundt øynene og reduserer linjer.", image: "/produkter/ZO-021.jpg" },
   { sku: "ZO-022", brand: "zo", name: "Sunscreen + Primer SPF 30", size: "30 ml", price: 895, desc: "Solbeskyttelse og primer i ett med silkematt finish – populær daglig avslutter.", image: "/produkter/ZO-022.jpg" },
   { sku: "ZO-023", brand: "zo", name: "Daily Sheer SPF 50", size: "45 ml", price: 895, desc: "Transparent, lett bredspektret solkrem for daglig bruk.", image: "/produkter/ZO-023.jpg" },
@@ -70,7 +72,7 @@ export const PRODUCTS: Product[] = [
   { sku: "FF-009", brand: "face-formula", name: "Vitamin C Booster", size: "30 ml", price: 1070, desc: "15 % vitamin C-kompleks som reduserer fine linjer og bedrer elastisitet og glød.", image: "/produkter/FF-009.jpg" },
   { sku: "FF-010", brand: "face-formula", name: "Advanced Vitamin A Serum", size: "30 ml", price: 1490, desc: "Høyeffektivt vitamin A-serum mot tegn på hudaldring. Jevnere tekstur og mer vitalitet.", image: "/produkter/FF-010.jpg" },
   { sku: "FF-011", brand: "face-formula", name: "Clarifying Vitamin A Serum", size: "30 ml", price: 1290, desc: "Målrettet vitamin A-behandling mot urenheter for klarere og mer balansert hud.", image: "/produkter/FF-011.jpg" },
-  { sku: "FF-012", brand: "face-formula", name: "Recovery Boost", size: "30 ml", price: 1190, desc: "Nattolje med 0,3 % retinol som gir fyldigere hud og motvirker fine linjer og pigmentflekker.", image: "/produkter/FF-012.jpg" },
+  { sku: "FF-012", brand: "face-formula", name: "Recovery Boost", size: "30 ml", price: 1190, desc: "Nattolje med 0,3 % retinol som gir fyldigere hud og motvirker fine linjer og pigmentflekker.", image: "/produkter/FF-012.jpg", retinol: true, retinolStyrke: "0,3 %" },
   { sku: "FF-013", brand: "face-formula", name: "Overnight Smoothing Serum", size: "30 ml", price: 890, desc: "Eksfolierende nattserum – våkn opp til klarere og fornyet hud.", image: "/produkter/FF-013.jpg" },
   { sku: "FF-014", brand: "face-formula", name: "Blue Serum", size: "30 ml", price: 1390, desc: "Innovativt serum som balanserer fukt, fornyelse og beskyttelse i ett.", image: "/produkter/FF-014.jpg" },
   { sku: "FF-015", brand: "face-formula", name: "Pink Serum", size: "30 ml", price: 699, desc: "Dyptvirkende fuktserum som styrker hudbarrieren. For tørr og stresset hud.", image: "/produkter/FF-015.jpg" },
