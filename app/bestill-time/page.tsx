@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/bestill-time" },
 };
 
+/**
+ * `iTimebok: false` betyr at behandleren ikke ligger i Timma. Ole Arvid booker
+ * via PasientSky, og kirurgi krever konsultasjon først — knappen hans skal
+ * derfor til /plastikkirurgi, aldri til timeboken over.
+ */
 const behandlere = [
   {
     navn: "Mabel",
@@ -22,6 +27,7 @@ const behandlere = [
     bilde: "/mabel-avatar.jpg",
     pos: "object-center",
     href: "/om-mabel",
+    iTimebok: true,
   },
   {
     navn: "Christina",
@@ -30,6 +36,16 @@ const behandlere = [
     bilde: "/christina-portrett.jpg",
     pos: "object-center",
     href: "/om-christina",
+    iTimebok: true,
+  },
+  {
+    navn: "Ole Arvid",
+    fullt: "Ole Arvid F. Østerud",
+    tittel: "Plastikkirurg og overlege",
+    bilde: "/ole-arvid-avatar.jpg",
+    pos: "object-center",
+    href: "/plastikkirurgi",
+    iTimebok: false,
   },
 ];
 
@@ -60,7 +76,11 @@ export default async function BestillTimePage({
   const { behandler } = await searchParams;
   const valgt = behandler?.toLowerCase();
   const userId = valgt ? TIMMA_STAFF[valgt] : undefined;
-  const valgtNavn = behandlere.find((b) => b.navn.toLowerCase() === valgt)?.navn;
+  // Bare behandlere som faktisk ligger i Timma kan forhåndsvelges — ellers
+  // ville ?behandler=ole+arvid gitt en overskrift uten tilhørende timebok.
+  const valgtNavn = behandlere.find(
+    (b) => b.iTimebok && b.navn.toLowerCase() === valgt
+  )?.navn;
 
   return (
     <>
@@ -124,9 +144,15 @@ export default async function BestillTimePage({
             </h2>
           </AnimatedSection>
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {behandlere.map((b, i) => (
-              <AnimatedSection key={b.navn} delay={i * 0.1}>
+              <AnimatedSection
+                key={b.navn}
+                delay={i * 0.1}
+                // Tre kort i to kolonner etterlater et tomt felt — kortet uten
+                // timebok tar hele bredden til vi har plass til tre kolonner.
+                className={b.iTimebok ? "" : "sm:col-span-2 lg:col-span-1"}
+              >
                 <div className="group flex h-full items-center gap-5 rounded-2xl border border-[#e8d5b0]/40 bg-[#faf9f7] p-5 transition-colors duration-300 hover:border-[#c9a96e]/50">
                   <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-white">
                     <Image
@@ -145,19 +171,31 @@ export default async function BestillTimePage({
                       {b.fullt}
                     </p>
                     <p className="mt-0.5 text-xs text-[#1a1a1a]/65">{b.tittel}</p>
+                    {!b.iTimebok && (
+                      <p className="mt-2 text-xs leading-relaxed text-[#1a1a1a]/65">
+                        Kirurgi bookes for seg — ikke i timeboken over. Alle
+                        inngrep starter med en konsultasjon.
+                      </p>
+                    )}
                     <div className="mt-3 flex flex-wrap gap-2">
                       <Link
-                        href={`/bestill-time?behandler=${b.navn.toLowerCase()}`}
+                        href={
+                          b.iTimebok
+                            ? `/bestill-time?behandler=${b.navn.toLowerCase()}`
+                            : b.href
+                        }
                         className="rounded-full bg-[#8f6b28] px-4 py-1.5 text-xs tracking-wide text-white transition-colors hover:bg-[#7a5b20]"
                       >
-                        Book hos {b.navn}
+                        {b.iTimebok ? `Book hos ${b.navn}` : "Book konsultasjon"}
                       </Link>
-                      <Link
-                        href={b.href}
-                        className="rounded-full border border-[#e8d5b0] px-4 py-1.5 text-xs tracking-wide text-[#1a1a1a]/65 transition-colors hover:border-[#c9a96e] hover:text-[#8f6b28]"
-                      >
-                        Les mer
-                      </Link>
+                      {b.iTimebok && (
+                        <Link
+                          href={b.href}
+                          className="rounded-full border border-[#e8d5b0] px-4 py-1.5 text-xs tracking-wide text-[#1a1a1a]/65 transition-colors hover:border-[#c9a96e] hover:text-[#8f6b28]"
+                        >
+                          Les mer
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

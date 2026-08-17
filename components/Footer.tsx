@@ -38,6 +38,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               {[
                 ["Behandlinger", "/behandlinger"],
+                ["Plastikkirurgi", "/plastikkirurgi"],
                 ["Nettbutikk", "/nettbutikk"],
                 ["Behandlere", "/behandlere"],
                 ["Prisliste", "/prisliste"],

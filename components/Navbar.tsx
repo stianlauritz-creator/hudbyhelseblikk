@@ -9,6 +9,11 @@ import { useCart } from "@/components/CartProvider";
 import { BUTIKK_APEN } from "@/lib/site";
 import { BOOKING_URL } from "@/lib/site";
 
+// Toppmenyen på desktop. Målt i nettleseren: logoen (to linjer, 224 px) +
+// sju lenker + «Bestill time» fyller baren helt ut ved 1024 px. En åttende
+// lenke ga null klaring mot logoen, så «Plastikkirurgi» holdes utenfor her —
+// den er godt lenket fra forsiden, Behandlinger, Behandlere, Prisliste,
+// Bestill time og footeren.
 const links = [
   { href: "/behandlinger", label: "Behandlinger" },
   { href: "/nettbutikk", label: "Nettbutikk" },
@@ -17,6 +22,14 @@ const links = [
   { href: "/gavekort", label: "Gavekort" },
   { href: "/faq", label: "FAQ" },
   { href: "/kontakt", label: "Kontakt" },
+];
+
+// Mobilmenyen er en vertikal liste uten plassproblem — der tar vi
+// «Plastikkirurgi» med, rett under Behandlinger.
+const mobilLinks = [
+  links[0],
+  { href: "/plastikkirurgi", label: "Plastikkirurgi" },
+  ...links.slice(1),
 ];
 
 function CartButton({ light = false }: { light?: boolean }) {
@@ -91,8 +104,10 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop nav. Byttet fra md: til lg: — med åtte lenker (og allerede
+            med sju) kolliderte menyen med logoen mellom 768 og ~950 px.
+            Hamburgeren tar over hele det området i stedet. */}
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -112,7 +127,7 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile menu toggle */}
-        <div className="md:hidden flex items-center gap-1">
+        <div className="lg:hidden flex items-center gap-1">
           <CartButton light={light} />
           <button
             className={`p-2 transition-colors duration-500 ${light ? "text-white drop-shadow-[0_1px_6px_rgba(30,45,61,0.7)]" : "text-[#1a1a1a]"}`}
@@ -132,10 +147,10 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t border-[#e8d5b0]/30"
+            className="lg:hidden bg-white border-t border-[#e8d5b0]/30"
           >
             <div className="px-6 py-6 flex flex-col gap-5">
-              {links.map((l) => (
+              {mobilLinks.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}

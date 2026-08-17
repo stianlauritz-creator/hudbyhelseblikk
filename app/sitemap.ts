@@ -12,6 +12,9 @@ const STATIC_ROUTES: {
   { path: "", priority: 1, changeFrequency: "weekly" },
   { path: "/bestill-time", priority: 0.9, changeFrequency: "monthly" },
   { path: "/behandlinger", priority: 0.9, changeFrequency: "monthly" },
+  // Egen landingsside for plastikkirurgi — eget fagområde, egen behandler og
+  // egen bookingkanal (PasientSky), derfor høy prioritet.
+  { path: "/plastikkirurgi", priority: 0.9, changeFrequency: "monthly" },
   { path: "/nettbutikk", priority: 0.9, changeFrequency: "weekly" },
   { path: "/prisliste", priority: 0.8, changeFrequency: "monthly" },
   { path: "/gavekort", priority: 0.7, changeFrequency: "monthly" },

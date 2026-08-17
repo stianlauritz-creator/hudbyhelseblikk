@@ -12,6 +12,8 @@ interface Prisrad {
 
 interface Priskategori {
   kategori: string;
+  /** Kort forklaring under kategorioverskriften (f.eks. mva-forbehold) */
+  intro?: string;
   items?: Prisrad[];
   /** Egne underkategorier under samme overskrift (f.eks. injeksjoner) */
   underkategorier?: { tittel: string; items: Prisrad[] }[];
@@ -76,6 +78,42 @@ const priskategorier: Priskategori[] = [
     ],
   },
   {
+    kategori: "Plastikkirurgi (lokalbedøvelse)",
+    intro:
+      "Utføres av plastikkirurg og overlege Ole Arvid F. Østerud. Prisene under er inkludert mva (25 %), som gjelder for rent kosmetiske inngrep. Er inngrepet medisinsk begrunnet, er det som regel fritatt for mva — og dermed billigere. Konsultasjonen avgjør hva som gjelder for deg.",
+    items: [
+      { navn: "Øyelokksoperasjon", pris: "27.500,-" },
+      { navn: "Øyebrynsløft", pris: "43.750,-" },
+      { navn: "Korreksjon av utstående ører (begge sider)", pris: "43.750,-" },
+      { navn: "Korreksjon av utstående ører (én side)", pris: "31.250,-" },
+      { navn: "Øreforminskning (begge sider)", pris: "43.750,-" },
+      { navn: "Forminskning av øreflipp", pris: "25.000,-" },
+      {
+        navn: "Korreksjon av splittet/skadet øreflipp (én side)",
+        pris: "6.250,-",
+      },
+      { navn: "Arrkorreksjon inntil 5 cm", pris: "12.500,-" },
+      { navn: "Arrkorreksjon inntil 10 cm", pris: "31.250,-" },
+      {
+        navn: "Fettransplantasjon",
+        pris: "56.250,-",
+        note: "Brukes blant annet sammen med arrkorreksjon",
+      },
+      { navn: "Føflekkfjerning med penest mulig arr", pris: "12.500,-" },
+      { navn: "Rekonstruksjon av brystvorte", pris: "43.750,-" },
+      { navn: "Korreksjon av inndratt brystvorte", pris: "12.500,-" },
+      {
+        navn: "Konsultasjon hos plastikkirurg",
+        pris: "1.500,-",
+        note: "Trekkes fra ved inngrep",
+      },
+      {
+        navn: "Second opinion med skriftlig tilbakemelding",
+        pris: "18.750,-",
+      },
+    ],
+  },
+  {
     kategori: "Hudprodukter",
     items: [
       { navn: "Face Formula (tidl. Elixir Cosmeceuticals)", pris: "Fra 249,-", note: "Se hele utvalget i nettbutikken" },
@@ -85,7 +123,29 @@ const priskategorier: Priskategori[] = [
   },
 ];
 
-function Prisrader({ items, erProdukt }: { items: Prisrad[]; erProdukt: boolean }) {
+/**
+ * Hvor «Bestill»-knappen peker:
+ *  - booking:  Timma-timeboken
+ *  - produkt:  nettbutikken
+ *  - kirurgi:  /plastikkirurgi — Ole Arvid ligger ikke i Timma (PasientSky),
+ *              og alle inngrep starter med konsultasjon.
+ */
+type RadVariant = "booking" | "produkt" | "kirurgi";
+
+const RAD_LENKE: Record<RadVariant, { href: string; label: string }> = {
+  booking: { href: "/bestill-time", label: "Bestill" },
+  produkt: { href: "/nettbutikk", label: "Se i butikk" },
+  kirurgi: { href: "/plastikkirurgi", label: "Les mer" },
+};
+
+function Prisrader({
+  items,
+  variant = "booking",
+}: {
+  items: Prisrad[];
+  variant?: RadVariant;
+}) {
+  const lenke = RAD_LENKE[variant];
   return (
     <div className="space-y-1">
       {items.map((item) => (
@@ -95,8 +155,9 @@ function Prisrader({ items, erProdukt }: { items: Prisrad[]; erProdukt: boolean 
         >
           <div className="min-w-0">
             <p className="text-sm text-[#1a1a1a]/80">{item.navn}</p>
+            {/* Dempet tekst skal ikke være lysere enn /65 (var /35). */}
             {item.note && (
-              <p className="mt-0.5 text-xs text-[#1a1a1a]/35">{item.note}</p>
+              <p className="mt-0.5 text-xs text-[#1a1a1a]/65">{item.note}</p>
             )}
           </div>
           <div className="flex flex-shrink-0 items-center gap-4">
@@ -104,15 +165,17 @@ function Prisrader({ items, erProdukt }: { items: Prisrad[]; erProdukt: boolean 
               {item.pris}
             </p>
             <Link
-              href={erProdukt ? "/nettbutikk" : "/bestill-time"}
+              href={lenke.href}
               aria-label={
-                erProdukt
+                variant === "produkt"
                   ? `Se ${item.navn} i nettbutikken`
-                  : `Bestill time for ${item.navn}`
+                  : variant === "kirurgi"
+                    ? `Les mer om ${item.navn} hos plastikkirurgen`
+                    : `Bestill time for ${item.navn}`
               }
               className="whitespace-nowrap rounded-full border border-[#e8d5b0] px-3.5 py-1.5 text-xs tracking-wide text-[#1a1a1a]/65 transition-colors hover:border-[#c9a96e] hover:bg-[#8f6b28] hover:text-white"
             >
-              {erProdukt ? "Se i butikk" : "Bestill"}
+              {lenke.label}
             </Link>
           </div>
         </div>
@@ -147,12 +210,14 @@ export default function PrislistePage() {
       {/* Studentrabatt-banner */}
       <div className="bg-[#3d4a3e] text-white">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
-          <span className="text-xs tracking-[0.2em] uppercase text-[#8f6b28]">
+          {/* Mørk bakgrunn ⇒ den lyse gulltonen. #8f6b28 gir bare 2,4:1 her. */}
+          <span className="text-xs tracking-[0.2em] uppercase text-[#c9a96e]">
             Studentrabatt
           </span>
           <span className="text-sm text-white/80">
-            20% rabatt på alle behandlinger med gyldig studentbevis.
-            Gjelder ikke medisinsk rynkebehandling.
+            20% rabatt på hud-, vippe- og brynbehandlinger med gyldig
+            studentbevis. Gjelder ikke medisinsk rynkebehandling eller
+            plastikkirurgi.
           </span>
         </div>
       </div>
@@ -161,7 +226,12 @@ export default function PrislistePage() {
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto space-y-12">
           {priskategorier.map((kat, i) => {
-            const erProdukt = kat.kategori === "Hudprodukter";
+            const variant: RadVariant =
+              kat.kategori === "Hudprodukter"
+                ? "produkt"
+                : kat.kategori.startsWith("Plastikkirurgi")
+                  ? "kirurgi"
+                  : "booking";
             return (
               <AnimatedSection key={kat.kategori} delay={i * 0.05}>
                 <div>
@@ -173,8 +243,14 @@ export default function PrislistePage() {
                   </h2>
                   <div className="h-px bg-[#e8d5b0]/60 mb-4" />
 
+                  {kat.intro && (
+                    <p className="mb-5 max-w-xl text-sm leading-relaxed text-[#1a1a1a]/65">
+                      {kat.intro}
+                    </p>
+                  )}
+
                   {kat.items && (
-                    <Prisrader items={kat.items} erProdukt={erProdukt} />
+                    <Prisrader items={kat.items} variant={variant} />
                   )}
 
                   {kat.underkategorier?.map((under, ui) => (
@@ -182,7 +258,7 @@ export default function PrislistePage() {
                       <p className="mb-3 text-[11px] uppercase tracking-[0.2em] text-[#8f6b28]">
                         {under.tittel}
                       </p>
-                      <Prisrader items={under.items} erProdukt={false} />
+                      <Prisrader items={under.items} />
                     </div>
                   ))}
                 </div>

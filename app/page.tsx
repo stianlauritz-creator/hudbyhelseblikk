@@ -12,6 +12,7 @@ import {
   Syringe,
   ShoppingBag,
   Eye,
+  Scissors,
 } from "lucide-react";
 
 const behandlingsKategorier = [
@@ -34,10 +35,56 @@ const behandlingsKategorier = [
     href: "/behandlinger#injeksjon",
   },
   {
+    icon: Scissors,
+    title: "Plastikkirurgi",
+    desc: "Øyelokk, ører, arr og føflekker — i lokalbedøvelse",
+    href: "/plastikkirurgi",
+  },
+  {
     icon: ShoppingBag,
     title: "Hudprodukter",
     desc: "ZO Skin Health og Face Formula — kjøp i klinikken eller i nettbutikken",
     href: "/nettbutikk",
+  },
+];
+
+// Behandlerseksjonen på forsiden. Ole Arvid er med her fordi plastikkirurgi
+// er et nytt fagområde folk ikke forventer i en hudklinikk — det er nettopp
+// på forsiden det må presenteres. Bildene beskjæres 4:3 fra 3:4-portretter,
+// derfor de ulike object-posisjonene.
+const forsideBehandlere = [
+  {
+    navn: "Mabel Lorine King",
+    tittel: "Kosmetisk Dermatologisk Sykepleier",
+    bilde: "/mabel.jpg",
+    alt: "Mabel Lorine King, kosmetisk dermatologisk sykepleier",
+    pos: "object-[center_5%]",
+    tekst:
+      "Sykepleier med videreutdanning i kosmetisk dermatologi. I faget siden 2019 — kjent for et godt estetisk blikk, forebygging og faglig forsvarlighet.",
+    href: "/om-mabel",
+    lenke: "Les mer om Mabel →",
+  },
+  {
+    navn: "Christina Dalen",
+    tittel: "Kosmetisk Sykepleier",
+    bilde: "/christina-portrett.jpg",
+    alt: "Christina Dalen, kosmetisk sykepleier",
+    pos: "object-top",
+    tekst:
+      "Sertifisert Restylane Injector med særlig lidenskap for leppebehandlinger. Naturlige resultater som fremhever dine egne trekk.",
+    href: "/om-christina",
+    lenke: "Les mer om Christina →",
+  },
+  {
+    navn: "Ole Arvid F. Østerud",
+    tittel: "Plastikkirurg og Overlege",
+    bilde: "/ole-arvid.jpg",
+    alt: "Ole Arvid F. Østerud, plastikkirurg og overlege",
+    pos: "object-[center_8%]",
+    tekst:
+      "Plastikkirurg med bred sykehuserfaring og særskilt kompetanse innen ansiktskirurgi. Øyelokk, ører, arr og føflekker — alt i lokalbedøvelse.",
+    href: "/plastikkirurgi",
+    lenke: "Les mer om plastikkirurgi →",
   },
 ];
 
@@ -207,80 +254,45 @@ export default function Home() {
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Mabel */}
-            <AnimatedSection direction="left">
-              <div className="rounded-2xl bg-white border border-[#e8d5b0]/40 overflow-hidden h-full flex flex-col">
-                <div className="aspect-[4/3] relative overflow-hidden">
-                  <Image
-                    src="/mabel.jpg"
-                    alt="Mabel Lorine King, kosmetisk dermatologisk sykepleier"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-[center_5%]"
-                  />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            {/* Alle tre kommer inn nedenfra med forskyvning. Tidligere brukte
+                kortene direction="right", men x:40 på et kort som fyller
+                mobilbredden ga vannrett rullefelt til animasjonen var ferdig. */}
+            {forsideBehandlere.map((b, i) => (
+              <AnimatedSection key={b.navn} delay={i * 0.15}>
+                <div className="rounded-2xl bg-white border border-[#e8d5b0]/40 overflow-hidden h-full flex flex-col">
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <Image
+                      src={b.bilde}
+                      alt={b.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className={`object-cover ${b.pos}`}
+                    />
+                  </div>
+                  <div className="p-7 flex-1 flex flex-col">
+                    <h3
+                      className="text-xl mb-1"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {b.navn}
+                    </h3>
+                    <p className="text-xs text-[#8f6b28] tracking-wide mb-4">
+                      {b.tittel}
+                    </p>
+                    <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-5">
+                      {b.tekst}
+                    </p>
+                    <Link
+                      href={b.href}
+                      className="text-sm tracking-wide text-[#8f6b28] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
+                    >
+                      {b.lenke}
+                    </Link>
+                  </div>
                 </div>
-                <div className="p-7 flex-1 flex flex-col">
-                  <h3
-                    className="text-xl mb-1"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    Mabel Lorine King
-                  </h3>
-                  <p className="text-xs text-[#8f6b28] tracking-wide mb-4">
-                    Kosmetisk Dermatologisk Sykepleier
-                  </p>
-                  <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-5">
-                    Sykepleier med videreutdanning i kosmetisk dermatologi.
-                    I faget siden 2019 — kjent for et godt estetisk blikk,
-                    forebygging og faglig forsvarlighet.
-                  </p>
-                  <Link
-                    href="/om-mabel"
-                    className="text-sm tracking-wide text-[#8f6b28] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
-                  >
-                    Les mer om Mabel →
-                  </Link>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Christina */}
-            <AnimatedSection direction="right">
-              <div className="rounded-2xl bg-white border border-[#e8d5b0]/40 overflow-hidden h-full flex flex-col">
-                <div className="aspect-[4/3] relative overflow-hidden">
-                  <Image
-                    src="/christina-portrett.jpg"
-                    alt="Christina Dalen, kosmetisk sykepleier"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="p-7 flex-1 flex flex-col">
-                  <h3
-                    className="text-xl mb-1"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    Christina Dalen
-                  </h3>
-                  <p className="text-xs text-[#8f6b28] tracking-wide mb-4">
-                    Kosmetisk Sykepleier
-                  </p>
-                  <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-5">
-                    Sertifisert Restylane Injector med særlig lidenskap for
-                    leppebehandlinger. Naturlige resultater som fremhever dine
-                    egne trekk.
-                  </p>
-                  <Link
-                    href="/om-christina"
-                    className="text-sm tracking-wide text-[#8f6b28] border-b border-[#c9a96e]/40 hover:border-[#c9a96e] pb-0.5 transition-colors mt-auto self-start"
-                  >
-                    Les mer om Christina →
-                  </Link>
-                </div>
-              </div>
-            </AnimatedSection>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>

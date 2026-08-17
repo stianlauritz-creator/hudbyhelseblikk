@@ -188,6 +188,44 @@ const sections: Seksjon[] = [
     ],
   },
   {
+    id: "kirurgi",
+    title: "Kirurgiske inngrep",
+    intro:
+      "Plastikkirurg og overlege Ole Arvid F. Østerud utfører estetiske inngrep hos oss — alt i lokalbedøvelse. Inngrep som krever narkose vurderes grundig og henvises videre til sykehus.",
+    behandlinger: [
+      {
+        navn: "Øyelokksoperasjon",
+        desc: "Fjerner overflødig hud på øvre øyelokk og gir et mer uthvilt uttrykk.",
+        pris: "27.500,-",
+      },
+      {
+        navn: "Øyebrynsløft",
+        desc: "Løfter brynet og åpner blikket.",
+        pris: "43.750,-",
+      },
+      {
+        navn: "Korreksjon av utstående ører",
+        desc: "Én eller begge sider. Også øreforminskning.",
+        pris: "Fra 31.250,-",
+      },
+      {
+        navn: "Øreflipp",
+        desc: "Korreksjon av splittet eller skadet øreflipp, og forminskning.",
+        pris: "Fra 6.250,-",
+      },
+      {
+        navn: "Arrkorreksjon",
+        desc: "Korreksjon av små og større arr, med fettransplantasjon der det trengs.",
+        pris: "Fra 12.500,-",
+      },
+      {
+        navn: "Føflekkfjerning",
+        desc: "Fjerning med penest mulig arr.",
+        pris: "12.500,-",
+      },
+    ],
+  },
+  {
     id: "produkter",
     title: "Hudprodukter",
     bilde: "/produkter-benk.jpg",
@@ -215,12 +253,21 @@ const sections: Seksjon[] = [
   },
 ];
 
+/**
+ * Hvor kortene sender kunden videre:
+ *  - booking:  Timma-timeboken (Mabel og Christina)
+ *  - produkt:  nettbutikken
+ *  - kirurgi:  /plastikkirurgi — Ole Arvid ligger IKKE i Timma, han booker
+ *              via PasientSky, og kirurgi krever konsultasjon først.
+ */
+type KortVariant = "booking" | "produkt" | "kirurgi";
+
 function BehandlingKort({
   behandlinger,
-  erProdukt,
+  variant = "booking",
 }: {
   behandlinger: Behandling[];
-  erProdukt: boolean;
+  variant?: KortVariant;
 }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -245,7 +292,7 @@ function BehandlingKort({
             <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mt-3">
               {b.desc}
             </p>
-            {!erProdukt && (
+            {variant === "booking" && (
               <div className="mt-5 flex items-center gap-5">
                 {b.slug && (
                   <Link
@@ -264,12 +311,21 @@ function BehandlingKort({
                 </Link>
               </div>
             )}
-            {erProdukt && (
+            {variant === "produkt" && (
               <Link
                 href="/nettbutikk"
                 className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
               >
                 Se i nettbutikken
+                <ArrowRight size={14} />
+              </Link>
+            )}
+            {variant === "kirurgi" && (
+              <Link
+                href="/plastikkirurgi"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
+              >
+                Les mer og book konsultasjon
                 <ArrowRight size={14} />
               </Link>
             )}
@@ -379,7 +435,13 @@ export default function BehandlingerPage() {
             {seksjon.behandlinger && (
               <BehandlingKort
                 behandlinger={seksjon.behandlinger}
-                erProdukt={seksjon.id === "produkter"}
+                variant={
+                  seksjon.id === "produkter"
+                    ? "produkt"
+                    : seksjon.id === "kirurgi"
+                      ? "kirurgi"
+                      : "booking"
+                }
               />
             )}
 
@@ -396,12 +458,30 @@ export default function BehandlingerPage() {
                     <div className="h-px flex-1 bg-[#e8d5b0]/60" />
                   </div>
                 </AnimatedSection>
-                <BehandlingKort behandlinger={gruppe.behandlinger} erProdukt={false} />
+                <BehandlingKort behandlinger={gruppe.behandlinger} />
               </div>
             ))}
 
+            {/* Timma-timeboken har ikke Ole Arvids kalender — kirurgi skal
+                aldri sendes til /bestill-time. */}
             <AnimatedSection delay={0.3} className="mt-6">
-              <BookingButton label={`Bestill ${seksjon.title.toLowerCase()}`} />
+              {seksjon.id === "kirurgi" ? (
+                <div>
+                  <Link
+                    href="/plastikkirurgi"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#8f6b28] px-8 py-4 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-[#7a5b20]"
+                  >
+                    Om plastikkirurgi og konsultasjon
+                    <ArrowRight size={16} />
+                  </Link>
+                  <p className="mt-4 max-w-xl text-sm text-[#1a1a1a]/65">
+                    Kirurgi bookes for seg — ikke i timeboken vår. Alle inngrep
+                    starter med en konsultasjon hos Ole Arvid.
+                  </p>
+                </div>
+              ) : (
+                <BookingButton label={`Bestill ${seksjon.title.toLowerCase()}`} />
+              )}
             </AnimatedSection>
           </section>
         ))}
@@ -414,8 +494,9 @@ export default function BehandlingerPage() {
             Studentrabatt
           </p>
           <p className="text-[#1a1a1a]/70">
-            <strong>20% rabatt</strong> på alle behandlinger med gyldig
-            studentbevis. Gjelder ikke medisinsk rynkebehandling.
+            <strong>20% rabatt</strong> på hud-, vippe- og brynbehandlinger med
+            gyldig studentbevis. Gjelder ikke medisinsk rynkebehandling eller
+            kirurgiske inngrep.
           </p>
         </AnimatedSection>
       </section>

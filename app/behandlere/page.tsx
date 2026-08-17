@@ -27,6 +27,18 @@ const behandlere = [
       "Sertifisert Restylane Injector med Julie Horne Lips Masterclass i bagasjen. Christina har en særlig lidenskap for leppebehandlinger og naturlige resultater som fremhever dine egne trekk.",
     fokus: "Lepper · filler · skinboostere · hudpleieveiledning",
   },
+  {
+    navn: "Ole Arvid F. Østerud",
+    tittel: "Plastikkirurg og overlege",
+    href: "/plastikkirurgi",
+    bilde: "/ole-arvid.jpg",
+    // Portrettet er 3:4 og kortene 4:3 — hodet ligger øverst, så vi ankrer
+    // utsnittet nær toppen for å beholde litt luft over hodet.
+    bildePos: "object-[center_8%]",
+    tekst:
+      "Plastikkirurg og overlege med bred erfaring fra Rikshospitalet/OUS, Universitetssykehuset Nord-Norge, Sykehuset Telemark og Helgelandssykehuset. Særskilt kompetanse innen ansiktskirurgi, og en nisje i presis kirurgi der detaljene avgjør resultatet.",
+    fokus: "Øyelokk · ører · arr · føflekker — alt i lokalbedøvelse",
+  },
 ];
 
 export default function BehandlerePage() {
@@ -56,7 +68,10 @@ export default function BehandlerePage() {
 
       {/* Behandlerkort */}
       <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Tre behandlere: to kolonner ville etterlatt et tomt felt ved siden
+            av det tredje kortet, og full bredde gjør 4:3-bildet enormt. Tre
+            like kolonner fra md og opp holder raden hel. */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {behandlere.map((b, i) => (
             <AnimatedSection key={b.navn} delay={i * 0.15}>
               <Link href={b.href} className="group block h-full">
@@ -74,7 +89,7 @@ export default function BehandlerePage() {
                         src={b.bilde}
                         alt={b.navn}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className={`object-cover ${b.bildePos} group-hover:scale-[1.02] transition-transform duration-500`}
                       />
                     ) : (
@@ -114,6 +129,17 @@ export default function BehandlerePage() {
 
         <AnimatedSection delay={0.3} className="text-center mt-16">
           <BookingButton label="Bestill time" />
+          {/* Timeboken vår dekker Mabel og Christina. Ole Arvid har egen
+              bookingkanal, så den lenker vi til separat. */}
+          <p className="mt-5 text-sm text-[#1a1a1a]/65">
+            Timeboken gjelder hudbehandlinger og injeksjoner.{" "}
+            <Link
+              href="/plastikkirurgi"
+              className="text-[#8f6b28] border-b border-[#c9a96e]/40 pb-0.5 transition-colors hover:border-[#c9a96e]"
+            >
+              Kirurgi bookes hos Ole Arvid →
+            </Link>
+          </p>
         </AnimatedSection>
       </section>
     </>
