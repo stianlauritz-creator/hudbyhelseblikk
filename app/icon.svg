@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hud by Helseblikk">
+  <!-- Monogram-H i klinikkens gull på marineblått. Bokstaven er tegnet som
+       rektangler, ikke satt i Playfair, slik at ikonet ser likt ut overalt
+       uten at fonten må lastes. Serifene er tynne med vilje — de forsvinner
+       til en ren H på 16 px, som er der ikonet oftest sees. -->
+  <rect width="64" height="64" rx="14" fill="#1e2d3d"/>
+  <g fill="#c9a96e">
+    <rect x="19" y="16" width="6" height="32"/>
+    <rect x="15" y="16" width="14" height="2.6"/>
+    <rect x="15" y="45.4" width="14" height="2.6"/>
+    <rect x="39" y="16" width="6" height="32"/>
+    <rect x="35" y="16" width="14" height="2.6"/>
+    <rect x="35" y="45.4" width="14" height="2.6"/>
+    <rect x="24" y="29.8" width="16" height="4.4"/>
+  </g>
+</svg>
