@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/components/CartProvider";
+import { BUTIKK_APEN } from "@/lib/site";
 import { BOOKING_URL } from "@/lib/site";
 
 const links = [
@@ -20,6 +21,8 @@ const links = [
 
 function CartButton({ light = false }: { light?: boolean }) {
   const cart = useCart();
+  // Butikken stengt for bestilling ⇒ ingen handlekurv i toppen
+  if (!BUTIKK_APEN) return null;
   return (
     <button
       onClick={() => cart.setOpen(true)}

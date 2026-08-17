@@ -14,12 +14,14 @@ import {
   ChevronDown,
   MessageCircle,
   Plus,
+  Sparkles,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import RetinolVeiledning from "@/components/RetinolVeiledning";
 import { BRAND_INFO, formatPrice, type Product } from "@/lib/products";
 import type { ProductDetails } from "@/lib/product-details";
+import { BUTIKK_APEN } from "@/lib/site";
 
 function Accordion({
   title,
@@ -113,7 +115,8 @@ export default function ProductView({
   const brand = BRAND_INFO[product.brand];
   const crossSell = related[0];
 
-  // Sticky kjøpslinje vises når hoved-CTA er scrollet ut av bildet
+  // Sticky kjøpslinje vises når hoved-CTA er scrollet ut av bildet — men
+  // bare når butikken faktisk tar bestillinger
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaInView = useInView(ctaRef, { margin: "0px 0px -60px 0px" });
 
@@ -203,29 +206,53 @@ export default function ProductView({
               <p className="text-2xl font-medium text-[#1a1a1a]">
                 {formatPrice(product.price)}
               </p>
-              <button
-                onClick={() => cart.add(product.sku)}
-                className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2"
-              >
-                <ShoppingBag size={16} />
-                Legg i kurv
-              </button>
+              {BUTIKK_APEN ? (
+                <button
+                  onClick={() => cart.add(product.sku)}
+                  className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2"
+                >
+                  <ShoppingBag size={16} />
+                  Legg i kurv
+                </button>
+              ) : (
+                <Link
+                  href="/kundeklubb"
+                  className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors text-center"
+                >
+                  Åpner snart — få 10 %
+                </Link>
+              )}
             </div>
 
             {/* Tillit */}
             <ul className="space-y-2.5 mb-7 text-sm text-[#1a1a1a]/65">
-              <li className="flex items-center gap-2.5">
-                <Truck size={15} className="text-[#8f6b28] shrink-0" />
-                79,- i frakt — gratis ved kjøp over 1.000,-
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Store size={15} className="text-[#8f6b28] shrink-0" />
-                Hent gratis i klinikken i Odden 1D, Grimstad
-              </li>
-              <li className="flex items-center gap-2.5">
-                <CreditCard size={15} className="text-[#8f6b28] shrink-0" />
-                Trygg kortbetaling
-              </li>
+              {BUTIKK_APEN ? (
+                <>
+                  <li className="flex items-center gap-2.5">
+                    <Truck size={15} className="text-[#8f6b28] shrink-0" />
+                    79,- i frakt — gratis ved kjøp over 1.000,-
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <Store size={15} className="text-[#8f6b28] shrink-0" />
+                    Hent gratis i klinikken i Odden 1D, Grimstad
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <CreditCard size={15} className="text-[#8f6b28] shrink-0" />
+                    Trygg kortbetaling
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="flex items-center gap-2.5">
+                    <Sparkles size={15} className="text-[#8f6b28] shrink-0" />
+                    Nettbutikken åpner snart — kundeklubben gir 10 % på første kjøp
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <Store size={15} className="text-[#8f6b28] shrink-0" />
+                    Produktet får du kjøpt i klinikken i Odden 1D, Grimstad
+                  </li>
+                </>
+              )}
               <li className="flex items-center gap-2.5">
                 <MessageCircle size={15} className="text-[#8f6b28] shrink-0" />
                 <span>
@@ -271,13 +298,15 @@ export default function ProductView({
                       {formatPrice(crossSell.price)}
                     </p>
                   </div>
-                  <button
-                    onClick={() => cart.add(crossSell.sku)}
-                    aria-label={`Legg ${crossSell.name} i kurv`}
-                    className="w-9 h-9 rounded-full bg-white border border-[#c9a96e]/40 text-[#8f6b28] hover:bg-[#8f6b28] hover:text-white transition-colors flex items-center justify-center shrink-0"
-                  >
-                    <Plus size={15} />
-                  </button>
+                  {BUTIKK_APEN && (
+                    <button
+                      onClick={() => cart.add(crossSell.sku)}
+                      aria-label={`Legg ${crossSell.name} i kurv`}
+                      className="w-9 h-9 rounded-full bg-white border border-[#c9a96e]/40 text-[#8f6b28] hover:bg-[#8f6b28] hover:text-white transition-colors flex items-center justify-center shrink-0"
+                    >
+                      <Plus size={15} />
+                    </button>
+                  )}
                 </div>
               </div>
             )}
@@ -380,7 +409,7 @@ export default function ProductView({
 
       {/* Sticky kjøpslinje */}
       <AnimatePresence>
-        {!ctaInView && (
+        {BUTIKK_APEN && !ctaInView && (
           <motion.div
             initial={{ y: 80 }}
             animate={{ y: 0 }}

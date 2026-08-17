@@ -17,6 +17,13 @@ export const ORG = {
   address: "Odden 1D, 4876 Grimstad",
 };
 
+// Nettbutikken er midlertidig stengt for kjøp mens katalogen justeres
+// (besluttet 2026-08-17). Produktene vises fortsatt, men handlekurv,
+// «Legg i kurv» og kassen er av — kunden får tilbud om kundeklubben i stedet.
+// SLIK ÅPNER DU IGJEN: sett denne til true. Da kommer kurven, kjøpsknappene
+// og kassen tilbake av seg selv, og «Åpner snart»-panelet forsvinner.
+export const BUTIKK_APEN = false;
+
 // Timma-nettbooking. Bookingen er bakt inn på /bestill-time;
 // TIMMA_URL brukes som direkte-lenke/reserve hvis innbakingen feiler.
 export const TIMMA_URL = "https://bestill.timma.no/helseblikkhudas";

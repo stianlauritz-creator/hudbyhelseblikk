@@ -8,6 +8,8 @@ import { ShoppingBag, Truck, Store, CreditCard, Sparkles, Info } from "lucide-re
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import KundeklubbPopup from "@/components/KundeklubbPopup";
+import ButikkAapnerSnart from "@/components/ButikkAapnerSnart";
+import { BUTIKK_APEN } from "@/lib/site";
 import {
   BRAND_INFO,
   formatPrice,
@@ -73,13 +75,19 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             <p className="text-sm font-medium text-[#1a1a1a]">
               {formatPrice(product.price)}
             </p>
-            <button
-              onClick={() => cart.add(product.sku)}
-              className="relative z-20 px-4 py-2 bg-[#8f6b28] text-white text-xs tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-1.5"
-            >
-              <ShoppingBag size={13} />
-              Legg i kurv
-            </button>
+            {BUTIKK_APEN ? (
+              <button
+                onClick={() => cart.add(product.sku)}
+                className="relative z-20 px-4 py-2 bg-[#8f6b28] text-white text-xs tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-1.5"
+              >
+                <ShoppingBag size={13} />
+                Legg i kurv
+              </button>
+            ) : (
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#8f6b28]">
+                Åpner snart
+              </span>
+            )}
           </div>
         </div>
       </motion.div>
@@ -130,18 +138,23 @@ export default function NettbutikkPage() {
 
   return (
     <>
-      {/* Fraktbanner — butikken er åpen, dette er det kunden trenger å vite */}
+      {/* Fraktbanner når butikken er åpen — ellers «Åpner snart»-panelet,
+          siden fraktvilkår er meningsløse så lenge man ikke kan bestille. */}
       <div className="pt-20 bg-gradient-to-br from-[#f5ede4] to-[#faf9f7]">
-        <div className="bg-[#1e2d3d] text-white">
-          <div className="max-w-6xl mx-auto px-6 py-3.5 flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
-            <Sparkles size={15} className="text-[#c9a96e] shrink-0" />
-            <span className="text-sm text-white/85">
-              <span className="text-[#c9a96e] font-medium">Gratis frakt</span>{" "}
-              på ordre over 1 000 kr — eller hent bestillingen gratis hos oss i
-              Grimstad.
-            </span>
+        {BUTIKK_APEN ? (
+          <div className="bg-[#1e2d3d] text-white">
+            <div className="max-w-6xl mx-auto px-6 py-3.5 flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
+              <Sparkles size={15} className="text-[#c9a96e] shrink-0" />
+              <span className="text-sm text-white/85">
+                <span className="text-[#c9a96e] font-medium">Gratis frakt</span>{" "}
+                på ordre over 1 000 kr — eller hent bestillingen gratis hos oss i
+                Grimstad.
+              </span>
+            </div>
           </div>
-        </div>
+        ) : (
+          <ButikkAapnerSnart />
+        )}
       </div>
 
       {/* Header */}
@@ -161,7 +174,9 @@ export default function NettbutikkPage() {
               Produktene vi bruker og anbefaler i klinikken — medisinsk hudpleie
               fra ZO Skin Health, norskutviklede Face Formula (tidligere Elixir
               Cosmeceuticals) og mineralsk solbeskyttelse fra ColoreScience.
-              Bestill med levering hjem, eller hent gratis hos oss i Grimstad.
+              {BUTIKK_APEN
+                ? " Bestill med levering hjem, eller hent gratis hos oss i Grimstad."
+                : " Vi åpner for bestilling om kort tid — produktene får du kjøpt i klinikken i mellomtiden."}
             </p>
           </AnimatedSection>
         </div>
@@ -233,8 +248,8 @@ export default function NettbutikkPage() {
         </div>
       </section>
 
-      {/* Levering og betaling */}
-      <section className="py-20 px-6 bg-[#f5f2ed]">
+      {/* Levering og betaling — kun relevant når butikken tar bestillinger */}
+      <section className={`py-20 px-6 bg-[#f5f2ed] ${BUTIKK_APEN ? "" : "hidden"}`}>
         <div className="max-w-5xl mx-auto">
           <AnimatedSection className="text-center mb-12">
             <h2

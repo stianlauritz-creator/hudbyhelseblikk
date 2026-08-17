@@ -6,11 +6,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, FREE_SHIPPING_LIMIT } from "@/components/CartProvider";
 import { formatPrice } from "@/lib/products";
+import { BUTIKK_APEN } from "@/lib/site";
 
 export default function CartDrawer() {
   const cart = useCart();
   const [busy, setBusy] = useState(false);
   const [fallback, setFallback] = useState(false);
+
+  // Butikken er stengt for bestilling — kurven skal ikke kunne åpnes i det
+  // hele tatt, heller ikke fra en gammel localStorage-kurv.
+  if (!BUTIKK_APEN) return null;
 
   const checkout = async () => {
     setBusy(true);

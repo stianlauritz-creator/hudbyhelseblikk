@@ -5,10 +5,20 @@ import {
   FREE_SHIPPING_LIMIT,
   SHIPPING_COST,
 } from "@/components/CartProvider";
+import { BUTIKK_APEN } from "@/lib/site";
 
 // Checkout-kjede: Shopify (når koblet til) → Stripe → 503 (klienten faller
 // tilbake til e-postbestilling). Prisene slås alltid opp server-side.
 export async function POST(req: Request) {
+  // Nettbutikken er stengt for bestilling. Kurven er borte fra grensesnittet,
+  // men vi stenger kassen her også, så ingen ordre kan snike seg gjennom.
+  if (!BUTIKK_APEN) {
+    return NextResponse.json(
+      { error: "Nettbutikken åpner snart — bestilling er ikke mulig ennå." },
+      { status: 503 }
+    );
+  }
+
   let lines: { sku: string; qty: number }[];
   try {
     const body = await req.json();
