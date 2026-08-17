@@ -7,6 +7,13 @@ import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { motion } from "framer-motion";
 
+interface Behandling {
+  navn: string;
+  desc: string;
+  pris: string;
+  slug?: string;
+}
+
 interface Seksjon {
   id: string;
   title: string;
@@ -14,7 +21,10 @@ interface Seksjon {
   bilde?: string;
   bildeAlt?: string;
   bildeAspekt?: string;
-  behandlinger: { navn: string; desc: string; pris: string; slug?: string }[];
+  /** Behandlinger uten undergruppe */
+  behandlinger?: Behandling[];
+  /** Egne underkategorier under samme overskrift (f.eks. injeksjoner) */
+  undergrupper?: { tittel: string; behandlinger: Behandling[] }[];
 }
 
 const sections: Seksjon[] = [
@@ -27,8 +37,8 @@ const sections: Seksjon[] = [
       {
         navn: "Konsultasjon",
         slug: "hudkonsultasjon",
-        desc: "Grundig hudanalyse og behandlingsplan — helt uforpliktende og uten kostnad.",
-        pris: "Gratis",
+        desc: "Grundig hudanalyse og behandlingsplan. Beløpet trekkes fra ved gjennomført behandling eller produktkjøp over 1.500,-.",
+        pris: "490,-",
       },
     ],
   },
@@ -42,7 +52,7 @@ const sections: Seksjon[] = [
         navn: "Farging/forming vipper og bryn inkl. voks",
         slug: "farging-forming-vipper-bryn",
         desc: "Komplett pakke for vipper og bryn med farging, forming og voks.",
-        pris: "590,-",
+        pris: "690,-",
       },
       {
         navn: "Brynslaminering",
@@ -53,8 +63,8 @@ const sections: Seksjon[] = [
       {
         navn: "Farging og forming bryn inkl. voks",
         slug: "farging-forming-bryn",
-        desc: "Perfekt definerte bryn med farging og forming.",
-        pris: "490,-",
+        desc: "Perfekt definerte bryn med farging og forming. Voks inkludert.",
+        pris: "590,-",
       },
       {
         navn: "Farging vipper",
@@ -76,8 +86,8 @@ const sections: Seksjon[] = [
       {
         navn: "Kjemisk peeling",
         slug: "kjemisk-peeling",
-        desc: "Fjerner døde hudceller, jevner ut hudtonen og stimulerer cellefornying. Tilpasset din hudtype.",
-        pris: "Fra 1.500,-",
+        desc: "Vi har flere ulike peelinger og tilpasser type og styrke til huden din og ønsket ditt. Fjerner døde hudceller, jevner ut hudtonen og stimulerer cellefornying.",
+        pris: "1.500,- – 2.000,-",
       },
       {
         navn: "Microneedling (Dermapen)",
@@ -94,81 +104,86 @@ const sections: Seksjon[] = [
     ],
   },
   {
-    id: "laser",
-    title: "Laserbehandlinger",
-    bilde: "/laserbehandling.jpg",
-    bildeAlt: "Laserbehandling i klinikken",
-    bildeAspekt: "aspect-[16/9] sm:aspect-[21/9]",
-    intro:
-      "Medisinsk laser for en rekke hudtilstander. Trygge, dokumenterte behandlinger med varige resultater.",
-    behandlinger: [
-      {
-        navn: "Aknebehandling (Nd:YAG)",
-        slug: "aknebehandling-laser",
-        desc: "Reduserer inflammatorisk akne effektivt. 4–6 behandlinger anbefalt, hver 2–4. uke.",
-        pris: "Fra 1.800,-",
-      },
-      {
-        navn: "Blodkarbehandling",
-        slug: "blodkarbehandling-laser",
-        desc: "Behandler sprengte blodkar og diffus rødhet. Rask og effektiv.",
-        pris: "Fra 1.500,-",
-      },
-      {
-        navn: "Hårfjerning med laser",
-        slug: "harfjerning-laser",
-        desc: "Permanent reduksjon av uønsket hår. Tilpasset hudtype og hårfarge.",
-        pris: "Fra 650,- pr. område",
-      },
-      {
-        navn: "Lipplaser",
-        slug: "leppelaser",
-        desc: "Øker kollagenproduksjon, fuktighet og gir plumpere lepper. 3–4 behandlinger anbefalt, hver 2–3. uke.",
-        pris: "Fra 1.900,-",
-      },
-      {
-        navn: "Øyelokk-laser",
-        slug: "oyelokk-laser",
-        desc: "Reduserer rynker rundt øynene og øker kollagenproduktion via ablasjon.",
-        pris: "Fra 2.900,-",
-      },
-      {
-        navn: "Rosacea-behandling",
-        slug: "rosacea-behandling-laser",
-        desc: "Reduserer vedvarende rødhet og synlige blodkar ved rosacea.",
-        pris: "Fra 1.900,-",
-      },
-    ],
-  },
-  {
     id: "injeksjon",
     title: "Injeksjonsbehandlinger",
     intro:
-      "Trygge, FDA-godkjente behandlinger med naturlige resultater. Alltid under ansvar av autorisert helsepersonell.",
-    behandlinger: [
+      "Trygge behandlinger med naturlige resultater. Alltid under ansvar av autorisert helsepersonell, og alltid med en faglig vurdering først.",
+    undergrupper: [
       {
-        navn: "Restylane (filler)",
-        slug: "filler",
-        desc: "Hyaluronsyrebasert filler for naturlig volum og konturering.",
-        pris: "Fra 2.400,-",
+        tittel: "Medisinsk rynkebehandling",
+        behandlinger: [
+          {
+            navn: "Lite område",
+            slug: "muskelavslappende-behandling",
+            desc: "Mindre partier som nese eller hake.",
+            pris: "1.400,-",
+          },
+          {
+            navn: "1 område",
+            slug: "muskelavslappende-behandling",
+            desc: "For eksempel sinnarynken, pannen eller smilerynkene rundt øynene.",
+            pris: "2.000,-",
+          },
+          {
+            navn: "2 områder",
+            slug: "muskelavslappende-behandling",
+            desc: "To behandlingsområder i samme time.",
+            pris: "3.400,-",
+          },
+          {
+            navn: "3 områder",
+            slug: "muskelavslappende-behandling",
+            desc: "Tre behandlingsområder i samme time.",
+            pris: "4.300,-",
+          },
+          {
+            navn: "Anspent kjeve / tanngnissing",
+            slug: "muskelavslappende-behandling",
+            desc: "Slapper av tyggemusklene ved bruksisme — gir ofte mindre kjevesmerter og hodepine.",
+            pris: "3.600,-",
+          },
+          {
+            navn: "Svettebehandling",
+            slug: "muskelavslappende-behandling",
+            desc: "Demper kraftig svette i armhulene i 4–6 måneder.",
+            pris: "4.600,-",
+          },
+        ],
       },
       {
-        navn: "Fjerning av filler",
-        slug: "fjerning-av-filler",
-        desc: "Trygg oppløsning av hyaluronsyrefiller med hyaluronidase.",
-        pris: "1.500,-",
-      },
-      {
-        navn: "Muskelavslappende injeksjoner",
-        slug: "muskelavslappende-behandling",
-        desc: "Reduserer dynamiske rynker og gir et ferskere utseende. Gjelder ikke studentrabatt.",
-        pris: "Fra 2.200,-",
-      },
-      {
-        navn: "PRP-behandling",
-        slug: "prp-behandling",
-        desc: "Platelet Rich Plasma — kroppens egne vekstfaktorer stimulerer kollagen og cellefornyelse.",
-        pris: "Fra 3.900,-",
+        tittel: "Filler",
+        behandlinger: [
+          {
+            navn: "Leppebehandling",
+            slug: "filler",
+            desc: "Hyaluronsyre for fyldigere lepper med naturlig resultat. Pris etter mengde og ønsket resultat.",
+            pris: "2.400,- – 3.400,-",
+          },
+          {
+            navn: "Volumbehandling",
+            slug: "filler",
+            desc: "Gjenoppretter volum og definerer konturer i kinn, kjevelinje eller hake.",
+            pris: "3.600,-",
+          },
+          {
+            navn: "Skinbooster 1 ml",
+            slug: "filler",
+            desc: "Hyaluronsyre som fukter huden innenfra — gir glød og bedre hudkvalitet.",
+            pris: "2.900,-",
+          },
+          {
+            navn: "Skinbooster 2 ml",
+            slug: "filler",
+            desc: "Større område eller kraftigere fuktboost.",
+            pris: "5.200,-",
+          },
+          {
+            navn: "Fjerning av filler",
+            slug: "fjerning-av-filler",
+            desc: "Trygg oppløsning av hyaluronsyrefiller med hyaluronidase — også filler satt andre steder.",
+            pris: "1.500,-",
+          },
+        ],
       },
     ],
   },
@@ -200,6 +215,71 @@ const sections: Seksjon[] = [
   },
 ];
 
+function BehandlingKort({
+  behandlinger,
+  erProdukt,
+}: {
+  behandlinger: Behandling[];
+  erProdukt: boolean;
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {behandlinger.map((b, bi) => (
+        <AnimatedSection key={b.navn} delay={bi * 0.1}>
+          <motion.div
+            whileHover={{ y: -3, boxShadow: "0 16px 32px -8px rgba(0,0,0,0.06)" }}
+            transition={{ duration: 0.25 }}
+            className="h-full p-7 rounded-2xl bg-white border border-[#e8d5b0]/30 hover:border-[#c9a96e]/30 transition-colors"
+          >
+            <div className="flex justify-between items-start gap-4">
+              <h3
+                className="font-normal text-lg leading-snug"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                {b.navn}
+              </h3>
+              <span className="text-[#8f6b28] font-medium text-sm whitespace-nowrap">
+                {b.pris}
+              </span>
+            </div>
+            <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mt-3">
+              {b.desc}
+            </p>
+            {!erProdukt && (
+              <div className="mt-5 flex items-center gap-5">
+                {b.slug && (
+                  <Link
+                    href={`/behandlinger/${b.slug}`}
+                    className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
+                  >
+                    Les mer
+                    <ArrowRight size={14} />
+                  </Link>
+                )}
+                <Link
+                  href="/bestill-time"
+                  className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#1a1a1a]/65 transition-colors hover:text-[#8f6b28]"
+                >
+                  Bestill time
+                </Link>
+              </div>
+            )}
+            {erProdukt && (
+              <Link
+                href="/nettbutikk"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
+              >
+                Se i nettbutikken
+                <ArrowRight size={14} />
+              </Link>
+            )}
+          </motion.div>
+        </AnimatedSection>
+      ))}
+    </div>
+  );
+}
+
 export default function BehandlingerPage() {
   return (
     <>
@@ -218,7 +298,7 @@ export default function BehandlingerPage() {
             </h1>
             <p className="text-[#1a1a1a]/65 leading-relaxed text-lg">
               Vi tilbyr et bredt spekter av medisinsk hudpleie — fra enkel
-              farging til avanserte laserbehandlinger og injeksjoner.
+              farging til avanserte hudbehandlinger og injeksjoner.
             </p>
           </AnimatedSection>
         </div>
@@ -296,60 +376,29 @@ export default function BehandlingerPage() {
               </AnimatedSection>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {seksjon.behandlinger.map((b, bi) => (
-                <AnimatedSection key={b.navn} delay={bi * 0.1}>
-                  <motion.div
-                    whileHover={{ y: -3, boxShadow: "0 16px 32px -8px rgba(0,0,0,0.06)" }}
-                    transition={{ duration: 0.25 }}
-                    className="p-7 rounded-2xl bg-white border border-[#e8d5b0]/30 hover:border-[#c9a96e]/30 transition-colors"
-                  >
-                    <div className="flex justify-between items-start gap-4">
-                      <h3
-                        className="font-normal text-lg leading-snug"
-                        style={{ fontFamily: "var(--font-playfair)" }}
-                      >
-                        {b.navn}
-                      </h3>
-                      <span className="text-[#8f6b28] font-medium text-sm whitespace-nowrap">
-                        {b.pris}
-                      </span>
-                    </div>
-                    <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mt-3">
-                      {b.desc}
-                    </p>
-                    {seksjon.id !== "produkter" && (
-                      <div className="mt-5 flex items-center gap-5">
-                        {b.slug && (
-                          <Link
-                            href={`/behandlinger/${b.slug}`}
-                            className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
-                          >
-                            Les mer
-                            <ArrowRight size={14} />
-                          </Link>
-                        )}
-                        <Link
-                          href="/bestill-time"
-                          className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#1a1a1a]/65 transition-colors hover:text-[#8f6b28]"
-                        >
-                          Bestill time
-                        </Link>
-                      </div>
-                    )}
-                    {seksjon.id === "produkter" && (
-                      <Link
-                        href="/nettbutikk"
-                        className="mt-5 inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
-                      >
-                        Se i nettbutikken
-                        <ArrowRight size={14} />
-                      </Link>
-                    )}
-                  </motion.div>
+            {seksjon.behandlinger && (
+              <BehandlingKort
+                behandlinger={seksjon.behandlinger}
+                erProdukt={seksjon.id === "produkter"}
+              />
+            )}
+
+            {seksjon.undergrupper?.map((gruppe, gi) => (
+              <div key={gruppe.tittel} className={gi > 0 ? "mt-12" : ""}>
+                <AnimatedSection>
+                  <div className="mb-5 flex items-center gap-4">
+                    <h3
+                      className="text-lg text-[#1e2d3d] md:text-xl"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {gruppe.tittel}
+                    </h3>
+                    <div className="h-px flex-1 bg-[#e8d5b0]/60" />
+                  </div>
                 </AnimatedSection>
-              ))}
-            </div>
+                <BehandlingKort behandlinger={gruppe.behandlinger} erProdukt={false} />
+              </div>
+            ))}
 
             <AnimatedSection delay={0.3} className="mt-6">
               <BookingButton label={`Bestill ${seksjon.title.toLowerCase()}`} />
@@ -366,7 +415,7 @@ export default function BehandlingerPage() {
           </p>
           <p className="text-[#1a1a1a]/70">
             <strong>20% rabatt</strong> på alle behandlinger med gyldig
-            studentbevis. Gjelder ikke muskelavslappende injeksjoner.
+            studentbevis. Gjelder ikke medisinsk rynkebehandling.
           </p>
         </AnimatedSection>
       </section>

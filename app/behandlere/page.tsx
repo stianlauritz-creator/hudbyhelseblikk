@@ -12,10 +12,10 @@ const behandlere = [
     tittel: "Kosmetisk Dermatologisk Sykepleier",
     href: "/om-mabel",
     bilde: "/mabel.jpg",
-    bildePos: "object-[center_45%]",
+    bildePos: "object-[center_5%]",
     tekst:
       "Utdannet sykepleier med videreutdanning i kosmetisk dermatologi. Hun har jobbet i faget siden 2019 og er kjent for medisinsk presisjon, et godt estetisk blikk og naturlige resultater.",
-    fokus: "Laser · hudbehandlinger · injeksjoner",
+    fokus: "Hudbehandlinger · rynkebehandling · injeksjoner",
   },
   {
     navn: "Christina Dalen",

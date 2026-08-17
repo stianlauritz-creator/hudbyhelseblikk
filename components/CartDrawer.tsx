@@ -43,7 +43,7 @@ export default function CartDrawer() {
       )
       .join("%0D%0A");
     return (
-      `mailto:hei@helseblikk.no?subject=Bestilling fra nettbutikken` +
+      `mailto:hei@hudbyhelseblikk.no?subject=Bestilling fra nettbutikken` +
       `&body=Hei!%0D%0A%0D%0AJeg ønsker å bestille:%0D%0A%0D%0A${linjer}` +
       `%0D%0A%0D%0ATotalt: ${formatPrice(cart.total)}` +
       `%0D%0A%0D%0ANavn:%0D%0ATelefon:%0D%0AAdresse (eller hentes i klinikken):`

@@ -10,27 +10,27 @@ const faqs = [
   {
     sporsmal: "Hva skjer på en konsultasjon?",
     svar:
-      "Vi starter med en grundig gjennomgang av hudens tilstand — vi ser på tekstur, tone, fuktbalanse, porer og eventuelle problemområder. Deretter lager vi en individuell plan med anbefalte behandlinger og produkter. Konsultasjonen er gratis og helt uforpliktende — du bestemmer selv om du vil gå videre etterpå.",
+      "Vi starter med en grundig gjennomgang av hudens tilstand — vi ser på tekstur, tone, fuktbalanse, porer og eventuelle problemområder. Deretter lager vi en individuell plan med anbefalte behandlinger og produkter. Konsultasjonen koster 490,-, og beløpet trekkes fra igjen hvis du gjennomfører en behandling hos oss eller handler produkter for over 1.500,-. Du er aldri bundet til å bestille noe.",
   },
   {
     sporsmal: "Gjør behandlingene vondt?",
     svar:
-      "De fleste behandlinger oppleves som lite til moderat ubehagelige. Laserbehandlinger kan gi en varmefølelse, injeksjoner gir et lite stikk, og microneedling kan kjennes som fint sandpapir. Vi bruker bedøvelseskrem der det er aktuelt for å minimere ubehag. Din komfort er prioritet — si alltid fra underveis.",
+      "De fleste behandlinger oppleves som lite til moderat ubehagelige. Kjemisk peeling kan svi lett, injeksjoner gir et lite stikk, og microneedling kan kjennes som fint sandpapir. Vi bruker bedøvelseskrem der det er aktuelt for å minimere ubehag. Din komfort er prioritet — si alltid fra underveis.",
   },
   {
     sporsmal: "Hvor lang tid tar en behandling?",
     svar:
-      "Det varierer med behandlingstype. Enkle behandlinger som vipper og bryn tar 30–60 minutter. Hudbehandlinger som microneedling og laserbehandlinger tar typisk 45–90 minutter inkludert forberedelse. Injeksjonsbehandlinger tar gjerne 30–60 minutter avhengig av omfang.",
+      "Det varierer med behandlingstype. Enkle behandlinger som vipper og bryn tar 30–60 minutter. Hudbehandlinger som microneedling og kjemisk peeling tar typisk 45–90 minutter inkludert forberedelse. Injeksjonsbehandlinger tar gjerne 30–60 minutter avhengig av omfang.",
   },
   {
     sporsmal: "Hvor mange behandlinger trenger jeg?",
     svar:
-      "Dette avhenger av tilstanden og behandlingstypen. Laserbehandlinger for akne anbefales 4–6 ganger med 2–4 ukers mellomrom. Lipplaser og øvelokk-laser tar 3–4 behandlinger. Microneedling gir best resultat ved 3–6 behandlinger. Vi gir deg en konkret anbefaling etter konsultasjon.",
+      "Dette avhenger av tilstanden og behandlingstypen. Microneedling gir best resultat ved 3–6 behandlinger, og kjemisk peeling anbefales som en kur på 3–6 behandlinger ved akne eller pigmentering. Medisinsk rynkebehandling varer 3–4 måneder om gangen. Vi gir deg en konkret anbefaling etter konsultasjon.",
   },
   {
-    sporsmal: "Hva er nedetiden etter laser?",
+    sporsmal: "Hva er nedetiden etter en hudbehandling?",
     svar:
-      "De fleste laserbehandlinger har liten nedetid. Du kan oppleve lett rødhet og svie i 1–3 dager. Ablative behandlinger som øyelokkslaser kan gi noe mer synlig rødhet i opptil en uke. Vi gir deg alltid en detaljert etterveiledning og råd om hva du bør unngå i perioden etter.",
+      "De fleste hudbehandlingene våre har liten nedetid. Etter kjemisk peeling kan huden være rød og flasse lett i 2–5 dager avhengig av styrke, og etter microneedling er rødhet i 1–2 dager normalt. Vi gir deg alltid en detaljert etterveiledning og råd om hva du bør unngå i perioden etter.",
   },
   {
     sporsmal: "Kan jeg trene etter injeksjonsbehandling?",

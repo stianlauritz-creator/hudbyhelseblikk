@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Hud by Helseblikk",
   },
   description:
-    "Medisinsk hudklinikk i Grimstad. Laserbehandlinger, injeksjonsbehandlinger, microneedling, kjemisk peeling og nettbutikk med ZO Skin Health, Face Formula og ColoreScience.",
+    "Medisinsk hudklinikk i Grimstad. Injeksjonsbehandlinger, microneedling, kjemisk peeling, vipper og bryn — og nettbutikk med ZO Skin Health, Face Formula og ColoreScience.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Hud by Helseblikk — Hudklinikk i Grimstad",
@@ -48,12 +48,12 @@ const structuredData = {
   "@id": `${SITE_URL}/#klinikk`,
   name: "Hud by Helseblikk",
   description:
-    "Premium medisinsk hudklinikk i Grimstad. Laserbehandlinger, injeksjonsbehandlinger, microneedling og avansert hudpleie.",
+    "Premium medisinsk hudklinikk i Grimstad. Injeksjonsbehandlinger, microneedling, kjemisk peeling og avansert hudpleie.",
   url: SITE_URL,
   image: `${SITE_URL}/behandling-banner.jpg`,
   telephone: "+4737040500",
-  email: "hei@helseblikk.no",
-  priceRange: "kr 290 – kr 5 000",
+  email: "hei@hudbyhelseblikk.no",
+  priceRange: "kr 290 – kr 5 200",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Odden 1D",

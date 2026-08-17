@@ -10,7 +10,7 @@ import { TIMMA_STAFF } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Bestill time",
   description:
-    "Bestill time hos Hud by Helseblikk i Grimstad — se ledige timer og book direkte i timeboken vår. Hudkonsultasjon, laser, injeksjoner og hudbehandlinger.",
+    "Bestill time hos Hud by Helseblikk i Grimstad — se ledige timer og book direkte i timeboken vår. Hudkonsultasjon, vipper og bryn, hudbehandlinger og injeksjoner.",
   alternates: { canonical: "/bestill-time" },
 };
 
@@ -19,8 +19,8 @@ const behandlere = [
     navn: "Mabel",
     fullt: "Mabel Lorine King",
     tittel: "Kosmetisk dermatologisk sykepleier",
-    bilde: "/mabel.jpg",
-    pos: "object-[center_35%]",
+    bilde: "/mabel-avatar.jpg",
+    pos: "object-center",
     href: "/om-mabel",
   },
   {

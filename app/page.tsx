@@ -8,7 +8,6 @@ import BookingButton from "@/components/BookingButton";
 import {
   Sparkles,
   Star,
-  Zap,
   Droplets,
   Syringe,
   ShoppingBag,
@@ -29,15 +28,9 @@ const behandlingsKategorier = [
     href: "/behandlinger#hudbehandlinger",
   },
   {
-    icon: Zap,
-    title: "Laserbehandlinger",
-    desc: "Akne, rødhet, hårfjerning og rosacea med medisinsk laser",
-    href: "/behandlinger#laser",
-  },
-  {
     icon: Syringe,
     title: "Injeksjonsbehandlinger",
-    desc: "Filler, muskelavslappende, PRP og Restylane",
+    desc: "Medisinsk rynkebehandling og filler — lepper, volum og skinbooster",
     href: "/behandlinger#injeksjon",
   },
   {
@@ -224,7 +217,7 @@ export default function Home() {
                     alt="Mabel Lorine King, kosmetisk dermatologisk sykepleier"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-[center_45%]"
+                    className="object-cover object-[center_5%]"
                   />
                 </div>
                 <div className="p-7 flex-1 flex flex-col">
@@ -359,11 +352,12 @@ export default function Home() {
             Book en hudkonsultasjon
           </h2>
           <p className="text-white/50 mb-10 leading-relaxed">
-            Konsultasjonen er gratis og helt uforpliktende. Vi tar deg med på en
-            gjennomgang av hudens tilstand og lager en plan som passer deg —
-            så bestemmer du selv om du vil gå videre.
+            Konsultasjonen koster 490,- og trekkes fra igjen når du gjennomfører
+            en behandling eller handler produkter for over 1.500,-. Vi tar deg
+            med på en gjennomgang av hudens tilstand og lager en plan som passer
+            deg — så bestemmer du selv om du vil gå videre.
           </p>
-          <BookingButton label="Bestill gratis konsultasjon" />
+          <BookingButton label="Bestill hudkonsultasjon" />
         </AnimatedSection>
       </section>
     </>

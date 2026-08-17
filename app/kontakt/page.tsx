@@ -91,10 +91,10 @@ export default function KontaktPage() {
                       E-post
                     </p>
                     <a
-                      href="mailto:hei@helseblikk.no"
+                      href="mailto:hei@hudbyhelseblikk.no"
                       className="text-sm text-[#1a1a1a]/75 hover:text-[#8f6b28] transition-colors"
                     >
-                      hei@helseblikk.no
+                      hei@hudbyhelseblikk.no
                     </a>
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export default function KontaktPage() {
                     Ring oss: 370 40 500
                   </a>
                   <a
-                    href="mailto:hei@helseblikk.no"
+                    href="mailto:hei@hudbyhelseblikk.no"
                     className="flex items-center justify-center w-full py-3.5 border border-white/20 text-white/80 rounded-full text-sm tracking-wide hover:border-[#c9a96e]/60 hover:text-white transition-colors"
                   >
                     Send e-post

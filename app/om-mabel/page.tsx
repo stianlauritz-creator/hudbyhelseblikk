@@ -6,10 +6,11 @@ import BookingButton from "@/components/BookingButton";
 
 const spesialiteter = [
   "Hudkonsultasjon og hudanalyse",
-  "Laserbehandlinger (akne, rødhet, hårfjerning, rosacea)",
   "Dermapen / Microneedling",
   "Kjemiske peelinger",
-  "Injeksjonsbehandlinger (filler, PRP, muskelavslappende)",
+  "Mesoterapi",
+  "Medisinsk rynkebehandling",
+  "Filler og skinboostere",
 ];
 
 const utdanning = [
@@ -49,7 +50,7 @@ export default function OmMabelPage() {
             <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/20 relative overflow-hidden">
               <Image
                 src="/mabel.jpg"
-                alt="Mabel Lorine King i behandling, kosmetisk dermatologisk sykepleier"
+                alt="Mabel Lorine King, kosmetisk dermatologisk sykepleier"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"

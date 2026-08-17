@@ -172,6 +172,36 @@ export default async function BehandlingPage({
           </section>
         </AnimatedSection>
 
+        {/* Priser — vises når behandlingen har flere varianter */}
+        {b.prisliste && b.prisliste.length > 0 && (
+          <AnimatedSection>
+            <section>
+              <h2
+                className="text-2xl md:text-3xl font-normal mb-5"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Priser
+              </h2>
+              <div className="rounded-2xl border border-[#e8d5b0]/40 bg-white px-6 py-2">
+                {b.prisliste.map((rad) => (
+                  <div
+                    key={rad.navn}
+                    className="flex items-baseline justify-between gap-6 border-b border-[#faf9f7] py-3 last:border-b-0"
+                  >
+                    <p className="text-sm text-[#1a1a1a]/80">{rad.navn}</p>
+                    <p className="whitespace-nowrap text-sm font-medium text-[#8f6b28]">
+                      {rad.pris}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs text-[#1a1a1a]/45">
+                Alle priser er veiledende. Endelig pris avtales ved konsultasjon.
+              </p>
+            </section>
+          </AnimatedSection>
+        )}
+
         {/* Hvem passer det for */}
         <AnimatedSection>
           <section>

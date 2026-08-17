@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Prisliste",
   description:
-    "Priser på hudbehandlinger hos Hud by Helseblikk i Grimstad — konsultasjon, laser, microneedling, peeling og injeksjoner.",
+    "Priser på hudbehandlinger hos Hud by Helseblikk i Grimstad — konsultasjon, microneedling, kjemisk peeling, rynkebehandling og filler.",
   alternates: { canonical: "/prisliste" },
   openGraph: {
     title: "Prisliste | Hud by Helseblikk",

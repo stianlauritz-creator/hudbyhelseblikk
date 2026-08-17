@@ -283,8 +283,8 @@ export default function NettbutikkPage() {
           <AnimatedSection delay={0.2} className="text-center mt-12">
             <p className="text-xs text-[#1a1a1a]/65 max-w-xl mx-auto leading-relaxed">
               Aktive produkter med retinol og syrer bør tilpasses din hud. Er du
-              i tvil, anbefaler vi en hudkonsultasjon før du starter — den
-              er gratis og uforpliktende.
+              i tvil, anbefaler vi en hudkonsultasjon før du starter (490,-, som
+              trekkes fra ved produktkjøp over 1.500,-).
             </p>
           </AnimatedSection>
         </div>

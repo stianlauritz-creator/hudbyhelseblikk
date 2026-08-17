@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Behandlinger",
   description:
-    "Hudkonsultasjon, laserbehandling, microneedling med Dermapen, kjemisk peeling og injeksjonsbehandlinger hos Hud by Helseblikk i Grimstad.",
+    "Hudkonsultasjon, microneedling med Dermapen, kjemisk peeling, medisinsk rynkebehandling og filler hos Hud by Helseblikk i Grimstad.",
   alternates: { canonical: "/behandlinger" },
   openGraph: {
     title: "Behandlinger | Hud by Helseblikk",

@@ -123,10 +123,10 @@ export default function KundeklubbPage() {
             Alle e-poster fra oss har en avmeldingslenke nederst. Du kan også
             sende en e-post til{" "}
             <a
-              href="mailto:hei@helseblikk.no"
+              href="mailto:hei@hudbyhelseblikk.no"
               className="text-[#8f6b28] underline"
             >
-              hei@helseblikk.no
+              hei@hudbyhelseblikk.no
             </a>
             , så tar vi deg ut av listene med én gang.
           </p>

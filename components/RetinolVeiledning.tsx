@@ -66,7 +66,8 @@ export default function RetinolVeiledning({ product }: { product: Product }) {
           >
             hudkonsultasjon
           </Link>{" "}
-          først — den er gratis og uforpliktende. Du kan også{" "}
+          først (490,-, som trekkes fra ved produktkjøp over 1.500,-). Du kan
+          også{" "}
           <Link href="/kontakt" className="underline hover:text-[#8f6b28]">
             spørre Christina
           </Link>{" "}

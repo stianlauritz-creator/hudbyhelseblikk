@@ -95,7 +95,7 @@ export default function GavekortPage() {
                     Ring 370 40 500
                   </a>
                   <a
-                    href="mailto:hei@helseblikk.no?subject=Bestilling%20av%20gavekort"
+                    href="mailto:hei@hudbyhelseblikk.no?subject=Bestilling%20av%20gavekort"
                     className="flex flex-1 items-center justify-center gap-2 rounded-full border border-[#e8d5b0] px-6 py-3.5 text-sm tracking-wide text-[#1a1a1a]/70 transition-colors hover:border-[#c9a96e] hover:text-[#8f6b28]"
                   >
                     <Mail size={15} />

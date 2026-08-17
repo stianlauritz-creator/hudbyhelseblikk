@@ -11,7 +11,7 @@ export const ORG = {
   name: "Hud by Helseblikk",
   legalName: "Helseblikk Hud AS",
   orgNr: "830 724 052",
-  email: "hei@helseblikk.no",
+  email: "hei@hudbyhelseblikk.no",
   phone: "370 40 500",
   phoneHref: "tel:37040500",
   address: "Odden 1D, 4876 Grimstad",

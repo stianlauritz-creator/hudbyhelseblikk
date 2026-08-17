@@ -77,10 +77,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hei@helseblikk.no"
+                  href="mailto:hei@hudbyhelseblikk.no"
                   className="hover:text-[#c9a96e] transition-colors"
                 >
-                  hei@helseblikk.no
+                  hei@hudbyhelseblikk.no
                 </a>
               </li>
             </ul>
