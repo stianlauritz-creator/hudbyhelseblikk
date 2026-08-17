@@ -118,10 +118,24 @@ function mapNode(
     retinol: local?.retinol,
     retinolStyrke: local?.retinolStyrke,
     farger: local?.farger,
-    // Lagerstatus er Shopify sin når butikken er koblet på; den statiske
-    // katalogen brukes bare som fallback.
-    utsolgt: variant.availableForSale === false,
+    // Lagerstatus: Shopify når varen faktisk er merket utsolgt der, men en
+    // manuell `utsolgt` i vår katalog vinner alltid — den er meldt fra
+    // klinikken og skal gjelde selv om Shopify-lageret ikke er ført.
+    utsolgt: local?.utsolgt === true || variant.availableForSale === false,
   };
+}
+
+// ColoreScience-utvalget styres fra lib/products.ts, ikke fra Shopify:
+// klinikken fører bare noen få SKU-er, og resten av merkets katalog lå igjen
+// i Shopify etter importen. Sperren gjelder BARE ColoreScience — ZO og Face
+// Formula kommer uavkortet fra Shopify. Skal et ColoreScience-produkt inn
+// igjen, legg det inn i PRODUCTS, så slipper det gjennom her.
+const COLORESCIENCE_I_SALG = new Set(
+  PRODUCTS.filter((p) => p.brand === "colorescience").map((p) => p.sku)
+);
+
+function iSalg(p: Product): boolean {
+  return p.brand !== "colorescience" || COLORESCIENCE_I_SALG.has(p.sku);
 }
 
 // Autoritativ katalog: Shopify når konfigurert og tilgjengelig, ellers statisk.
@@ -131,7 +145,8 @@ export async function getCatalog(): Promise<Product[]> {
   if (!data || data.products.edges.length === 0) return PRODUCTS;
   const mapped = data.products.edges
     .map((e) => mapNode(e.node))
-    .filter((p): p is Product => p !== null);
+    .filter((p): p is Product => p !== null)
+    .filter(iSalg);
   return mapped.length > 0 ? mapped : PRODUCTS;
 }
 
