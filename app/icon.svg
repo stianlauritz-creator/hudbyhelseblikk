@@ -1,16 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hud by Helseblikk">
-  <!-- Monogram-H i klinikkens gull på marineblått. Bokstaven er tegnet som
-       rektangler, ikke satt i Playfair, slik at ikonet ser likt ut overalt
-       uten at fonten må lastes. Serifene er tynne med vilje — de forsvinner
-       til en ren H på 16 px, som er der ikonet oftest sees. -->
-  <rect width="64" height="64" rx="14" fill="#1e2d3d"/>
-  <g fill="#c9a96e">
-    <rect x="19" y="16" width="6" height="32"/>
-    <rect x="15" y="16" width="14" height="2.6"/>
-    <rect x="15" y="45.4" width="14" height="2.6"/>
-    <rect x="39" y="16" width="6" height="32"/>
-    <rect x="35" y="16" width="14" height="2.6"/>
-    <rect x="35" y="45.4" width="14" height="2.6"/>
-    <rect x="24" y="29.8" width="16" height="4.4"/>
-  </g>
+  <!-- Monogram-H i krem på klinikkens gull. Bokstaven er den ekte Playfair
+       Display-H-en fra ordmerket, hentet ut av fontfilen og lagret som kurve,
+       så ikonet trenger ingen font og formen er identisk med logoen.
+       To bevisste avvik fra ordmerket, begge for å overleve 16 px i fanen:
+       vekt 600 i stedet for 400, og tverrbjelken forsterket fra 1,1 til 2,6
+       enheter. Playfairs hårtynne bjelke blir under en halv piksel i fanen,
+       og da leses H-en som to løse søyler. -->
+  <rect width="64" height="64" rx="14" fill="#8f6b28"/>
+  <path fill="#faf9f7" d="M35.52 51.00V49.93Q37.28 49.82 38.16 49.50Q39.04 49.18 39.35 48.21Q39.65 47.24 39.65 45.31V18.69Q39.65 16.70 39.34 15.76Q39.04 14.82 38.15 14.48Q37.25 14.13 35.52 14.07V13.00Q36.92 13.05 39.09 13.11Q41.26 13.16 43.41 13.16Q45.76 13.16 47.82 13.11Q49.88 13.05 51.13 13.00V14.07Q49.39 14.13 48.50 14.48Q47.60 14.82 47.30 15.76Q47.00 16.70 47.00 18.69V45.31Q47.00 47.24 47.31 48.21Q47.61 49.18 48.51 49.50Q49.40 49.82 51.13 49.93V51.00Q49.88 50.89 47.82 50.87Q45.76 50.84 43.41 50.84Q41.26 50.84 39.09 50.87Q36.92 50.89 35.52 51.00ZM12.87 51.00V49.93Q14.63 49.82 15.51 49.50Q16.39 49.18 16.70 48.21Q17.00 47.24 17.00 45.31V18.69Q17.00 16.70 16.69 15.76Q16.39 14.82 15.50 14.48Q14.60 14.13 12.87 14.07V13.00Q14.17 13.05 16.28 13.11Q18.39 13.16 20.81 13.16Q22.95 13.16 25.03 13.11Q27.12 13.05 28.48 13.00V14.07Q26.74 14.13 25.85 14.48Q24.95 14.82 24.65 15.76Q24.35 16.70 24.35 18.69V45.31Q24.35 47.24 24.66 48.21Q24.96 49.18 25.86 49.50Q26.75 49.82 28.48 49.93V51.00Q27.12 50.89 25.03 50.87Q22.95 50.84 20.81 50.84Q18.39 50.84 16.28 50.87Q14.17 50.89 12.87 51.00ZM21.40 32.43V31.36H42.60V32.43Z"/>
+  <rect x="21.40" y="30.59" width="21.20" height="2.6" fill="#faf9f7"/>
 </svg>
