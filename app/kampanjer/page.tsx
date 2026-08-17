@@ -34,8 +34,8 @@ export default function KampanjerPage() {
       {/* Kampanjekort */}
       {AKTIVE_KAMPANJER.length > 0 && (
         <section className="px-6 py-16">
-          <div className="mx-auto max-w-6xl">
-            <Kampanjer />
+          <div className="mx-auto max-w-5xl">
+            <Kampanjer variant="banner" />
             <AnimatedSection delay={0.3}>
               <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-[#1a1a1a]/55">
                 Gavene gjelder så langt beholdningen rekker og kan ikke byttes i
