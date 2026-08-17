@@ -8,6 +8,8 @@ interface Prisrad {
   navn: string;
   pris: string;
   note?: string;
+  /** Tilleggsvalg som ikke bestilles alene — da gir «Bestill» ingen mening */
+  utenBestill?: boolean;
 }
 
 interface Priskategori {
@@ -44,11 +46,28 @@ const priskategorier: Priskategori[] = [
     items: [
       {
         navn: "Kjemisk peeling",
-        pris: "1.500,- – 2.000,-",
-        note: "Vi har flere typer — peelingen tilpasses huden din og ønsket ditt",
+        pris: "Fra 1.500,-",
+        note: "Vi har flere typer — 1.500,- til 2.000,- avhengig av type og styrke",
       },
-      { navn: "Microneedling (Dermapen)", pris: "Fra 2.690,-", note: "Kurpris ved 3 behandlinger — spør oss" },
       { navn: "Mesoterapi", pris: "Fra 1.900,-" },
+    ],
+    underkategorier: [
+      {
+        tittel: "Microneedling (Dermapen)",
+        items: [
+          { navn: "Microneedling (Dermapen)", pris: "2.690,-", note: "Kurpris ved 3 behandlinger — spør oss" },
+          { navn: "Microneedling (Dermapen) med mesoterapi", pris: "3.690,-" },
+          { navn: "Microneedling (Dermapen) med eksosomer", pris: "3.890,-" },
+        ],
+      },
+      {
+        tittel: "Tillegg til microneedling",
+        items: [
+          { navn: "Kjemisk peel i samme behandling", pris: "800,-", utenBestill: true },
+          { navn: "Ekstra område (hals eller bryst)", pris: "800,-", utenBestill: true },
+          { navn: "LED-lys", pris: "300,-", utenBestill: true },
+        ],
+      },
     ],
   },
   {
@@ -164,6 +183,7 @@ function Prisrader({
             <p className="whitespace-nowrap text-sm font-medium text-[#8f6b28]">
               {item.pris}
             </p>
+            {item.utenBestill ? null : (
             <Link
               href={lenke.href}
               aria-label={
@@ -177,6 +197,7 @@ function Prisrader({
             >
               {lenke.label}
             </Link>
+            )}
           </div>
         </div>
       ))}
@@ -215,7 +236,7 @@ export default function PrislistePage() {
             Studentrabatt
           </span>
           <span className="text-sm text-white/80">
-            20% rabatt på hud-, vippe- og brynbehandlinger med gyldig
+            20% rabatt på hud-, vippe- og brynsbehandlinger med gyldig
             studentbevis. Gjelder ikke medisinsk rynkebehandling eller
             plastikkirurgi.
           </span>

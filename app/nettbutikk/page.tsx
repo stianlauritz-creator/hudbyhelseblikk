@@ -9,6 +9,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import KundeklubbPopup from "@/components/KundeklubbPopup";
 import ButikkAapnerSnart from "@/components/ButikkAapnerSnart";
+import Kampanjer from "@/components/Kampanjer";
+import { AKTIVE_KAMPANJER } from "@/lib/kampanjer";
 import { BUTIKK_APEN } from "@/lib/site";
 import {
   BRAND_INFO,
@@ -61,7 +63,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           >
             {product.name}
           </h2>
-          <p className="text-xs text-[#1a1a1a]/65 mb-3">{product.size}</p>
+          <p className="text-xs text-[#1a1a1a]/65 mb-3">
+            {product.size}
+            {product.farger && product.farger.length > 0 && (
+              <> · {product.farger.join(", ")}</>
+            )}
+          </p>
           {product.retinol && (
             <p className="inline-flex self-start items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full bg-[#f5ede4] border border-[#c9a96e]/40 text-[10px] text-[#8f6b28]">
               <Info size={11} className="shrink-0" />
@@ -75,7 +82,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             <p className="text-sm font-medium text-[#1a1a1a]">
               {formatPrice(product.price)}
             </p>
-            {BUTIKK_APEN ? (
+            {product.utsolgt ? (
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#1a1a1a]/45">
+                Utsolgt
+              </span>
+            ) : BUTIKK_APEN ? (
               <button
                 onClick={() => cart.add(product.sku)}
                 className="relative z-20 px-4 py-2 bg-[#8f6b28] text-white text-xs tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-1.5"
@@ -198,6 +209,34 @@ export default function NettbutikkPage() {
           </span>
         </div>
       </div>
+
+      {/* Pågående kampanjer — skjuler seg selv når ingen er aktive */}
+      {AKTIVE_KAMPANJER.length > 0 && (
+        <section className="px-6 pt-16">
+          <div className="mx-auto max-w-6xl">
+            <AnimatedSection className="mb-8 text-center">
+              <p className="mb-3 text-xs uppercase tracking-[0.25em] text-[#8f6b28]">
+                Akkurat nå
+              </p>
+              <h2
+                className="text-2xl font-normal md:text-3xl"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Kampanjer
+              </h2>
+            </AnimatedSection>
+            <Kampanjer />
+            <AnimatedSection delay={0.3} className="mt-8 text-center">
+              <Link
+                href="/kampanjer"
+                className="text-sm text-[#8f6b28] underline underline-offset-4 hover:text-[#7a5b20]"
+              >
+                Se alle kampanjer og vilkår
+              </Link>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
 
       {/* Filter + produkter */}
       <section className="py-16 px-6">

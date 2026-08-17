@@ -29,7 +29,9 @@ const links = [
 const mobilLinks = [
   links[0],
   { href: "/plastikkirurgi", label: "Plastikkirurgi" },
-  ...links.slice(1),
+  links[1],
+  { href: "/kampanjer", label: "Kampanjer" },
+  ...links.slice(2),
 ];
 
 function CartButton({ light = false }: { light?: boolean }) {

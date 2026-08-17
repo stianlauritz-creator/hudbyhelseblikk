@@ -69,6 +69,9 @@ export function CartProvider({
   }, [lines, loaded]);
 
   const add = (sku: string) => {
+    // Utsolgte varer skal ikke kunne havne i kurven, uansett hvor «Legg i
+    // kurv» måtte dukke opp
+    if (catalog.find((p) => p.sku === sku)?.utsolgt) return;
     setLines((prev) => {
       const hit = prev.find((l) => l.sku === sku);
       if (hit)

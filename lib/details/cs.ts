@@ -57,7 +57,7 @@ export const CS_DETAILS: ProductDetails[] = [
       { name: "EnviroScreen-teknologi", effect: "Beskytter mot frie radikaler fra blått lys, forurensning og infrarød stråling" },
     ],
     skinTypes: ["Alle hudtyper", "Tørr hud", "Glansløs hud"],
-    related: ["FF-001", "FF-009", "CS-012"],
+    related: ["FF-001", "FF-009", "CS-007"],
   },
   {
     sku: "CS-003",
@@ -145,7 +145,7 @@ export const CS_DETAILS: ProductDetails[] = [
       { name: "EnviroScreen-teknologi", effect: "Antioksidantbeskyttelse mot blått lys og forurensning" },
     ],
     skinTypes: ["Alle hudtyper", "Sensitiv hud"],
-    related: ["ZO-002", "CS-007", "CS-006"],
+    related: ["ZO-002", "CS-007", "CS-011"],
   },
   {
     sku: "CS-006",
@@ -204,7 +204,7 @@ export const CS_DETAILS: ProductDetails[] = [
       { name: "Panthenol", effect: "Beroliger og pleier den tynne huden rundt øynene" },
     ],
     skinTypes: ["Alle hudtyper", "Moden hud"],
-    related: ["ZO-002", "CS-013", "CS-001"],
+    related: ["ZO-021", "CS-002", "CS-005"],
   },
   {
     sku: "CS-008",
@@ -321,7 +321,7 @@ export const CS_DETAILS: ProductDetails[] = [
       { name: "Vitamin E", effect: "Antioksidant som beskytter og pleier" },
     ],
     skinTypes: ["Alle hudtyper", "Tørre lepper"],
-    related: ["FF-028", "CS-010", "CS-001"],
+    related: ["FF-028", "CS-002", "CS-007"],
   },
   {
     sku: "CS-012",
@@ -434,6 +434,6 @@ export const CS_DETAILS: ProductDetails[] = [
       { name: "Snøsopp-ekstrakt", effect: "Naturlig fuktbinder som gir lett fukt" },
     ],
     skinTypes: ["Alle hudtyper", "Sensitiv hud"],
-    related: ["CS-012", "CS-014", "CS-006"],
+    related: ["CS-002", "CS-005", "FF-033"],
   },
 ];

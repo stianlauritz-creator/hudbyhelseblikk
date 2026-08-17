@@ -87,12 +87,12 @@ const sections: Seksjon[] = [
         navn: "Kjemisk peeling",
         slug: "kjemisk-peeling",
         desc: "Vi har flere ulike peelinger og tilpasser type og styrke til huden din og ønsket ditt. Fjerner døde hudceller, jevner ut hudtonen og stimulerer cellefornying.",
-        pris: "1.500,- – 2.000,-",
+        pris: "Fra 1.500,-",
       },
       {
         navn: "Microneedling (Dermapen)",
         slug: "dermapen",
-        desc: "Stimulerer hudens naturlige kollagenproduksjon. Effektivt mot arr, porer, rynker og ujevn hudtone.",
+        desc: "Stimulerer hudens naturlige kollagenproduksjon. Effektivt mot arr, porer, rynker og ujevn hudtone. Kan kombineres med mesoterapi, eksosomer, peel og LED-lys.",
         pris: "Fra 2.690,-",
       },
       {
@@ -494,7 +494,7 @@ export default function BehandlingerPage() {
             Studentrabatt
           </p>
           <p className="text-[#1a1a1a]/70">
-            <strong>20% rabatt</strong> på hud-, vippe- og brynbehandlinger med
+            <strong>20% rabatt</strong> på hud-, vippe- og brynsbehandlinger med
             gyldig studentbevis. Gjelder ikke medisinsk rynkebehandling eller
             kirurgiske inngrep.
           </p>

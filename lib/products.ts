@@ -12,6 +12,8 @@ export interface Product {
   image: string;
   retinol?: boolean;        // inneholder retinol — utløser veiledningsboks på produktsiden
   retinolStyrke?: string;   // konsentrasjon der produsenten oppgir den, f.eks. "0,5 %"
+  farger?: string[];        // nyanser vi faktisk har inne, f.eks. ["Fair", "Light"]
+  utsolgt?: boolean;        // midlertidig tomt — vises, men kan ikke legges i kurv
 }
 
 export const BRAND_INFO: Record<Brand, { label: string; tagline: string }> = {
@@ -96,21 +98,14 @@ export const PRODUCTS: Product[] = [
   { sku: "FF-033", brand: "face-formula", name: "Nova Drops SPF 50+", size: "30 ml", price: 940, desc: "Ultralette, transparente soldråper med bredspektret høy beskyttelse.", image: "/produkter/FF-033.jpg" },
   { sku: "FF-034", brand: "face-formula", name: "Nova BB Cream SPF 25", size: "30 ml", price: 590, desc: "Tonet BB-krem som jevner ut hudtonen, gir fukt og solbeskyttelse.", image: "/produkter/FF-034.jpg" },
   { sku: "FF-035", brand: "face-formula", name: "Mom & Me SPF 50", size: "100 ml", price: 980, desc: "Mineralsk solkrem med høy beskyttelse for hele familien.", image: "/produkter/FF-035.jpg" },
-  { sku: "CS-001", brand: "colorescience", name: "Sunforgettable Total Protection Face Shield SPF 50", size: "55 ml", price: 775, desc: "Lett tonet 100 % mineralsk solkrem med SPF 50 som beskytter mot UVA/UVB, blått lys og infrarød stråling. Passer alle hudtyper.", image: "/produkter/CS-001.jpg" },
+  // ColoreScience-utvalget er trimmet til det klinikken faktisk har inne
+  // (Mabel, 17.08.2026). De øvrige SKU-ene er tatt ut av katalogen — ikke
+  // slettet fra lib/details/cs.ts, så de kan settes inn igjen ved bestilling.
   { sku: "CS-002", brand: "colorescience", name: "Face Shield Glow SPF 50", size: "55 ml", price: 775, desc: "Mineralsk SPF 50 med subtile lysreflekterende partikler som gir huden en sunn glød.", image: "/produkter/CS-002.jpg" },
-  { sku: "CS-003", brand: "colorescience", name: "Face Shield Matte SPF 50", size: "55 ml", price: 775, desc: "Mattierende mineralsk SPF 50 som demper glans og jevner ut hudtonen — ideell for blandet og fet hud.", image: "/produkter/CS-003.jpg" },
-  { sku: "CS-004", brand: "colorescience", name: "Face Shield Bronze SPF 50", size: "55 ml", price: 775, desc: "Mineralsk SPF 50 med varm bronzetone som gir en solkysset glød samtidig som huden beskyttes fullt ut.", image: "/produkter/CS-004.jpg" },
-  { sku: "CS-005", brand: "colorescience", name: "Face Shield Flex SPF 50", size: "55 ml", price: 775, desc: "Tonet solkrem og foundation i ett med SPF 50 — tilpasser seg hudtonen og gir naturlig dekkevne. Flere nyanser, spør oss om valg.", image: "/produkter/CS-005.jpg" },
-  { sku: "CS-006", brand: "colorescience", name: "Brush-On Shield SPF 30", size: "6 g", price: 595, desc: "Mineralsk solpudder med kost — perfekt for påfyll av solbeskyttelse gjennom dagen, også over sminke.", image: "/produkter/CS-006.jpg" },
-  { sku: "CS-007", brand: "colorescience", name: "Total Eye 3-in-1 Renewal Therapy SPF 35", size: "7 ml", price: 1095, desc: "Øyekrem, concealer og SPF 35 i ett. Reduserer synlige tegn på mørke ringer, poser og fine linjer.", image: "/produkter/CS-007.jpg" },
-  { sku: "CS-008", brand: "colorescience", name: "Even Up Clinical Pigment Perfector SPF 50", size: "30 ml", price: 1295, desc: "3-i-1 klinisk pigmentkorrigerer med SPF 50 og Lumira-teknologi som behandler og kamuflerer pigmentflekker og ujevn hudtone.", image: "/produkter/CS-008.jpg" },
-  { sku: "CS-009", brand: "colorescience", name: "All Calm Clinical Redness Corrector SPF 50", size: "30 ml", price: 1495, desc: "Korrigerer rødhet med grønne undertoner og 100 % mineralsk SPF 50. Beroliger sensitiv hud.", image: "/produkter/CS-009.jpg" },
-  { sku: "CS-010", brand: "colorescience", name: "Total Protection Color Balm SPF 50", size: "9 g", price: 495, desc: "Flerbruks fargestift med SPF 50 til kinn, lepper og øyelokk. Vann- og svettebestandig. Flere farger.", image: "/produkter/CS-010.jpg" },
-  { sku: "CS-011", brand: "colorescience", name: "Peptide Lip Shine SPF 30", size: "4 ml", price: 495, desc: "Nærende leppeglans med peptider og SPF 30 som gir fyldigere, mykere lepper med dyp fukt.", image: "/produkter/CS-011.jpg" },
-  { sku: "CS-012", brand: "colorescience", name: "Barrier Pro Essential Moisturizer", size: "50 ml", price: 995, desc: "Lett, men dypt nærende fuktighetskrem som styrker og reparerer hudens naturlige barriere.", image: "/produkter/CS-012.jpg" },
-  { sku: "CS-013", brand: "colorescience", name: "Pep Up Collagen Boost Face & Neck Serum", size: "30 ml", price: 1695, desc: "Serum med 10 peptider som stimulerer hudens egen kollagen- og elastinproduksjon for fastere hud på ansikt og hals.", image: "/produkter/CS-013.jpg" },
-  { sku: "CS-014", brand: "colorescience", name: "Total Protection Sport Stick SPF 50", size: "18 g", price: 495, desc: "Praktisk solstift for utsatte områder; vann- og svettebestandig i 80 minutter.", image: "/produkter/CS-014.jpg" },
-  { sku: "CS-015", brand: "colorescience", name: "Total Protection No-Show Mineral Sunscreen SPF 50", size: "78 ml", price: 895, desc: "Markedets tynneste helmineralske solkrem — usynlig på huden, med ikke-nano sinkoksid.", image: "/produkter/CS-015.jpg" },
+  { sku: "CS-005", brand: "colorescience", name: "Face Shield Flex SPF 50", size: "55 ml", price: 775, desc: "Tonet solkrem og foundation i ett med SPF 50 — tilpasser seg hudtonen og gir naturlig dekkevne.", image: "/produkter/CS-005.jpg", farger: ["Fair", "Light", "Medium", "Tan"] },
+  { sku: "CS-007", brand: "colorescience", name: "Total Eye 3-in-1 Renewal Therapy SPF 35", size: "7 ml", price: 1095, desc: "Øyekrem, concealer og SPF 35 i ett. Reduserer synlige tegn på mørke ringer, poser og fine linjer.", image: "/produkter/CS-007.jpg", farger: ["Fair", "Medium"] },
+  { sku: "CS-011", brand: "colorescience", name: "Peptide Lip Shine SPF 30", size: "4 ml", price: 495, desc: "Nærende leppeglans med peptider og SPF 30 som gir fyldigere, mykere lepper med dyp fukt.", image: "/produkter/CS-011.jpg", farger: ["Pink"] },
+  { sku: "CS-015", brand: "colorescience", name: "Total Protection No-Show Mineral Sunscreen SPF 50", size: "78 ml", price: 895, desc: "Markedets tynneste helmineralske solkrem — usynlig på huden, med ikke-nano sinkoksid.", image: "/produkter/CS-015.jpg", utsolgt: true },
   { sku: "GK-0500", brand: "gavekort", name: "Gavekort 500,-", size: "PDF eller fysisk kort", price: 500, desc: "Gavekort på 500 kroner til behandlinger og produkter hos Hud by Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-0500.jpg" },
   { sku: "GK-1000", brand: "gavekort", name: "Gavekort 1.000,-", size: "PDF eller fysisk kort", price: 1000, desc: "Gavekort på 1.000 kroner til behandlinger og produkter hos Hud by Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-1000.jpg" },
   { sku: "GK-2000", brand: "gavekort", name: "Gavekort 2.000,-", size: "PDF eller fysisk kort", price: 2000, desc: "Gavekort på 2.000 kroner til behandlinger og produkter hos Hud by Helseblikk. Sendes som PDF på e-post innen én virkedag, eller hentes i klinikken. Gyldig i 12 måneder.", image: "/produkter/GK-2000.jpg" },

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
+import { AKTIVE_KAMPANJER } from "@/lib/kampanjer";
 import {
   Sparkles,
   Star,
@@ -194,6 +195,27 @@ export default function Home() {
           </span>
         </motion.div>
       </section>
+
+      {/* Kampanjestripe — forsvinner når ingen kampanjer er aktive */}
+      {AKTIVE_KAMPANJER.length > 0 && (
+        <div className="bg-[#3d4a3e] text-white">
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3 px-6 py-4 text-center sm:flex-row sm:text-left">
+            <span className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#c9a96e]">
+              <Sparkles size={13} className="shrink-0" />
+              Akkurat nå
+            </span>
+            <span className="text-sm text-white/80">
+              {AKTIVE_KAMPANJER[0].tittel} —{" "}
+              <Link
+                href="/kampanjer"
+                className="underline underline-offset-4 hover:text-[#c9a96e]"
+              >
+                se alle kampanjene
+              </Link>
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Behandlingskategorier */}
       <section className="py-24 px-6 bg-white">

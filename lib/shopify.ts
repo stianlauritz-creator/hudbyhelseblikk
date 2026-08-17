@@ -61,7 +61,14 @@ interface ProductsQueryResult {
         vendor: string;
         featuredImage: { url: string; altText: string | null } | null;
         variants: {
-          edges: { node: { id: string; sku: string; price: { amount: string } } }[];
+          edges: {
+            node: {
+              id: string;
+              sku: string;
+              price: { amount: string };
+              availableForSale: boolean;
+            };
+          }[];
         };
       };
     }[];
@@ -77,7 +84,7 @@ const PRODUCTS_QUERY = `{
         description
         vendor
         featuredImage { url altText }
-        variants(first: 1) { edges { node { id sku price { amount } } } }
+        variants(first: 1) { edges { node { id sku price { amount } availableForSale } } }
       }
     }
   }
@@ -107,9 +114,13 @@ function mapNode(
     price: Math.round(Number(variant.price.amount)),
     desc: local?.desc ?? node.description.slice(0, 300),
     image: node.featuredImage?.url ?? local?.image ?? "/produkter/placeholder.jpg",
-    // Retinol er klinisk merking vi eier selv — Shopify har den ikke
+    // Retinol og nyanser er merking vi eier selv — Shopify har den ikke
     retinol: local?.retinol,
     retinolStyrke: local?.retinolStyrke,
+    farger: local?.farger,
+    // Lagerstatus er Shopify sin når butikken er koblet på; den statiske
+    // katalogen brukes bare som fallback.
+    utsolgt: variant.availableForSale === false,
   };
 }
 

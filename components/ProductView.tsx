@@ -177,7 +177,12 @@ export default function ProductView({
             >
               {product.name}
             </h1>
-            <p className="text-sm text-[#1a1a1a]/65 mb-5">{product.size}</p>
+            <p className="text-sm text-[#1a1a1a]/65 mb-5">
+              {product.size}
+              {product.farger && product.farger.length > 0 && (
+                <> · Nyanser: {product.farger.join(", ")}</>
+              )}
+            </p>
 
             <p className="text-[#1a1a1a]/65 leading-relaxed mb-5">
               {details?.intro ?? product.desc}
@@ -206,7 +211,11 @@ export default function ProductView({
               <p className="text-2xl font-medium text-[#1a1a1a]">
                 {formatPrice(product.price)}
               </p>
-              {BUTIKK_APEN ? (
+              {product.utsolgt ? (
+                <span className="rounded-full border border-[#e8d5b0] px-7 py-3.5 text-sm tracking-wide text-[#1a1a1a]/55">
+                  Midlertidig utsolgt
+                </span>
+              ) : BUTIKK_APEN ? (
                 <button
                   onClick={() => cart.add(product.sku)}
                   className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2"
@@ -298,7 +307,7 @@ export default function ProductView({
                       {formatPrice(crossSell.price)}
                     </p>
                   </div>
-                  {BUTIKK_APEN && (
+                  {BUTIKK_APEN && !crossSell.utsolgt && (
                     <button
                       onClick={() => cart.add(crossSell.sku)}
                       aria-label={`Legg ${crossSell.name} i kurv`}
@@ -409,7 +418,7 @@ export default function ProductView({
 
       {/* Sticky kjøpslinje */}
       <AnimatePresence>
-        {BUTIKK_APEN && !ctaInView && (
+        {BUTIKK_APEN && !product.utsolgt && !ctaInView && (
           <motion.div
             initial={{ y: 80 }}
             animate={{ y: 0 }}

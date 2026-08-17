@@ -40,6 +40,7 @@ export default function Footer() {
                 ["Behandlinger", "/behandlinger"],
                 ["Plastikkirurgi", "/plastikkirurgi"],
                 ["Nettbutikk", "/nettbutikk"],
+                ["Kampanjer", "/kampanjer"],
                 ["Behandlere", "/behandlere"],
                 ["Prisliste", "/prisliste"],
                 ["Gavekort", "/gavekort"],

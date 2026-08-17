@@ -514,7 +514,7 @@ export const ZO_DETAILS: ProductDetails[] = [
       { name: "Glyserin og solsikkeolje", effect: "Fukter og styrker hudbarrieren" },
     ],
     skinTypes: ["Sensitiv hud", "Rosacea-utsatt hud", "Hud med rødhet"],
-    related: ["ZO-002", "ZO-019", "CS-009"],
+    related: ["ZO-002", "ZO-019", "CS-002"],
   },
   {
     sku: "ZO-018",
