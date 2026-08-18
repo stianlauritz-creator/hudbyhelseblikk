@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 
@@ -152,7 +153,13 @@ export default function OmMabelPage() {
             <AnimatedSection direction="right" delay={0.25}>
               <div className="pt-4 border-t border-[#e8d5b0]/30">
                 <p className="text-xs text-[#1a1a1a]/65 mb-6">
-                  Ansvarlig lege: Débora Dias De Oliveira
+                  Ansvarlig lege:{" "}
+                  <Link
+                    href="/om-debora"
+                    className="underline underline-offset-2 transition-colors hover:text-[#8f6b28]"
+                  >
+                    Débora Dias De Oliveira
+                  </Link>
                 </p>
                 <BookingButton
                   label="Bestill time hos Mabel"

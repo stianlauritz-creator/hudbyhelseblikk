@@ -100,7 +100,13 @@ export default function Footer() {
             · Org.nr. 830 724 052
           </p>
           <p className="text-xs text-white/70">
-            Ansvarlig lege: Débora Dias De Oliveira
+            Ansvarlig lege:{" "}
+            <Link
+              href="/om-debora"
+              className="underline underline-offset-2 transition-colors hover:text-[#c9a96e]"
+            >
+              Débora Dias De Oliveira
+            </Link>
           </p>
         </div>
       </div>

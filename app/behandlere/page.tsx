@@ -127,6 +127,44 @@ export default function BehandlerePage() {
           ))}
         </div>
 
+        {/* Ansvarlig lege står bak behandlerne, ikke ved siden av dem — derfor
+            en egen, bredere rad under kortene i stedet for et fjerde kort som
+            ville brukket 3-kolonnersgriden. */}
+        <AnimatedSection delay={0.3} className="max-w-6xl mx-auto mt-8">
+          <Link href="/om-debora" className="group block">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6 rounded-2xl border border-[#e8d5b0]/40 bg-white p-7 transition-colors duration-300 hover:border-[#c9a96e]/40">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 bg-gradient-to-br from-[#ecddd0] to-[#c9a96e]/20">
+                <Image
+                  src="/debora-avatar.jpg"
+                  alt="Débora Dias De Oliveira, ansvarlig lege"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs tracking-[0.2em] uppercase text-[#8f6b28] mb-1.5">
+                  Ansvarlig lege
+                </p>
+                <h2
+                  className="text-xl mb-2 group-hover:text-[#8f6b28] transition-colors"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  Débora Dias De Oliveira
+                </h2>
+                <p className="text-sm text-[#1a1a1a]/65 leading-relaxed">
+                  Lege siden 2001, med bakgrunn fra indremedisin, allergi og
+                  klinisk immunologi. Hun har det medisinskfaglige ansvaret ved
+                  klinikken.
+                </p>
+              </div>
+              <span className="text-sm text-[#8f6b28] border-b border-[#c9a96e]/40 pb-0.5 self-start sm:self-center shrink-0 transition-colors group-hover:border-[#c9a96e]">
+                Les mer →
+              </span>
+            </div>
+          </Link>
+        </AnimatedSection>
+
         <AnimatedSection delay={0.3} className="text-center mt-16">
           <BookingButton label="Bestill time" />
           {/* Timeboken vår dekker Mabel og Christina. Ole Arvid har egen
