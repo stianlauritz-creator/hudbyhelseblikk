@@ -49,6 +49,8 @@ const priskategorier: Priskategori[] = [
         pris: "Fra 1.500,-",
         note: "Vi har flere typer — 1.500,- til 2.000,- avhengig av type og styrke",
       },
+      { navn: "ZO Stimulation Peel", pris: "2.100,-" },
+      { navn: "Face Formula signaturbehandling", pris: "1.900,-" },
       { navn: "Mesoterapi", pris: "Fra 1.900,-" },
     ],
     underkategorier: [

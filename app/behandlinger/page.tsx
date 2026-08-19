@@ -90,6 +90,16 @@ const sections: Seksjon[] = [
         pris: "Fra 1.500,-",
       },
       {
+        navn: "ZO Stimulation Peel",
+        desc: "Medisinsk peeling fra ZO Skin Health. Løser opp døde hudceller og setter fart på hudens egen fornying — for jevnere hudtone, finere struktur og mer glød.",
+        pris: "2.100,-",
+      },
+      {
+        navn: "Face Formula signaturbehandling",
+        desc: "Face Formulas egen ansiktsbehandling, satt sammen med merkets aktive produkter etter hva huden din trenger.",
+        pris: "1.900,-",
+      },
+      {
         navn: "Microneedling (Dermapen)",
         slug: "dermapen",
         desc: "Stimulerer hudens naturlige kollagenproduksjon. Effektivt mot arr, porer, rynker og ujevn hudtone. Kan kombineres med mesoterapi, eksosomer, peel og LED-lys.",
