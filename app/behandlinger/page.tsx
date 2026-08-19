@@ -91,11 +91,13 @@ const sections: Seksjon[] = [
       },
       {
         navn: "ZO Stimulation Peel",
+        slug: "zo-stimulation-peel",
         desc: "Medisinsk peeling fra ZO Skin Health. Løser opp døde hudceller og setter fart på hudens egen fornying — for jevnere hudtone, finere struktur og mer glød.",
         pris: "2.100,-",
       },
       {
         navn: "Face Formula signaturbehandling",
+        slug: "face-formula-signaturbehandling",
         desc: "Face Formulas egen ansiktsbehandling, satt sammen med merkets aktive produkter etter hva huden din trenger.",
         pris: "1.900,-",
       },
