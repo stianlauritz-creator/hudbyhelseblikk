@@ -5,7 +5,7 @@ import { Sparkles, BellRing, Tag } from "lucide-react";
 const fordeler = [
   {
     icon: Tag,
-    tittel: "10 % på første kjøp",
+    tittel: "15 % på første kjøp",
     tekst:
       "Du får en personlig rabattkode med én gang du melder deg inn. Den gjelder produkter i nettbutikken.",
   },
@@ -39,7 +39,7 @@ export default function KundeklubbPage() {
               Kundeklubben
             </h1>
             <p className="text-[#1a1a1a]/65 leading-relaxed">
-              Bli medlem og få 10 % på ditt første produktkjøp — og beskjed
+              Bli medlem og få 15 % på ditt første produktkjøp — og beskjed
               først når det skjer noe hos oss.
             </p>
           </AnimatedSection>

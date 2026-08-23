@@ -228,7 +228,7 @@ export default function ProductView({
                   href="/kundeklubb"
                   className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors text-center"
                 >
-                  Åpner snart — få 10 %
+                  Åpner snart — få 15 %
                 </Link>
               )}
             </div>
@@ -254,7 +254,7 @@ export default function ProductView({
                 <>
                   <li className="flex items-center gap-2.5">
                     <Sparkles size={15} className="text-[#8f6b28] shrink-0" />
-                    Nettbutikken åpner snart — kundeklubben gir 10 % på første kjøp
+                    Nettbutikken åpner snart — kundeklubben gir 15 % på første kjøp
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Store size={15} className="text-[#8f6b28] shrink-0" />

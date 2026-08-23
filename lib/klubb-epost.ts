@@ -10,7 +10,7 @@ function tekstmal(kode: string, fornavn: string | undefined, avmeld: string | nu
   const hilsen = fornavn ? `Hei ${fornavn}!` : "Hei!";
   return `Velkommen i kundeklubben
 
-${hilsen} Så hyggelig at du ble medlem. Her er rabattkoden din på 10 % til ditt
+${hilsen} Så hyggelig at du ble medlem. Her er rabattkoden din på 15 % til ditt
 første produktkjøp:
 
     ${kode}
@@ -38,7 +38,7 @@ function mal(kode: string, fornavn: string | undefined, avmeld: string | null): 
 
     <h1 style="font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;margin:0 0 16px;">Velkommen i kundeklubben</h1>
 
-    <p style="font-size:16px;line-height:1.6;margin:0 0 24px;">${hilsen} Så hyggelig at du ble medlem. Her er rabattkoden din på 10 % til ditt første produktkjøp:</p>
+    <p style="font-size:16px;line-height:1.6;margin:0 0 24px;">${hilsen} Så hyggelig at du ble medlem. Her er rabattkoden din på 15 % til ditt første produktkjøp:</p>
 
     <div style="background:#fff;border:1px solid #e8d5b0;border-radius:4px;padding:20px;text-align:center;margin:0 0 24px;">
       <p style="font-size:24px;letter-spacing:2px;font-weight:600;margin:0;color:#1a1a1a;">${kode}</p>

@@ -6,7 +6,7 @@ import KundeklubbSkjema from "@/components/KundeklubbSkjema";
 /**
  * Vises på nettbutikken så lenge `BUTIKK_APEN` er false. Produktene er
  * fortsatt synlige nedenfor, men kjøp er av — så dette panelet er stedet
- * kunden faktisk kan gjøre noe: melde seg inn og få 10 % på første kjøp.
+ * kunden faktisk kan gjøre noe: melde seg inn og få 15 % på første kjøp.
  *
  * Bevisst lyst panel: `KundeklubbSkjema` har mørk tekst på samtykke-
  * avkryssingene, og blir uleselig på navy bakgrunn.
@@ -31,7 +31,7 @@ export default function ButikkAapnerSnart() {
               Du kan se hele utvalget vårt nedenfor, men vi har ikke åpnet for
               bestilling ennå. Meld deg inn i kundeklubben nå, så får du{" "}
               <strong className="font-medium text-[#8f6b28]">
-                10 % på ditt første kjøp
+                15 % på ditt første kjøp
               </strong>{" "}
               — og beskjed med én gang butikken åpner.
             </p>

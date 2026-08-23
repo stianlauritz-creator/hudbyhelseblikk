@@ -159,7 +159,7 @@ export default function KundeklubbPopup() {
               className="text-2xl leading-tight mb-2"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Få 10 % på ditt første kjøp
+              Få 15 % på ditt første kjøp
             </h2>
             <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mb-6">
               Bli medlem, så sender vi rabattkoden på e-post — og du hører fra

@@ -8,7 +8,7 @@ import {
 } from "@/lib/shopify-admin";
 import { sendVelkomstEpost } from "@/lib/klubb-epost";
 
-const RABATT_PROSENT = 0.1;
+const RABATT_PROSENT = 0.15;
 
 type KundeSvar = {
   customerCreate: {
@@ -198,7 +198,7 @@ export async function POST(req: Request) {
   try {
     const svar = await adminGraphql<RabattSvar>(OPPRETT_RABATT, {
       input: {
-        title: `Kundeklubb 10 % — ${epost}`,
+        title: `Kundeklubb 15 % — ${epost}`,
         code: kode,
         startsAt: naa,
         usageLimit: 1,

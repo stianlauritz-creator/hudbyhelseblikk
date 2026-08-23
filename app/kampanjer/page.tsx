@@ -60,7 +60,7 @@ export default function KampanjerPage() {
           </h2>
           <p className="mb-8 leading-relaxed text-[#1a1a1a]/65">
             Medlemmer i kundeklubben får beskjed før kampanjene legges ut her —
-            og 10 % på sitt første produktkjøp.
+            og 15 % på sitt første produktkjøp.
           </p>
           <Link
             href="/kundeklubb"
