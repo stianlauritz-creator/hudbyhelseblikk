@@ -66,6 +66,7 @@ interface ProductsQueryResult {
               id: string;
               sku: string;
               price: { amount: string };
+              compareAtPrice: { amount: string } | null;
               availableForSale: boolean;
             };
           }[];
@@ -84,7 +85,7 @@ const PRODUCTS_QUERY = `{
         description
         vendor
         featuredImage { url altText }
-        variants(first: 1) { edges { node { id sku price { amount } availableForSale } } }
+        variants(first: 1) { edges { node { id sku price { amount } compareAtPrice { amount } availableForSale } } }
       }
     }
   }
@@ -112,6 +113,15 @@ function mapNode(
     name,
     size: size || local?.size || "",
     price: Math.round(Number(variant.price.amount)),
+    // «Sammenlign med»-pris i Shopify = ordinærpris. Tas bare med når den
+    // faktisk er høyere enn salgsprisen; ellers er varen ikke nedsatt.
+    foerPris: (() => {
+      const foer = variant.compareAtPrice
+        ? Math.round(Number(variant.compareAtPrice.amount))
+        : local?.foerPris;
+      const naa = Math.round(Number(variant.price.amount));
+      return foer && foer > naa ? foer : undefined;
+    })(),
     desc: local?.desc ?? node.description.slice(0, 300),
     image: node.featuredImage?.url ?? local?.image ?? "/produkter/placeholder.jpg",
     // Retinol og nyanser er merking vi eier selv — Shopify har den ikke

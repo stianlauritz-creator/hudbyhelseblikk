@@ -8,6 +8,7 @@ import { ShoppingBag, Truck, Store, CreditCard, Sparkles, Info } from "lucide-re
 import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import KundeklubbPopup from "@/components/KundeklubbPopup";
+import Pris from "@/components/Pris";
 import ButikkAapnerSnart from "@/components/ButikkAapnerSnart";
 import Kampanjer from "@/components/Kampanjer";
 import { AKTIVE_KAMPANJER } from "@/lib/kampanjer";
@@ -79,9 +80,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             {product.desc}
           </p>
           <div className="mt-auto flex items-center justify-between gap-3">
-            <p className="text-sm font-medium text-[#1a1a1a]">
-              {formatPrice(product.price)}
-            </p>
+            <Pris produkt={product} />
             {product.utsolgt ? (
               <span className="text-[10px] uppercase tracking-[0.18em] text-[#1a1a1a]/45">
                 Utsolgt

@@ -10,6 +10,7 @@ export interface Product {
   price: number;     // NOK inkl. mva
   desc: string;
   image: string;
+  foerPris?: number;        // ordinærpris når varen er nedsatt — vises overstrøket
   retinol?: boolean;        // inneholder retinol — utløser veiledningsboks på produktsiden
   retinolStyrke?: string;   // konsentrasjon der produsenten oppgir den, f.eks. "0,5 %"
   farger?: string[];        // nyanser vi faktisk har inne, f.eks. ["Fair", "Light"]
@@ -81,6 +82,7 @@ export const PRODUCTS: Product[] = [
   { sku: "FF-016", brand: "face-formula", name: "Redness Control Serum", size: "30 ml", price: 1290, desc: "Beroligende serum som demper rødhet og irritasjon og jevner ut hudtonen.", image: "/produkter/FF-016.jpg" },
   { sku: "FF-017", brand: "face-formula", name: "Oil Control Serum", size: "30 ml", price: 599, desc: "Serum mot uren og fet hud. Forfiner teksturen og minimerer porene.", image: "/produkter/FF-017.jpg" },
   { sku: "FF-018", brand: "face-formula", name: "Acticlear Gel-Cream", size: "60 ml", price: 845, desc: "Avansert gelkrem som balanserer talg, roer inflammasjon og gir klarere hud.", image: "/produkter/FF-018.jpg" },
+  { sku: "FF-018E", brand: "face-formula", name: "Acticlear Gel-Cream (eldre emballasje)", size: "60 ml", price: 676, foerPris: 845, desc: "Nøyaktig samme gelkrem som Acticlear Gel-Cream — men i Elixir Cosmeceuticals' gamle tube. Vi har tre igjen på hylla, og selger dem med 20 % avslag.", image: "/produkter/FF-018E.jpg" },
   { sku: "FF-019", brand: "face-formula", name: "SOS Paste", size: "30 ml", price: 790, desc: "Punktbehandling (svovelpasta) som roer betennelse og reduserer utbrudd og rødhet.", image: "/produkter/FF-019.jpg" },
   { sku: "FF-020", brand: "face-formula", name: "Super Hydration Cream", size: "100 ml", price: 890, desc: "Rik fuktighetskrem som gir langvarig fukt og styrker hudbarrieren.", image: "/produkter/FF-020.jpg" },
   { sku: "FF-021", brand: "face-formula", name: "Balancing Hydration Cream", size: "60 ml", price: 699, desc: "Lett, raskt absorberende fuktighetskrem som regulerer talg. For fet og kombinert hud.", image: "/produkter/FF-021.jpg" },

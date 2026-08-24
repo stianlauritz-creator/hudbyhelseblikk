@@ -540,6 +540,35 @@ export const FF_DETAILS: ProductDetails[] = [
     related: ["FF-004", "FF-011", "FF-033"],
   },
   {
+    sku: "FF-018E",
+    intro:
+      "Dette er nøyaktig samme gelkrem som Acticlear Gel-Cream — azeloglycine som reduserer urenheter, balanserer talgproduksjonen og jevner ut hudtone og tekstur. Forskjellen er tuben: dette er restlageret i Elixir Cosmeceuticals' gamle emballasje, fra før merket skiftet navn til Face Formula. Innholdet, størrelsen og holdbarheten er den samme, og derfor får du den 20 % rimeligere. Vi har tre igjen.",
+    longDesc: [
+      "Azeloglycine (kalium-azeloyl-diglycinat) er et derivat av azelainsyre som kombinerer det beste fra to verdener: den motvirker urenheter og tilstoppede porer, samtidig som den demper rødhet og balanserer pigmentproduksjonen. Squalan og glyserin gir formelen en behagelig, fuktgivende gelkrem-tekstur.",
+      "Dette gjør Acticlear til et allsidig valg for fet og utbruddsutsatt hud, kombinert hud — og faktisk også moden hud med ru tekstur eller rosacea-tendens. Kan brukes som lett fuktighetskrem alene eller under annen krem.",
+    ],
+    benefits: [
+      "Reduserer utbrudd og tilstoppede porer",
+      "Balanserer talgproduksjonen",
+      "Demper rødhet og roer inflammasjon",
+      "Jevner ut hudtone og pigmentering",
+      "Mild eksfoliering for glattere hud",
+    ],
+    usage: [
+      "Påfør en liten mengde på ren hud, morgen og/eller kveld.",
+      "Fordel jevnt over ansikt og hals.",
+      "Kan brukes alene som lett fuktighetskrem eller under en rikere krem.",
+      "Avslutt med SPF på dagtid.",
+    ],
+    ingredients: [
+      { name: "Azeloglycine (kalium-azeloyl-diglycinat)", effect: "Motvirker urenheter, demper rødhet og jevner pigmentering" },
+      { name: "Squalan", effect: "Mykgjør og gir fukt uten å tette porene" },
+      { name: "Glyserin", effect: "Trekker fukt til huden og holder den smidig" },
+    ],
+    skinTypes: ["Fet hud", "Uren hud", "Rosacea-utsatt hud", "Kombinert hud"],
+    related: ["FF-018", "FF-004", "FF-011"],
+  },
+  {
     sku: "FF-019",
     intro:
       "SOS Paste er en målrettet punktbehandling med 10 % svovel som roer betennelse og reduserer utbrudd, rødhet og irritasjon. En liten tube som gjør stor forskjell når huden slår seg vrang.",

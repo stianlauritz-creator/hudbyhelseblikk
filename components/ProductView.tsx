@@ -20,6 +20,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { useCart } from "@/components/CartProvider";
 import RetinolVeiledning from "@/components/RetinolVeiledning";
 import { BRAND_INFO, formatPrice, type Product } from "@/lib/products";
+import Pris from "@/components/Pris";
 import type { ProductDetails } from "@/lib/product-details";
 import { BUTIKK_APEN } from "@/lib/site";
 
@@ -94,9 +95,9 @@ function RelatedCard({ product }: { product: Product }) {
         >
           {product.name}
         </h3>
-        <p className="text-sm font-medium text-[#1a1a1a] mt-2">
-          {formatPrice(product.price)}
-        </p>
+        <div className="mt-2">
+          <Pris produkt={product} />
+        </div>
       </div>
     </Link>
   );
@@ -208,9 +209,7 @@ export default function ProductView({
               ref={ctaRef}
               className="flex items-center justify-between gap-4 py-5 border-y border-[#e8d5b0]/40 mb-6"
             >
-              <p className="text-2xl font-medium text-[#1a1a1a]">
-                {formatPrice(product.price)}
-              </p>
+              <Pris produkt={product} storrelse="stor" />
               {product.utsolgt ? (
                 <span className="rounded-full border border-[#e8d5b0] px-7 py-3.5 text-sm tracking-wide text-[#1a1a1a]/55">
                   Midlertidig utsolgt
@@ -434,9 +433,7 @@ export default function ProductView({
                 >
                   {product.name}
                 </p>
-                <p className="text-xs text-[#1a1a1a]/65">
-                  {formatPrice(product.price)}
-                </p>
+                <Pris produkt={product} storrelse="liten" />
               </div>
               <button
                 onClick={() => cart.add(product.sku)}
