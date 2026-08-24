@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Gift, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { AKTIVE_KAMPANJER, type Kampanje } from "@/lib/kampanjer";
-import { PRODUCTS, formatPrice } from "@/lib/products";
+import { PRODUCTS, formatPrice, type Brand } from "@/lib/products";
 
 function butikkLenke(kampanje: Kampanje) {
   return kampanje.merkeFilter
@@ -52,16 +52,52 @@ function Vilkar({ vilkar }: { vilkar: string[] }) {
   );
 }
 
+function knappTekst(kampanje: Kampanje) {
+  return kampanje.merkeFilter
+    ? `Se ${kampanje.merke} i nettbutikken`
+    : "Se hele utvalget";
+}
+
+/**
+ * Hele kampanjekortet er klikkbart (`Klikkflate`), så dette er en ren
+ * visuell knapp — ikke en egen lenke. To lenker til samme sted i samme kort
+ * gir dobbel opplesing for skjermlesere og ekstra tab-stopp uten gevinst.
+ * Den lyser opp når musa er hvor som helst over kortet (`group-hover`).
+ */
 function Knapp({ kampanje }: { kampanje: Kampanje }) {
+  return (
+    <span className="inline-block self-start rounded-full border border-[#c9a96e] px-5 py-2.5 text-xs tracking-wide text-[#8f6b28] transition-colors group-hover:bg-[#8f6b28] group-hover:text-white">
+      {knappTekst(kampanje)}
+    </span>
+  );
+}
+
+/**
+ * Usynlig lenke som dekker hele kortet — det er denne som gjør hele kampanjen
+ * klikkbar. Ligger på z-10 over innholdet; kortene har ingen andre interaktive
+ * elementer, så den stjeler ingen klikk.
+ *
+ * `onVelgMerke` er til nettbutikken, som viser kampanjene på SIN EGEN side og
+ * lenker til seg selv med ?merke=. Det er en klientside-navigasjon til samme
+ * rute: Next bytter URL, men remounter ikke siden og re-rendrer den ikke, så
+ * en effekt som leser ?merke= ville aldri kjørt og klikket så dødt ut. Derfor
+ * setter vi filteret direkte via callbacken — lenken får fortsatt oppdatere
+ * URL-en, så adressen er delbar og «åpne i ny fane» virker.
+ */
+function Klikkflate({
+  kampanje,
+  onVelgMerke,
+}: {
+  kampanje: Kampanje;
+  onVelgMerke?: (merke: Brand | null) => void;
+}) {
   return (
     <Link
       href={butikkLenke(kampanje)}
-      className="inline-block self-start rounded-full border border-[#c9a96e] px-5 py-2.5 text-xs tracking-wide text-[#8f6b28] transition-colors hover:bg-[#8f6b28] hover:text-white"
-    >
-      {kampanje.merkeFilter
-        ? `Se ${kampanje.merke} i nettbutikken`
-        : "Se hele utvalget"}
-    </Link>
+      onClick={() => onVelgMerke?.(kampanje.merkeFilter ?? null)}
+      className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8f6b28]"
+      aria-label={`${kampanje.merke}: ${kampanje.tittel}. ${knappTekst(kampanje)}`}
+    />
   );
 }
 
@@ -71,12 +107,21 @@ function Knapp({ kampanje }: { kampanje: Kampanje }) {
  * ingress og vilkår under. På mobil beskjæres banneret mot produktsiden, der
  * det er noe å se; den innbrente teksten ville uansett vært uleselig.
  */
-function KampanjeRad({ kampanje, index }: { kampanje: Kampanje; index: number }) {
+function KampanjeRad({
+  kampanje,
+  index,
+  onVelgMerke,
+}: {
+  kampanje: Kampanje;
+  index: number;
+  onVelgMerke?: (merke: Brand | null) => void;
+}) {
   const gaveProdukt = PRODUCTS.find((p) => p.sku === kampanje.gave.sku);
 
   return (
     <AnimatedSection delay={index * 0.08}>
-      <article className="overflow-hidden rounded-2xl border border-[#e8d5b0]/50 bg-white">
+      <article className="group relative overflow-hidden rounded-2xl border border-[#e8d5b0]/50 bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#c9a96e]/60 hover:shadow-[0_20px_40px_-18px_rgba(30,45,61,0.18)]">
+        <Klikkflate kampanje={kampanje} onVelgMerke={onVelgMerke} />
         {/* Mobil beskjærer mot høyre kant: bannerne har teksten til venstre og
             produktet til høyre, og 3/2 treffer akkurat forbi siste tekstlinje
             i begge, så ingen halve ord blir stående. */}
@@ -152,12 +197,21 @@ function KampanjeRad({ kampanje, index }: { kampanje: Kampanje; index: number })
 }
 
 /** Kompakt kort til nettbutikken — banneret får ligge på /kampanjer. */
-function KampanjeKort({ kampanje, index }: { kampanje: Kampanje; index: number }) {
+function KampanjeKort({
+  kampanje,
+  index,
+  onVelgMerke,
+}: {
+  kampanje: Kampanje;
+  index: number;
+  onVelgMerke?: (merke: Brand | null) => void;
+}) {
   const gaveProdukt = PRODUCTS.find((p) => p.sku === kampanje.gave.sku);
 
   return (
     <AnimatedSection delay={index * 0.08}>
-      <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8d5b0]/50 bg-white">
+      <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8d5b0]/50 bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#c9a96e]/60 hover:shadow-[0_20px_40px_-18px_rgba(30,45,61,0.18)]">
+        <Klikkflate kampanje={kampanje} onVelgMerke={onVelgMerke} />
         <div className="flex items-start gap-4 border-b border-[#e8d5b0]/40 bg-[#faf9f7] p-5">
           {gaveProdukt && (
             <div className="relative h-20 w-20 shrink-0 rounded-xl bg-white">
@@ -215,9 +269,12 @@ function KampanjeKort({ kampanje, index }: { kampanje: Kampanje; index: number }
 export default function Kampanjer({
   variant = "kort",
   className = "",
+  onVelgMerke,
 }: {
   variant?: "banner" | "kort";
   className?: string;
+  /** Settes av nettbutikken, som lenker til seg selv — se Klikkflate. */
+  onVelgMerke?: (merke: Brand | null) => void;
 }) {
   if (AKTIVE_KAMPANJER.length === 0) return null;
 
@@ -225,7 +282,12 @@ export default function Kampanjer({
     return (
       <div className={`space-y-8 ${className}`.trim()}>
         {AKTIVE_KAMPANJER.map((k, i) => (
-          <KampanjeRad key={k.id} kampanje={k} index={i} />
+          <KampanjeRad
+            key={k.id}
+            kampanje={k}
+            index={i}
+            onVelgMerke={onVelgMerke}
+          />
         ))}
       </div>
     );
@@ -236,7 +298,12 @@ export default function Kampanjer({
       className={`grid gap-5 md:grid-cols-2 lg:grid-cols-3 ${className}`.trim()}
     >
       {AKTIVE_KAMPANJER.map((k, i) => (
-        <KampanjeKort key={k.id} kampanje={k} index={i} />
+        <KampanjeKort
+          key={k.id}
+          kampanje={k}
+          index={i}
+          onVelgMerke={onVelgMerke}
+        />
       ))}
     </div>
   );

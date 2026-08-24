@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -113,12 +113,25 @@ export default function NettbutikkPage() {
   const [filter, setFilter] = useState<Filter>("alle");
   const [antallVist, setAntallVist] = useState(SIDESTORRELSE);
 
-  // ?merke=zo|face-formula|colorescience fra f.eks. produktsidenes breadcrumb
+  // ?merke=zo|face-formula|colorescience ved innlasting — fra produktsidenes
+  // breadcrumb, fra /kampanjer og fra delte lenker. Begge de tilfellene
+  // monterer siden på nytt, så mount holder her.
   useEffect(() => {
     const merke = new URLSearchParams(window.location.search).get("merke");
     if (merke && filters.some((f) => f.id === merke)) {
       setFilter(merke as Filter);
     }
+  }, []);
+
+  // Kampanjekortene på DENNE siden lenker hit med ?merke=. Det er samme rute,
+  // så komponenten remountes ikke og effekten over kjører ikke — filteret må
+  // settes direkte. Vi ruller samtidig ned til rutenettet, ellers endrer
+  // produktene seg utenfor synsfeltet og klikket ser ut som ingenting.
+  const rutenettRef = useRef<HTMLElement | null>(null);
+  const velgMerkeFraKampanje = useCallback((merke: Brand | null) => {
+    setFilter(merke ?? "alle");
+    setAntallVist(SIDESTORRELSE);
+    rutenettRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   const visible = useMemo(
@@ -225,7 +238,7 @@ export default function NettbutikkPage() {
                 Kampanjer
               </h2>
             </AnimatedSection>
-            <Kampanjer />
+            <Kampanjer onVelgMerke={velgMerkeFraKampanje} />
             <AnimatedSection delay={0.3} className="mt-8 text-center">
               <Link
                 href="/kampanjer"
@@ -239,7 +252,7 @@ export default function NettbutikkPage() {
       )}
 
       {/* Filter + produkter */}
-      <section className="py-16 px-6">
+      <section ref={rutenettRef} className="scroll-mt-24 py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection className="flex flex-wrap justify-center gap-2 mb-6">
             {activeFilters.map((f) => (

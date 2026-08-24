@@ -198,7 +198,10 @@ export default function Home() {
 
       {/* Kampanjestripe — forsvinner når ingen kampanjer er aktive */}
       {AKTIVE_KAMPANJER.length > 0 && (
-        <div className="bg-[#3d4a3e] text-white">
+        <Link
+          href="/kampanjer"
+          className="group block bg-[#3d4a3e] text-white transition-colors hover:bg-[#36422f]"
+        >
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3 px-6 py-4 text-center sm:flex-row sm:text-left">
             <span className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#c9a96e]">
               <Sparkles size={13} className="shrink-0" />
@@ -206,15 +209,12 @@ export default function Home() {
             </span>
             <span className="text-sm text-white/80">
               {AKTIVE_KAMPANJER[0].tittel} —{" "}
-              <Link
-                href="/kampanjer"
-                className="underline underline-offset-4 hover:text-[#c9a96e]"
-              >
+              <span className="underline underline-offset-4 transition-colors group-hover:text-[#c9a96e]">
                 se alle kampanjene
-              </Link>
+              </span>
             </span>
           </div>
-        </div>
+        </Link>
       )}
 
       {/* Behandlingskategorier */}
