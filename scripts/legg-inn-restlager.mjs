@@ -9,7 +9,7 @@
 //
 // BILDET LASTES BEVISST IKKE OPP. mapNode i lib/shopify.ts faller tilbake på
 // `local?.image` når Shopify-produktet ikke har noe bilde, så varen bruker
-// public/produkter/FF-018E.jpg fra repoet. Legger du et bilde i Shopify,
+// public/produkter/FF-018E-elixir.jpg fra repoet. Legger du et bilde i Shopify,
 // overstyrer det repoets.
 //
 // Tørrkjøring (viser hva som ville blitt gjort):
