@@ -25,14 +25,14 @@ const API_VERSION = "2026-07";
 
 const VARE = {
   sku: "FF-018E",
-  tittel: "Acticlear Gel-Cream (eldre emballasje) — 60 ml",
+  tittel: "Acticlear Gel-Cream (utgående emballasje) — 60 ml",
   leverandor: "Face Formula", // MÅ være dette — VENDOR_TO_BRAND mapper det til face-formula
   pris: "676.00",
   foerPris: "845.00",
   antall: 3,
   beskrivelse:
-    "Samme gelkrem som Acticlear Gel-Cream, i Elixir Cosmeceuticals' gamle tube. " +
-    "Innhold, størrelse og holdbarhet er identisk — vi har tre igjen, og selger dem med 20 % avslag.",
+    "Utgående emballasje — nå 20 % avslag. Acticlear i den forrige tuben fra " +
+    "Elixir Cosmeceuticals, merket som i dag heter Face Formula. Vi har tre igjen.",
 };
 
 const env = (navn) => {

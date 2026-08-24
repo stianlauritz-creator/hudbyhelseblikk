@@ -542,7 +542,7 @@ export const FF_DETAILS: ProductDetails[] = [
   {
     sku: "FF-018E",
     intro:
-      "Dette er nøyaktig samme gelkrem som Acticlear Gel-Cream — azeloglycine som reduserer urenheter, balanserer talgproduksjonen og jevner ut hudtone og tekstur. Forskjellen er tuben: dette er restlageret i Elixir Cosmeceuticals' gamle emballasje, fra før merket skiftet navn til Face Formula. Innholdet, størrelsen og holdbarheten er den samme, og derfor får du den 20 % rimeligere. Vi har tre igjen.",
+      "Utgående emballasje — nå 20 % avslag. Dette er Acticlear i den forrige tuben fra Elixir Cosmeceuticals, merket som i dag heter Face Formula. Samme 60 ml gelkrem med azeloglycine, som reduserer urenheter, balanserer talgproduksjonen og jevner ut hudtone og tekstur. Vi har tre igjen på hylla, og prisen er satt ned fordi tuben er den gamle.",
     longDesc: [
       "Azeloglycine (kalium-azeloyl-diglycinat) er et derivat av azelainsyre som kombinerer det beste fra to verdener: den motvirker urenheter og tilstoppede porer, samtidig som den demper rødhet og balanserer pigmentproduksjonen. Squalan og glyserin gir formelen en behagelig, fuktgivende gelkrem-tekstur.",
       "Dette gjør Acticlear til et allsidig valg for fet og utbruddsutsatt hud, kombinert hud — og faktisk også moden hud med ru tekstur eller rosacea-tendens. Kan brukes som lett fuktighetskrem alene eller under annen krem.",
