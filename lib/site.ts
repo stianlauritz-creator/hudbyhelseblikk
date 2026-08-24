@@ -17,12 +17,12 @@ export const ORG = {
   address: "Odden 1D, 4876 Grimstad",
 };
 
-// Nettbutikken er midlertidig stengt for kjøp mens katalogen justeres
-// (besluttet 2026-08-17). Produktene vises fortsatt, men handlekurv,
-// «Legg i kurv» og kassen er av — kunden får tilbud om kundeklubben i stedet.
-// SLIK ÅPNER DU IGJEN: sett denne til true. Da kommer kurven, kjøpsknappene
-// og kassen tilbake av seg selv, og «Åpner snart»-panelet forsvinner.
-export const BUTIKK_APEN = false;
+// Nettbutikken er åpen for bestilling (lansert 2026-08-24). Handlekurv,
+// «Legg i kurv», kassen og fraktbanneret er på.
+// SLIK STENGER DU IGJEN: sett denne til false. Da forsvinner kurven og
+// kjøpsknappene, kassen svarer 503, og «Åpner snart»-panelet med
+// kundeklubb-innmelding kommer tilbake av seg selv.
+export const BUTIKK_APEN = true;
 
 // Timma-nettbooking. Bookingen er bakt inn på /bestill-time;
 // TIMMA_URL brukes som direkte-lenke/reserve hvis innbakingen feiler.
