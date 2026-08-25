@@ -85,7 +85,8 @@ export default async function BestillTimePage({
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#1e2d3d] pt-36 pb-40 px-6">
+      {/* .hero-mork lysner toppmenyen — se regelen i globals.css */}
+      <section className="hero-mork relative overflow-hidden bg-[#1e2d3d] pt-36 pb-40 px-6">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-[#c9a96e]/12 blur-3xl"

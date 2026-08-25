@@ -372,20 +372,29 @@ export default function BehandlingerPage() {
         </div>
       </section>
 
-      {/* Fra klinikken */}
-      <section className="px-6 -mb-4">
-        <AnimatedSection className="max-w-5xl mx-auto">
+      {/* Fra klinikken. Samme max-w som menyen og seksjonene under — med
+          max-w-5xl her stakk bildet 40 px inn fra resten av innholdet, og
+          toppen av siden fikk tre ulike venstrekanter. */}
+      <section className="-mb-4">
+        {/* px-6 må ligge inni max-w-containeren, slik som menyen og
+            innholdsblokken under. Utenpå ga den 24 px forskyvning. */}
+        <AnimatedSection className="max-w-6xl mx-auto px-6">
           <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
             <Image
               src="/behandling-banner.jpg"
               alt="Microneedling-behandling med Dermapen hos Hud by Helseblikk"
               fill
-              sizes="(max-width: 1024px) 100vw, 1024px"
+              sizes="(max-width: 1152px) 100vw, 1104px"
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1e2d3d]/30 to-transparent" />
-            <p className="absolute bottom-4 left-6 text-white/90 text-xs tracking-[0.2em] uppercase">
+            {/* Bildeteksten ligger øverst til høyre: nede til venstre havnet
+                den rett over menyraden og de to leste som én stabel. */}
+            {/* Toppen av dette fotoet er lys, så bildeteksten trenger et
+                skygge-sjikt: målt gir /85 over h-32 5,3:1 mot hvit tekst.
+                Byttes banneret ut, må verdien måles på nytt. */}
+            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#1e2d3d]/85 to-transparent" />
+            <p className="absolute top-4 right-6 text-white text-xs tracking-[0.2em] uppercase">
               Fra klinikken — microneedling med Dermapen
             </p>
           </div>

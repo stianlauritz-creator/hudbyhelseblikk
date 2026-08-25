@@ -2,9 +2,15 @@
 
 import { motion } from "framer-motion";
 
+// Rekkefølgen følger timeboken slik den faktisk ser ut: Timma legger
+// behandler-nedtrekket øverst, over tjenestelista. Sto det motsatt her,
+// motsa veiviseren skjermbildet rett under den.
 const STEG = [
+  {
+    tittel: "Velg behandler",
+    tekst: "Mabel eller Christina — eller la det stå på «alle behandlere»",
+  },
   { tittel: "Velg behandling", tekst: "Hele menyen med pris og varighet" },
-  { tittel: "Velg behandler", tekst: "Mabel, Christina — eller først ledige" },
   { tittel: "Velg tid", tekst: "Ledige timer i sanntid" },
   { tittel: "Bekreft", tekst: "Bekreftelse på e-post med én gang" },
 ];

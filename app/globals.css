@@ -31,3 +31,34 @@ body {
   background: var(--gold-light);
   color: var(--foreground);
 }
+
+/* Lys toppmeny over mørke hero-seksjoner (/gavekort, /bestill-time).
+ *
+ * Menyen er gjennomsiktig med mørk tekst til man scroller. Over en navy hero
+ * ga det 1,24:1 — logo og lenker var praktisk talt usynlige.
+ *
+ * Navbar kan ikke avgjøre dette selv: den har ingen pålitelig path under
+ * prerender (se kommentaren i Navbar.tsx), og et valg tatt etter mount ville
+ * gitt et glimt av sort tekst på navy før hydreringen rakk å rette det.
+ * Sidene merker derfor sin egen hero med .hero-mork, og `body:has()` løser
+ * det i ren CSS — riktig fra første maling, uten JS.
+ *
+ * Reglene gjelder bare mens baren er gjennomsiktig; ved scroll blir den hvit
+ * og [data-scrolled="true"] slår dem av. */
+body:has(.hero-mork) header[data-scrolled="false"] .nav-logo,
+body:has(.hero-mork) header[data-scrolled="false"] .nav-ikon {
+  color: #fff;
+}
+
+body:has(.hero-mork) header[data-scrolled="false"] .nav-lenke {
+  color: rgb(255 255 255 / 0.85);
+}
+
+body:has(.hero-mork) header[data-scrolled="false"] .nav-undertittel {
+  color: #e5c78f;
+}
+
+body:has(.hero-mork) header[data-scrolled="false"] .nav-lenke:hover,
+body:has(.hero-mork) header[data-scrolled="false"] .nav-ikon:hover {
+  color: #e5c78f;
+}

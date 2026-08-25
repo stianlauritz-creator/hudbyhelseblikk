@@ -208,13 +208,14 @@ export default function NettbutikkPage() {
       {/* Veilednings-banner */}
       <div className="bg-[#3d4a3e] text-white">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
-          <span className="text-xs tracking-[0.2em] uppercase text-[#8f6b28]">
+          {/* Mørk bakgrunn ⇒ den lyse gulltonen. #8f6b28 ga bare 1,9:1 her. */}
+          <span className="text-xs tracking-[0.2em] uppercase text-[#e5c78f]">
             Usikker på valget?
           </span>
           <span className="text-sm text-white/80">
             Vår kosmetiske sykepleier Christina hjelper deg gjerne med
             produktveiledning —{" "}
-            <Link href="/kontakt" className="underline hover:text-[#8f6b28]">
+            <Link href="/kontakt" className="underline hover:text-[#e5c78f]">
               ta kontakt
             </Link>{" "}
             eller spør ved neste besøk.

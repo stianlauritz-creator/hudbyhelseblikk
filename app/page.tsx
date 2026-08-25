@@ -203,13 +203,14 @@ export default function Home() {
           className="group block bg-[#3d4a3e] text-white transition-colors hover:bg-[#36422f]"
         >
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3 px-6 py-4 text-center sm:flex-row sm:text-left">
-            <span className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#c9a96e]">
+            {/* Mørk grønn bakgrunn ⇒ den lyse gulltonen; #c9a96e gir 4,2:1 her. */}
+            <span className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#e5c78f]">
               <Sparkles size={13} className="shrink-0" />
               Akkurat nå
             </span>
             <span className="text-sm text-white/80">
               {AKTIVE_KAMPANJER[0].tittel} —{" "}
-              <span className="underline underline-offset-4 transition-colors group-hover:text-[#c9a96e]">
+              <span className="underline underline-offset-4 transition-colors group-hover:text-[#e5c78f]">
                 se alle kampanjene
               </span>
             </span>

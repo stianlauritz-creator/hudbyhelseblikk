@@ -233,8 +233,9 @@ export default function PrislistePage() {
       {/* Studentrabatt-banner */}
       <div className="bg-[#3d4a3e] text-white">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
-          {/* Mørk bakgrunn ⇒ den lyse gulltonen. #8f6b28 gir bare 2,4:1 her. */}
-          <span className="text-xs tracking-[0.2em] uppercase text-[#c9a96e]">
+          {/* Mørk bakgrunn ⇒ den lyse gulltonen. #8f6b28 gir bare 2,4:1 her,
+              og #c9a96e 4,2:1 — under AA. #e5c78f gir 5,7:1. */}
+          <span className="text-xs tracking-[0.2em] uppercase text-[#e5c78f]">
             Studentrabatt
           </span>
           <span className="text-sm text-white/80">

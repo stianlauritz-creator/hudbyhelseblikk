@@ -28,7 +28,8 @@ const punkter = [
 export default function GavekortPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-[#1e2d3d] px-6 pt-36 pb-28">
+      {/* .hero-mork lysner toppmenyen — se regelen i globals.css */}
+      <section className="hero-mork relative overflow-hidden bg-[#1e2d3d] px-6 pt-36 pb-28">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-28 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-[#c9a96e]/12 blur-3xl"
