@@ -6,12 +6,15 @@ import Link from "next/link";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/components/CartProvider";
+import Logo from "@/components/Logo";
 import { BUTIKK_APEN } from "@/lib/site";
 import { BOOKING_URL } from "@/lib/site";
 
-// Toppmenyen på desktop. Målt i nettleseren: logoen (to linjer, 224 px) +
-// sju lenker + «Bestill time» fyller baren helt ut ved 1024 px. En åttende
-// lenke ga null klaring mot logoen, så «Plastikkirurgi» holdes utenfor her —
+// Toppmenyen på desktop. Målt i nettleseren: HUD-lockupen (192 px) +
+// sju lenker + «Bestill time» fyller baren helt ut ved 1024 px — klaringen
+// mellom logo og «Behandlinger» er 24,5 px der. En åttende lenke spiste opp
+// resten allerede med den gamle, smalere ordmerken, så «Plastikkirurgi»
+// holdes utenfor her —
 // den er godt lenket fra forsiden, Behandlinger, Behandlere, Prisliste,
 // Bestill time og footeren.
 const links = [
@@ -72,6 +75,13 @@ export default function Navbar() {
   // Forsiden har mørkt hero-bilde — lys tekst til man scroller
   const light = path === "/" && !scrolled && !open;
 
+  // Baren er ugjennomsiktig i to tilfeller: når man har scrollet, og når
+  // mobilmenyen står åpen. Det andre manglet: menypanelet under er hvitt,
+  // men selve baren ble stående gjennomsiktig, samtidig som `light` slås av
+  // fordi `open` er sann. Resultatet var nesten svart logo rett på hero-
+  // bildet — «Medisinsk hudpleie · Grimstad» forsvant helt.
+  const massiv = scrolled || open;
+
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handler);
@@ -82,13 +92,17 @@ export default function Navbar() {
     <header
       // Sider med mørk hero merker seg selv med .hero-mork, og globals.css
       // lysner menyen med `body:has(.hero-mork)`. Den regelen må vike så snart
-      // baren blir hvit ved scroll — derfor dette attributtet å henge den på.
-      // Server-rendret verdi er «false», som er startverdien, så ingen
-      // hydreringsforskjell.
-      data-scrolled={scrolled ? "true" : "false"}
+      // baren blir hvit — derfor dette attributtet å henge den på. Det følger
+      // `massiv`, ikke `scrolled`: med mobilmenyen åpen på /gavekort er baren
+      // hvit uten at man har scrollet, og lys tekst ville blitt hvit på hvitt.
+      // Server-rendret verdi er «false», som er startverdien for både
+      // `scrolled` og `open`, så ingen hydreringsforskjell.
+      data-massiv={massiv ? "true" : "false"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e8d5b0]/30"
+        massiv
+          ? // Kantlinjen bare ved scroll — er menyen åpen, har panelet under
+            // sin egen border-t, og de to ville lagt seg oppå hverandre.
+            `bg-white/95 backdrop-blur-md shadow-sm ${scrolled ? "border-b border-[#e8d5b0]/30" : ""}`
           : "bg-transparent"
       }`}
     >
@@ -99,17 +113,14 @@ export default function Navbar() {
       )}
 
       <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex flex-col leading-none group">
-          <span
-            className={`nav-logo text-xl tracking-wide transition-colors duration-500 ${light ? "text-white [text-shadow:0_1px_12px_rgba(30,45,61,0.65)]" : "text-[#1a1a1a]"}`}
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Hud by Helseblikk
-          </span>
-          <span className={`nav-undertittel text-[10px] tracking-[0.2em] uppercase font-light mt-0.5 transition-colors duration-500 ${light ? "text-[#e5c78f] [text-shadow:0_1px_10px_rgba(30,45,61,0.7)]" : "text-[#8f6b28]"}`}>
-            Medisinsk hudpleie · Grimstad
-          </span>
+        {/* Logo — HUD-lockupen fra brand paden. Størrelsen styres av
+            --hud-size i .hud-logo--meny (globals.css), ikke her. */}
+        <Link href="/" className="group" aria-label="Hud by Helseblikk — til forsiden">
+          <Logo
+            paaBilde={light}
+            className={`nav-logo hud-logo--meny transition-colors duration-500 ${light ? "text-white [text-shadow:0_1px_12px_rgba(30,45,61,0.65)]" : "text-[#1a1a1a]"}`}
+            taglineClassName={`nav-undertittel transition-colors duration-500 ${light ? "text-[#e5c78f] [text-shadow:0_1px_10px_rgba(30,45,61,0.7)]" : "text-[#8f6b28]"}`}
+          />
         </Link>
 
         {/* Desktop nav. Byttet fra md: til lg: — med åtte lenker (og allerede

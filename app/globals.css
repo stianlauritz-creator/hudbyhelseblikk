@@ -43,22 +43,131 @@ body {
  * Sidene merker derfor sin egen hero med .hero-mork, og `body:has()` løser
  * det i ren CSS — riktig fra første maling, uten JS.
  *
- * Reglene gjelder bare mens baren er gjennomsiktig; ved scroll blir den hvit
- * og [data-scrolled="true"] slår dem av. */
-body:has(.hero-mork) header[data-scrolled="false"] .nav-logo,
-body:has(.hero-mork) header[data-scrolled="false"] .nav-ikon {
+ * Reglene gjelder bare mens baren er gjennomsiktig. Blir den hvit — ved
+ * scroll eller med mobilmenyen åpen — slår [data-massiv="true"] dem av. */
+body:has(.hero-mork) header[data-massiv="false"] .nav-logo,
+body:has(.hero-mork) header[data-massiv="false"] .nav-ikon {
   color: #fff;
 }
 
-body:has(.hero-mork) header[data-scrolled="false"] .nav-lenke {
+body:has(.hero-mork) header[data-massiv="false"] .nav-lenke {
   color: rgb(255 255 255 / 0.85);
 }
 
-body:has(.hero-mork) header[data-scrolled="false"] .nav-undertittel {
+body:has(.hero-mork) header[data-massiv="false"] .nav-undertittel {
   color: #e5c78f;
 }
 
-body:has(.hero-mork) header[data-scrolled="false"] .nav-lenke:hover,
-body:has(.hero-mork) header[data-scrolled="false"] .nav-ikon:hover {
+body:has(.hero-mork) header[data-massiv="false"] .nav-lenke:hover,
+body:has(.hero-mork) header[data-massiv="false"] .nav-ikon:hover {
   color: #e5c78f;
+}
+
+/* ── HUD-logoen ───────────────────────────────────────────────────────────
+ *
+ * Lockupen fra brand paden (HUD 4a). Alt er avledet av `--hud-size`, som er
+ * fontstørrelsen på «HUD» — sett den der logoen brukes, så følger buen,
+ * «by Helseblikk» og taglinen etter i samme forhold som i brand paden.
+ *
+ * Forholdstallene er lest rett ut av paden: bue = 1,75 × «HUD»,
+ * «by Helseblikk» = 0,82 ×, mellomrom = 0,35 ×.
+ */
+.hud-logo {
+  --hud-size: 26px;
+  --hud-bue: #c9a99a; /* Rosé. Ligger tett på husets gull (#c9a96e) med vilje. */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(var(--hud-size) * 0.2);
+  line-height: 1;
+}
+
+/* Grunnlinje, ikke senter: «by Helseblikk» skal stå på samme linje som HUD.
+ * Buen henger under grunnlinjen og skal ikke dra «by Helseblikk» med seg. */
+.hud-logo-lockup {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--hud-size) * 0.35);
+}
+
+.hud-logo-hud {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hud-logo-ord {
+  font-family: var(--font-marcellus), Georgia, serif;
+  font-size: var(--hud-size);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  /* Sperringen legger luft etter D-en også. text-indent skyver ordet like
+   * mye til høyre, så «HUD» står optisk midt over buen. */
+  text-indent: 0.12em;
+  color: inherit;
+}
+
+.hud-logo-bue {
+  width: calc(var(--hud-size) * 1.75);
+  height: auto;
+  margin-top: calc(var(--hud-size) * 0.09);
+  fill: none;
+  stroke: var(--hud-bue);
+  /* non-scaling-stroke på path-en gjør at denne verdien er skjermpiksler,
+   * ikke viewBox-enheter. Gulvet på 1,25 px hindrer at buen blir en
+   * halvtransparent grå strek i menyen på 1x-skjermer. */
+  stroke-width: max(1.25px, calc(var(--hud-size) * 0.042));
+  stroke-linecap: round;
+  overflow: visible;
+}
+
+.hud-logo-by {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: calc(var(--hud-size) * 0.82);
+  line-height: 1;
+  white-space: nowrap;
+  color: inherit;
+}
+
+.hud-logo-tagline {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: calc(var(--hud-size) * 0.3);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+}
+
+/* text-shadow biter ikke på en SVG-strek — buen trenger drop-shadow for å
+ * overleve mot hero-bildet. */
+.hud-logo--skygge .hud-logo-bue {
+  filter: drop-shadow(0 1px 8px rgb(30 45 61 / 0.7));
+}
+
+/* Samme behov på sidene som merker seg med .hero-mork (se regelen over):
+ * der settes lys tekst i CSS, ikke i Navbar, så buen må følge etter her. */
+body:has(.hero-mork) header[data-massiv="false"] .hud-logo-bue {
+  filter: drop-shadow(0 1px 8px rgb(30 45 61 / 0.7));
+}
+
+/* Menyen. Målt i nettleseren: 26 px gir en lockup på 192 px. Sammen med
+ * px-6, handlekurv og hamburger er det 313 px — den får plass helt ned til
+ * 320 px bred skjerm, men uten klaring. Under 360 px skrus den derfor ned.
+ *
+ * Merk mot desktop: lockupen er 20 px bredere enn den gamle tolinjes
+ * ordmerken, og klaringen mot første menylenke ved 1024 px falt fra ~45 til
+ * 24,5 px. Det holder, men det er ikke plass til mer — verken en åttende
+ * lenke eller en større --hud-size. */
+.hud-logo--meny {
+  --hud-size: 26px;
+}
+
+@media (max-width: 359px) {
+  .hud-logo--meny {
+    --hud-size: 21px;
+  }
+}
+
+.hud-logo--bunn {
+  --hud-size: 34px;
 }

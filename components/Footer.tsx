@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
@@ -7,11 +8,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3
-              className="text-2xl text-white mb-3"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              Hud by Helseblikk
+            {/* Overskriften er lockupen selv — h3-en beholdes for strukturen,
+                Logo styrer typografien. */}
+            <h3 className="mb-5">
+              <Logo
+                className="hud-logo--bunn text-white"
+                taglineClassName="text-[#c9a96e]"
+              />
             </h3>
             <p className="text-sm leading-relaxed max-w-xs">
               Vi kombinerer medisinsk kompetanse med estetisk presisjon.
