@@ -11,12 +11,12 @@ import { BUTIKK_APEN } from "@/lib/site";
 import { BOOKING_URL } from "@/lib/site";
 
 // Toppmenyen på desktop. Målt i nettleseren: HUD-lockupen (192 px) +
-// sju lenker + «Bestill time» fyller baren helt ut ved 1024 px — klaringen
-// mellom logo og «Behandlinger» er 24,5 px der. En åttende lenke spiste opp
-// resten allerede med den gamle, smalere ordmerken, så «Plastikkirurgi»
-// holdes utenfor her —
-// den er godt lenket fra forsiden, Behandlinger, Behandlere, Prisliste,
-// Bestill time og footeren.
+// sju lenker + «Bestill time» fyller baren nesten ut ved 1024 px — klaringen
+// mellom logo og «Behandlinger» er 39,4 px der. En åttende lenke spiste opp
+// resten allerede med den gamle, smalere ordmerken, og de 15 pikslene
+// bildelockupen frigjorde endrer ikke det: «Plastikkirurgi» holdes fortsatt
+// utenfor her — den er godt lenket fra forsiden, Behandlinger, Behandlere,
+// Prisliste, Bestill time og footeren.
 const links = [
   { href: "/behandlinger", label: "Behandlinger" },
   { href: "/nettbutikk", label: "Nettbutikk" },
@@ -113,12 +113,15 @@ export default function Navbar() {
       )}
 
       <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo — HUD-lockupen fra brand paden. Størrelsen styres av
-            --hud-size i .hud-logo--meny (globals.css), ikke her. */}
-        <Link href="/" className="group" aria-label="Hud by Helseblikk — til forsiden">
+        {/* Logo — HUD-lockupen. Størrelsen styres av --hud-size i
+            .hud-logo--meny (globals.css), ikke her. Ordmerket er en fil, så
+            fargen settes med `lys` (variantbytte), ikke med text-*. */}
+        <Link href="/" className="group shrink-0" aria-label="Hud by Helseblikk — til forsiden">
           <Logo
+            lys={light}
             paaBilde={light}
-            className={`nav-logo hud-logo--meny transition-colors duration-500 ${light ? "text-white [text-shadow:0_1px_12px_rgba(30,45,61,0.65)]" : "text-[#1a1a1a]"}`}
+            preload
+            className="nav-logo hud-logo--meny"
             taglineClassName={`nav-undertittel transition-colors duration-500 ${light ? "text-[#e5c78f] [text-shadow:0_1px_10px_rgba(30,45,61,0.7)]" : "text-[#8f6b28]"}`}
           />
         </Link>

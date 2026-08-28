@@ -1,0 +1,17 @@
+HUD by Helseblikk — logopakke (gull-palett)
+============================================
+Alle PNG-filer har gjennomsiktig bakgrunn, i høy oppløsning.
+
+hud-logo-horisontal-gull.png    Primærlogo, én linje — lys bakgrunn (mørk gull #8f6b28)
+hud-logo-horisontal-hvit.png    Primærlogo, én linje — mørk bakgrunn
+hud-logo-stablet-gull.png       Stablet — trykk, emballasje, kvadratiske flater
+hud-logo-stablet-hvit.png       Stablet — mørk bakgrunn
+hud-ikon-h-gull.png             H-en alene — ikon, vannmerke
+hud-ikon-h-hvit.png             H-en alene — mørk bakgrunn
+hud-profilbilde-rund.png        Rund profil — Instagram/Facebook (mosegrønn)
+hud-bue-favicon.png             Buen alene — favicon, detalj
+hud-bue.svg                     Buen som vektor (skalerbar)
+
+Farger: Gull #c9a96e · Gull tekst #8f6b28 · Mosegrønn #3d4a3e · Navy #1e2d3d · Nude #ecddd0 · Off-white #faf9f7
+Fonter (Google Fonts): Julius Sans One (HUD) · Cormorant Garamond (by Helseblikk) · Jost (brødtekst)
+Merk: H-en er spesialtegnet med buet tverrstrek — bruk alltid filene, aldri fontens egen H.

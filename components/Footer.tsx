@@ -11,8 +11,10 @@ export default function Footer() {
             {/* Overskriften er lockupen selv — h3-en beholdes for strukturen,
                 Logo styrer typografien. */}
             <h3 className="mb-5">
+              {/* Footeren står på navy — alltid den hvite varianten. */}
               <Logo
-                className="hud-logo--bunn text-white"
+                lys
+                className="hud-logo--bunn"
                 taglineClassName="text-[#c9a96e]"
               />
             </h3>
@@ -52,6 +54,7 @@ export default function Footer() {
                 ["Kontakt", "/kontakt"],
                 ["Kjøpsvilkår", "/kjopsvilkar"],
                 ["Personvern", "/personvern"],
+                ["Presse og merkevare", "/presse"],
               ].map(([label, href]) => (
                 <li key={href}>
                   <Link

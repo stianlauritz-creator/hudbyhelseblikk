@@ -28,6 +28,9 @@ const STATIC_ROUTES: {
   { path: "/kontakt", priority: 0.7, changeFrequency: "yearly" },
   { path: "/kjopsvilkar", priority: 0.3, changeFrequency: "yearly" },
   { path: "/personvern", priority: 0.3, changeFrequency: "yearly" },
+  // Merkevaresiden er for samarbeidspartnere, trykkeri og presse — den skal
+  // være til å finne, men ikke konkurrere med behandlingssidene i søk.
+  { path: "/presse", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

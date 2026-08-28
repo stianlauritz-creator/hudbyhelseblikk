@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, Marcellus, Cormorant_Garamond } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
 import Navbar from "@/components/Navbar";
@@ -19,23 +19,6 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
-
-// Logofontene. Marcellus og Cormorant Garamond brukes KUN i HUD-lockupen
-// (components/Logo.tsx) — resten av siden er fortsatt Playfair + DM Sans.
-// Én vekt hver, så det koster to små filer.
-const marcellus = Marcellus({
-  variable: "--font-marcellus",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400"],
   display: "swap",
 });
 
@@ -96,7 +79,7 @@ export default async function RootLayout({
   return (
     <html
       lang="nb"
-      className={`${playfair.variable} ${dmSans.variable} ${marcellus.variable} ${cormorant.variable}`}
+      className={`${playfair.variable} ${dmSans.variable}`}
     >
       <head>
         <script

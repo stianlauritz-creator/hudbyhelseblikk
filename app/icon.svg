@@ -1,16 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Hud by Helseblikk">
-  <!-- Buen fra HUD-logoen, alene. Brand paden (HUD 4a) foreskriver akkurat
-       dette for favicon: «HUD» er tre bokstaver over 12 piksler i fanen og
-       blir grøt, buen tåler nedskalering.
-
-       Buen er bevisst dypere her enn i lockupen (fall 6 av 36 i bredden,
-       mot ~1 av 14 i logoen) — den slake logobuen blir en rett strek på
-       16 px. Samme forhold som favicon-ruten i brand paden.
-
-       Strektykkelse 5,5 gir 1,4 px i fanen — nok til at buen holder seg
-       på 1x-skjerm, uten at den blir den tunge «bollen» 7 ga på 128 px.
-       Bakgrunnen er husets navy, ikke burgunder som i paden, så fanen
-       matcher nettsiden. -->
-  <rect width="64" height="64" rx="14" fill="#1e2d3d"/>
-  <path d="M13 29 Q32 41 51 29" fill="none" stroke="#c9a99a" stroke-width="5.5" stroke-linecap="round"/>
+  <!-- Buen fra logoen — tverrstreken i den spesialtegnede H-en — på nude
+       flis, slik brand pad-en viser faviconen. Buen er tegnet inn i denne
+       viewBoxen i stedet for å skalere merkevare/hud-bue.svg ned: den
+       originalen har stroke-width 7 på 78 enheter bredde, som blir under én
+       piksel i fanen. Her er streken 6 enheter på 64, altså ~1,5 px på 16 px.
+       Endrer du noe: hold stroke-width på minst 5. Under det brekker buen opp.
+       Formen følger originalen — nedbøyningen er 20 % av spennet. -->
+  <rect width="64" height="64" rx="12" fill="#ECDDD0"/>
+  <path d="M14 28 Q32 42.5 50 28" fill="none" stroke="#8F6B28" stroke-width="6" stroke-linecap="round"/>
 </svg>
