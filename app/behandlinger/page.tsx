@@ -57,7 +57,7 @@ const sections: Seksjon[] = [
         // — da settes `pris` til "1.190,-". Se lib/kampanjer.ts.
         navn: "Koreansk vippeløft",
         slug: "koreansk-vippeloft",
-        desc: "Løfter dine egne vipper fra roten for et våkent, definert blikk i 4–6 uker.",
+        desc: "Løfter dine egne vipper fra roten for et våkent, definert blikk i 4–6 uker. Farging av vippene er inkludert.",
         pris: "790,-",
         forPris: "1.190,-",
         merkelapp: "Nyhet · Kampanje ut september",

@@ -51,7 +51,7 @@ export const KAMPANJER: Kampanje[] = [
     merke: "Nyhet i klinikken",
     tittel: "Koreansk vippeløft til 790,-",
     ingress:
-      "Vi har fått en ny behandling: koreansk vippeløft, som løfter dine egne vipper fra roten og gir et våkent blikk i 4–6 uker. Ut september koster den 790,- i stedet for 1.190,-.",
+      "Vi har fått en ny behandling: koreansk vippeløft, som løfter dine egne vipper fra roten og gir et våkent blikk i 4–6 uker. Farging av vippene er inkludert. Ut september koster den 790,- i stedet for 1.190,-.",
     tilbud: {
       navn: "Koreansk vippeløft",
       pris: 790,
@@ -62,7 +62,8 @@ export const KAMPANJER: Kampanje[] = [
     vilkar: [
       "Timen må både bookes og gjennomføres i september",
       "Rabatten trekkes fra når du betaler i klinikken",
-      "Gjelder hos både Christina og Mabel",
+      "Farging av vippene er inkludert i prisen",
+      "Utføres av Christina",
     ],
     merkelapp: "Ut september",
     aktiv: true,

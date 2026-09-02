@@ -126,7 +126,7 @@ export default async function BehandlingPage({
               </p>
             )}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <BookingButton label="Bestill time" />
+              <BookingButton label="Bestill time" href={b.bookingHref} />
               <span>
                 {b.kampanje && (
                   <>
@@ -413,7 +413,7 @@ export default async function BehandlingPage({
             uforpliktende hudkonsultasjon — så finner vi ut hva som passer best
             for deg.
           </p>
-          <BookingButton label="Bestill time" />
+          <BookingButton label="Bestill time" href={b.bookingHref} />
         </AnimatedSection>
       </section>
     </>

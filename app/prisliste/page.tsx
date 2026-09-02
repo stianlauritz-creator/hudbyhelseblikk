@@ -47,7 +47,7 @@ const priskategorier: Priskategori[] = [
         pris: "790,-",
         forPris: "1.190,-",
         merkelapp: "Nyhet · Kampanje ut september",
-        note: "Introduksjonspris ut september. Timen må både bookes og gjennomføres i september. Varighet 4–6 uker",
+        note: "Farging av vippene inkludert. Introduksjonspris ut september — timen må både bookes og gjennomføres i september. Varighet 4–6 uker",
       },
       { navn: "Farging/forming vipper og bryn inkl. voks", pris: "690,-" },
       { navn: "Brynslaminering inkl. farge, forming og voks", pris: "890,-", note: "Varighet 4–8 uker" },

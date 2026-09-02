@@ -24,6 +24,12 @@ export interface BehandlingDetalj {
    * kampanjen er over — se lib/kampanjer.ts.
    */
   kampanje?: { merkelapp: string; forPris: string; vilkar: string };
+  /**
+   * Forhåndsvelger behandler i timeboken når bare én utfører behandlingen,
+   * f.eks. "/bestill-time?behandler=christina". Standard er timeboken med
+   * alle behandlere.
+   */
+  bookingHref?: string;
   /** Prisdetaljer når behandlingen har flere varianter/områder */
   prisliste?: { navn: string; pris: string }[];
   varighet: string;
@@ -118,7 +124,7 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
     kortNavn: "Vippeløft",
     kategori: "vipper-bryn",
     kategoriNavn: "Vipper & Bryn",
-    kort: "Koreansk vippeløft i Grimstad — vippene løftes fra roten for et våkent, definert blikk i 4–6 uker. Introduksjonspris 790,- i september.",
+    kort: "Koreansk vippeløft i Grimstad — vippene løftes fra roten for et våkent blikk i 4–6 uker. Farge inkludert. Introduksjonspris 790,- i september.",
     pris: "790,-",
     kampanje: {
       merkelapp: "Nyhet · Kampanje ut september",
@@ -128,11 +134,13 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
     },
     varighet: "Ca. 75 minutter",
     holdbarhet: "4–6 uker",
+    // Kun Christina utfører koreansk vippeløft — send bookingen rett til henne.
+    bookingHref: "/bestill-time?behandler=christina",
     hvaEr: [
       "Et vippeløft bøyer dine egne vipper oppover fra roten, slik at de peker ut og opp i stedet for rett fram eller nedover. Blikket åpner seg og øyet ser større ut — uten at det legges til et eneste hår.",
-      "Den koreanske teknikken skiller seg fra et klassisk vippeløft ved at vippene festes enkeltvis på en silikonform og løftes helt fra rotpartiet. Kurven blir jevnere og mykere, og resultatet ser mindre «permanentet» ut enn den skarpe knekken et tradisjonelt vippeløft kan gi.",
+      "Den koreanske teknikken skiller seg fra et klassisk vippeløft ved at vippene festes enkeltvis på en silikonform og løftes helt fra rotpartiet. Det gir god kontroll på kurven: vil du ha et lett, naturlig løft, får du det — vil du ha en tydeligere knekk med mer dramatikk, får du det også. Vi blir enige om uttrykket før vi setter i gang.",
       "Fordi hvert hår festes for seg, får teknikken godt tak også i korte vipper — der et klassisk løft ofte kommer til kort. Du trenger altså ikke lange vipper for å få effekt. Behandlingen er skånsom, men det er fortsatt en kjemisk prosess, så vi anbefaler pauser mellom hver gang.",
-      "Vi kan farge vippene i samme seanse. Det er som regel verdt det: løftet gjør vippene synlige, og fargen gjør dem mørke, så du slipper maskara helt.",
+      "Farging av vippene er inkludert i prisen, og gjøres i samme time. Løftet gjør vippene synlige, fargen gjør dem mørke — til sammen er det derfor de fleste kan legge bort maskaraen helt.",
       "Introduksjonstilbud: behandlingen koster 790,- i september 2026, mot ordinært 1.190,-. Tilbudet gjelder timer som både bookes og gjennomføres i september, og rabatten trekkes fra når du betaler i klinikken.",
     ],
     passerFor: [
@@ -151,7 +159,7 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
     ],
     forlop: [
       { tittel: "Før", tekst: "Kom usminket i øyeområdet og ta ut linser før du kommer. Har du vippeextensions, må de fjernes i forkant. Vi går gjennom hva du ønsker, og ved kjent allergi tar vi en lappetest først." },
-      { tittel: "Under", tekst: "Du ligger med lukkede øyne hele tiden. Vippene legges på en silikonform tilpasset lengden din, og festes hår for hår. Deretter virker løftemiddelet, før vippene fikseres og næres. Ønsker du farge, legges den til slutt." },
+      { tittel: "Under", tekst: "Du ligger med lukkede øyne hele tiden. Vippene legges på en silikonform tilpasset lengden din, og festes hår for hår. Deretter virker løftemiddelet, før vippene fikseres og næres. Til slutt farges vippene — det er inkludert i prisen." },
       { tittel: "Etter", tekst: "Hold vippene tørre i 24 timer — ingen vann, damp, badstue, trening eller sminke i øyeområdet. Etterpå lever du som vanlig. Ikke bruk maskara det første døgnet, og unngå å sove med ansiktet ned i puten de første nettene. Vippetangen kan du legge bort helt — den vil bare knekke løftet." },
     ],
     resultat: "Løftede, oppadvendte vipper som åpner blikket i 4–6 uker. Effekten avtar gradvis etter hvert som vippene byttes ut naturlig — du får ingen brå overgang.",
@@ -159,12 +167,12 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
       { q: "Hva er forskjellen på koreansk vippeløft og vippeextensions?", a: "Et vippeløft former dine egne vipper. Extensions limer på nye hår. Løftet gir et mer naturlig uttrykk, krever ikke påfyll hver tredje uke, og sliter mindre på egne vipper — men det gjør ikke vippene lengre eller tettere. Vil du ha vesentlig mer volum, er extensions riktig valg." },
       { q: "Funker det på korte vipper?", a: "Ja. Den koreanske teknikken fester vippene hår for hår, og løfter fra rotpartiet — derfor får den godt tak også på korte vipper. Er du usikker på om du har nok å jobbe med, si fra når du booker, så ser vi på det i starten av timen." },
       { q: "Hvor lenge varer et vippeløft?", a: "4–6 uker for de fleste. Vippene har en naturlig vekstsyklus, og løftet forsvinner med hårene etter hvert som de skiftes ut. Har du rask vippevekst, varer det litt kortere." },
-      { q: "Skader det vippene mine?", a: "Gjort riktig og med pause mellom hver gang tåler vippene det godt. Men det er en kjemisk behandling, og tar du det for tett kan vippene bli tørre og sprø. Vi anbefaler minst 6–8 uker mellom hver behandling, og at du bruker en vippeserum eller -olje i mellomtiden." },
+      { q: "Skader det vippene mine?", a: "Gjort riktig og med pause mellom hver gang tåler vippene det godt. Men det er en kjemisk behandling, og tar du det for tett kan vippene bli tørre og sprø. Vi anbefaler minst 6–8 uker mellom hver behandling, og at du bruker et vippeserum eller en vippeolje i mellomtiden." },
       { q: "Gjør det vondt?", a: "Nei. Du ligger med lukkede øyne, og de fleste synes det er behagelig — noen sovner. Kjenner du svie underveis, sier du fra, så skyller vi umiddelbart." },
-      { q: "Kan jeg bruke maskara etterpå?", a: "Ja, etter det første døgnet. Men mange dropper den — kombinerer du løftet med vippefarge, er vippene både løftede og mørke, og da trenger du sjelden mer." },
+      { q: "Kan jeg bruke maskara etterpå?", a: "Ja, etter det første døgnet. Men mange dropper den — farge er inkludert i behandlingen, så vippene er både løftede og mørke når du går herfra." },
       { q: "Hvor mye koster det?", a: "Ordinær pris er 1.190,-. I september 2026 koster behandlingen 790,- som introduksjonstilbud, for timer som både bookes og gjennomføres i september." },
-      { q: "Hvor lang tid tar timen?", a: "Sett av rundt 75 minutter. Vil du ha farge i tillegg, gjøres det innenfor samme time." },
-      { q: "Hvem utfører behandlingen?", a: "Både Christina og Mabel utfører koreansk vippeløft hos oss i Grimstad. Du velger selv behandler når du booker." },
+      { q: "Hvor lang tid tar timen?", a: "Sett av rundt 75 minutter. Farging av vippene er inkludert og gjøres innenfor samme time." },
+      { q: "Hvem utfører behandlingen?", a: "Christina utfører koreansk vippeløft hos oss i Grimstad. Booker du herfra, kommer du rett til hennes timebok." },
     ],
     relaterte: ["farging-vipper", "brynslaminering", "farging-forming-vipper-bryn"],
   },
