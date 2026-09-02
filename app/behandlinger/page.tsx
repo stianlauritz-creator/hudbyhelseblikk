@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { motion } from "framer-motion";
@@ -12,6 +12,10 @@ interface Behandling {
   desc: string;
   pris: string;
   slug?: string;
+  /** Ordinær pris når `pris` er en kampanjepris — vises overstrøket */
+  forPris?: string;
+  /** Kort merkelapp over navnet, f.eks. «Nyhet · Kampanje ut september» */
+  merkelapp?: string;
 }
 
 interface Seksjon {
@@ -46,8 +50,18 @@ const sections: Seksjon[] = [
     id: "vipper-bryn",
     title: "Vipper & Bryn",
     intro:
-      "Fra enkel farging til avansert laminering — vi former og definerer blikket ditt.",
+      "Fra enkel farging til vippeløft og brynslaminering — vi former og definerer blikket ditt.",
     behandlinger: [
+      {
+        // Kampanjefeltene fjernes når introduksjonstilbudet går ut 30.09.2026
+        // — da settes `pris` til "1.190,-". Se lib/kampanjer.ts.
+        navn: "Koreansk vippeløft",
+        slug: "koreansk-vippeloft",
+        desc: "Løfter dine egne vipper fra roten for et våkent, definert blikk i 4–6 uker.",
+        pris: "790,-",
+        forPris: "1.190,-",
+        merkelapp: "Nyhet · Kampanje ut september",
+      },
       {
         navn: "Farging/forming vipper og bryn inkl. voks",
         slug: "farging-forming-vipper-bryn",
@@ -290,6 +304,12 @@ function BehandlingKort({
             transition={{ duration: 0.25 }}
             className="h-full p-7 rounded-2xl bg-white border border-[#e8d5b0]/30 hover:border-[#c9a96e]/30 transition-colors"
           >
+            {b.merkelapp && (
+              <p className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-[#3d4a3e] px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-white">
+                <Sparkles size={11} className="shrink-0" />
+                {b.merkelapp}
+              </p>
+            )}
             <div className="flex justify-between items-start gap-4">
               <h3
                 className="font-normal text-lg leading-snug"
@@ -297,8 +317,25 @@ function BehandlingKort({
               >
                 {b.navn}
               </h3>
-              <span className="text-[#8f6b28] font-medium text-sm whitespace-nowrap">
-                {b.pris}
+              <span className="whitespace-nowrap text-sm">
+                {b.forPris && (
+                  <>
+                    {/* Overstrøket førpris er visuell kontekst; skjermlesere
+                        får den som hel setning under i stedet. */}
+                    <span aria-hidden className="mr-1.5 text-[#1a1a1a]/45 line-through">
+                      {b.forPris}
+                    </span>
+                    <span className="sr-only">
+                      Kampanjepris {b.pris}, ordinær pris {b.forPris}.
+                    </span>
+                  </>
+                )}
+                <span
+                  aria-hidden={b.forPris ? true : undefined}
+                  className="font-medium text-[#8f6b28]"
+                >
+                  {b.pris}
+                </span>
               </span>
             </div>
             <p className="text-sm text-[#1a1a1a]/65 leading-relaxed mt-3">

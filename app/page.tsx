@@ -20,7 +20,7 @@ const behandlingsKategorier = [
   {
     icon: Eye,
     title: "Vipper & Bryn",
-    desc: "Farging, forming og brynslaminering for perfekte bryn",
+    desc: "Koreansk vippeløft, farging, forming og brynslaminering",
     href: "/behandlinger#vipper-bryn",
   },
   {

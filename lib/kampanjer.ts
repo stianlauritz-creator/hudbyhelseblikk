@@ -15,8 +15,21 @@ export interface Kampanje {
   merkeFilter?: Brand;
   tittel: string;
   ingress: string;
-  /** Produktet kunden får med — bildet hentes fra SKU-en */
-  gave: { navn: string; verdi: number; sku: string };
+  /**
+   * Produktet kunden får med — bildet hentes fra SKU-en. Utelates for
+   * kampanjer som ikke gir en gave, f.eks. tilbudspris på en behandling.
+   */
+  gave?: { navn: string; verdi: number; sku: string };
+  /**
+   * Tilbudspris på en behandling. Settes i stedet for `gave`, og gjør
+   * kampanjen til en behandlingskampanje: den vises på forsiden og
+   * /kampanjer, men ikke i nettbutikken (der hører den ikke hjemme).
+   */
+  tilbud?: { navn: string; pris: number; forPris: number };
+  /** Hvor knappen sender kunden. Standard er nettbutikken. */
+  lenke?: string;
+  /** Teksten på knappen. Standard er «Se … i nettbutikken». */
+  knapp?: string;
   /**
    * Merkets eget kampanjebanner. Teksten er brent inn i bildet, så den er
    * pynt — all informasjon står også i tittel/ingress/vilkår, og bannerne
@@ -30,6 +43,30 @@ export interface Kampanje {
 }
 
 export const KAMPANJER: Kampanje[] = [
+  {
+    // Introduksjonstilbud ut september 2026. SLIK AVSLUTTER DU DEN:
+    // sett `aktiv: false` her, og rett prisen i lib/behandling-detaljer.ts,
+    // app/behandlinger/page.tsx og app/prisliste/page.tsx tilbake til 1.190,-.
+    id: "koreansk-vippeloft-lansering",
+    merke: "Nyhet i klinikken",
+    tittel: "Koreansk vippeløft til 790,-",
+    ingress:
+      "Vi har fått en ny behandling: koreansk vippeløft, som løfter dine egne vipper fra roten og gir et våkent blikk i 4–6 uker. Ut september koster den 790,- i stedet for 1.190,-.",
+    tilbud: {
+      navn: "Koreansk vippeløft",
+      pris: 790,
+      forPris: 1190,
+    },
+    lenke: "/behandlinger/koreansk-vippeloft",
+    knapp: "Les mer og bestill time",
+    vilkar: [
+      "Timen må både bookes og gjennomføres i september",
+      "Rabatten trekkes fra når du betaler i klinikken",
+      "Gjelder hos både Christina og Mabel",
+    ],
+    merkelapp: "Ut september",
+    aktiv: true,
+  },
   {
     id: "lansering-nettbutikk",
     merke: "Nettbutikken",
@@ -102,3 +139,10 @@ export const KAMPANJER: Kampanje[] = [
 ];
 
 export const AKTIVE_KAMPANJER = KAMPANJER.filter((k) => k.aktiv);
+
+/**
+ * Kampanjene som hører hjemme i nettbutikken — altså de som faktisk gjelder
+ * produkter. Behandlingskampanjer (`tilbud`) filtreres bort, så nettbutikken
+ * ikke reklamerer for noe kunden ikke kan legge i kurven.
+ */
+export const AKTIVE_BUTIKKAMPANJER = AKTIVE_KAMPANJER.filter((k) => k.gave);

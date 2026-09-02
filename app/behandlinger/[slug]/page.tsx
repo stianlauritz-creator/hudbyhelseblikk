@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, Clock, Minus, Repeat, Timer } from "lucide-react";
+import { ArrowRight, Check, Clock, Minus, Repeat, Sparkles, Timer } from "lucide-react";
 import { BEHANDLINGER, getBehandling } from "@/lib/behandling-detaljer";
 import { SITE_URL } from "@/lib/site";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -119,10 +119,40 @@ export default async function BehandlingPage({
             <p className="text-[#1a1a1a]/65 leading-relaxed text-lg max-w-xl mx-auto mb-7">
               {b.kort}
             </p>
+            {b.kampanje && (
+              <p className="mb-6 inline-flex items-center gap-1.5 rounded-full bg-[#3d4a3e] px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-white">
+                <Sparkles size={12} className="shrink-0" />
+                {b.kampanje.merkelapp}
+              </p>
+            )}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <BookingButton label="Bestill time" />
-              <span className="text-[#8f6b28] font-medium">{b.pris}</span>
+              <span>
+                {b.kampanje && (
+                  <>
+                    {/* Overstrøket førpris er visuell kontekst; skjermlesere
+                        får hele setningen i sr-only-teksten i stedet. */}
+                    <span aria-hidden className="mr-2 text-[#1a1a1a]/45 line-through">
+                      {b.kampanje.forPris}
+                    </span>
+                    <span className="sr-only">
+                      Kampanjepris {b.pris}, ordinær pris {b.kampanje.forPris}.
+                    </span>
+                  </>
+                )}
+                <span
+                  aria-hidden={b.kampanje ? true : undefined}
+                  className="font-medium text-[#8f6b28]"
+                >
+                  {b.pris}
+                </span>
+              </span>
             </div>
+            {b.kampanje && (
+              <p className="mt-4 text-sm leading-relaxed text-[#1a1a1a]/55">
+                {b.kampanje.vilkar}
+              </p>
+            )}
           </AnimatedSection>
         </div>
       </section>

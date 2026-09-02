@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 
@@ -10,6 +11,10 @@ interface Prisrad {
   note?: string;
   /** Tilleggsvalg som ikke bestilles alene — da gir «Bestill» ingen mening */
   utenBestill?: boolean;
+  /** Ordinær pris når `pris` er en kampanjepris — vises overstrøket */
+  forPris?: string;
+  /** Kort merkelapp foran navnet, f.eks. «Nyhet · Kampanje ut september» */
+  merkelapp?: string;
 }
 
 interface Priskategori {
@@ -35,6 +40,15 @@ const priskategorier: Priskategori[] = [
   {
     kategori: "Vipper & Bryn",
     items: [
+      // Introduksjonspris ut september 2026 — sett pris til "1.190,-" og fjern
+      // noten når kampanjen er over.
+      {
+        navn: "Koreansk vippeløft",
+        pris: "790,-",
+        forPris: "1.190,-",
+        merkelapp: "Nyhet · Kampanje ut september",
+        note: "Introduksjonspris ut september. Timen må både bookes og gjennomføres i september. Varighet 4–6 uker",
+      },
       { navn: "Farging/forming vipper og bryn inkl. voks", pris: "690,-" },
       { navn: "Brynslaminering inkl. farge, forming og voks", pris: "890,-", note: "Varighet 4–8 uker" },
       { navn: "Farging og forming bryn inkl. voks", pris: "590,-" },
@@ -175,6 +189,12 @@ function Prisrader({
           className="group flex items-start justify-between gap-6 border-b border-[#faf9f7] py-3"
         >
           <div className="min-w-0">
+            {item.merkelapp && (
+              <p className="mb-1.5 inline-flex items-center gap-1.5 rounded-full bg-[#3d4a3e] px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-white">
+                <Sparkles size={11} className="shrink-0" />
+                {item.merkelapp}
+              </p>
+            )}
             <p className="text-sm text-[#1a1a1a]/80">{item.navn}</p>
             {/* Dempet tekst skal ikke være lysere enn /65 (var /35). */}
             {item.note && (
@@ -182,8 +202,25 @@ function Prisrader({
             )}
           </div>
           <div className="flex flex-shrink-0 items-center gap-4">
-            <p className="whitespace-nowrap text-sm font-medium text-[#8f6b28]">
-              {item.pris}
+            <p className="whitespace-nowrap text-sm">
+              {item.forPris && (
+                <>
+                  {/* Overstrøket førpris er visuell kontekst; skjermlesere får
+                      hele setningen i sr-only-teksten i stedet. */}
+                  <span aria-hidden className="mr-1.5 text-[#1a1a1a]/45 line-through">
+                    {item.forPris}
+                  </span>
+                  <span className="sr-only">
+                    Kampanjepris {item.pris}, ordinær pris {item.forPris}.
+                  </span>
+                </>
+              )}
+              <span
+                aria-hidden={item.forPris ? true : undefined}
+                className="font-medium text-[#8f6b28]"
+              >
+                {item.pris}
+              </span>
             </p>
             {item.utenBestill ? null : (
             <Link

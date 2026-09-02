@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Gift, Sparkles } from "lucide-react";
+import { Gift, Sparkles, Tag } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { AKTIVE_KAMPANJER, type Kampanje } from "@/lib/kampanjer";
 import { PRODUCTS, formatPrice, type Brand } from "@/lib/products";
 
-function butikkLenke(kampanje: Kampanje) {
+function kampanjeLenke(kampanje: Kampanje) {
+  if (kampanje.lenke) return kampanje.lenke;
   return kampanje.merkeFilter
     ? `/nettbutikk?merke=${kampanje.merkeFilter}`
     : "/nettbutikk";
@@ -22,7 +23,35 @@ function Merkelapp({ tekst }: { tekst: string }) {
   );
 }
 
-function Gaveboks({ kampanje }: { kampanje: Kampanje }) {
+/**
+ * Hva kunden får: enten en produktgave eller en tilbudspris på en behandling.
+ * Rendrer ingenting hvis kampanjen mangler begge deler.
+ */
+function Utbytte({ kampanje }: { kampanje: Kampanje }) {
+  if (kampanje.tilbud) {
+    return (
+      <p className="flex items-start gap-2.5 rounded-xl bg-[#f5ede4] px-4 py-3 text-sm text-[#1a1a1a]/80">
+        <Tag size={15} className="mt-0.5 shrink-0 text-[#8f6b28]" />
+        <span>
+          <strong className="font-medium">{kampanje.tilbud.navn}</strong> til{" "}
+          <strong className="font-medium text-[#8f6b28]">
+            {formatPrice(kampanje.tilbud.pris)}
+          </strong>{" "}
+          {/* Førprisen er tilleggsinformasjon — skjules for skjermlesere, som
+              ellers ville lest to priser etter hverandre uten kontekst. */}
+          <span aria-hidden className="text-[#1a1a1a]/45 line-through">
+            {formatPrice(kampanje.tilbud.forPris)}
+          </span>
+          <span className="sr-only">
+            , ordinær pris {formatPrice(kampanje.tilbud.forPris)}
+          </span>
+        </span>
+      </p>
+    );
+  }
+
+  if (!kampanje.gave) return null;
+
   return (
     <p className="flex items-start gap-2.5 rounded-xl bg-[#f5ede4] px-4 py-3 text-sm text-[#1a1a1a]/80">
       <Gift size={15} className="mt-0.5 shrink-0 text-[#8f6b28]" />
@@ -53,6 +82,7 @@ function Vilkar({ vilkar }: { vilkar: string[] }) {
 }
 
 function knappTekst(kampanje: Kampanje) {
+  if (kampanje.knapp) return kampanje.knapp;
   return kampanje.merkeFilter
     ? `Se ${kampanje.merke} i nettbutikken`
     : "Se hele utvalget";
@@ -93,7 +123,7 @@ function Klikkflate({
 }) {
   return (
     <Link
-      href={butikkLenke(kampanje)}
+      href={kampanjeLenke(kampanje)}
       onClick={() => onVelgMerke?.(kampanje.merkeFilter ?? null)}
       className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8f6b28]"
       aria-label={`${kampanje.merke}: ${kampanje.tittel}. ${knappTekst(kampanje)}`}
@@ -116,7 +146,7 @@ function KampanjeRad({
   index: number;
   onVelgMerke?: (merke: Brand | null) => void;
 }) {
-  const gaveProdukt = PRODUCTS.find((p) => p.sku === kampanje.gave.sku);
+  const gaveProdukt = PRODUCTS.find((p) => p.sku === kampanje.gave?.sku);
 
   return (
     <AnimatedSection delay={index * 0.08}>
@@ -141,7 +171,7 @@ function KampanjeRad({
               <div className="relative h-24 w-24 shrink-0 rounded-xl bg-white sm:h-28 sm:w-28">
                 <Image
                   src={gaveProdukt.image}
-                  alt={kampanje.gave.navn}
+                  alt={kampanje.gave?.navn ?? ""}
                   fill
                   sizes="112px"
                   className="object-contain p-3"
@@ -187,7 +217,7 @@ function KampanjeRad({
           </div>
 
           <div className="flex flex-col gap-4">
-            <Gaveboks kampanje={kampanje} />
+            <Utbytte kampanje={kampanje} />
             <Vilkar vilkar={kampanje.vilkar} />
           </div>
         </div>
@@ -206,7 +236,7 @@ function KampanjeKort({
   index: number;
   onVelgMerke?: (merke: Brand | null) => void;
 }) {
-  const gaveProdukt = PRODUCTS.find((p) => p.sku === kampanje.gave.sku);
+  const gaveProdukt = PRODUCTS.find((p) => p.sku === kampanje.gave?.sku);
 
   return (
     <AnimatedSection delay={index * 0.08}>
@@ -217,7 +247,7 @@ function KampanjeKort({
             <div className="relative h-20 w-20 shrink-0 rounded-xl bg-white">
               <Image
                 src={gaveProdukt.image}
-                alt={kampanje.gave.navn}
+                alt={kampanje.gave?.navn ?? ""}
                 fill
                 sizes="80px"
                 className="object-contain p-2"
@@ -247,7 +277,7 @@ function KampanjeKort({
             {kampanje.ingress}
           </p>
           <div className="mt-4">
-            <Gaveboks kampanje={kampanje} />
+            <Utbytte kampanje={kampanje} />
           </div>
           <div className="mt-4">
             <Vilkar vilkar={kampanje.vilkar} />
@@ -270,18 +300,24 @@ export default function Kampanjer({
   variant = "kort",
   className = "",
   onVelgMerke,
+  kampanjer = AKTIVE_KAMPANJER,
 }: {
   variant?: "banner" | "kort";
   className?: string;
   /** Settes av nettbutikken, som lenker til seg selv — se Klikkflate. */
   onVelgMerke?: (merke: Brand | null) => void;
+  /**
+   * Hvilke kampanjer som skal vises. Nettbutikken sender inn
+   * AKTIVE_BUTIKKAMPANJER, så behandlingstilbud ikke havner der.
+   */
+  kampanjer?: Kampanje[];
 }) {
-  if (AKTIVE_KAMPANJER.length === 0) return null;
+  if (kampanjer.length === 0) return null;
 
   if (variant === "banner") {
     return (
       <div className={`space-y-8 ${className}`.trim()}>
-        {AKTIVE_KAMPANJER.map((k, i) => (
+        {kampanjer.map((k, i) => (
           <KampanjeRad
             key={k.id}
             kampanje={k}
@@ -297,7 +333,7 @@ export default function Kampanjer({
     <div
       className={`grid gap-5 md:grid-cols-2 lg:grid-cols-3 ${className}`.trim()}
     >
-      {AKTIVE_KAMPANJER.map((k, i) => (
+      {kampanjer.map((k, i) => (
         <KampanjeKort
           key={k.id}
           kampanje={k}

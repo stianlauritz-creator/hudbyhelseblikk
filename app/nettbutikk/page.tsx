@@ -11,7 +11,7 @@ import KundeklubbPopup from "@/components/KundeklubbPopup";
 import Pris from "@/components/Pris";
 import ButikkAapnerSnart from "@/components/ButikkAapnerSnart";
 import Kampanjer from "@/components/Kampanjer";
-import { AKTIVE_KAMPANJER } from "@/lib/kampanjer";
+import { AKTIVE_BUTIKKAMPANJER } from "@/lib/kampanjer";
 import { BUTIKK_APEN } from "@/lib/site";
 import {
   BRAND_INFO,
@@ -224,7 +224,7 @@ export default function NettbutikkPage() {
       </div>
 
       {/* Pågående kampanjer — skjuler seg selv når ingen er aktive */}
-      {AKTIVE_KAMPANJER.length > 0 && (
+      {AKTIVE_BUTIKKAMPANJER.length > 0 && (
         <section className="px-6 pt-16">
           <div className="mx-auto max-w-6xl">
             <AnimatedSection className="mb-8 text-center">
@@ -238,7 +238,10 @@ export default function NettbutikkPage() {
                 Kampanjer
               </h2>
             </AnimatedSection>
-            <Kampanjer onVelgMerke={velgMerkeFraKampanje} />
+            <Kampanjer
+              kampanjer={AKTIVE_BUTIKKAMPANJER}
+              onVelgMerke={velgMerkeFraKampanje}
+            />
             <AnimatedSection delay={0.3} className="mt-8 text-center">
               <Link
                 href="/kampanjer"
