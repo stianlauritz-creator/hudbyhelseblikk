@@ -116,6 +116,21 @@ export default function ProductView({
   const brand = BRAND_INFO[product.brand];
   const crossSell = related[0];
 
+  // Nyansevalg. Produkter uten `farger` har tom liste og oppfører seg som før.
+  const nyanser = product.farger ?? [];
+  // Finnes det bare én nyanse, er det ikke noe å velge mellom — da er den
+  // forhåndsvalgt, og kunden slipper et klikk som ikke betyr noe.
+  const [valgtNyanse, setValgtNyanse] = useState<string | null>(
+    nyanser.length === 1 ? nyanser[0] : null
+  );
+  const maaVelge = nyanser.length > 0 && !valgtNyanse;
+
+  const leggIKurv = () => {
+    if (nyanser.length === 0) return cart.add(product.sku);
+    if (!valgtNyanse) return;
+    cart.add(product.sku, valgtNyanse);
+  };
+
   // Sticky kjøpslinje vises når hoved-CTA er scrollet ut av bildet — men
   // bare når butikken faktisk tar bestillinger
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -178,12 +193,7 @@ export default function ProductView({
             >
               {product.name}
             </h1>
-            <p className="text-sm text-[#1a1a1a]/65 mb-5">
-              {product.size}
-              {product.farger && product.farger.length > 0 && (
-                <> · Nyanser: {product.farger.join(", ")}</>
-              )}
-            </p>
+            <p className="text-sm text-[#1a1a1a]/65 mb-5">{product.size}</p>
 
             <p className="text-[#1a1a1a]/65 leading-relaxed mb-5">
               {details?.intro ?? product.desc}
@@ -205,6 +215,34 @@ export default function ProductView({
               </div>
             )}
 
+            {nyanser.length > 1 && !product.utsolgt && BUTIKK_APEN && (
+              <div className="mb-6">
+                <p className="text-xs tracking-[0.18em] uppercase text-[#8f6b28] mb-3">
+                  Velg nyanse
+                </p>
+                <div className="flex flex-wrap gap-2" role="group" aria-label="Nyanse">
+                  {nyanser.map((n) => {
+                    const valgt = n === valgtNyanse;
+                    return (
+                      <button
+                        key={n}
+                        type="button"
+                        aria-pressed={valgt}
+                        onClick={() => setValgtNyanse(n)}
+                        className={`px-4 py-2 rounded-full border text-sm tracking-wide transition-colors ${
+                          valgt
+                            ? "border-[#8f6b28] bg-[#8f6b28] text-white"
+                            : "border-[#e8d5b0] text-[#1a1a1a]/75 hover:border-[#8f6b28] hover:text-[#8f6b28]"
+                        }`}
+                      >
+                        {n}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             <div
               ref={ctaRef}
               className="flex items-center justify-between gap-4 py-5 border-y border-[#e8d5b0]/40 mb-6"
@@ -216,11 +254,12 @@ export default function ProductView({
                 </span>
               ) : BUTIKK_APEN ? (
                 <button
-                  onClick={() => cart.add(product.sku)}
-                  className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2"
+                  onClick={leggIKurv}
+                  disabled={maaVelge}
+                  className="px-7 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2 disabled:bg-[#c9b898] disabled:cursor-not-allowed"
                 >
                   <ShoppingBag size={16} />
-                  Legg i kurv
+                  {maaVelge ? "Velg nyanse først" : "Legg i kurv"}
                 </button>
               ) : (
                 <Link
@@ -306,15 +345,27 @@ export default function ProductView({
                       {formatPrice(crossSell.price)}
                     </p>
                   </div>
-                  {BUTIKK_APEN && !crossSell.utsolgt && (
-                    <button
-                      onClick={() => cart.add(crossSell.sku)}
-                      aria-label={`Legg ${crossSell.name} i kurv`}
-                      className="w-9 h-9 rounded-full bg-white border border-[#c9a96e]/40 text-[#8f6b28] hover:bg-[#8f6b28] hover:text-white transition-colors flex items-center justify-center shrink-0"
-                    >
-                      <Plus size={15} />
-                    </button>
-                  )}
+                  {BUTIKK_APEN &&
+                    !crossSell.utsolgt &&
+                    // Krever produktet et nyansevalg, kan det ikke legges rett
+                    // i kurven herfra — da sender vi kunden til produktsiden.
+                    (crossSell.farger && crossSell.farger.length > 0 ? (
+                      <Link
+                        href={`/nettbutikk/${crossSell.sku}`}
+                        aria-label={`Velg nyanse av ${crossSell.name}`}
+                        className="px-3 h-9 rounded-full bg-white border border-[#c9a96e]/40 text-[#8f6b28] text-xs hover:bg-[#8f6b28] hover:text-white transition-colors flex items-center shrink-0"
+                      >
+                        Velg nyanse
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => cart.add(crossSell.sku)}
+                        aria-label={`Legg ${crossSell.name} i kurv`}
+                        className="w-9 h-9 rounded-full bg-white border border-[#c9a96e]/40 text-[#8f6b28] hover:bg-[#8f6b28] hover:text-white transition-colors flex items-center justify-center shrink-0"
+                      >
+                        <Plus size={15} />
+                      </button>
+                    ))}
                 </div>
               </div>
             )}
@@ -436,11 +487,12 @@ export default function ProductView({
                 <Pris produkt={product} storrelse="liten" />
               </div>
               <button
-                onClick={() => cart.add(product.sku)}
-                className="px-6 py-2.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2 shrink-0"
+                onClick={leggIKurv}
+                disabled={maaVelge}
+                className="px-6 py-2.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-2 shrink-0 disabled:bg-[#c9b898] disabled:cursor-not-allowed"
               >
                 <ShoppingBag size={15} />
-                Legg i kurv
+                {maaVelge ? "Velg nyanse" : "Legg i kurv"}
               </button>
             </div>
           </motion.div>

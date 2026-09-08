@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     );
   }
 
-  let lines: { sku: string; qty: number }[];
+  let lines: { sku: string; qty: number; farge?: string }[];
   try {
     const body = await req.json();
     lines = body.lines;
@@ -49,9 +49,14 @@ export async function POST(req: Request) {
     .map((l) => ({
       product: PRODUCTS.find((p) => p.sku === l.sku),
       qty: Math.max(1, Math.min(10, Math.floor(l.qty))),
+      farge: typeof l.farge === "string" ? l.farge : undefined,
     }))
-    .filter((i): i is { product: (typeof PRODUCTS)[number]; qty: number } =>
-      Boolean(i.product)
+    .filter(
+      (i): i is {
+        product: (typeof PRODUCTS)[number];
+        qty: number;
+        farge: string | undefined;
+      } => Boolean(i.product)
     );
   if (items.length === 0) {
     return NextResponse.json({ error: "Tom handlekurv" }, { status: 400 });
@@ -83,7 +88,7 @@ export async function POST(req: Request) {
     "shipping_options[1][shipping_rate_data][fixed_amount][amount]": "0",
     "shipping_options[1][shipping_rate_data][fixed_amount][currency]": "nok",
   });
-  items.forEach(({ product, qty }, i) => {
+  items.forEach(({ product, qty, farge }, i) => {
     params.set(`line_items[${i}][quantity]`, String(qty));
     params.set(`line_items[${i}][price_data][currency]`, "nok");
     params.set(
@@ -92,12 +97,18 @@ export async function POST(req: Request) {
     );
     params.set(
       `line_items[${i}][price_data][product_data][name]`,
-      `${product.name} – ${product.size}`
+      `${product.name} – ${product.size}${farge ? ` – ${farge}` : ""}`
     );
     params.set(
       `line_items[${i}][price_data][product_data][metadata][sku]`,
       product.sku
     );
+    if (farge) {
+      params.set(
+        `line_items[${i}][price_data][product_data][metadata][nyanse]`,
+        farge
+      );
+    }
   });
 
   const res = await fetch("https://api.stripe.com/v1/checkout/sessions", {

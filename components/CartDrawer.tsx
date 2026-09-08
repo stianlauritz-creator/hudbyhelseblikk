@@ -102,8 +102,8 @@ export default function CartDrawer() {
             ) : (
               <>
                 <div className="flex-1 overflow-y-auto px-6 py-4 space-y-5">
-                  {cart.items.map(({ product, qty }) => (
-                    <div key={product.sku} className="flex gap-4">
+                  {cart.items.map(({ nokkel, product, farge, qty }) => (
+                    <div key={nokkel} className="flex gap-4">
                       <div className="w-16 h-16 rounded-xl bg-[#faf9f7] border border-[#e8d5b0]/30 overflow-hidden flex-shrink-0 relative">
                         <Image
                           src={product.image}
@@ -119,11 +119,12 @@ export default function CartDrawer() {
                         </p>
                         <p className="text-xs text-[#1a1a1a]/65 mb-2">
                           {product.size}
+                          {farge && <> · {farge}</>}
                         </p>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2 border border-[#e8d5b0]/60 rounded-full px-2 py-0.5">
                             <button
-                              onClick={() => cart.setQty(product.sku, qty - 1)}
+                              onClick={() => cart.setQty(nokkel, qty - 1)}
                               aria-label="Færre"
                               className="text-[#1a1a1a]/65 hover:text-[#8f6b28]"
                             >
@@ -131,7 +132,7 @@ export default function CartDrawer() {
                             </button>
                             <span className="text-xs w-4 text-center">{qty}</span>
                             <button
-                              onClick={() => cart.setQty(product.sku, qty + 1)}
+                              onClick={() => cart.setQty(nokkel, qty + 1)}
                               aria-label="Flere"
                               className="text-[#1a1a1a]/65 hover:text-[#8f6b28]"
                             >
