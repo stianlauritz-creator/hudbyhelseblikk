@@ -108,6 +108,7 @@ function mapNode(
     : [node.title, ""];
 
   const local = PRODUCTS.find((p) => p.sku === variant.sku);
+  const ekstra = TILLEGG[variant.sku];
   return {
     sku: variant.sku,
     brand: VENDOR_TO_BRAND[node.vendor.toLowerCase()] ?? local?.brand ?? "annet",
@@ -126,9 +127,9 @@ function mapNode(
     desc: local?.desc ?? node.description.slice(0, 300),
     image: node.featuredImage?.url ?? local?.image ?? "/produkter/placeholder.jpg",
     // Retinol og nyanser er merking vi eier selv — Shopify har den ikke
-    retinol: local?.retinol,
-    retinolStyrke: local?.retinolStyrke,
-    farger: local?.farger,
+    retinol: local?.retinol ?? ekstra?.retinol,
+    retinolStyrke: local?.retinolStyrke ?? ekstra?.retinolStyrke,
+    farger: local?.farger ?? ekstra?.farger,
     // Lagerstatus: Shopify når varen faktisk er merket utsolgt der, men en
     // manuell `utsolgt` i vår katalog vinner alltid — den er meldt fra
     // klinikken og skal gjelde selv om Shopify-lageret ikke er ført.
@@ -150,6 +151,23 @@ const COLORESCIENCE_I_SALG = new Set(
 // produkt inn igjen, fjern SKU-en herfra og legg den tilbake i PRODUCTS.
 //   ZO-011  Wrinkle + Texture Repair — utsolgt og utgår (meldt 08.09.2026)
 export const UTGAATT = new Set<string>(["ZO-011"]);
+
+// Nyanser og merking for produkter som bare finnes i Shopify, ikke i PRODUCTS.
+// Shopify kjenner ingen av delene: nyansene ligger ikke som varianter der, og
+// «inneholder retinol» er vår egen merking. Legges et produkt her inn i
+// PRODUCTS senere, skal oppføringen herfra fjernes — testene fanger dubletten.
+export const TILLEGG: Record<
+  string,
+  Pick<Product, "farger" | "retinol" | "retinolStyrke">
+> = {
+  // Nyanselistene er det klinikken faktisk fører, ikke ZOs fulle sortiment
+  // (ZO har også Medium-tan på Tint, og Fair + Deep på Sunshade).
+  "ZO-037": { farger: ["Fair-light", "Light-medium"] },
+  "ZO-038": { farger: ["Light", "Light medium", "Medium", "Tan"] },
+  // Begge pakkene inneholder Daily Power Defense, som har retinol.
+  "ZO-041": { retinol: true },
+  "ZO-042": { retinol: true },
+};
 
 export function iSalg(p: Product): boolean {
   if (UTGAATT.has(p.sku)) return false;

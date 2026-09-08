@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { iSalg, UTGAATT } from "../shopify";
+import { iSalg, UTGAATT, TILLEGG } from "../shopify";
 import { PRODUCTS, type Product } from "../products";
 
 function produkt(over: Partial<Product>): Product {
@@ -54,5 +54,42 @@ describe("den statiske katalogen", () => {
       expect(p.farger.length).toBeGreaterThan(0);
       for (const f of p.farger) expect(f.trim()).not.toBe("");
     }
+  });
+});
+
+describe("TILLEGG — nyanser og merking for produkter som bare finnes i Shopify", () => {
+  it("overlapper ikke med den statiske katalogen", () => {
+    // To kilder til samme felt ville før eller siden sprike.
+    const dobbelt = PRODUCTS.filter((p) => TILLEGG[p.sku]).map((p) => p.sku);
+    expect(dobbelt).toEqual([]);
+  });
+
+  it("oppgir bare navngitte nyanser", () => {
+    for (const [sku, t] of Object.entries(TILLEGG)) {
+      if (!t.farger) continue;
+      expect(t.farger.length, sku).toBeGreaterThan(0);
+      for (const f of t.farger) expect(f.trim(), sku).not.toBe("");
+    }
+  });
+
+  it("gir de to solkremene nyansene klinikken faktisk fører", () => {
+    expect(TILLEGG["ZO-037"].farger).toEqual(["Fair-light", "Light-medium"]);
+    expect(TILLEGG["ZO-038"].farger).toEqual([
+      "Light",
+      "Light medium",
+      "Medium",
+      "Tan",
+    ]);
+  });
+
+  it("merker pakkene som inneholder retinol", () => {
+    // Begge kitene inneholder Daily Power Defense. Uten flagget får kunden
+    // ikke veiledningsboksen som alle andre retinolprodukter utløser.
+    expect(TILLEGG["ZO-041"].retinol).toBe(true);
+    expect(TILLEGG["ZO-042"].retinol).toBe(true);
+  });
+
+  it("merker ingenting som utgått og tilleggsført samtidig", () => {
+    for (const sku of Object.keys(TILLEGG)) expect(UTGAATT.has(sku), sku).toBe(false);
   });
 });
