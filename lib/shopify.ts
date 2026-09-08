@@ -1,4 +1,5 @@
 import { PRODUCTS, type Brand, type Product } from "./products";
+import { rensLinjer, type Kurvlinje } from "./kurv";
 
 // Shopify Storefront API-integrasjon. Når SHOPIFY_STORE_DOMAIN og
 // SHOPIFY_STOREFRONT_TOKEN er satt i Vercel, er Shopify autoritativ
@@ -183,14 +184,20 @@ interface CartCreateResult {
 // pakkes. Settes nyansene opp som ekte varianter senere, er dette stedet å
 // bytte til merchandiseId per nyanse.
 export async function createShopifyCheckout(
-  lines: { sku: string; qty: number; farge?: string }[]
+  lines: Kurvlinje[]
 ): Promise<string | null> {
   if (!shopifyConfigured()) return null;
 
   // Sørg for ferskt sku→variant-oppslag
-  await getCatalog();
+  const katalog = await getCatalog();
 
-  const cartLines = lines
+  // Kurven i nettleseren kan ikke stoles på: valider nyansen mot katalogen
+  // her også, ellers kan hvem som helst poste en vilkårlig tekst inn på
+  // ordrelinja. Samme regel som klienten bruker.
+  const gyldige = rensLinjer(lines, katalog);
+  if (gyldige.length === 0) return null;
+
+  const cartLines = gyldige
     .map((l) => ({
       merchandiseId: variantIdBySku.get(l.sku),
       quantity: Math.max(1, Math.min(10, Math.floor(l.qty))),

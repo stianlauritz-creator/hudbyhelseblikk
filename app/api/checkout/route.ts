@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { PRODUCTS } from "@/lib/products";
+import { rensLinjer } from "@/lib/kurv";
 import { createShopifyCheckout, shopifyConfigured } from "@/lib/shopify";
 import {
   FREE_SHIPPING_LIMIT,
@@ -45,7 +46,8 @@ export async function POST(req: Request) {
     );
   }
 
-  const items = lines
+  // Samme validering som Shopify-grenen: nyansen må finnes på produktet.
+  const items = rensLinjer(lines, PRODUCTS)
     .map((l) => ({
       product: PRODUCTS.find((p) => p.sku === l.sku),
       qty: Math.max(1, Math.min(10, Math.floor(l.qty))),
