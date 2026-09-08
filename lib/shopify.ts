@@ -144,7 +144,14 @@ const COLORESCIENCE_I_SALG = new Set(
   PRODUCTS.filter((p) => p.brand === "colorescience").map((p) => p.sku)
 );
 
-function iSalg(p: Product): boolean {
+// Produkter vi har sluttet å føre. De ligger fortsatt som ACTIVE i Shopify,
+// så det holder ikke å ta dem ut av PRODUCTS — de må stoppes her. Skal et
+// produkt inn igjen, fjern SKU-en herfra og legg den tilbake i PRODUCTS.
+//   ZO-011  Wrinkle + Texture Repair — utsolgt og utgår (meldt 08.09.2026)
+export const UTGAATT = new Set<string>(["ZO-011"]);
+
+export function iSalg(p: Product): boolean {
+  if (UTGAATT.has(p.sku)) return false;
   return p.brand !== "colorescience" || COLORESCIENCE_I_SALG.has(p.sku);
 }
 
@@ -168,8 +175,15 @@ interface CartCreateResult {
 }
 
 // Oppretter Shopify-handlekurv fra våre kurvlinjer og returnerer checkout-URL.
+//
+// Nyansen sendes som linjeattributt, ikke som variant: ingen av produktene i
+// Shopify har varianter (verifisert 08.09.2026 — bare gavekortet har det), så
+// det finnes ingen variant-ID å peke på. Attributtet følger ordrelinja hele
+// veien inn i Shopify-ordren, slik at klinikken ser hvilken nyanse som skal
+// pakkes. Settes nyansene opp som ekte varianter senere, er dette stedet å
+// bytte til merchandiseId per nyanse.
 export async function createShopifyCheckout(
-  lines: { sku: string; qty: number }[]
+  lines: { sku: string; qty: number; farge?: string }[]
 ): Promise<string | null> {
   if (!shopifyConfigured()) return null;
 
@@ -180,9 +194,14 @@ export async function createShopifyCheckout(
     .map((l) => ({
       merchandiseId: variantIdBySku.get(l.sku),
       quantity: Math.max(1, Math.min(10, Math.floor(l.qty))),
+      ...(l.farge ? { attributes: [{ key: "Nyanse", value: l.farge }] } : {}),
     }))
-    .filter((l): l is { merchandiseId: string; quantity: number } =>
-      Boolean(l.merchandiseId)
+    .filter(
+      (l): l is {
+        merchandiseId: string;
+        quantity: number;
+        attributes?: { key: string; value: string }[];
+      } => Boolean(l.merchandiseId)
     );
   if (cartLines.length === 0) return null;
 

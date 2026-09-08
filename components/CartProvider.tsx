@@ -8,17 +8,31 @@ import {
   useState,
 } from "react";
 import { PRODUCTS, type Product } from "@/lib/products";
+import {
+  linjeNokkel,
+  leggTil,
+  fjern,
+  settAntall,
+  rensLinjer,
+  type Kurvlinje,
+} from "@/lib/kurv";
 
-export interface CartLine {
-  sku: string;
+export type CartLine = Kurvlinje;
+
+/** En kurvlinje slått sammen med produktet den peker på. */
+export interface Kurvpost {
+  nokkel: string;
+  product: Product;
+  farge?: string;
   qty: number;
 }
 
 interface CartContextValue {
-  lines: CartLine[];
-  add: (sku: string) => void;
-  remove: (sku: string) => void;
-  setQty: (sku: string, qty: number) => void;
+  lines: Kurvlinje[];
+  /** Nyanse er påkrevd for produkter som har `farger`. */
+  add: (sku: string, farge?: string) => void;
+  remove: (nokkel: string) => void;
+  setQty: (nokkel: string, qty: number) => void;
   clear: () => void;
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -26,7 +40,7 @@ interface CartContextValue {
   subtotal: number;
   shipping: number;
   total: number;
-  items: { product: Product; qty: number }[];
+  items: Kurvpost[];
   catalog: Product[];
 }
 
@@ -46,7 +60,7 @@ export function CartProvider({
   // ellers den statiske produktlisten.
   catalog?: Product[];
 }) {
-  const [lines, setLines] = useState<CartLine[]>([]);
+  const [lines, setLines] = useState<Kurvlinje[]>([]);
   const [open, setOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -54,8 +68,7 @@ export function CartProvider({
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const parsed: CartLine[] = JSON.parse(raw);
-        setLines(parsed.filter((l) => catalog.some((p) => p.sku === l.sku)));
+        setLines(rensLinjer(JSON.parse(raw), catalog));
       }
     } catch {
       // korrupt lagring — start tomt
@@ -68,37 +81,34 @@ export function CartProvider({
     if (loaded) localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
   }, [lines, loaded]);
 
-  const add = (sku: string) => {
+  const add = (sku: string, farge?: string) => {
+    const produkt = catalog.find((p) => p.sku === sku);
     // Utsolgte varer skal ikke kunne havne i kurven, uansett hvor «Legg i
     // kurv» måtte dukke opp
-    if (catalog.find((p) => p.sku === sku)?.utsolgt) return;
-    setLines((prev) => {
-      const hit = prev.find((l) => l.sku === sku);
-      if (hit)
-        return prev.map((l) =>
-          l.sku === sku ? { ...l, qty: Math.min(l.qty + 1, 10) } : l
-        );
-      return [...prev, { sku, qty: 1 }];
-    });
+    if (!produkt || produkt.utsolgt) return;
+    // Krever produktet et nyansevalg, slipper vi ikke gjennom uten et gyldig
+    // ett — ellers ville klinikken fått en ordre uten å vite hvilken.
+    const nyanser = produkt.farger ?? [];
+    if (nyanser.length > 0 && (!farge || !nyanser.includes(farge))) return;
+
+    setLines((prev) => leggTil(prev, sku, nyanser.length > 0 ? farge : undefined));
     setOpen(true);
   };
 
-  const remove = (sku: string) =>
-    setLines((prev) => prev.filter((l) => l.sku !== sku));
+  const remove = (nokkel: string) =>
+    setLines((prev) => fjern(prev, nokkel));
 
-  const setQty = (sku: string, qty: number) => {
-    if (qty <= 0) return remove(sku);
-    setLines((prev) =>
-      prev.map((l) => (l.sku === sku ? { ...l, qty: Math.min(qty, 10) } : l))
-    );
-  };
+  const setQty = (nokkel: string, qty: number) =>
+    setLines((prev) => settAntall(prev, nokkel, qty));
 
   const clear = () => setLines([]);
 
   const value = useMemo<CartContextValue>(() => {
-    const items = lines
+    const items: Kurvpost[] = lines
       .map((l) => ({
+        nokkel: linjeNokkel(l),
         product: catalog.find((p) => p.sku === l.sku)!,
+        farge: l.farge,
         qty: l.qty,
       }))
       .filter((i) => i.product);

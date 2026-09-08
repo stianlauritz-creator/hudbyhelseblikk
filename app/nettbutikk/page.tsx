@@ -86,13 +86,22 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 Utsolgt
               </span>
             ) : BUTIKK_APEN ? (
-              <button
-                onClick={() => cart.add(product.sku)}
-                className="relative z-20 px-4 py-2 bg-[#8f6b28] text-white text-xs tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-1.5"
-              >
-                <ShoppingBag size={13} />
-                Legg i kurv
-              </button>
+              // Nyansen må velges på produktsiden — kortet har ikke plass til
+              // valget, og en ordre uten nyanse kan klinikken ikke pakke.
+              product.farger && product.farger.length > 1 ? (
+                <span className="px-4 py-2 border border-[#8f6b28] text-[#8f6b28] text-xs tracking-wide rounded-full flex items-center gap-1.5">
+                  <ShoppingBag size={13} />
+                  Velg nyanse
+                </span>
+              ) : (
+                <button
+                  onClick={() => cart.add(product.sku, product.farger?.[0])}
+                  className="relative z-20 px-4 py-2 bg-[#8f6b28] text-white text-xs tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors flex items-center gap-1.5"
+                >
+                  <ShoppingBag size={13} />
+                  Legg i kurv
+                </button>
+              )
             ) : (
               <span className="text-[10px] uppercase tracking-[0.18em] text-[#8f6b28]">
                 Åpner snart
@@ -319,7 +328,7 @@ export default function NettbutikkPage() {
               {
                 icon: Truck,
                 title: "Levering i hele Norge",
-                desc: "Frakt med Posten fra 59,- — gratis ved kjøp over 1.000,-",
+                desc: "Frakt med Posten 79,- — gratis ved kjøp over 1.000,-",
               },
               {
                 icon: Store,
