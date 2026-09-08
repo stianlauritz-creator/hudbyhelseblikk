@@ -51,7 +51,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
     body: (
       <>
         <p>
-          Vi sender til adresser i Norge med standard frakt 79,- (gratis ved
+          Vi sender til adresser i Norge med standard frakt 75,- (gratis ved
           kjøp over 1.000,-), eller du kan hente bestillingen gratis i
           klinikken i {ORG.address}. Bestillinger sendes normalt innen 1–3
           virkedager. Ved henting gir vi beskjed når varene er klare.

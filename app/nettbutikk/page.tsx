@@ -328,7 +328,7 @@ export default function NettbutikkPage() {
               {
                 icon: Truck,
                 title: "Levering i hele Norge",
-                desc: "Frakt med Posten 79,- — gratis ved kjøp over 1.000,-",
+                desc: "Frakt med Posten 75,- — gratis ved kjøp over 1.000,-",
               },
               {
                 icon: Store,

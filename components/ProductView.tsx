@@ -277,7 +277,7 @@ export default function ProductView({
                 <>
                   <li className="flex items-center gap-2.5">
                     <Truck size={15} className="text-[#8f6b28] shrink-0" />
-                    79,- i frakt — gratis ved kjøp over 1.000,-
+                    75,- i frakt — gratis ved kjøp over 1.000,-
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Store size={15} className="text-[#8f6b28] shrink-0" />

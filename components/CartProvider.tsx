@@ -47,7 +47,9 @@ interface CartContextValue {
 const CartContext = createContext<CartContextValue | null>(null);
 
 export const FREE_SHIPPING_LIMIT = 1000;
-export const SHIPPING_COST = 79;
+// «Standard»-satsen i Shopify. Postens billigste (postkasse, 59,-) gjelder
+// bare pakker under 5 kg, så 75 er det de fleste ordrer faktisk får.
+export const SHIPPING_COST = 75;
 
 const STORAGE_KEY = "hbh-cart";
 
