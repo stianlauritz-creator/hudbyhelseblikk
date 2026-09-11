@@ -79,8 +79,9 @@ export default function KundeklubbPage() {
             20 % studentrabatt
           </h2>
           <p className="text-[#1a1a1a]/65 leading-relaxed mb-6">
-            Studenter får 20 % på hudpleieprodukter og hudbehandlinger hos oss.
-            Rabatten gjelder hver gang du er innom — ikke bare første besøk.
+            Studenter får 20 % på hud-, vippe- og brynsbehandlinger hos oss —
+            hver gang du er innom, ikke bare første besøk. Rabatten gjelder
+            behandlinger, ikke hudpleieprodukter.
           </p>
           <div className="space-y-2.5 text-sm text-[#1a1a1a]/70">
             <p className="flex gap-3">
