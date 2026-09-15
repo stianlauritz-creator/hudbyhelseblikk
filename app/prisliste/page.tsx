@@ -106,7 +106,7 @@ const priskategorier: Priskategori[] = [
         navn: "Viscoderm Hydrobooster",
         pris: "3.000,-",
         merkelapp: "Nyhet",
-        note: "Kur på 3 behandlinger anbefales",
+        note: "Noen trenger én behandling, andre en kur på 2–3",
       },
     ],
   },

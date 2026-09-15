@@ -152,7 +152,7 @@ const sections: Seksjon[] = [
       {
         navn: "Viscoderm Hydrobooster",
         slug: "viscoderm-hydrobooster",
-        desc: "Glatter ut fine linjer med dyp fukt og en utstrekkende effekt i huden. Anbefalt kur er tre behandlinger.",
+        desc: "Glatter ut fine linjer med dyp fukt og en utstrekkende effekt i huden. Noen trenger én behandling, andre en kur på 2–3.",
         pris: "3.000,-",
         merkelapp: "Nyhet",
       },
