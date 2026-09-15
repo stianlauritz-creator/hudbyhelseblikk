@@ -738,7 +738,7 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
     kortNavn: "Viscoderm",
     kategori: "biostimulering",
     kategoriNavn: "Biostimulerende behandlinger",
-    kort: "Viscoderm Hydrobooster i Grimstad — hyaluronsyre som glatter ut fine linjer rundt munn og øyne og gir dyp fukt. 3 000 kr.",
+    kort: "Viscoderm Hydrobooster i Grimstad — hyaluronsyre som glatter ut fine linjer og gir dyp fukt i huden. 3 000 kr hos kosmetisk sykepleier.",
     pris: "3.000,-",
     varighet: "Ca. 45 minutter",
     antall: "Kur på 3 behandlinger med 3 ukers mellomrom anbefales",
