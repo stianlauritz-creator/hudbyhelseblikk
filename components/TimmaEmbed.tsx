@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { TIMMA_URL } from "@/lib/site";
+import { lesSamtykke, tilTimmaPreferanser, type Samtykke } from "@/lib/samtykke";
 
 const TIMMA_ORIGIN = "https://bestill.timma.no";
 
@@ -53,9 +54,15 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
         barn.postMessage("i-am-genie", TIMMA_ORIGIN);
       }
 
+      // Her svarte vi før ja til både GA4 og pixel uansett — et valg vi tok på
+      // kundens vegne. Nå speiler svaret det kunden faktisk har samtykket til;
+      // har hun ikke svart ennå, blir det nei til begge.
       if (e.data === "give-cookie-preferences") {
         barn.postMessage(
-          { type: "cookie-preferences", value: { GA4: true, pixel: true } },
+          {
+            type: "cookie-preferences",
+            value: tilTimmaPreferanser(lesSamtykke(window.localStorage)),
+          },
           TIMMA_ORIGIN
         );
       }
@@ -69,6 +76,27 @@ export default function TimmaEmbed({ userId }: { userId?: string }) {
 
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
+  }, []);
+
+  // Samtykket kan komme etter at rammen er lastet — banneret ligger et annet
+  // sted i appen og varsler oss med «hbh-samtykke». Uten dette ville rammen
+  // blitt sittende med nei-et fra før, selv om kunden nettopp sa ja.
+  useEffect(() => {
+    const onSamtykke = (e: Event) => {
+      const barn = (
+        document.getElementById("timma-booking") as HTMLIFrameElement | null
+      )?.contentWindow;
+      if (!barn) return;
+
+      const samtykke = (e as CustomEvent<Samtykke | null>).detail ?? null;
+      barn.postMessage(
+        { type: "cookie-preferences", value: tilTimmaPreferanser(samtykke) },
+        TIMMA_ORIGIN
+      );
+    };
+
+    window.addEventListener("hbh-samtykke", onSamtykke);
+    return () => window.removeEventListener("hbh-samtykke", onSamtykke);
   }, []);
 
   return (

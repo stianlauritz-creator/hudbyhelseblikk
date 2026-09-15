@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { SITE_URL } from "@/lib/site";
+import Script from "next/script";
+import { SITE_URL, GTM_ID } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/components/CartProvider";
 import CartDrawer from "@/components/CartDrawer";
 import { getCatalog } from "@/lib/shopify";
+import Samtykkebanner from "@/components/Samtykkebanner";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -82,6 +84,21 @@ export default async function RootLayout({
       className={`${playfair.variable} ${dmSans.variable}`}
     >
       <head>
+        {/*
+          Google Consent Mode v2. Må kjøre før GTM lastes — ellers rekker
+          containeren å fyre tagger mens signalene ennå er udefinert.
+          Alt som kan nektes står på «denied» til kunden sier noe annet.
+
+          `wait_for_update` gir Samtykkebanneret et halvsekund på å hydreres og
+          spille inn et lagret valg før tagger fyrer. Uten det ville en kunde
+          som allerede har sagt ja, blitt målt som nei ved hvert sidelast.
+        */}
+        <script
+          id="consent-default"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',personalization_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -94,11 +111,29 @@ export default async function RootLayout({
           background: "#faf9f7",
         }}
       >
+        {/* GTMs egen reserve for nettlesere uten JavaScript */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
+        <Script
+          id="gtm"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
         <CartProvider catalog={catalog}>
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
           <CartDrawer />
+          <Samtykkebanner />
         </CartProvider>
       </body>
     </html>

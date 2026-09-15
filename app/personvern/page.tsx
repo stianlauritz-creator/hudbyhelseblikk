@@ -44,7 +44,69 @@ const sections: { title: string; body: React.ReactNode }[] = [
           du eventuelt fullfører et kjøp.
         </p>
         <p>
-          Nettsiden bruker ikke analyse- eller markedsføringscookies.
+          <strong>Analyse og markedsføring:</strong> Nettsiden kan måle bruk og
+          annonseeffekt, men bare hvis du sier ja. Se avsnittet om
+          informasjonskapsler og samtykke nedenfor.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Informasjonskapsler og samtykke",
+    body: (
+      <>
+        <p>
+          Nettsiden laster Google Tag Manager (container GTM-595MVFNW) på alle
+          sider. Taggbeholderen i seg selv setter ingen informasjonskapsler, og
+          vi fyrer ingen tagger som lagrer data eller sporer deg før du har
+          samtykket. Gjennom Google Tag Manager bruker vi Google Analytics 4 til
+          besøksstatistikk og konverteringssporing for Google Ads.
+        </p>
+        <p>
+          Vi bruker Google Consent Mode v2. Alle samtykkekategorier står på
+          &laquo;nei&raquo; som standard, og signalene settes før Google Tag Manager
+          lastes. Først når du aktivt velger, oppdateres de. Du kan velge to
+          kategorier hver for seg:
+        </p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>
+            <strong>Analyse</strong> &mdash; Google Analytics, som måler hvordan
+            nettsiden brukes.
+          </li>
+          <li>
+            <strong>Markedsføring</strong> &mdash; Google Ads og
+            konverteringssporing, som måler effekten av annonsene våre.
+          </li>
+        </ul>
+        <p>
+          Nødvendige funksjoner krever ikke samtykke. Det gjelder blant annet
+          handlekurven, som bare ligger lokalt i nettleseren din, og tiltak for
+          sikker drift av nettsiden.
+        </p>
+        <p>
+          Behandlingsgrunnlaget for analyse og markedsføring er samtykke (GDPR
+          art. 6-1 a). Google er databehandler for disse tjenestene.
+          Opplysninger kan bli overført til USA. Overføringsgrunnlaget er EUs
+          standard personvernbestemmelser (SCC) og EU-US Data Privacy Framework.
+        </p>
+        <p>
+          Valget ditt lagres lokalt i nettleseren din (localStorage, under
+          nøkkelen <code>hbh-samtykke</code>), ikke i en informasjonskapsel, og
+          sendes ikke til oss. Det gjelder i inntil ett år, deretter spør vi på
+          nytt.
+        </p>
+        <p>
+          Du kan når som helst trekke tilbake eller endre samtykket, uten å
+          oppgi noen grunn. Det gjør du i samtykkevinduet på nettsiden, eller ved
+          å slette lagrede nettsteddata for hudbyhelseblikk.no i
+          nettleserinnstillingene dine — da nullstilles valget, og du blir spurt
+          på nytt. Å trekke tilbake samtykket påvirker ikke lovligheten av
+          behandlingen som allerede har skjedd.
+        </p>
+        <p>
+          Timebestillingen på /bestill-time vises i en ramme fra Timma, som har
+          sin egen sporing. Vi videreformidler samtykkevalget ditt til denne
+          rammen, slik at den følger det du har valgt hos oss.
         </p>
       </>
     ),
@@ -91,8 +153,9 @@ const sections: { title: string; body: React.ReactNode }[] = [
       <>
         <p>
           Vi deler kun opplysninger med databehandlere som er nødvendige for
-          driften: betalingsleverandøren vår, Vercel (drift av nettsiden) og
-          fraktleverandør ved forsendelse. Vi selger aldri personopplysninger
+          driften: betalingsleverandøren vår, Vercel (drift av nettsiden), Google (analyse og
+          annonsemåling, dersom du har samtykket) og fraktleverandør ved
+          forsendelse. Vi selger aldri personopplysninger
           videre.
         </p>
         <p>
@@ -109,7 +172,8 @@ const sections: { title: string; body: React.ReactNode }[] = [
       <p>
         Du har rett til innsyn, retting og sletting av opplysningene vi har om
         deg, samt rett til å protestere mot og kreve begrensning av
-        behandlingen. Kontakt oss på {ORG.email} for å bruke rettighetene dine.
+        behandlingen. Har du gitt samtykke, kan du trekke det tilbake når som
+        helst. Kontakt oss på {ORG.email} for å bruke rettighetene dine.
         Du kan også klage til Datatilsynet (datatilsynet.no) hvis du mener
         behandlingen er i strid med regelverket.
       </p>

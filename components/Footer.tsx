@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import SamtykkeLenke from "@/components/SamtykkeLenke";
 
 export default function Footer() {
   return (
@@ -65,6 +66,9 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <SamtykkeLenke />
+              </li>
             </ul>
           </div>
 

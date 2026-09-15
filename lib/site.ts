@@ -24,6 +24,11 @@ export const ORG = {
 // kundeklubb-innmelding kommer tilbake av seg selv.
 export const BUTIKK_APEN = true;
 
+// Google Tag Manager. Containeren lastes på alle sider, men fyrer ingen
+// tagger som setter cookies før kunden har samtykket — se lib/samtykke.ts og
+// consent-default-skriptet i app/layout.tsx.
+export const GTM_ID = "GTM-595MVFNW";
+
 // Timma-nettbooking. Bookingen er bakt inn på /bestill-time;
 // TIMMA_URL brukes som direkte-lenke/reserve hvis innbakingen feiler.
 export const TIMMA_URL = "https://bestill.timma.no/helseblikkhudas";
