@@ -13,7 +13,12 @@ export interface BehandlingDetalj {
   navn: string;
   /** Kort navn til kort/lenker der fullt navn blir langt */
   kortNavn?: string;
-  kategori: "konsultasjon" | "vipper-bryn" | "hudbehandlinger" | "injeksjon";
+  kategori:
+    | "konsultasjon"
+    | "vipper-bryn"
+    | "hudbehandlinger"
+    | "biostimulering"
+    | "injeksjon";
   kategoriNavn: string;
   /** Én setning til meta description og kort-intro (maks ~155 tegn) */
   kort: string;
@@ -497,7 +502,7 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
       { q: "Gjør det vondt?", a: "Nålene er svært tynne, og vi kan bruke bedøvelseskrem. De fleste synes det er helt overkommelig." },
       { q: "Når ser jeg resultat?", a: "Mange ser friskere hud allerede etter noen dager. Full effekt kommer etter en kur på 3–4 behandlinger med 2–4 ukers mellomrom." },
     ],
-    relaterte: ["dermapen", "kjemisk-peeling", "hudkonsultasjon"],
+    relaterte: ["viscoderm-hydrobooster", "dermapen", "kjemisk-peeling"],
   },
   {
     slug: "filler",
@@ -545,7 +550,7 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
       { q: "Hvor mye trenger jeg?", a: "Det vurderer vi sammen. Til lepper starter mange med 0,5 ml for et naturlig resultat. Det er alltid lettere å legge til enn å ta bort." },
       { q: "Kan filler fjernes?", a: "Ja — hyaluronsyrefiller kan løses opp med hyaluronidase, en behandling vi også tilbyr." },
     ],
-    relaterte: ["fjerning-av-filler", "muskelavslappende-behandling", "hudkonsultasjon"],
+    relaterte: ["profhilo", "fjerning-av-filler", "muskelavslappende-behandling"],
   },
   {
     slug: "fjerning-av-filler",
@@ -588,7 +593,7 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
     kortNavn: "Rynkebehandling",
     kategori: "injeksjon",
     kategoriNavn: "Medisinsk rynkebehandling",
-    kort: "Medisinsk rynkebehandling i Grimstad — muskelavslappende injeksjoner mot dynamiske rynker. Fra 1 400 kr, utført av helsepersonell med lege som medisinsk ansvarlig.",
+    kort: "Medisinsk rynkebehandling i Grimstad — muskelavslappende injeksjoner mot dynamiske rynker. Fra 1 400 kr, utført av helsepersonell med lege som ansvarlig.",
     pris: "1 område 2.000,- · lite område 1.400,-",
     prisliste: [
       { navn: "Lite område", pris: "1.400,-" },
@@ -634,6 +639,145 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
       { q: "Gjelder studentrabatten her?", a: "Nei, injeksjonsbehandlinger er unntatt studentrabatten." },
     ],
     relaterte: ["filler", "hudkonsultasjon", "dermapen"],
+  },
+  {
+    slug: "profhilo",
+    navn: "Profhilo",
+    kategori: "biostimulering",
+    kategoriNavn: "Biostimulerende behandlinger",
+    kort: "Profhilo i Grimstad — hyaluronsyre som fukter og strammer opp huden innenfra, uten å bygge volum. Fra 4 000 kr hos kosmetisk sykepleier.",
+    pris: "4.000,-",
+    prisliste: [
+      { navn: "Én behandling", pris: "4.000,-" },
+      { navn: "Pakkepris — 2 områder/behandlinger", pris: "7.200,-" },
+    ],
+    varighet: "Ca. 30 minutter",
+    antall: "Kur på 2 behandlinger med 4 ukers mellomrom",
+    holdbarhet: "Ca. 6 måneder — vedlikehold 1–2 ganger i året",
+    hvaEr: [
+      "Profhilo er ren, stabilisert hyaluronsyre i høy konsentrasjon, satt i noen få punkter rett under huden. Derfra sprer den seg utover i vevet, binder fukt og stimulerer hudens egen produksjon av kollagen og elastin.",
+      "Behandlingen bygger ikke volum og endrer ikke ansiktsformen — den jobber med hudkvaliteten. Resultatet er hud som kjennes fastere og ser jevnere og mer uthvilt ut. Mange opplever også at rødhet roer seg og at huden tåler mer.",
+      "Vanligste områder er ansikt og hals, men også hender, dekolleté og overarmer kan behandles. Standardkuren er to behandlinger med fire ukers mellomrom — effekten bygger seg opp mellom dem.",
+    ],
+    passerFor: [
+      "Deg med tørr, slapp eller livløs hud som ikke svarer på kremer",
+      "Deg som ser begynnende slakkhet i kinn, kjevelinje eller på halsen",
+      "Deg som vil ha bedre hudkvalitet uten å endre ansiktsformen",
+      "Deg som er skeptisk til filler, men vil gjøre noe med huden",
+    ],
+    passerIkkeFor: [
+      "Deg som er gravid eller ammer",
+      "Deg med aktiv infeksjon, betennelse eller herpesutbrudd i området",
+      "Deg med kjent allergi mot hyaluronsyre",
+      "Deg som ønsker mer fylde eller volum — da er filler riktig behandling",
+      "Deg under 18 år",
+    ],
+    forlop: [
+      { tittel: "Før", tekst: "Vi vurderer huden og går gjennom helse og medisiner først. Unngå blodfortynnende håndkjøpspreparater (som Ibux) et par dager før hvis mulig — det reduserer risikoen for blåmerker." },
+      { tittel: "Under", tekst: "Produktet settes i fem faste punkter på hver side av ansiktet, med tynn nål. Det tar noen minutter, og de fleste beskriver det som korte stikk." },
+      { tittel: "Etter", tekst: "Små kuler under huden der produktet er satt er normalt, og de forsvinner i løpet av et døgn. Ikke masser området, og unngå trening, badstue og alkohol resten av dagen. Sminke fra dagen etter." },
+    ],
+    resultat: "Bedre fuktbalanse merkes gjerne etter en ukes tid. Den egentlige effekten — fastere, jevnere hud — kommer gradvis over 4–8 uker etter andre behandling, når kollagenproduksjonen har kommet i gang. Resultatet holder seg typisk rundt et halvår.",
+    faq: [
+      { q: "Er Profhilo det samme som filler?", a: "Nei. Filler legger volum ett bestemt sted og beholder formen sin. Profhilo sprer seg utover i huden og gir ingen volumøkning — den jobber med fuktighet, fasthet og hudkvalitet. Mange kombinerer de to, men de løser hver sin oppgave." },
+      { q: "Hvor mange behandlinger trenger jeg?", a: "Standardkuren er to behandlinger med fire ukers mellomrom. Deretter holder de fleste resultatet ved like med én behandling hver sjette til tolvte måned." },
+      { q: "Hva dekker pakkeprisen?", a: "Pakkeprisen på 7 200 kr dekker to behandlinger. Det kan være kuren på samme område, eller to ulike områder — for eksempel ansikt og hals. Enkeltbehandling koster 4 000 kr." },
+      { q: "Gjør det vondt?", a: "Det settes bare fem stikk per side, med tynn nål. De fleste synes det er godt overkommelig og trenger ikke bedøvelse." },
+      { q: "Kan jeg gå rett tilbake på jobb?", a: "Ja. Regn med små kuler under huden i noen timer til et døgn, og av og til et lite blåmerke. Utover det er det ingen restitusjonstid." },
+      { q: "Hvem utfører behandlingen?", a: "Kosmetisk sykepleier hos oss, med lege som medisinsk ansvarlig. Vi gjør alltid en vurdering først — noen ganger er svaret at en annen behandling passer huden din bedre." },
+    ],
+    relaterte: ["profhilo-structura", "viscoderm-hydrobooster", "mesoterapi"],
+  },
+  {
+    slug: "profhilo-structura",
+    navn: "Profhilo Structura",
+    kategori: "biostimulering",
+    kategoriNavn: "Biostimulerende behandlinger",
+    kort: "Profhilo Structura i Grimstad — biostimulering som jobber dypere og støtter fettvevet for en naturlig løfteeffekt. Fra 5 000 kr.",
+    pris: "5.000,-",
+    prisliste: [
+      { navn: "Én behandling", pris: "5.000,-" },
+      { navn: "Pakkepris — 2 behandlinger", pris: "9.000,-" },
+    ],
+    varighet: "Ca. 45 minutter inkl. vurdering",
+    antall: "Kur på 2 behandlinger med 4 ukers mellomrom",
+    holdbarhet: "Ca. 6–9 måneder",
+    hvaEr: [
+      "Profhilo Structura er en videreutvikling av klassisk Profhilo, laget for å settes dypere — i laget der ansiktets fettputer ligger. Der klassisk Profhilo jobber med hudkvaliteten, retter Structura seg mot underlaget huden hviler på.",
+      "Målet er å støtte fettvevet som svekkes med årene, slik at kinn og kjevelinje får tilbake noe av sin egen struktur. Effekten omtales gjerne som et lipolift: en mild løfteeffekt, uten at det legges inn volum slik filler gjør.",
+      "Produktet er nytt på det norske markedet. Virkestoffet — stabilisert hyaluronsyre — er godt dokumentert, men vi har mindre langtidserfaring med akkurat denne varianten enn med klassisk Profhilo. Det sier vi fra om, så du kan ta et informert valg.",
+    ],
+    passerFor: [
+      "Deg som ser at kinn og kjevelinje har mistet fasthet med årene",
+      "Deg som ønsker en mild løfteeffekt uten filler",
+      "Deg som har prøvd klassisk Profhilo og vil ha effekt lenger ned",
+      "Deg med begynnende volumtap, men som ikke vil endre ansiktsuttrykket",
+    ],
+    passerIkkeFor: [
+      "Deg som er gravid eller ammer",
+      "Deg med aktiv infeksjon eller betennelse i området",
+      "Deg med kjent allergi mot hyaluronsyre",
+      "Deg med tydelig volumtap som ønsker synlig fylde — da gir filler et mer forutsigbart resultat",
+      "Deg under 18 år",
+    ],
+    forlop: [
+      { tittel: "Før", tekst: "Vi går gjennom ønsker, helse og medisiner, og vurderer ansiktet som helhet før vi anbefaler behandlingen. Unngå blodfortynnende håndkjøpspreparater et par dager før om mulig." },
+      { tittel: "Under", tekst: "Området renses, og produktet settes dypt i noen få punkter langs kinn og kjevelinje. Selve injeksjonene tar en drøy halvtime; resten av timen går til vurdering og informasjon." },
+      { tittel: "Etter", tekst: "Lett hevelse og ømhet er vanlig det første døgnet, og blåmerker kan forekomme. Unngå trening, alkohol og sterk varme resten av dagen, og ikke masser området." },
+    ],
+    resultat: "Løfteeffekten kommer gradvis etter hvert som vevet responderer, og vurderes best 4–8 uker etter andre behandling. Resultatet er ment å være diskret — konturer som ser litt strammere ut, ikke et endret ansikt.",
+    faq: [
+      { q: "Hva er forskjellen på Structura og vanlig Profhilo?", a: "De settes i hvert sitt lag. Klassisk Profhilo legges rett under huden og jobber med fuktighet, fasthet og hudkvalitet. Structura settes dypere, i fettlaget, og retter seg mot støtten og konturene i ansiktet." },
+      { q: "Er dette filler?", a: "Nei. Filler plasseres for å skape volum på et bestemt sted og gir umiddelbart resultat. Structura støtter vevet du allerede har, og effekten bygger seg opp over uker." },
+      { q: "Hva dekker pakkeprisen?", a: "Pakkeprisen på 9 000 kr dekker to behandlinger, altså en hel kur. Enkeltbehandling koster 5 000 kr." },
+      { q: "Hvor godt dokumentert er produktet?", a: "Hyaluronsyre som virkestoff er svært godt dokumentert, og Structura bygger på samme teknologi som klassisk Profhilo. Selve varianten er ny, så langtidsdataene er færre. Vi mener det er relevant informasjon før du bestemmer deg." },
+      { q: "Kan jeg kombinere med klassisk Profhilo?", a: "Ja. De jobber i hvert sitt lag og utfyller hverandre. Vi setter opp en rekkefølge som passer huden din." },
+      { q: "Gjør det vondt?", a: "Injeksjonene settes dypere enn ved klassisk Profhilo, og noen kjenner mer trykk. De fleste beskriver det likevel som overkommelig, og vi kan bruke bedøvelseskrem." },
+    ],
+    relaterte: ["profhilo", "viscoderm-hydrobooster", "filler"],
+  },
+  {
+    slug: "viscoderm-hydrobooster",
+    navn: "Viscoderm Hydrobooster",
+    kortNavn: "Viscoderm",
+    kategori: "biostimulering",
+    kategoriNavn: "Biostimulerende behandlinger",
+    kort: "Viscoderm Hydrobooster i Grimstad — hyaluronsyre som glatter ut fine linjer rundt munn og øyne og gir dyp fukt. 3 000 kr.",
+    pris: "3.000,-",
+    varighet: "Ca. 45 minutter",
+    antall: "Kur på 3 behandlinger med 3 ukers mellomrom anbefales",
+    holdbarhet: "Ca. 4–6 måneder",
+    hvaEr: [
+      "Viscoderm Hydrobooster er hyaluronsyre laget for områder som er i stadig bevegelse — rundt munnen, ved øynene, i pannen og på halsen. Den settes overfladisk i et rutenett av små punkter.",
+      "Behandlingen kombinerer dyp fukt med en utstrekkende effekt i huden. Det gjør at fine, overfladiske linjer mykner uten at området fylles ut. Den egner seg godt der filler ville blitt for mye, og der kremer ikke når ned.",
+      "De fleste får best effekt av en kur på tre behandlinger med tre ukers mellomrom, og vedlikehold et par ganger i året.",
+    ],
+    passerFor: [
+      "Deg med fine linjer rundt munnen eller øynene",
+      "Deg med tørr, stram hud i områder med mye mimikk",
+      "Deg som ønsker glattere hud uten volum eller endret uttrykk",
+      "Deg med begynnende linjer på halsen",
+    ],
+    passerIkkeFor: [
+      "Deg som er gravid eller ammer",
+      "Deg med aktiv infeksjon eller herpesutbrudd i området",
+      "Deg med kjent allergi mot hyaluronsyre",
+      "Deg under 18 år",
+    ],
+    forlop: [
+      { tittel: "Før", tekst: "Vi vurderer området og går gjennom helse og medisiner. Har du hatt herpesutbrudd rundt munnen, si fra — da kan det være aktuelt å forebygge med medisin i forkant." },
+      { tittel: "Under", tekst: "Huden renses og kan bedøves med krem. Produktet settes med svært tynn nål i mange små punkter i et rutenett over området." },
+      { tittel: "Etter", tekst: "Små stikkmerker og lett rødhet i noen timer er normalt, og enkelte får små blåmerker. Unngå sminke resten av dagen, og trening og badstue første døgnet." },
+    ],
+    resultat: "Huden kjennes mer fuktet etter få dager. Selve utglattingen av linjene kommer gradvis gjennom kuren, og vurderes best noen uker etter siste behandling. Effekten holder typisk 4–6 måneder.",
+    faq: [
+      { q: "Hva er forskjellen på dette og mesoterapi?", a: "Begge tilfører fukt i huden. Mesoterapi er en cocktail av vitaminer og næringsstoffer fordelt over et større område, mens Viscoderm er ren hyaluronsyre satt målrettet i områder med mye bevegelse — med en utglattende effekt på selve linjene." },
+      { q: "Er det det samme som filler?", a: "Nei. Viscoderm settes overfladisk og gir ingen fylde. Den jobber med hudens fuktighet og elastisitet der huden brettes av mimikken." },
+      { q: "Hvor mange behandlinger trenger jeg?", a: "Vi anbefaler en kur på tre behandlinger med tre ukers mellomrom. Deretter holder mange resultatet ved like med én behandling et par ganger i året." },
+      { q: "Gjør det vondt?", a: "Nålene er svært tynne, og vi kan bruke bedøvelseskrem. Området rundt munnen er mest sensitivt, men de fleste synes det er overkommelig." },
+      { q: "Kan jeg kombinere den med Profhilo?", a: "Ja. Profhilo jobber med fasthet i hele ansiktet, mens Viscoderm er målrettet mot linjene i de bevegelige områdene. Vi planlegger rekkefølgen sammen." },
+    ],
+    relaterte: ["profhilo", "mesoterapi", "dermapen"],
   },
 ];
 

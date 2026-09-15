@@ -87,6 +87,30 @@ const priskategorier: Priskategori[] = [
     ],
   },
   {
+    kategori: "Biostimulerende behandlinger",
+    intro:
+      "Hyaluronsyre satt i huden for fukt, fasthet og glattere linjer. Behandlingene bygger ikke volum. Pakkeprisene forutsetter at begge behandlingene tas hos oss.",
+    items: [
+      { navn: "Profhilo", pris: "4.000,-", merkelapp: "Nyhet" },
+      {
+        navn: "Profhilo — pakkepris 2 områder/behandlinger",
+        pris: "7.200,-",
+        note: "For eksempel ansikt og hals, eller kuren på ett område",
+      },
+      { navn: "Profhilo Structura", pris: "5.000,-", merkelapp: "Nyhet" },
+      {
+        navn: "Profhilo Structura — pakkepris 2 behandlinger",
+        pris: "9.000,-",
+      },
+      {
+        navn: "Viscoderm Hydrobooster",
+        pris: "3.000,-",
+        merkelapp: "Nyhet",
+        note: "Kur på 3 behandlinger anbefales",
+      },
+    ],
+  },
+  {
     kategori: "Injeksjonsbehandlinger",
     underkategorier: [
       {

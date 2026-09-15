@@ -130,6 +130,35 @@ const sections: Seksjon[] = [
     ],
   },
   {
+    id: "biostimulering",
+    title: "Biostimulerende behandlinger",
+    intro:
+      "Hyaluronsyre satt i huden for å bedre hudkvaliteten innenfra — fukt, fasthet og glattere linjer. Disse behandlingene bygger ikke volum og endrer ikke ansiktsformen.",
+    behandlinger: [
+      {
+        navn: "Profhilo",
+        slug: "profhilo",
+        desc: "Fukter og strammer opp huden innenfra og stimulerer hudens egen produksjon av kollagen og elastin. Anbefalt kur er to behandlinger — pakkepris 7.200,- for to områder eller behandlinger.",
+        pris: "4.000,-",
+        merkelapp: "Nyhet",
+      },
+      {
+        navn: "Profhilo Structura",
+        slug: "profhilo-structura",
+        desc: "Jobber dypere enn klassisk Profhilo og støtter fettvevet under huden — en mild løfteeffekt uten filler. Pakkepris 9.000,- for to behandlinger.",
+        pris: "5.000,-",
+        merkelapp: "Nyhet",
+      },
+      {
+        navn: "Viscoderm Hydrobooster",
+        slug: "viscoderm-hydrobooster",
+        desc: "Glatter ut fine linjer rundt munn og øyne med dyp fukt og en utstrekkende effekt i huden. Anbefalt kur er tre behandlinger.",
+        pris: "3.000,-",
+        merkelapp: "Nyhet",
+      },
+    ],
+  },
+  {
     id: "injeksjon",
     title: "Injeksjonsbehandlinger",
     intro:
