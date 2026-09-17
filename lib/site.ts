@@ -34,6 +34,19 @@ export const GTM_ID = "GTM-595MVFNW";
 // besøk to ganger. Si fra til den som forvalter containeren.
 export const GA4_ID = "G-40XZHXYT4B";
 
+/**
+ * Domener som hører til samme reise, og som GA4 derfor må se som ÉN økt.
+ *
+ * Kassen ligger hos Shopify. Uten kryssdomene-kobling starter kassen en ny
+ * økt, og kjøpet tilskrives «henvisning fra hudbyhelseblikk.no» i stedet for
+ * annonsen som faktisk skaffet kunden — altså nøyaktig det tallet
+ * annonsebudsjettet styres etter.
+ */
+export const KRYSSDOMENER = [
+  "hudbyhelseblikk.no",
+  "hud-by-helseblikk.myshopify.com",
+];
+
 // Timma-nettbooking. Bookingen er bakt inn på /bestill-time;
 // TIMMA_URL brukes som direkte-lenke/reserve hvis innbakingen feiler.
 export const TIMMA_URL = "https://bestill.timma.no/helseblikkhudas";

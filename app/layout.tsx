@@ -118,6 +118,14 @@ export default async function RootLayout({
           Google Analytics 4. Googles egen snutt redefinerer `gtag` — det gjør
           vi ikke, for consent-skriptet over har allerede definert den og
           Samtykkebanneret kaller den.
+
+          KRYSSDOMENER KAN IKKE SETTES HERFRA. `linker`-parameteren i
+          gtag('config') er en rest fra Universal Analytics, og GA4 ignorerer
+          den — målt: google_tag_data.gl.decorators var tom. Kassen ligger på
+          et annet domene (se KRYSSDOMENER i lib/site.ts), og koblingen må
+          settes i GA4-admin: Administrator → Datastrømmer → Konfigurer
+          tagginnstillinger → Konfigurer domenene dine. Uten det tilskrives
+          hvert kjøp «henvisning» i stedet for annonsen som skaffet kunden.
         */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} />
         <script

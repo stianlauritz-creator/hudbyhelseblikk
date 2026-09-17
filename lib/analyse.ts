@@ -93,3 +93,49 @@ export function sporKontakt(
 ) {
   spor(punkt, ekstra);
 }
+
+/**
+ * Sender kunden videre til Shopify-kassen på en måte GA4 kan følge.
+ *
+ * `window.location.href = url` ser ut som det åpenbare valget, men GA4s
+ * kryssdomene-linker virker ved å lytte på KLIKK på `<a>`-elementer og lime
+ * på en `_gl`-parameter før nettleseren navigerer. En tilordning til
+ * `location` fanges ikke opp. Resultatet er at kassen starter en ny økt, og
+ * kjøpet tilskrives «henvisning» i stedet for annonsen som skaffet kunden.
+ *
+ * Derfor lager vi et ekte anker og klikker på det: da rekker linkeren å
+ * dekorere URL-en. Klarer vi det ikke, faller vi tilbake på en vanlig
+ * navigasjon — en kunde som ikke kommer til kassen er et mye større problem
+ * enn en kunde vi ikke klarer å tilskrive.
+ */
+export function gaaTilKasse(url: string) {
+  if (typeof window === "undefined") return;
+
+  let navigerer = false;
+  const merk = () => {
+    navigerer = true;
+  };
+  window.addEventListener("pagehide", merk, { once: true });
+
+  try {
+    const anker = document.createElement("a");
+    anker.href = url;
+    anker.rel = "noopener";
+    anker.style.display = "none";
+    document.body.appendChild(anker);
+    anker.click();
+    anker.remove();
+  } catch {
+    window.removeEventListener("pagehide", merk);
+    window.location.href = url;
+    return;
+  }
+
+  // Skjedde ingenting, er kunden strandet på en «Til betaling»-knapp som
+  // ikke gjør noe. Da navigerer vi på gamlemåten, uten dekorasjon.
+  window.setTimeout(() => {
+    if (!navigerer && document.visibilityState !== "hidden") {
+      window.location.href = url;
+    }
+  }, 1200);
+}

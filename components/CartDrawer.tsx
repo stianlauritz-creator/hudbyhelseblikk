@@ -7,7 +7,7 @@ import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, FREE_SHIPPING_LIMIT } from "@/components/CartProvider";
 import { formatPrice } from "@/lib/products";
 import { BUTIKK_APEN } from "@/lib/site";
-import { sporHandel, tilVare } from "@/lib/analyse";
+import { sporHandel, tilVare, gaaTilKasse } from "@/lib/analyse";
 
 export default function CartDrawer() {
   const cart = useCart();
@@ -36,7 +36,7 @@ export default function CartDrawer() {
       });
       const data = await res.json();
       if (res.ok && data.url) {
-        window.location.href = data.url;
+        gaaTilKasse(data.url);
         return;
       }
       setFallback(true);

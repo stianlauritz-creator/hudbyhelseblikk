@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Gift } from "lucide-react";
+import { gaaTilKasse } from "@/lib/analyse";
 
 const VALORER = [500, 1000, 1500, 2000];
 
@@ -22,7 +23,7 @@ export default function GavekortKjop() {
       });
       const data = await res.json();
       if (res.ok && data.url) {
-        window.location.href = data.url;
+        gaaTilKasse(data.url);
         return;
       }
       setFeil(true);
