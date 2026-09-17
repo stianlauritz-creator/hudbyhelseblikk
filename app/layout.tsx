@@ -9,6 +9,7 @@ import { CartProvider } from "@/components/CartProvider";
 import CartDrawer from "@/components/CartDrawer";
 import { getCatalog } from "@/lib/shopify";
 import Samtykkebanner from "@/components/Samtykkebanner";
+import Kontaktsporing from "@/components/Kontaktsporing";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -157,6 +158,7 @@ export default async function RootLayout({
           <Footer />
           <CartDrawer />
           <Samtykkebanner />
+          <Kontaktsporing />
         </CartProvider>
       </body>
     </html>

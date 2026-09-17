@@ -19,6 +19,7 @@ import {
   type Brand,
   type Product,
 } from "@/lib/products";
+import { sporListe, tilVare } from "@/lib/analyse";
 
 type Filter = "alle" | Brand;
 
@@ -158,6 +159,43 @@ export default function NettbutikkPage() {
     setFilter(id);
     setAntallVist(SIDESTORRELSE);
   };
+
+  // GA4: `view_item_list` for det utvalget kunden faktisk ser. Listenavnet
+  // følger filterknappen, slik at rapporten skiller ZO fra Face Formula i
+  // stedet for å samle alt under «Nettbutikk».
+  //
+  // `visible` er memoisert på filter og katalog, så effekten kjører bare når
+  // utvalget endrer seg — ikke på hver render. Nøkkelen i ref-en fanger
+  // resten: doble monteringer i utvikling, og render der bare urelaterte
+  // tilstander har endret seg.
+  const sendtListe = useRef("");
+  useEffect(() => {
+    // ?merke=-lenker setter filteret i effekten over, altså rett etter første
+    // render. Uten denne sperren rakk vi å sende «Alle produkter» for et
+    // utvalg kunden aldri så.
+    if (sendtListe.current === "") {
+      const fraLenke = new URLSearchParams(window.location.search).get("merke");
+      if (fraLenke && fraLenke !== filter && filters.some((f) => f.id === fraLenke)) {
+        return;
+      }
+    }
+
+    const listenavn = `Nettbutikk – ${
+      filters.find((f) => f.id === filter)?.label ?? "Alle produkter"
+    }`;
+    const nokkel = `${listenavn}:${antallVist}`;
+    if (sendtListe.current === nokkel) return;
+    // «Vis flere» utvider samme liste. Da sender vi bare den nye bolken —
+    // ellers ville produktene øverst blitt talt som vist om og om igjen.
+    const alleredeVist = sendtListe.current.startsWith(`${listenavn}:`)
+      ? Number(sendtListe.current.slice(listenavn.length + 1))
+      : 0;
+    sendtListe.current = nokkel;
+    sporListe(
+      listenavn,
+      visible.slice(alleredeVist, antallVist).map((p) => tilVare(p))
+    );
+  }, [visible, antallVist, filter]);
 
   // Vis bare filterknapper det finnes produkter for
   const activeFilters = useMemo(

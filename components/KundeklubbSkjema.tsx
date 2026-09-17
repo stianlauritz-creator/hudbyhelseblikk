@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { sporKontakt } from "@/lib/analyse";
+
 type Status = "klar" | "sender" | "ferdig" | "feil";
 
 export default function KundeklubbSkjema({
@@ -45,6 +47,8 @@ export default function KundeklubbSkjema({
         setStatus("feil");
         return;
       }
+      // Først her vet vi at påmeldingen faktisk gikk gjennom.
+      sporKontakt("kundeklubb_pamelding");
       setStatus("ferdig");
       onFerdig?.();
     } catch {

@@ -7,6 +7,7 @@ import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, FREE_SHIPPING_LIMIT } from "@/components/CartProvider";
 import { formatPrice } from "@/lib/products";
 import { BUTIKK_APEN } from "@/lib/site";
+import { sporHandel, tilVare } from "@/lib/analyse";
 
 export default function CartDrawer() {
   const cart = useCart();
@@ -18,6 +19,14 @@ export default function CartDrawer() {
   if (!BUTIKK_APEN) return null;
 
   const checkout = async () => {
+    // Kassen ligger på Shopify sitt domene, så dette er det siste vi ser av
+    // kunden — hendelsen må sendes før vi sender henne videre. Tom kurv
+    // slipper aldri gjennom: knappen finnes ikke da, og sporHandel dropper
+    // uansett hendelser uten varer.
+    sporHandel(
+      "begin_checkout",
+      cart.items.map((i) => tilVare(i.product, i.qty, i.farge))
+    );
     setBusy(true);
     try {
       const res = await fetch("/api/checkout", {

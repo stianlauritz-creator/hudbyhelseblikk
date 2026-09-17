@@ -5,6 +5,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { PRODUCTS, type Product } from "@/lib/products";
@@ -15,7 +16,9 @@ import {
   settAntall,
   rensLinjer,
   type Kurvlinje,
+  MAKS_ANTALL,
 } from "@/lib/kurv";
+import { sporHandel, tilVare } from "@/lib/analyse";
 
 export type CartLine = Kurvlinje;
 
@@ -83,6 +86,26 @@ export function CartProvider({
     if (loaded) localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
   }, [lines, loaded]);
 
+  const items = useMemo<Kurvpost[]>(
+    () =>
+      lines
+        .map((l) => ({
+          nokkel: linjeNokkel(l),
+          product: catalog.find((p) => p.sku === l.sku)!,
+          farge: l.farge,
+          qty: l.qty,
+        }))
+        .filter((i) => i.product),
+    [lines, catalog]
+  );
+
+  const gaVarer = (poster: Kurvpost[]) =>
+    poster.map((i) => tilVare(i.product, i.qty, i.farge));
+
+  // Husker forrige åpen-tilstand slik at view_cart fyrer på overgangen lukket
+  // → åpen. En useEffect ville vært setState-i-effekt, som repoet avviser.
+  const varApen = useRef(false);
+
   const add = (sku: string, farge?: string) => {
     const produkt = catalog.find((p) => p.sku === sku);
     // Utsolgte varer skal ikke kunne havne i kurven, uansett hvor «Legg i
@@ -93,27 +116,63 @@ export function CartProvider({
     const nyanser = produkt.farger ?? [];
     if (nyanser.length > 0 && (!farge || !nyanser.includes(farge))) return;
 
-    setLines((prev) => leggTil(prev, sku, nyanser.length > 0 ? farge : undefined));
+    const nyanse = nyanser.length > 0 ? farge : undefined;
+
+    // Ved MAKS_ANTALL skjer det ingenting med kurven, og da er det heller
+    // ingenting å rapportere.
+    const alt = items.find(
+      (i) => i.nokkel === linjeNokkel({ sku, farge: nyanse })
+    );
+    if (!alt || alt.qty < MAKS_ANTALL) {
+      sporHandel("add_to_cart", [tilVare(produkt, 1, nyanse)]);
+    }
+    setLines((prev) => leggTil(prev, sku, nyanse));
+    // Skuffen åpnes her uten view_cart: add_to_cart forteller allerede hva
+    // kunden gjorde, og to handelshendelser på ett klikk ville telt dobbelt.
+    varApen.current = true;
     setOpen(true);
   };
 
-  const remove = (nokkel: string) =>
+  const remove = (nokkel: string) => {
+    // Linja må leses før den fjernes — remove får bare nøkkelen, og etterpå
+    // finnes det ingenting igjen å rapportere.
+    const post = items.find((i) => i.nokkel === nokkel);
+    if (post) sporHandel("remove_from_cart", gaVarer([post]));
     setLines((prev) => fjern(prev, nokkel));
+  };
 
-  const setQty = (nokkel: string, qty: number) =>
+  const settApen = (neste: boolean) => {
+    if (neste && !varApen.current) sporHandel("view_cart", gaVarer(items));
+    varApen.current = neste;
+    setOpen(neste);
+  };
+
+  const setQty = (nokkel: string, qty: number) => {
+    // Minusknappen i kurvskuffen går hit, ikke via remove(). Uten dette ville
+    // remove_from_cart nesten aldri fyrt — remove() har i praksis ingen
+    // kaller i grensesnittet.
+    const post = items.find((i) => i.nokkel === nokkel);
+    if (post) {
+      // settAntall klipper til [1, MAKS_ANTALL] og fjerner linja på 0. Vi
+      // rapporterer differansen mot det som FAKTISK blir stående, ellers
+      // teller vi endringer som aldri skjedde.
+      const nytt =
+        qty <= 0 ? 0 : Math.max(1, Math.min(MAKS_ANTALL, Math.floor(qty)));
+      const diff = nytt - post.qty;
+      if (diff < 0) {
+        sporHandel("remove_from_cart", [
+          tilVare(post.product, -diff, post.farge),
+        ]);
+      } else if (diff > 0) {
+        sporHandel("add_to_cart", [tilVare(post.product, diff, post.farge)]);
+      }
+    }
     setLines((prev) => settAntall(prev, nokkel, qty));
+  };
 
   const clear = () => setLines([]);
 
   const value = useMemo<CartContextValue>(() => {
-    const items: Kurvpost[] = lines
-      .map((l) => ({
-        nokkel: linjeNokkel(l),
-        product: catalog.find((p) => p.sku === l.sku)!,
-        farge: l.farge,
-        qty: l.qty,
-      }))
-      .filter((i) => i.product);
     const subtotal = items.reduce((s, i) => s + i.product.price * i.qty, 0);
     const shipping =
       subtotal === 0 || subtotal >= FREE_SHIPPING_LIMIT ? 0 : SHIPPING_COST;
@@ -124,7 +183,7 @@ export function CartProvider({
       setQty,
       clear,
       open,
-      setOpen,
+      setOpen: settApen,
       count: lines.reduce((s, l) => s + l.qty, 0),
       subtotal,
       shipping,
@@ -133,7 +192,7 @@ export function CartProvider({
       catalog,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lines, open, catalog]);
+  }, [lines, open, catalog, items]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
