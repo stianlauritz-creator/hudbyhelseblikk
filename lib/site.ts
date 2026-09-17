@@ -27,7 +27,17 @@ export const BUTIKK_APEN = true;
 // Google Tag Manager. Containeren lastes på alle sider, men fyrer ingen
 // tagger som setter cookies før kunden har samtykket — se lib/samtykke.ts og
 // consent-default-skriptet i app/layout.tsx.
-export const GTM_ID = "GTM-595MVFNW";
+//
+// Dette er KLINIKKENS EGEN container (konto «Helseblikk Hud»), ikke byråets.
+// Byrået får tilgang som bruker i stedet, slik at målingen blir liggende her
+// hvis samarbeidet tar slutt. Byråets container GTM-595MVFNW ble brukt
+// 15.–17.09.2026 og er nå ute.
+//
+// ÉN container om gangen. Legges byråets inn i tillegg, fyrer alt dobbelt.
+//
+// MERK: container-ID-en er også navngitt i personvernerklæringen
+// (app/personvern/page.tsx). Byttes den her, må den byttes der også.
+export const GTM_ID = "GTM-N6W4329Q";
 
 // Google Analytics 4. Lastes direkte av siden, IKKE via GTM-containeren.
 // VIKTIG: legges det inn en GA4-tagg for samme måle-ID i GTM, telles hvert

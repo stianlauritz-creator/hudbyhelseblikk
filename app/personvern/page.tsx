@@ -56,7 +56,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
     body: (
       <>
         <p>
-          Nettsiden laster Google Tag Manager (container GTM-595MVFNW) på alle
+          Nettsiden laster Google Tag Manager (container GTM-N6W4329Q) på alle
           sider. Taggbeholderen i seg selv setter ingen informasjonskapsler, og
           vi fyrer ingen tagger som lagrer data eller sporer deg før du har
           samtykket. Gjennom Google Tag Manager bruker vi Google Analytics 4 til
