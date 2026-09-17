@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 import { SITE_URL, GTM_ID, GA4_ID } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -100,6 +99,33 @@ export default async function RootLayout({
             __html: `window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',personalization_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});`,
           }}
         />
+        {/*
+          Google Tag Manager, så høyt i <head> som consent-rekkefølgen
+          tillater. Vanlig <script>, ikke next/script: da kjører den under
+          parsing i stedet for etter hydrering, slik Googles egen snutt gjør.
+        */}
+        {/* eslint-disable-next-line @next/next/next-script-for-ga --
+            @next/third-parties' GoogleTagManager laster containeren etter
+            hydrering, nederst i <body>. Byrået ba uttrykkelig om <head>, og
+            det er også Googles egen anbefaling. Ikke «rett» dette tilbake. */}
+        <script
+          id="gtm"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+        {/*
+          Google Analytics 4. Googles egen snutt redefinerer `gtag` — det gjør
+          vi ikke, for consent-skriptet over har allerede definert den og
+          Samtykkebanneret kaller den.
+        */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} />
+        <script
+          id="ga4-config"
+          dangerouslySetInnerHTML={{
+            __html: `window.gtag('js', new Date());window.gtag('config', '${GA4_ID}');`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -122,36 +148,6 @@ export default async function RootLayout({
             title="Google Tag Manager"
           />
         </noscript>
-        <Script
-          id="gtm"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
-          }}
-        />
-        {/*
-          Google Analytics 4.
-
-          Googles egen snutt definerer `function gtag(){dataLayer.push(arguments)}`
-          på nytt. Det gjør vi bevisst ikke: consent-skriptet i <head> har
-          allerede definert window.gtag, og Samtykkebanneret kaller den. Skrev vi
-          over den her, ville rekkefølgen mellom consent og GA4 bli tilfeldig.
-
-          Fordi consent-default står i <head> med alt på «denied», sender GA4
-          bare cookieløse signaler til kunden eventuelt sier ja.
-        */}
-        <Script
-          id="ga4-lib"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
-        />
-        <Script
-          id="ga4-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `window.gtag('js', new Date());window.gtag('config', '${GA4_ID}');`,
-          }}
-        />
         <CartProvider catalog={catalog}>
           <Navbar />
           <main className="flex-1">{children}</main>
