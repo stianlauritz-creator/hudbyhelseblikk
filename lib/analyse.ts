@@ -95,47 +95,37 @@ export function sporKontakt(
 }
 
 /**
- * Sender kunden videre til Shopify-kassen på en måte GA4 kan følge.
+ * Kryssdomene-sporing til Shopify-kassen.
  *
- * `window.location.href = url` ser ut som det åpenbare valget, men GA4s
- * kryssdomene-linker virker ved å lytte på KLIKK på `<a>`-elementer og lime
- * på en `_gl`-parameter før nettleseren navigerer. En tilordning til
- * `location` fanges ikke opp. Resultatet er at kassen starter en ny økt, og
- * kjøpet tilskrives «henvisning» i stedet for annonsen som skaffet kunden.
+ * MÅLT, IKKE ANTATT: GA4s linker dekorerer bare EKTE brukerklikk. Et anker
+ * vi lager og klikker programmatisk (`isTrusted: false`) blir ikke rørt — det
+ * var den første løsningen her, og den virket ikke. Dekorasjonen skjer
+ * allerede i capture-fasen, før React ser klikket, og blir stående på lenka
+ * etterpå.
  *
- * Derfor lager vi et ekte anker og klikker på det: da rekker linkeren å
- * dekorere URL-en. Klarer vi det ikke, faller vi tilbake på en vanlig
- * navigasjon — en kunde som ikke kommer til kassen er et mye større problem
- * enn en kunde vi ikke klarer å tilskrive.
+ * Derfor: «Til betaling» ER en ekte lenke til butikkdomenet. Kunden klikker,
+ * GA4 limer på `_gl`, vi stopper navigasjonen, plukker parameteren og henger
+ * den på den virkelige kasse-URL-en når API-et har svart.
+ *
+ * Uten dette starter kassen en ny økt, og kjøpet tilskrives «henvisning» i
+ * stedet for annonsen som skaffet kunden.
  */
+
+/** Plukker `_gl` fra en lenke GA4 har dekorert. */
+export function hentGl(href: string | null | undefined): string | null {
+  if (!href) return null;
+  const m = href.match(/[?&]_gl=([^&#]+)/);
+  return m ? m[1] : null;
+}
+
+/** Henger `_gl` på kasse-URL-en. Uten parameter returneres URL-en urørt. */
+export function medGl(url: string, gl: string | null): string {
+  if (!gl) return url;
+  if (/[?&]_gl=/.test(url)) return url;
+  return url + (url.includes("?") ? "&" : "?") + "_gl=" + gl;
+}
+
+/** Sender kunden til kassen. */
 export function gaaTilKasse(url: string) {
-  if (typeof window === "undefined") return;
-
-  let navigerer = false;
-  const merk = () => {
-    navigerer = true;
-  };
-  window.addEventListener("pagehide", merk, { once: true });
-
-  try {
-    const anker = document.createElement("a");
-    anker.href = url;
-    anker.rel = "noopener";
-    anker.style.display = "none";
-    document.body.appendChild(anker);
-    anker.click();
-    anker.remove();
-  } catch {
-    window.removeEventListener("pagehide", merk);
-    window.location.href = url;
-    return;
-  }
-
-  // Skjedde ingenting, er kunden strandet på en «Til betaling»-knapp som
-  // ikke gjør noe. Da navigerer vi på gamlemåten, uten dekorasjon.
-  window.setTimeout(() => {
-    if (!navigerer && document.visibilityState !== "hidden") {
-      window.location.href = url;
-    }
-  }, 1200);
+  if (typeof window !== "undefined") window.location.href = url;
 }

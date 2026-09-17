@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Gift } from "lucide-react";
-import { gaaTilKasse } from "@/lib/analyse";
+import { gaaTilKasse, hentGl, medGl } from "@/lib/analyse";
+import { KASSE_ANKER } from "@/lib/site";
 
 const VALORER = [500, 1000, 1500, 2000];
 
@@ -12,7 +13,15 @@ export default function GavekortKjop() {
   const [venter, setVenter] = useState<number | null>(null);
   const [feil, setFeil] = useState(false);
 
-  const kjop = async (amount: number) => {
+  const kjop = async (
+    amount: number,
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    // Samme grep som i kurven: lenka finnes bare for at GA4 skal
+    // dekorere klikket. Se hentGl i lib/analyse.ts.
+    e.preventDefault();
+    const gl = hentGl(e.currentTarget.getAttribute("href"));
+    if (venter !== null) return;
     setVenter(amount);
     setFeil(false);
     try {
@@ -23,7 +32,7 @@ export default function GavekortKjop() {
       });
       const data = await res.json();
       if (res.ok && data.url) {
-        gaaTilKasse(data.url);
+        gaaTilKasse(medGl(data.url, gl));
         return;
       }
       setFeil(true);
@@ -40,15 +49,18 @@ export default function GavekortKjop() {
       </p>
       <div className="mb-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
         {VALORER.map((v) => (
-          <button
+          <a
             key={v}
-            onClick={() => kjop(v)}
-            disabled={venter !== null}
-            className="flex items-center justify-center gap-2 rounded-full bg-[#8f6b28] px-5 py-3.5 text-sm tracking-wide text-white transition-colors hover:bg-[#7a5b20] disabled:opacity-60"
+            href={KASSE_ANKER}
+            onClick={(e) => kjop(v, e)}
+            aria-disabled={venter !== null}
+            className={`flex items-center justify-center gap-2 rounded-full bg-[#8f6b28] px-5 py-3.5 text-sm tracking-wide text-white transition-colors hover:bg-[#7a5b20] ${
+              venter !== null ? "pointer-events-none opacity-60" : ""
+            }`}
           >
             <Gift size={14} />
             {venter === v ? "Åpner kassen …" : fmt(v)}
-          </button>
+          </a>
         ))}
       </div>
       {feil && (

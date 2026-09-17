@@ -52,6 +52,14 @@ export const GA4_ID = "G-40XZHXYT4B";
  * annonsen som faktisk skaffet kunden — altså nøyaktig det tallet
  * annonsebudsjettet styres etter.
  */
+/**
+ * Lenkemålet «Til betaling» peker på før API-et har svart. Den må ligge på
+ * butikkdomenet for at GA4s linker skal dekorere klikket — se gaaTilKasse og
+ * hentGl i lib/analyse.ts. Kunden havner aldri faktisk her; vi stopper
+ * navigasjonen og bytter til den ekte kasse-URL-en.
+ */
+export const KASSE_ANKER = "https://hud-by-helseblikk.myshopify.com/cart";
+
 export const KRYSSDOMENER = [
   "hudbyhelseblikk.no",
   "hud-by-helseblikk.myshopify.com",

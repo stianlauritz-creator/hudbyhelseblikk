@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart, FREE_SHIPPING_LIMIT } from "@/components/CartProvider";
 import { formatPrice } from "@/lib/products";
-import { BUTIKK_APEN } from "@/lib/site";
-import { sporHandel, tilVare, gaaTilKasse } from "@/lib/analyse";
+import { BUTIKK_APEN, KASSE_ANKER } from "@/lib/site";
+import { sporHandel, tilVare, gaaTilKasse, hentGl, medGl } from "@/lib/analyse";
 
 export default function CartDrawer() {
   const cart = useCart();
@@ -18,7 +18,13 @@ export default function CartDrawer() {
   // hele tatt, heller ikke fra en gammel localStorage-kurv.
   if (!BUTIKK_APEN) return null;
 
-  const checkout = async () => {
+  const checkout = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Lenka er ekte, men kunden skal ikke dit — vi trenger bare klikket
+    // for at GA4 skal dekorere den. Den virkelige kasse-URL-en kommer
+    // fra API-et under.
+    e.preventDefault();
+    const gl = hentGl(e.currentTarget.getAttribute("href"));
+    if (busy) return;
     // Kassen ligger på Shopify sitt domene, så dette er det siste vi ser av
     // kunden — hendelsen må sendes før vi sender henne videre. Tom kurv
     // slipper aldri gjennom: knappen finnes ikke da, og sporHandel dropper
@@ -36,7 +42,7 @@ export default function CartDrawer() {
       });
       const data = await res.json();
       if (res.ok && data.url) {
-        gaaTilKasse(data.url);
+        gaaTilKasse(medGl(data.url, gl));
         return;
       }
       setFallback(true);
@@ -192,13 +198,16 @@ export default function CartDrawer() {
                     </div>
                   ) : (
                     <>
-                      <button
+                      <a
+                        href={KASSE_ANKER}
                         onClick={checkout}
-                        disabled={busy}
-                        className="w-full px-6 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors disabled:opacity-60"
+                        aria-disabled={busy}
+                        className={`block w-full text-center px-6 py-3.5 bg-[#8f6b28] text-white text-sm tracking-wide rounded-full hover:bg-[#7a5b20] transition-colors ${
+                          busy ? "opacity-60 pointer-events-none" : ""
+                        }`}
                       >
                         {busy ? "Et øyeblikk …" : "Til betaling"}
-                      </button>
+                      </a>
                       <p className="text-[11px] text-[#1a1a1a]/35 text-center">
                         Ved å fullføre kjøpet godtar du våre{" "}
                         <a

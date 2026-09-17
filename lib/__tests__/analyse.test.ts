@@ -1,5 +1,14 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { tilVare, verdi, spor, sporHandel, sporListe, sporKontakt } from "../analyse";
+import {
+  tilVare,
+  verdi,
+  spor,
+  sporHandel,
+  sporListe,
+  sporKontakt,
+  hentGl,
+  medGl,
+} from "../analyse";
 import type { Product } from "../products";
 
 function produkt(over: Partial<Product> = {}): Product {
@@ -113,5 +122,49 @@ describe("sporKontakt", () => {
   it("sender kontaktpunktet som hendelsesnavn", () => {
     sporKontakt("telefonklikk", { kilde: "footer" });
     expect(kall).toEqual([["event", "telefonklikk", { kilde: "footer" }]]);
+  });
+});
+
+describe("kryssdomene mot Shopify-kassen", () => {
+  const dekorert =
+    "https://hud-by-helseblikk.myshopify.com/cart?_gl=1*abc123*_ga*MTk4*_ga_X*czE3";
+
+  it("plukker _gl fra en dekorert lenke", () => {
+    expect(hentGl(dekorert)).toBe("1*abc123*_ga*MTk4*_ga_X*czE3");
+  });
+
+  it("gir null når lenka ikke er dekorert", () => {
+    // Skjer når kunden har sagt nei til analyse — da finnes ingen klient-ID
+    // å sende videre, og det er riktig.
+    expect(hentGl("https://hud-by-helseblikk.myshopify.com/cart")).toBeNull();
+    expect(hentGl(null)).toBeNull();
+    expect(hentGl(undefined)).toBeNull();
+  });
+
+  it("stopper ved & og # slik at ikke halve URL-en blir med", () => {
+    expect(hentGl("https://x.no/?_gl=abc&foo=1")).toBe("abc");
+    expect(hentGl("https://x.no/?_gl=abc#seksjon")).toBe("abc");
+  });
+
+  it("henger _gl på en URL som allerede har spørrestreng", () => {
+    expect(medGl("https://x.no/cart/c/TOK?key=1", "abc")).toBe(
+      "https://x.no/cart/c/TOK?key=1&_gl=abc"
+    );
+  });
+
+  it("henger _gl på en URL uten spørrestreng", () => {
+    expect(medGl("https://x.no/cart/c/TOK", "abc")).toBe(
+      "https://x.no/cart/c/TOK?_gl=abc"
+    );
+  });
+
+  it("lar URL-en være i fred uten _gl", () => {
+    const u = "https://x.no/cart/c/TOK";
+    expect(medGl(u, null)).toBe(u);
+  });
+
+  it("dobler ikke _gl hvis den alt ligger der", () => {
+    const u = "https://x.no/cart?_gl=finnes";
+    expect(medGl(u, "ny")).toBe(u);
   });
 });
