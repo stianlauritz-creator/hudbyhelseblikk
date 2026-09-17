@@ -29,6 +29,11 @@ export const BUTIKK_APEN = true;
 // consent-default-skriptet i app/layout.tsx.
 export const GTM_ID = "GTM-595MVFNW";
 
+// Google Analytics 4. Lastes direkte av siden, IKKE via GTM-containeren.
+// VIKTIG: legges det inn en GA4-tagg for samme måle-ID i GTM, telles hvert
+// besøk to ganger. Si fra til den som forvalter containeren.
+export const GA4_ID = "G-40XZHXYT4B";
+
 // Timma-nettbooking. Bookingen er bakt inn på /bestill-time;
 // TIMMA_URL brukes som direkte-lenke/reserve hvis innbakingen feiler.
 export const TIMMA_URL = "https://bestill.timma.no/helseblikkhudas";

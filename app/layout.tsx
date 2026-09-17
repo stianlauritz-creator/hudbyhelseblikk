@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-import { SITE_URL, GTM_ID } from "@/lib/site";
+import { SITE_URL, GTM_ID, GA4_ID } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/components/CartProvider";
@@ -126,6 +126,29 @@ export default async function RootLayout({
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+        {/*
+          Google Analytics 4.
+
+          Googles egen snutt definerer `function gtag(){dataLayer.push(arguments)}`
+          på nytt. Det gjør vi bevisst ikke: consent-skriptet i <head> har
+          allerede definert window.gtag, og Samtykkebanneret kaller den. Skrev vi
+          over den her, ville rekkefølgen mellom consent og GA4 bli tilfeldig.
+
+          Fordi consent-default står i <head> med alt på «denied», sender GA4
+          bare cookieløse signaler til kunden eventuelt sier ja.
+        */}
+        <Script
+          id="ga4-lib"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
+        />
+        <Script
+          id="ga4-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.gtag('js', new Date());window.gtag('config', '${GA4_ID}');`,
           }}
         />
         <CartProvider catalog={catalog}>
