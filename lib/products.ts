@@ -99,6 +99,8 @@ export const PRODUCTS: Product[] = [
   { sku: "FF-033", brand: "face-formula", name: "Nova Drops SPF 50+", size: "30 ml", price: 940, desc: "Ultralette, transparente soldråper med bredspektret høy beskyttelse.", image: "/produkter/FF-033.jpg" },
   { sku: "FF-034", brand: "face-formula", name: "Nova BB Cream SPF 25", size: "30 ml", price: 590, desc: "Tonet BB-krem som jevner ut hudtonen, gir fukt og solbeskyttelse.", image: "/produkter/FF-034.jpg" },
   { sku: "FF-035", brand: "face-formula", name: "Mom & Me SPF 50", size: "100 ml", price: 980, desc: "Mineralsk solkrem med høy beskyttelse for hele familien.", image: "/produkter/FF-035.jpg", utsolgt: true },
+  { sku: "FF-036", brand: "face-formula", name: "Rescue Formula", size: "150 ml", price: 790, desc: "Reparerende centella-krem for stresset, irritert og overbehandlet hud — til ansikt og kropp.", image: "/produkter/FF-036.jpg" },
+  { sku: "FF-037", brand: "face-formula", name: "Rescue Formula", size: "30 ml", price: 320, desc: "Reparerende centella-krem i reisestørrelse — for stresset, irritert og overbehandlet hud.", image: "/produkter/FF-037.jpg" },
   // ColoreScience-utvalget er trimmet til det klinikken faktisk har inne
   // (Mabel, 17.08.2026). De øvrige SKU-ene er tatt ut av katalogen — ikke
   // slettet fra lib/details/cs.ts, så de kan settes inn igjen ved bestilling.

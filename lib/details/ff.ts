@@ -1073,4 +1073,68 @@ export const FF_DETAILS: ProductDetails[] = [
     skinTypes: ["Alle hudtyper", "Sensitiv hud", "Barnehud"],
     related: ["FF-016", "FF-023", "FF-006"],
   },
+  {
+    sku: "FF-036",
+    intro:
+      "Rescue Formula er en reparerende krem fra Face Formulas Sensitive Collection, laget for hud som er stresset, irritert eller overbehandlet. Den roer, styrker hudbarrieren og hjelper huden å komme seg — i ansiktet og på kroppen.",
+    longDesc: [
+      "Kjernen i formelen er centella asiatica i tre aktive former (asiatikosid, madekassinsyre og asiatinsyre). Centella er kjent for å dempe irritasjon og støtte hudens egne reparasjonsprosesser, og den brukes mye i pleie etter sol, peeling og andre behandlinger.",
+      "Polyglutaminsyre, betain og glyserin binder fukt, mens avokadoolje, sheasmør og mandelolje gir tilbake lipidene stresset hud mangler. Lakrisrotens glycyrrhetinsyre og «dragon's blood» bidrar til å roe og styrke. Resultatet er en multitasker du kan ha på der huden trenger det mest — også over arr og strekkmerker, hvor jevn bruk over tid kan gjøre dem mindre synlige.",
+    ],
+    benefits: [
+      "Roer stresset, irritert og overbehandlet hud",
+      "Styrker hudbarrieren og gjør huden mer motstandsdyktig",
+      "Støtter hudens naturlige reparasjon og kollagenproduksjon",
+      "God etter sol, peeling og estetiske behandlinger",
+      "Kan bedre utseendet av arr og strekkmerker over tid",
+      "Til både ansikt og kropp, morgen og kveld",
+    ],
+    usage: [
+      "Start med ren, tørr hud.",
+      "Masser inn en passende mengde der huden trenger reparasjon, fukt eller lindring.",
+      "Bruk morgen og kveld, etter soleksponering eller etter behandling hos oss.",
+      "Om dagen: avslutt alltid med solbeskyttelse.",
+    ],
+    ingredients: [
+      { name: "Centella asiatica (asiatikosid, madekassinsyre, asiatinsyre)", effect: "Demper irritasjon og støtter hudens reparasjon og kollagenprosesser" },
+      { name: "Polyglutaminsyre og betain", effect: "Binder fukt og gjør huden smidig" },
+      { name: "Avokadoolje, sheasmør og mandelolje", effect: "Gir tilbake lipider og styrker hudbarrieren" },
+      { name: "Glycyrrhetinsyre (lakrisrot)", effect: "Roer rødhet og ubehag" },
+      { name: "Dragon's blood (Daemonorops draco)", effect: "Plantebasert ekstrakt som støtter hudens fornyelse" },
+    ],
+    skinTypes: ["Sensitiv hud", "Irritert eller stresset hud", "Hud etter behandling", "Alle hudtyper"],
+    related: ["FF-023", "FF-016", "FF-033"],
+  },
+  {
+    sku: "FF-037",
+    intro:
+      "Rescue Formula er en reparerende krem fra Face Formulas Sensitive Collection, laget for hud som er stresset, irritert eller overbehandlet. Den roer, styrker hudbarrieren og hjelper huden å komme seg — i ansiktet og på kroppen. 30 ml er praktisk i vesken og på reise, eller som en rimelig måte å prøve den på.",
+    longDesc: [
+      "Kjernen i formelen er centella asiatica i tre aktive former (asiatikosid, madekassinsyre og asiatinsyre). Centella er kjent for å dempe irritasjon og støtte hudens egne reparasjonsprosesser, og den brukes mye i pleie etter sol, peeling og andre behandlinger.",
+      "Polyglutaminsyre, betain og glyserin binder fukt, mens avokadoolje, sheasmør og mandelolje gir tilbake lipidene stresset hud mangler. Lakrisrotens glycyrrhetinsyre og «dragon's blood» bidrar til å roe og styrke. Resultatet er en multitasker du kan ha på der huden trenger det mest — også over arr og strekkmerker, hvor jevn bruk over tid kan gjøre dem mindre synlige.",
+    ],
+    benefits: [
+      "Roer stresset, irritert og overbehandlet hud",
+      "Styrker hudbarrieren og gjør huden mer motstandsdyktig",
+      "Støtter hudens naturlige reparasjon og kollagenproduksjon",
+      "God etter sol, peeling og estetiske behandlinger",
+      "Kan bedre utseendet av arr og strekkmerker over tid",
+      "Til både ansikt og kropp, morgen og kveld",
+    ],
+    usage: [
+      "Start med ren, tørr hud.",
+      "Masser inn en passende mengde der huden trenger reparasjon, fukt eller lindring.",
+      "Bruk morgen og kveld, etter soleksponering eller etter behandling hos oss.",
+      "Om dagen: avslutt alltid med solbeskyttelse.",
+    ],
+    ingredients: [
+      { name: "Centella asiatica (asiatikosid, madekassinsyre, asiatinsyre)", effect: "Demper irritasjon og støtter hudens reparasjon og kollagenprosesser" },
+      { name: "Polyglutaminsyre og betain", effect: "Binder fukt og gjør huden smidig" },
+      { name: "Avokadoolje, sheasmør og mandelolje", effect: "Gir tilbake lipider og styrker hudbarrieren" },
+      { name: "Glycyrrhetinsyre (lakrisrot)", effect: "Roer rødhet og ubehag" },
+      { name: "Dragon's blood (Daemonorops draco)", effect: "Plantebasert ekstrakt som støtter hudens fornyelse" },
+    ],
+    skinTypes: ["Sensitiv hud", "Irritert eller stresset hud", "Hud etter behandling", "Alle hudtyper"],
+    related: ["FF-036", "FF-023", "FF-016"],
+  },
 ];
