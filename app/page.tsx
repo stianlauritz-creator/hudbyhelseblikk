@@ -6,6 +6,7 @@ import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { AKTIVE_KAMPANJER } from "@/lib/kampanjer";
+import LaserTeaser from "@/components/LaserTeaser";
 import {
   Sparkles,
   Star,
@@ -217,6 +218,12 @@ export default function Home() {
           </div>
         </Link>
       )}
+
+      {/* Ny laser — «Nyhet! Kommer snart». Forsvinner når LASER_KOMMER_SNART
+          slås av i lib/laser.ts. */}
+      <section className="bg-white px-6 pt-24">
+        <LaserTeaser className="mx-auto max-w-6xl" />
+      </section>
 
       {/* Behandlingskategorier */}
       <section className="py-24 px-6 bg-white">

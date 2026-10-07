@@ -45,6 +45,7 @@ export default function Footer() {
               {[
                 ["Behandlinger", "/behandlinger"],
                 ["Plastikkirurgi", "/plastikkirurgi"],
+                ["Laser — kommer snart", "/laser"],
                 ["Nettbutikk", "/nettbutikk"],
                 ["Kampanjer", "/kampanjer"],
                 ["Behandlere", "/behandlere"],

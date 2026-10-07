@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import LaserTeaser from "@/components/LaserTeaser";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { motion } from "framer-motion";
@@ -461,6 +462,11 @@ export default function BehandlingerPage() {
             </p>
           </div>
         </AnimatedSection>
+      </section>
+
+      {/* Ny laser kommer snart */}
+      <section className="mt-12 px-6">
+        <LaserTeaser className="mx-auto max-w-6xl" />
       </section>
 
       {/* Navigasjon */}
