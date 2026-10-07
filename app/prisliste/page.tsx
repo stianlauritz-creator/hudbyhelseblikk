@@ -40,14 +40,10 @@ const priskategorier: Priskategori[] = [
   {
     kategori: "Vipper & Bryn",
     items: [
-      // Introduksjonspris ut september 2026 — sett pris til "1.190,-" og fjern
-      // noten når kampanjen er over.
       {
         navn: "Koreansk vippeløft",
-        pris: "790,-",
-        forPris: "1.190,-",
-        merkelapp: "Nyhet · Kampanje ut september",
-        note: "Farging av vippene inkludert. Introduksjonspris ut september — timen må både bookes og gjennomføres i september. Varighet 4–6 uker",
+        pris: "1.190,-",
+        note: "Farging av vippene inkludert. Varighet 4–6 uker",
       },
       { navn: "Farging/forming vipper og bryn inkl. voks", pris: "690,-" },
       { navn: "Brynslaminering inkl. farge, forming og voks", pris: "890,-", note: "Varighet 4–8 uker" },

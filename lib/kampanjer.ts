@@ -66,7 +66,7 @@ export const KAMPANJER: Kampanje[] = [
       "Utføres av Christina",
     ],
     merkelapp: "Ut september",
-    aktiv: true,
+    aktiv: false, // avsluttet 30.09.2026
   },
   {
     id: "lansering-nettbutikk",

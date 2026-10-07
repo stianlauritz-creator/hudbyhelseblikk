@@ -53,14 +53,10 @@ const sections: Seksjon[] = [
       "Fra enkel farging til vippeløft og brynslaminering — vi former og definerer blikket ditt.",
     behandlinger: [
       {
-        // Kampanjefeltene fjernes når introduksjonstilbudet går ut 30.09.2026
-        // — da settes `pris` til "1.190,-". Se lib/kampanjer.ts.
         navn: "Koreansk vippeløft",
         slug: "koreansk-vippeloft",
         desc: "Løfter dine egne vipper fra roten for et våkent, definert blikk i 4–6 uker. Farging av vippene er inkludert.",
-        pris: "790,-",
-        forPris: "1.190,-",
-        merkelapp: "Nyhet · Kampanje ut september",
+        pris: "1.190,-",
       },
       {
         navn: "Farging/forming vipper og bryn inkl. voks",
