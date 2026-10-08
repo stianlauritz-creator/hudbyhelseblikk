@@ -36,8 +36,8 @@ export default function LaserTeaser({ className = "" }: { className?: string }) 
             Ny laser: {LASER_NAVN}
           </h2>
           <p className="mb-7 max-w-md leading-relaxed text-white/75">
-            Varig hårreduksjon, sprengte blodkar og pigmentflekker — med to
-            bølgelengder for alle hudtyper og kjøling før hvert skudd.
+            Varig hårreduksjon og sprengte blodkar — med to bølgelengder for
+            alle hudtyper og kjøling før hvert skudd.
           </p>
           <span className="inline-flex items-center gap-2 text-sm tracking-wide text-[#e5c78f] transition-colors group-hover:text-white">
             Les mer og sett deg på ventelisten

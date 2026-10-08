@@ -6,6 +6,9 @@
 // klinikkens egne kalkyler som IKKE skal inn her:
 //  - Største spot er 26 mm, ikke «27 mm, størst i markedet».
 //  - Akne er ikke en godkjent indikasjon. Ikke lov aknebehandling.
+//  - Pigmentflekker står i Candelas brosjyre, men Christina og leverandøren
+//    (Frode) bruker den kun til hårfjerning og vaskulært. Tatt ut 08.10.2026
+//    etter beskjed fra Stian — ikke markedsfør pigment på laseren.
 // Priser er ikke satt ennå — siden sier bevisst «kommer når vi åpner».
 //
 // NÅR LASEREN ER I DRIFT: sett LASER_KOMMER_SNART = false, legg inn priser og
@@ -52,13 +55,6 @@ export const BEHANDLINGSOMRADER = [
       "Maskinen behandler synlige blodkar presist, uten å skade huden rundt. Laserlyset tas opp av blodet i karet, som lukker seg og gradvis brytes ned av kroppen.",
     punkter: ["Sprengte blodkar i ansiktet", "Rødhet ved rosacea", "Edderkoppårer på bena", "Angiomer og små blodkarsvulster"],
   },
-  {
-    id: "pigment",
-    tittel: "Pigmentflekker",
-    ingress:
-      "Godartede pigmentflekker kan lysne betydelig, ofte på få behandlinger. Alle flekker vurderes først — er vi i tvil, ser legen på den før vi gjør noe.",
-    punkter: ["Solflekker", "Aldersflekker", "Ujevn pigmentering etter sol"],
-  },
 ];
 
 export const HVORFOR = [
@@ -80,7 +76,7 @@ export const HVORFOR = [
   {
     tittel: "Medisinsk ansvar",
     tekst:
-      "Behandlingene skjer i en medisinsk klinikk med lege Débora Dias De Oliveira som medisinsk ansvarlig. Pigmentflekker vi er usikre på, behandles ikke før de er vurdert.",
+      "Behandlingene skjer i en medisinsk klinikk med lege Débora Dias De Oliveira som medisinsk ansvarlig. Alle behandlinger starter med en konsultasjon, og er vi i tvil om noe i huden din, ser legen på det først.",
   },
 ];
 
@@ -107,7 +103,6 @@ export const PASSER_FOR = [
   "Deg som får inngrodde hår og barberingskviser",
   "Deg med synlige blodkar eller rødhet i ansiktet",
   "Deg med edderkoppårer på bena",
-  "Deg med solflekker og aldersflekker",
   "Alle hudtyper — også mørk hud, med riktig bølgelengde",
 ];
 
@@ -149,11 +144,15 @@ export const FAQ = [
     a: "Ja. Det er nettopp derfor vi har valgt en maskin med to bølgelengder. Nd:YAG-laseren (1064 nm) går forbi pigmentet i overhuden og er det trygge valget for mørk og solbrun hud.",
   },
   {
+    q: "Kan dere ta pigmentflekker med laseren?",
+    a: "Vi bruker laseren til hårfjerning og blodkar — det er det den er best på, og det vi har valgt den for. Solflekker og ujevn pigmentering hjelper vi deg med på andre måter: kjemisk peeling og medisinsk hudpleie fra ZO gir gode resultater. Book en hudkonsultasjon, så legger vi en plan.",
+  },
+  {
     q: "Kan jeg sole meg mellom behandlingene?",
     a: "Hold det behandlede området unna sol, og bruk solkrem med høy faktor. Solbrun hud gir høyere risiko for pigmentforandringer, og da må vi senke energien eller vente.",
   },
   {
     q: "Er det samme laser som dere hadde før?",
-    a: "Nei. GentleMAX Pro Plus er en ny maskin fra Candela, bygd spesielt for hårfjerning, blodkar og pigment. Den har to bølgelengder, kjøling før hvert skudd og større behandlingsflater — altså raskere og mer skånsomme behandlinger.",
+    a: "Nei. GentleMAX Pro Plus er en ny maskin fra Candela, bygd spesielt for hårfjerning og blodkar. Den har to bølgelengder, kjøling før hvert skudd og større behandlingsflater — altså raskere og mer skånsomme behandlinger.",
   },
 ];

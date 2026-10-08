@@ -82,9 +82,9 @@ export default function LaserPage() {
             </h1>
             <p className="mb-3 text-lg tracking-wide text-[#e5c78f]">{LASER_NAVN}</p>
             <p className="mb-9 max-w-lg text-lg leading-relaxed text-white/75">
-              Varig hårreduksjon, sprengte blodkar og pigmentflekker — med to
-              bølgelengder som passer alle hudtyper, og kjøling før hvert
-              eneste skudd. Snart hos oss i Odden 1D.
+              Varig hårreduksjon og sprengte blodkar — med to bølgelengder
+              som passer alle hudtyper, og kjøling før hvert eneste skudd.
+              Snart hos oss i Odden 1D.
             </p>
             <VentelisteKnapp lys />
             <p className="mt-4 text-sm text-white/60">
@@ -128,15 +128,15 @@ export default function LaserPage() {
               className="mb-4 text-3xl font-normal md:text-4xl"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Tre behandlinger, én maskin
+              To behandlinger, én maskin
             </h2>
             <p className="leading-relaxed text-[#1a1a1a]/65">
-              GentleMAX Pro Plus er bygd for nettopp disse tre tingene. Det er
+              GentleMAX Pro Plus er bygd for nettopp disse to tingene. Det er
               derfor vi har valgt den: én maskin som gjør få ting, og gjør dem
               svært godt.
             </p>
           </AnimatedSection>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {BEHANDLINGSOMRADER.map((o, i) => (
               <AnimatedSection key={o.id} delay={i * 0.1}>
                 <div id={o.id} className="flex h-full flex-col rounded-2xl border border-[#e8d5b0]/40 bg-[#faf9f7] p-8">
