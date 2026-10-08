@@ -37,14 +37,19 @@ export const BEHANDLINGSOMRADER = [
     id: "harfjerning",
     tittel: "Varig hårreduksjon",
     ingress:
-      "Hovedgrunnen til at vi har valgt GentleMAX Pro Plus. Laserlyset tas opp av pigmentet i hårsekken og svekker den, slik at håret vokser tilbake tynnere og glissere — og etter en kur, langt på vei ikke i det hele tatt.",
-    punkter: ["Ansikt og overleppe", "Armhuler og bikinilinje", "Legger og hele ben", "Rygg, bryst og skjegglinje"],
+      "Hovedgrunnen til at vi har valgt GentleMAX Pro Plus. Laserlyset tas opp av pigmentet i håret og ødelegger hårsekken. Mange hår slutter helt å vokse, og de som kommer tilbake, blir tynnere og lysere.",
+    punkter: [
+      "Ansikt og kropp",
+      "Fra mørke og tykke hår til lysere og tynnere — eller ingen",
+      "Slutt på barbering, voks og inngrodde hår",
+      "Kur på flere behandlinger, deretter vedlikehold ved behov",
+    ],
   },
   {
     id: "blodkar",
     tittel: "Blodkar og rødhet",
     ingress:
-      "Med det vaskulære håndstykket kan vi behandle synlige blodkar presist, uten å skade huden rundt. Den lange bølgelengden når også dypere kar enn mange andre lasere.",
+      "Maskinen behandler synlige blodkar presist, uten å skade huden rundt. Laserlyset tas opp av blodet i karet, som lukker seg og gradvis brytes ned av kroppen.",
     punkter: ["Sprengte blodkar i ansiktet", "Rødhet ved rosacea", "Edderkoppårer på bena", "Angiomer og små blodkarsvulster"],
   },
   {
@@ -60,7 +65,7 @@ export const HVORFOR = [
   {
     tittel: "Riktig laser for din hud",
     tekst:
-      "Alexandrit (755 nm) er svært effektiv på lys til middels hud. Nd:YAG (1064 nm) går dypere og er tryggere på mørk og solbrun hud. Vi velger bølgelengde etter deg — ikke etter hva maskinen tilfeldigvis kan.",
+      "Alexandrit (755 nm) er svært effektiv på lys til middels hud. Nd:YAG (1064 nm) går dypere og er tryggere på mørk og solbrun hud. Vi velger bølgelengde etter huden din.",
   },
   {
     tittel: "Kjøling før hvert skudd",
