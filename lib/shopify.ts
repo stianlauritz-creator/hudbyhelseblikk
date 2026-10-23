@@ -160,13 +160,8 @@ export const TILLEGG: Record<
   string,
   Pick<Product, "farger" | "retinol" | "retinolStyrke">
 > = {
-  // Nyanselistene er det klinikken faktisk fører, ikke ZOs fulle sortiment
-  // (ZO har også Medium-tan på Tint, og Fair + Deep på Sunshade).
-  "ZO-037": { farger: ["Fair-light", "Light-medium"] },
-  "ZO-038": { farger: ["Light", "Light medium", "Medium", "Tan"] },
-  // Begge pakkene inneholder Daily Power Defense, som har retinol.
-  "ZO-041": { retinol: true },
-  "ZO-042": { retinol: true },
+  // Tom per 23.10.2026: ZO-037/038/041/042 fikk lokal oppføring i PRODUCTS
+  // (med bilde og tekst) og tar nyanser og retinolmerking derfra.
 };
 
 export function iSalg(p: Product): boolean {

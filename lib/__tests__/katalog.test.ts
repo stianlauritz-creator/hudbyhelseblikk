@@ -57,7 +57,7 @@ describe("den statiske katalogen", () => {
   });
 });
 
-describe("TILLEGG — nyanser og merking for produkter som bare finnes i Shopify", () => {
+describe("TILLEGG og merking — nyanser og retinol", () => {
   it("overlapper ikke med den statiske katalogen", () => {
     // To kilder til samme felt ville før eller siden sprike.
     const dobbelt = PRODUCTS.filter((p) => TILLEGG[p.sku]).map((p) => p.sku);
@@ -73,8 +73,11 @@ describe("TILLEGG — nyanser og merking for produkter som bare finnes i Shopify
   });
 
   it("gir de to solkremene nyansene klinikken faktisk fører", () => {
-    expect(TILLEGG["ZO-037"].farger).toEqual(["Fair-light", "Light-medium"]);
-    expect(TILLEGG["ZO-038"].farger).toEqual([
+    // Flyttet fra TILLEGG til PRODUCTS 23.10.2026 da produktene fikk
+    // lokal oppføring med bilde og tekst.
+    const av = (sku: string) => PRODUCTS.find((p) => p.sku === sku);
+    expect(av("ZO-037")?.farger).toEqual(["Fair-light", "Light-medium"]);
+    expect(av("ZO-038")?.farger).toEqual([
       "Light",
       "Light medium",
       "Medium",
@@ -83,10 +86,20 @@ describe("TILLEGG — nyanser og merking for produkter som bare finnes i Shopify
   });
 
   it("merker pakkene som inneholder retinol", () => {
-    // Begge kitene inneholder Daily Power Defense. Uten flagget får kunden
-    // ikke veiledningsboksen som alle andre retinolprodukter utløser.
-    expect(TILLEGG["ZO-041"].retinol).toBe(true);
-    expect(TILLEGG["ZO-042"].retinol).toBe(true);
+    // Alle tre kitene inneholder Daily Power Defense. Uten flagget får
+    // kunden ikke veiledningsboksen som alle andre retinolprodukter utløser.
+    const av = (sku: string) => PRODUCTS.find((p) => p.sku === sku);
+    expect(av("ZO-041")?.retinol).toBe(true);
+    expect(av("ZO-042")?.retinol).toBe(true);
+    expect(av("ZO-047")?.retinol).toBe(true);
+    expect(av("ZO-048")?.retinol).toBeUndefined();
+  });
+
+  it("merker alle tre styrkene av Retinol Skin Brightener", () => {
+    const av = (sku: string) => PRODUCTS.find((p) => p.sku === sku);
+    expect(av("ZO-043")?.retinolStyrke).toBe("0,25 %");
+    expect(av("ZO-013")?.retinolStyrke).toBe("0,5 %");
+    expect(av("ZO-044")?.retinolStyrke).toBe("1 %");
   });
 
   it("merker ingenting som utgått og tilleggsført samtidig", () => {
