@@ -14,8 +14,9 @@ const FJERNEDE_BEHANDLINGER = [
   "prp-behandling",
 ];
 
-// Behandlinger den nye laseren (Candela GentleMAX Pro Plus) skal gjøre igjen —
-// de gamle URL-ene sendes til /laser i stedet for den generelle oversikten.
+// Behandlinger den nye laseren (Candela GentleMAX Pro Plus) gjør igjen fra
+// november 2026 — de gamle URL-ene sendes permanent (308) til /laser, som nå
+// er den varige siden. Akne/leppe/øyelokk/PRP er fortsatt midlertidige (307).
 const TIL_LASERSIDEN = new Set([
   "harfjerning-laser",
   "blodkarbehandling-laser",
@@ -32,7 +33,7 @@ const nextConfig: NextConfig = {
     return FJERNEDE_BEHANDLINGER.map((slug) => ({
       source: `/behandlinger/${slug}`,
       destination: TIL_LASERSIDEN.has(slug) ? "/laser" : "/behandlinger",
-      permanent: false,
+      permanent: TIL_LASERSIDEN.has(slug),
     }));
   },
 };

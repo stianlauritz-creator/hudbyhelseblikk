@@ -15,6 +15,7 @@ import {
   ShoppingBag,
   Eye,
   Scissors,
+  Zap,
 } from "lucide-react";
 
 const behandlingsKategorier = [
@@ -23,6 +24,12 @@ const behandlingsKategorier = [
     title: "Vipper & Bryn",
     desc: "Koreansk vippeløft, farging, forming og brynslaminering",
     href: "/behandlinger#vipper-bryn",
+  },
+  {
+    icon: Zap,
+    title: "Laser",
+    desc: "Varig hårfjerning og blodkar med Candela GentleMAX Pro Plus — fra 690,-",
+    href: "/laser",
   },
   {
     icon: Droplets,
@@ -219,8 +226,7 @@ export default function Home() {
         </Link>
       )}
 
-      {/* Ny laser — «Nyhet! Kommer snart». Forsvinner når LASER_KOMMER_SNART
-          slås av i lib/laser.ts. */}
+      {/* Laseren — nyhetskort med pris og kampanje (styres i lib/laser.ts). */}
       <section className="bg-white px-6 pt-24">
         <LaserTeaser className="mx-auto max-w-6xl" />
       </section>

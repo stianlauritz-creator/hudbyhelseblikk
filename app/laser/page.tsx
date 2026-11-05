@@ -1,36 +1,50 @@
 import Link from "next/link";
-import { ArrowRight, Ban, Check, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, Ban, Check, Mail, Phone, Sparkles, Tag } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import BookingButton from "@/components/BookingButton";
 import LaserMaskin from "@/components/LaserMaskin";
-import { SITE_URL } from "@/lib/site";
+import { BOOKING_URL, SITE_URL } from "@/lib/site";
 import {
   BEHANDLINGSOMRADER,
   FAQ,
   FORLOP,
   HVORFOR,
+  LASER_KAMPANJE,
+  LASER_KONSULTASJON,
   LASER_NAVN,
+  LASER_PRISER,
   NOKKELTALL,
   PASSER_FOR,
   PASSER_IKKE_FOR,
-  VENTELISTE_HREF,
 } from "@/lib/laser";
 
-// Én hovedhandling på hele siden: ventelisten. Laseren er ikke i Timma ennå,
-// så det finnes ingen time å booke — når den er i drift, byttes knappen til
-// <BookingButton /> (se lib/laser.ts).
-function VentelisteKnapp({ lys = false }: { lys?: boolean }) {
+// Én hovedhandling på hele siden: bestill time. Laseren ligger i Timma under
+// «Hårfjerning», så BookingButton går rett til /bestill-time som ellers.
+// Den lyse varianten brukes på navy bakgrunn (hero og avslutning).
+function BestillKnapp({ lys = false, label = "Bestill time" }: { lys?: boolean; label?: string }) {
+  if (lys) {
+    return (
+      <a
+        href={BOOKING_URL}
+        className="inline-flex items-center gap-2 rounded-full bg-[#c9a96e] px-7 py-3.5 text-sm tracking-wide text-[#1e2d3d] transition-colors hover:bg-[#e5c78f]"
+      >
+        {label}
+        <ArrowRight size={15} />
+      </a>
+    );
+  }
+  return <BookingButton label={label} />;
+}
+
+function Kampanjemerke({ className = "" }: { className?: string }) {
+  if (!LASER_KAMPANJE.aktiv) return null;
   return (
-    <a
-      href={VENTELISTE_HREF}
-      className={
-        lys
-          ? "inline-flex items-center gap-2 rounded-full bg-[#c9a96e] px-7 py-3.5 text-sm tracking-wide text-[#1e2d3d] transition-colors hover:bg-[#e5c78f]"
-          : "inline-flex items-center gap-2 rounded-full bg-[#1e2d3d] px-7 py-3.5 text-sm tracking-wide text-white transition-colors hover:bg-[#2a3d52]"
-      }
+    <p
+      className={`inline-flex items-center gap-1.5 rounded-full bg-[#3d4a3e] px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-white ${className}`}
     >
-      Sett meg på ventelisten
-      <ArrowRight size={15} />
-    </a>
+      <Sparkles size={11} className="shrink-0" />
+      {LASER_KAMPANJE.merkelapp}
+    </p>
   );
 }
 
@@ -72,24 +86,38 @@ export default function LaserPage() {
           <AnimatedSection eager>
             <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#e5c78f]/40 px-3.5 py-1.5 text-xs uppercase tracking-[0.2em] text-[#e5c78f]">
               <Sparkles size={13} className="shrink-0" />
-              Nyhet! Kommer snart til klinikken
+              Nyhet i klinikken
             </p>
             <h1
               className="mb-6 text-4xl font-normal leading-[1.1] md:text-6xl"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Ny laser i Grimstad
+              Laserhårfjerning i Grimstad
             </h1>
             <p className="mb-3 text-lg tracking-wide text-[#e5c78f]">{LASER_NAVN}</p>
             <p className="mb-9 max-w-lg text-lg leading-relaxed text-white/75">
               Varig hårreduksjon og sprengte blodkar — med to bølgelengder
               som passer alle hudtyper, og kjøling før hvert eneste skudd.
-              Snart hos oss i Odden 1D.
+              Nå hos oss i Odden 1D.
             </p>
-            <VentelisteKnapp lys />
-            <p className="mt-4 text-sm text-white/60">
-              Du får beskjed før vi åpner for timer — og prisene først.
-            </p>
+            <div className="flex flex-wrap items-center gap-4">
+              <BestillKnapp lys />
+              <a
+                href="#priser"
+                className="inline-flex items-center gap-2 text-sm tracking-wide text-white/80 transition-colors hover:text-[#e5c78f]"
+              >
+                Se priser <ArrowRight size={14} />
+              </a>
+            </div>
+            {LASER_KAMPANJE.aktiv && (
+              <p className="mt-6 inline-flex items-start gap-2.5 rounded-xl bg-white/10 px-4 py-3 text-sm text-white/85">
+                <Tag size={15} className="mt-0.5 shrink-0 text-[#e5c78f]" />
+                <span>
+                  <strong className="font-medium text-white">{LASER_KAMPANJE.tittel}</strong>{" "}
+                  — {LASER_KAMPANJE.kort}
+                </span>
+              </p>
+            )}
           </AnimatedSection>
           <LaserMaskin
             preload
@@ -117,7 +145,7 @@ export default function LaserPage() {
         </div>
       </section>
 
-      {/* Hva vi skal behandle */}
+      {/* Hva vi behandler */}
       <section className="bg-white px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <AnimatedSection className="mb-14 max-w-2xl">
@@ -140,9 +168,12 @@ export default function LaserPage() {
             {BEHANDLINGSOMRADER.map((o, i) => (
               <AnimatedSection key={o.id} delay={i * 0.1}>
                 <div id={o.id} className="flex h-full flex-col rounded-2xl border border-[#e8d5b0]/40 bg-[#faf9f7] p-8">
-                  <p className="mb-4 text-xs uppercase tracking-[0.2em] text-[#8f6b28]">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
+                  <div className="mb-4 flex items-center justify-between gap-4">
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#8f6b28]">
+                      {String(i + 1).padStart(2, "0")}
+                    </p>
+                    <p className="text-sm font-medium text-[#8f6b28]">{o.pris}</p>
+                  </div>
                   <h3
                     className="mb-3 text-2xl font-normal"
                     style={{ fontFamily: "var(--font-playfair)" }}
@@ -165,8 +196,132 @@ export default function LaserPage() {
         </div>
       </section>
 
+      {/* Priser */}
+      <section id="priser" className="scroll-mt-24 bg-[#f5f2ed] px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <AnimatedSection className="mb-12 max-w-2xl">
+            <p className="mb-3 text-xs uppercase tracking-[0.25em] text-[#8f6b28]">
+              Priser
+            </p>
+            <h2
+              className="mb-4 text-3xl font-normal md:text-4xl"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Hårfjerning per behandling
+            </h2>
+            <p className="leading-relaxed text-[#1a1a1a]/65">
+              Prisen gjelder én behandling av området. De fleste trenger 6–8
+              behandlinger for et varig resultat. Flere områder i samme time
+              får pakkepris.
+            </p>
+          </AnimatedSection>
+
+          {LASER_KAMPANJE.aktiv && (
+            <AnimatedSection className="mb-10">
+              <div className="relative overflow-hidden rounded-2xl bg-[#1e2d3d] p-7 text-white md:p-9">
+                <div
+                  aria-hidden
+                  className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#c9a96e]/15 blur-3xl"
+                />
+                <div className="relative grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-center">
+                  <div>
+                    <Kampanjemerke className="mb-4" />
+                    <h3
+                      className="mb-2 text-2xl font-normal md:text-3xl"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {LASER_KAMPANJE.tittel}
+                    </h3>
+                    <p className="text-white/75">{LASER_KAMPANJE.kort}</p>
+                  </div>
+                  <ul className="space-y-1.5">
+                    {LASER_KAMPANJE.vilkar.map((v) => (
+                      <li key={v} className="flex gap-2 text-xs leading-relaxed text-white/70">
+                        <span aria-hidden className="text-[#e5c78f]">·</span>
+                        {v}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </AnimatedSection>
+          )}
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatedSection>
+              <div className="h-full rounded-2xl border border-[#c9a96e]/40 bg-white p-7">
+                <h3
+                  className="mb-5 text-xl font-normal text-[#1e2d3d]"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  Før du starter
+                </h3>
+                <div className="flex items-start justify-between gap-4 border-b border-[#faf9f7] py-3">
+                  <div>
+                    <p className="text-sm text-[#1a1a1a]/80">{LASER_KONSULTASJON.navn}</p>
+                    <p className="mt-0.5 text-xs text-[#1a1a1a]/65">{LASER_KONSULTASJON.note}</p>
+                  </div>
+                  <p className="whitespace-nowrap text-sm font-medium text-[#8f6b28]">
+                    {LASER_KONSULTASJON.pris}
+                  </p>
+                </div>
+                <div className="flex items-start justify-between gap-4 py-3">
+                  <div>
+                    <p className="text-sm text-[#1a1a1a]/80">Blodkar og rødhet</p>
+                    <p className="mt-0.5 text-xs text-[#1a1a1a]/65">
+                      Prises etter område — vi setter prisen i konsultasjonen
+                    </p>
+                  </div>
+                  <p className="whitespace-nowrap text-sm font-medium text-[#8f6b28]">
+                    Etter konsultasjon
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+            {LASER_PRISER.map((g, i) => (
+              <AnimatedSection key={g.tittel} delay={(i + 1) * 0.06}>
+                <div className="h-full rounded-2xl border border-[#e8d5b0]/40 bg-white p-7">
+                  <h3
+                    className="mb-5 text-xl font-normal text-[#1e2d3d]"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {g.tittel}
+                  </h3>
+                  <div>
+                    {g.priser.map((p) => (
+                      <div
+                        key={p.navn}
+                        className="flex items-start justify-between gap-4 border-b border-[#faf9f7] py-3 last:border-b-0"
+                      >
+                        <div className="min-w-0">
+                          <p className="text-sm text-[#1a1a1a]/80">{p.navn}</p>
+                          {p.pakke && (
+                            <p className="mt-0.5 text-[11px] uppercase tracking-[0.15em] text-[#8f6b28]">
+                              Pakkepris
+                            </p>
+                          )}
+                        </div>
+                        <p className="whitespace-nowrap text-sm font-medium text-[#8f6b28]">{p.pris}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection delay={0.2} className="mt-10 flex flex-wrap items-center gap-6">
+            <BestillKnapp label="Bestill laserhårfjerning" />
+            <p className="max-w-md text-sm leading-relaxed text-[#1a1a1a]/65">
+              Studentrabatt gjelder ikke laser. Prisene er per behandling og
+              betales i klinikken.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Hvorfor denne laseren */}
-      <section className="bg-[#f5f2ed] px-6 py-24">
+      <section className="bg-white px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <AnimatedSection className="mb-14 max-w-2xl">
             <p className="mb-3 text-xs uppercase tracking-[0.25em] text-[#8f6b28]">
@@ -198,7 +353,7 @@ export default function LaserPage() {
       </section>
 
       {/* Slik foregår hårfjerning */}
-      <section className="bg-white px-6 py-24">
+      <section className="bg-[#f5f2ed] px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <AnimatedSection className="mb-14 max-w-2xl">
             <p className="mb-3 text-xs uppercase tracking-[0.25em] text-[#8f6b28]">
@@ -323,19 +478,20 @@ export default function LaserPage() {
         />
         <AnimatedSection className="relative mx-auto max-w-2xl text-center">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[#e5c78f]">
-            Kommer snart
+            {LASER_KAMPANJE.aktiv ? LASER_KAMPANJE.tittel : "Timene er åpne"}
           </p>
           <h2
             className="mb-5 text-3xl font-normal md:text-5xl"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Vil du være blant de første?
+            Klar for å slippe barberhøvelen?
           </h2>
           <p className="mb-9 leading-relaxed text-white/75">
-            Sett deg på ventelisten, så sier vi fra så snart laseren er på plass
-            og timene er åpne.
+            Bestill time direkte i timeboken, eller start med en konsultasjon
+            hvis du vil ha en vurdering først. Konsultasjonen trekkes fra ved
+            behandling.
           </p>
-          <VentelisteKnapp lys />
+          <BestillKnapp lys />
           <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-white/65 sm:flex-row sm:gap-8">
             <a href="tel:37040500" className="inline-flex items-center gap-2 transition-colors hover:text-[#e5c78f]">
               <Phone size={15} /> 370 40 500

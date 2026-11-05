@@ -7,6 +7,7 @@
 // Kilde: Mabel, 17.08.2026.
 
 import type { Brand } from "./products";
+import { LASER_KAMPANJE } from "./laser";
 
 export interface Kampanje {
   id: string;
@@ -43,6 +44,41 @@ export interface Kampanje {
 }
 
 export const KAMPANJER: Kampanje[] = [
+  {
+    // Lanseringstilbud på laseren. Lagt inn i Timma av Christina 05.11.2026.
+    // SLIK AVSLUTTER DU DEN: sett `aktiv: false` på LASER_KAMPANJE i
+    // lib/laser.ts — det tar den ut herfra, fra /laser, forsiden,
+    // /behandlinger og /prisliste samtidig.
+    id: "laser-lansering",
+    merke: "Nyhet i klinikken",
+    tittel: `${LASER_KAMPANJE.tittel} med hårfjerning`,
+    ingress:
+      "Laseren er på plass: Candela GentleMAX Pro Plus gir varig hårreduksjon på ansikt og kropp, for alle hudtyper. Booker du i november, får du halv pris på den første behandlingen — enten du velger ett område eller en pakke.",
+    lenke: "/laser#priser",
+    knapp: "Se priser og bestill time",
+    vilkar: LASER_KAMPANJE.vilkar,
+    merkelapp: LASER_KAMPANJE.merkelapp,
+    aktiv: LASER_KAMPANJE.aktiv,
+  },
+  {
+    // Novemberkampanje på Dermapen. Lagt inn i Timma av Christina («KAMPANJE
+    // NOVEMBER»): hals, kjemisk peel og LED-lys gratis. SLIK AVSLUTTER DU DEN:
+    // sett `aktiv: false` 1. desember 2026.
+    id: "dermapen-november",
+    merke: "Microneedling",
+    tittel: "Dermapen med hals, peel og LED-lys inkludert",
+    ingress:
+      "Booker du microneedling med Dermapen i november, får du hals, kjemisk peel og LED-lys med i behandlingen uten ekstra kostnad — tillegg som ellers koster 1.900,- til sammen.",
+    lenke: "/behandlinger/dermapen",
+    knapp: "Les mer og bestill time",
+    vilkar: [
+      "Timen må bookes og gjennomføres i november 2026",
+      "Gjelder alle Dermapen-behandlinger",
+      "Hals (800,-), kjemisk peel (800,-) og LED-lys (300,-) er inkludert",
+    ],
+    merkelapp: "Ut november",
+    aktiv: true,
+  },
   {
     // Introduksjonstilbud ut september 2026. SLIK AVSLUTTER DU DEN:
     // sett `aktiv: false` her, og rett prisen i lib/behandling-detaljer.ts,

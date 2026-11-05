@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import LaserTeaser from "@/components/LaserTeaser";
+import { LASER_FRA_PRIS, LASER_KAMPANJE, LASER_KONSULTASJON } from "@/lib/laser";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { motion } from "framer-motion";
@@ -13,6 +14,8 @@ interface Behandling {
   desc: string;
   pris: string;
   slug?: string;
+  /** Egen «Les mer»-lenke når behandlingen ikke har side under /behandlinger/ */
+  href?: string;
   /** Ordinær pris når `pris` er en kampanjepris — vises overstrøket */
   forPris?: string;
   /** Kort merkelapp over navnet, f.eks. «Nyhet · Kampanje ut september» */
@@ -82,6 +85,33 @@ const sections: Seksjon[] = [
         slug: "farging-vipper",
         desc: "Naturlig, varig farge på vippene.",
         pris: "290,-",
+      },
+    ],
+  },
+  {
+    id: "laser",
+    title: "Laser",
+    intro:
+      "Candela GentleMAX Pro Plus — varig hårreduksjon og behandling av synlige blodkar, med to bølgelengder som passer alle hudtyper og kjøling før hvert skudd.",
+    behandlinger: [
+      {
+        navn: "Hårfjerning med laser",
+        href: "/laser#priser",
+        desc: "Ansikt og kropp, fra overleppe til hele ben. Laserlyset tas opp av pigmentet i håret og ødelegger hårsekken. De fleste trenger 6–8 behandlinger. Pakkepris på flere områder.",
+        pris: `Fra ${LASER_FRA_PRIS}`,
+        ...(LASER_KAMPANJE.aktiv ? { merkelapp: `Nyhet · ${LASER_KAMPANJE.tittel} ${LASER_KAMPANJE.merkelapp.toLowerCase()}` } : {}),
+      },
+      {
+        navn: "Blodkar og rødhet",
+        href: "/laser#blodkar",
+        desc: "Sprengte blodkar i ansiktet, rødhet ved rosacea og edderkoppårer på bena. Laseren lukker karet uten å skade huden rundt. Prisen settes i konsultasjonen.",
+        pris: "Etter konsultasjon",
+      },
+      {
+        navn: LASER_KONSULTASJON.navn,
+        href: "/laser",
+        desc: "Lurer du på om hårene dine responderer, eller vil du ha en vurdering av blodkar? Vi ser på hud og hår og legger en plan. Beløpet trekkes fra ved gjennomført laserbehandling.",
+        pris: LASER_KONSULTASJON.pris,
       },
     ],
   },
@@ -369,9 +399,9 @@ function BehandlingKort({
             </p>
             {variant === "booking" && (
               <div className="mt-5 flex items-center gap-5">
-                {b.slug && (
+                {(b.href || b.slug) && (
                   <Link
-                    href={`/behandlinger/${b.slug}`}
+                    href={b.href ?? `/behandlinger/${b.slug}`}
                     className="inline-flex items-center gap-1.5 text-sm tracking-wide text-[#8f6b28] transition-colors hover:text-[#b8955a]"
                   >
                     Les mer
@@ -464,7 +494,7 @@ export default function BehandlingerPage() {
         </AnimatedSection>
       </section>
 
-      {/* Ny laser kommer snart */}
+      {/* Laseren — nyhetskort med pris og kampanje */}
       <section className="mt-12 px-6">
         <LaserTeaser className="mx-auto max-w-6xl" />
       </section>

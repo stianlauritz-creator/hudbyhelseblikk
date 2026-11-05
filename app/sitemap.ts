@@ -15,7 +15,7 @@ const STATIC_ROUTES: {
   // Egen landingsside for plastikkirurgi — eget fagområde, egen behandler og
   // egen bookingkanal (PasientSky), derfor høy prioritet.
   { path: "/plastikkirurgi", priority: 0.9, changeFrequency: "monthly" },
-  // Ny laser (kommer snart) — fanger opp søk på laser/hårfjerning i Grimstad.
+  // Laser (i drift fra november 2026) — fanger opp søk på laser/hårfjerning i Grimstad.
   { path: "/laser", priority: 0.9, changeFrequency: "weekly" },
   { path: "/nettbutikk", priority: 0.9, changeFrequency: "weekly" },
   { path: "/kampanjer", priority: 0.8, changeFrequency: "weekly" },

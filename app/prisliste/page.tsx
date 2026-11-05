@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
+import { LASER_KAMPANJE, LASER_KONSULTASJON, LASER_PRISER } from "@/lib/laser";
 
 interface Prisrad {
   navn: string;
@@ -50,6 +51,29 @@ const priskategorier: Priskategori[] = [
       { navn: "Farging og forming bryn inkl. voks", pris: "590,-" },
       { navn: "Farging vipper", pris: "290,-" },
     ],
+  },
+  {
+    kategori: "Laser",
+    intro: LASER_KAMPANJE.aktiv
+      ? `Candela GentleMAX Pro Plus. Priser per behandling — de fleste trenger 6–8. ${LASER_KAMPANJE.tittel} ${LASER_KAMPANJE.merkelapp.toLowerCase()}: ${LASER_KAMPANJE.kort}`
+      : "Candela GentleMAX Pro Plus. Priser per behandling — de fleste trenger 6–8.",
+    items: [
+      { ...LASER_KONSULTASJON },
+      {
+        navn: "Blodkar og rødhet",
+        pris: "Etter konsultasjon",
+        note: "Prises etter område — vi setter prisen i konsultasjonen",
+      },
+    ],
+    // Hentet fra Timma 05.11.2026 — se lib/laser.ts
+    underkategorier: LASER_PRISER.map((g) => ({
+      tittel: `Hårfjerning — ${g.tittel.toLowerCase()}`,
+      items: g.priser.map((p) => ({
+        navn: p.navn,
+        pris: p.pris,
+        ...(p.pakke ? { note: "Pakkepris" } : {}),
+      })),
+    })),
   },
   {
     kategori: "Hudbehandlinger",

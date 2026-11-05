@@ -2,15 +2,26 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import LaserMaskin from "@/components/LaserMaskin";
-import { LASER_KOMMER_SNART, LASER_NAVN } from "@/lib/laser";
+import { LASER_FRA_PRIS, LASER_KAMPANJE, LASER_KOMMER_SNART, LASER_NAVN } from "@/lib/laser";
 
 /**
- * «Nyhet! Kommer snart»-kortet for den nye laseren. Står på forsiden og
- * øverst på /behandlinger, og forsvinner av seg selv når
- * LASER_KOMMER_SNART settes til false i lib/laser.ts.
+ * Nyhetskortet for laseren. Står på forsiden og øverst på /behandlinger.
+ * Før åpning sa det «kommer snart» med venteliste; fra 05.11.2026 er laseren
+ * i drift, og kortet viser pris, kampanje og lenke til /laser. Teksten styres
+ * av LASER_KOMMER_SNART og LASER_KAMPANJE i lib/laser.ts.
  */
 export default function LaserTeaser({ className = "" }: { className?: string }) {
-  if (!LASER_KOMMER_SNART) return null;
+  const merkelapp = LASER_KOMMER_SNART
+    ? "Nyhet! Kommer snart til klinikken"
+    : LASER_KAMPANJE.aktiv
+      ? `Nyhet · ${LASER_KAMPANJE.tittel}`
+      : "Nyhet i klinikken";
+  const ingress = LASER_KOMMER_SNART
+    ? "Varig hårreduksjon og sprengte blodkar — med to bølgelengder for alle hudtyper og kjøling før hvert skudd."
+    : `Varig hårreduksjon fra ${LASER_FRA_PRIS} per område og behandling av sprengte blodkar — to bølgelengder for alle hudtyper og kjøling før hvert skudd.`;
+  const lenketekst = LASER_KOMMER_SNART
+    ? "Les mer og sett deg på ventelisten"
+    : "Se priser og bestill time";
 
   return (
     <AnimatedSection className={className}>
@@ -27,20 +38,17 @@ export default function LaserTeaser({ className = "" }: { className?: string }) 
           {/* Mørk navy ⇒ den lyse gulltonen #e5c78f for kontrast */}
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#e5c78f]/40 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[#e5c78f]">
             <Sparkles size={12} className="shrink-0" />
-            Nyhet! Kommer snart til klinikken
+            {merkelapp}
           </p>
           <h2
             className="mb-4 text-3xl font-normal leading-tight md:text-4xl"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Ny laser: {LASER_NAVN}
+            {LASER_KOMMER_SNART ? "Ny laser" : "Laserhårfjerning"}: {LASER_NAVN}
           </h2>
-          <p className="mb-7 max-w-md leading-relaxed text-white/75">
-            Varig hårreduksjon og sprengte blodkar — med to bølgelengder for
-            alle hudtyper og kjøling før hvert skudd.
-          </p>
+          <p className="mb-7 max-w-md leading-relaxed text-white/75">{ingress}</p>
           <span className="inline-flex items-center gap-2 text-sm tracking-wide text-[#e5c78f] transition-colors group-hover:text-white">
-            Les mer og sett deg på ventelisten
+            {lenketekst}
             <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
           </span>
         </div>
