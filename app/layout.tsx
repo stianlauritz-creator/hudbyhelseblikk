@@ -27,16 +27,16 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Hud by Helseblikk — Hudklinikk i Grimstad",
+    default: "Hud by Helseblikk — Hudklinikk og laser i Grimstad",
     template: "%s | Hud by Helseblikk",
   },
   description:
-    "Medisinsk hudklinikk i Grimstad. Injeksjonsbehandlinger, microneedling, kjemisk peeling, vipper og bryn — og nettbutikk med ZO Skin Health, Face Formula og ColoreScience.",
+    "Medisinsk hudklinikk i Grimstad. Laserhårfjerning, injeksjonsbehandlinger, microneedling, kjemisk peeling, vipper og bryn — og nettbutikk med ZO Skin Health.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Hud by Helseblikk — Hudklinikk i Grimstad",
+    title: "Hud by Helseblikk — Hudklinikk og laser i Grimstad",
     description:
-      "Medisinsk hudklinikk i Grimstad med nettbutikk for medisinsk hudpleie.",
+      "Medisinsk hudklinikk i Grimstad med laserhårfjerning, injeksjoner, hudbehandlinger og nettbutikk for medisinsk hudpleie.",
     url: SITE_URL,
     siteName: "Hud by Helseblikk",
     locale: "nb_NO",
@@ -50,7 +50,7 @@ const structuredData = {
   "@id": `${SITE_URL}/#klinikk`,
   name: "Hud by Helseblikk",
   description:
-    "Premium medisinsk hudklinikk i Grimstad. Injeksjonsbehandlinger, microneedling, kjemisk peeling og avansert hudpleie.",
+    "Medisinsk hudklinikk i Grimstad. Laserhårfjerning og behandling av blodkar med Candela GentleMAX Pro Plus, injeksjonsbehandlinger, microneedling, kjemisk peeling, vipper og bryn.",
   url: SITE_URL,
   image: `${SITE_URL}/behandling-banner.jpg`,
   telephone: "+4737040500",
@@ -63,6 +63,13 @@ const structuredData = {
     addressLocality: "Grimstad",
     addressCountry: "NO",
   },
+  // Koordinater for Odden 1D (OpenStreetMap). Hjelper Google å plassere
+  // klinikken i kartsøk uavhengig av bedriftsprofilen.
+  geo: { "@type": "GeoCoordinates", latitude: 58.337787, longitude: 8.59279 },
+  areaServed: ["Grimstad", "Arendal", "Lillesand", "Agder"].map((name) => ({
+    "@type": "AdministrativeArea",
+    name,
+  })),
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "09:00", closes: "18:00" },
     { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "09:00", closes: "16:00" },
