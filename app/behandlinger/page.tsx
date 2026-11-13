@@ -102,8 +102,14 @@ const sections: Seksjon[] = [
         ...(LASER_KAMPANJE.aktiv ? { merkelapp: `Nyhet · ${LASER_KAMPANJE.tittel} ${LASER_KAMPANJE.merkelapp.toLowerCase()}` } : {}),
       },
       {
+        navn: "Laserhårfjerning for menn",
+        slug: "laserharfjerning-menn",
+        desc: "Rygg, bryst, mage, nakke og skjegglinje. Store flater går raskt, og laseren hjelper mot inngrodde hår og barberingskviser.",
+        pris: "Fra 990,-",
+      },
+      {
         navn: "Blodkar og rødhet",
-        href: "/laser#blodkar",
+        slug: "laser-blodkar",
         desc: "Sprengte blodkar i ansiktet, rødhet ved rosacea og edderkoppårer på bena. Laseren lukker karet uten å skade huden rundt. Prisen settes i konsultasjonen.",
         pris: "Etter konsultasjon",
       },

@@ -132,6 +132,7 @@ export const NOKKELTALL = [
 export const BEHANDLINGSOMRADER = [
   {
     id: "harfjerning",
+    lenke: { tekst: "Laserhårfjerning for menn", href: "/behandlinger/laserharfjerning-menn" },
     tittel: "Varig hårreduksjon",
     pris: `Fra ${LASER_FRA_PRIS}`,
     ingress:
@@ -145,6 +146,7 @@ export const BEHANDLINGSOMRADER = [
   },
   {
     id: "blodkar",
+    lenke: { tekst: "Mer om behandling av blodkar", href: "/behandlinger/laser-blodkar" },
     tittel: "Blodkar og rødhet",
     pris: "Pris etter konsultasjon",
     ingress:

@@ -2,6 +2,31 @@
 // Tone: pasientvendt (du/deg), nøktern og ærlig — ingen overdrevne løfter.
 // Injeksjoner omtales uten legemiddelnavn (reklameregler for reseptbelagte
 // legemidler); «muskelavslappende behandling» er etablert praksis på siden.
+//
+// LASERSIDENE nederst (laser-blodkar, laserharfjerning-menn) henter alt
+// faglig innhold fra lib/laser.ts, som Christina har lest korrektur på. Ikke
+// skriv nye medisinske påstander rett inn her — legg dem i lib/laser.ts først.
+// Hovedsiden for laserhårfjerning er /laser; disse to fanger smalere søk og
+// skal ikke hete «Laserhårfjerning i Grimstad», ellers konkurrerer de med den.
+
+import {
+  BEHANDLINGSOMRADER,
+  FAQ as LASER_FAQ,
+  FORLOP as LASER_FORLOP,
+  HVORFOR as LASER_HVORFOR,
+  LASER_KONSULTASJON,
+  LASER_PRISER,
+  PASSER_IKKE_FOR as LASER_PASSER_IKKE_FOR,
+} from "@/lib/laser";
+
+const laserOmrade = (id: string) => BEHANDLINGSOMRADER.find((o) => o.id === id)!;
+const laserFaq = (...start: string[]) =>
+  LASER_FAQ.filter((f) => start.some((s) => f.q.startsWith(s)));
+const laserPris = (...navn: string[]) =>
+  LASER_PRISER.flatMap((g) => g.priser)
+    .filter((r) => navn.includes(r.navn))
+    .map(({ navn, pris }) => ({ navn, pris }));
+const laserHvorfor = (tittel: string) => LASER_HVORFOR.find((h) => h.tittel === tittel)!.tekst;
 
 export interface BehandlingFaq {
   q: string;
@@ -18,7 +43,8 @@ export interface BehandlingDetalj {
     | "vipper-bryn"
     | "hudbehandlinger"
     | "biostimulering"
-    | "injeksjon";
+    | "injeksjon"
+    | "laser";
   kategoriNavn: string;
   /** Én setning til meta description og kort-intro (maks ~155 tegn) */
   kort: string;
@@ -764,6 +790,80 @@ export const BEHANDLINGER: BehandlingDetalj[] = [
       { q: "Kan jeg kombinere den med Profhilo?", a: "Ja. Profhilo jobber med fasthet i hele ansiktet, mens Viscoderm er målrettet mot linjene i de bevegelige områdene. Vi planlegger rekkefølgen sammen." },
     ],
     relaterte: ["profhilo", "mesoterapi", "dermapen"],
+  },
+  {
+    slug: "laser-blodkar",
+    navn: "Laserbehandling av sprengte blodkar",
+    kortNavn: "Blodkar og rødhet",
+    kategori: "laser",
+    kategoriNavn: "Laser",
+    kort: "Laserbehandling av sprengte blodkar, rødhet og edderkoppårer i Grimstad med Candela GentleMAX Pro Plus. Konsultasjon 490 kr, trekkes fra ved behandling.",
+    pris: laserOmrade("blodkar").pris,
+    prisliste: [
+      { navn: LASER_KONSULTASJON.navn, pris: LASER_KONSULTASJON.pris },
+      { navn: "Behandling av blodkar og rødhet", pris: "Settes i konsultasjonen" },
+    ],
+    varighet: "Avhenger av området — avklares i konsultasjonen",
+    hvaEr: [
+      laserOmrade("blodkar").ingress,
+      `Vi behandler ${laserOmrade("blodkar").punkter.map((p) => p.charAt(0).toLowerCase() + p.slice(1)).join(", ").replace(/, ([^,]*)$/, " og $1")}. ${laserHvorfor("Kjøling før hvert skudd")}`,
+      laserHvorfor("Medisinsk ansvar"),
+    ],
+    passerFor: [
+      "Deg med synlige blodkar eller rødhet i ansiktet",
+      "Deg med rødhet ved rosacea",
+      "Deg med edderkoppårer på bena",
+      "Alle hudtyper — vi velger bølgelengde etter huden din",
+    ],
+    passerIkkeFor: LASER_PASSER_IKKE_FOR.filter((p) => !p.includes("hår")),
+    forlop: [
+      {
+        tittel: "Før",
+        tekst: `Du starter med «${LASER_KONSULTASJON.navn}» til ${LASER_KONSULTASJON.pris}. Vi ser på området sammen, legger en plan og setter prisen. Konsultasjonen trekkes fra når du gjennomfører behandling. Ingen sol eller solarium på området, og ingen brun-uten-sol de siste to ukene.`,
+      },
+      {
+        tittel: "Under",
+        tekst: "Du har på deg beskyttelsesbriller. Kjølesprayen kommer rett før hvert laserskudd og demper ubehaget. De fleste beskriver skuddene som et lite knips fra en strikk.",
+      },
+      {
+        tittel: "Etter",
+        tekst: "Vi går gjennom hva du kan vente deg i dagene etterpå før du går. Bruk solkrem med høy faktor, og hold behandlet hud unna sol mellom behandlingene.",
+      },
+    ],
+    resultat: "Laserlyset tas opp av blodet i karet, som lukker seg og gradvis brytes ned av kroppen. Hvor mange behandlinger du trenger, avhenger av hva som skal behandles, og det går vi gjennom i konsultasjonen.",
+    faq: laserFaq("Hva koster behandling av blodkar", "Gjør det vondt", "Kan jeg ta laser med mørk hud", "Kan jeg sole meg", "Kan dere ta pigmentflekker"),
+    relaterte: ["laserharfjerning-menn", "hudkonsultasjon", "kjemisk-peeling"],
+  },
+  {
+    slug: "laserharfjerning-menn",
+    navn: "Laserhårfjerning for menn",
+    kortNavn: "Laser for menn",
+    kategori: "laser",
+    kategoriNavn: "Laser",
+    kort: "Laserhårfjerning for menn i Grimstad — rygg, bryst, mage, nakke og skjegglinje. Candela GentleMAX Pro Plus. Hel rygg 2 290 kr per behandling.",
+    pris: "Fra 990,- · hel rygg 2.290,-",
+    prisliste: [
+      ...laserPris("Hals eller nakke", "Skjegglinje, hals og nakke", "Bryst", "Mage", "Bryst og mage", "Halv rygg", "Hel rygg", "Armhuler", "Hele armer", "Manzilian", "Legger og lår"),
+      { navn: LASER_KONSULTASJON.navn, pris: LASER_KONSULTASJON.pris },
+    ],
+    varighet: "Fra noen minutter på små områder — store flater går raskt med 26 mm behandlingsflate",
+    antall: "Rundt 6–8 behandlinger, 6–8 ukers mellomrom på kroppen",
+    hvaEr: [
+      `Rygg, bryst, mage, nakke og skjegglinje er typiske områder for menn. ${laserOmrade("harfjerning").ingress.replace("Hovedgrunnen til at vi har valgt GentleMAX Pro Plus. ", "")}`,
+      laserHvorfor("Raskt, også på store flater"),
+      laserHvorfor("Riktig laser for din hud"),
+    ],
+    passerFor: [
+      "Deg med mørkt hår på rygg, bryst eller mage du er lei av å barbere eller vokse",
+      "Deg som får inngrodde hår og barberingskviser i nakken eller langs skjegglinjen",
+      "Deg som vil ha en ryddig skjegglinje uten daglig barbering",
+      "Alle hudtyper — også mørk hud, med riktig bølgelengde",
+    ],
+    passerIkkeFor: LASER_PASSER_IKKE_FOR.filter((p) => !p.includes("gravid")),
+    forlop: LASER_FORLOP,
+    resultat: LASER_FAQ.find((f) => f.q === "Er det varig?")!.a,
+    faq: laserFaq("Hva koster laserhårfjerning", "Hvor mange behandlinger", "Gjør det vondt", "Virker det på lyst", "Kan jeg ta laser med mørk hud", "Kan jeg sole meg", "Hva betyr 50 %"),
+    relaterte: ["laser-blodkar", "hudkonsultasjon", "kjemisk-peeling"],
   },
 ];
 

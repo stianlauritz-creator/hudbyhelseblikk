@@ -17,6 +17,7 @@ const STATIC_ROUTES: {
   { path: "/plastikkirurgi", priority: 0.9, changeFrequency: "monthly" },
   // Laser (i drift fra november 2026) — fanger opp søk på laser/hårfjerning i Grimstad.
   { path: "/laser", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/hudklinikk-arendal", priority: 0.7, changeFrequency: "monthly" },
   { path: "/nettbutikk", priority: 0.9, changeFrequency: "weekly" },
   { path: "/kampanjer", priority: 0.8, changeFrequency: "weekly" },
   { path: "/prisliste", priority: 0.8, changeFrequency: "monthly" },

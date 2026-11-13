@@ -189,6 +189,13 @@ export default function LaserPage() {
                       </li>
                     ))}
                   </ul>
+                  <Link
+                    href={o.lenke.href}
+                    className="mt-5 inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] text-[#8f6b28] hover:text-[#b8955a]"
+                  >
+                    {o.lenke.tekst}
+                    <ArrowRight size={13} />
+                  </Link>
                 </div>
               </AnimatedSection>
             ))}

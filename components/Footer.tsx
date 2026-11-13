@@ -50,6 +50,7 @@ export default function Footer() {
                 ["Kampanjer", "/kampanjer"],
                 ["Behandlere", "/behandlere"],
                 ["Prisliste", "/prisliste"],
+                ["Nær Arendal", "/hudklinikk-arendal"],
                 ["Gavekort", "/gavekort"],
                 ["Kundeklubb", "/kundeklubb"],
                 ["FAQ", "/faq"],
