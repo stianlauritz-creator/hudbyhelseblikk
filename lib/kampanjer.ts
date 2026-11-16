@@ -146,7 +146,7 @@ export const KAMPANJER: Kampanje[] = [
       "Gjelder både i klinikken og i nettbutikken",
       "Så langt beholdningen rekker",
     ],
-    aktiv: true,
+    aktiv: false, // avsluttet 16.11.2026 (Christina)
   },
   {
     id: "zo-firming-serum",
@@ -171,7 +171,7 @@ export const KAMPANJER: Kampanje[] = [
       "Gjelder både i klinikken og i nettbutikken",
       "Så langt beholdningen rekker",
     ],
-    aktiv: true,
+    aktiv: false, // avsluttet 16.11.2026 (Christina)
   },
 ];
 
