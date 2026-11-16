@@ -1137,4 +1137,66 @@ export const FF_DETAILS: ProductDetails[] = [
     skinTypes: ["Sensitiv hud", "Irritert eller stresset hud", "Hud etter behandling", "Alle hudtyper"],
     related: ["FF-036", "FF-023", "FF-016"],
   },
+  {
+    sku: "FF-038",
+    intro:
+      "Tri-Peptide Eye Cooler er en kjølende øyegel til daglig bruk. Den demper poser, gir intens fukt og støtter en glattere og fastere hud rundt øynene — med en applikator i metall som kjøler mens du påfører.",
+    longDesc: [
+      "Øyepartiet er ofte det første stedet der tretthet, fuktmangel og de første tegnene på hudaldring viser seg. Tri-Peptide Eye Cooler er laget for å friske opp hver dag, og samtidig støtte hudens egen funksjon og motstandskraft.",
+      "Formelen kombinerer kobberpeptid, marine ekstrakter og koffein i liposomer. Hyaluronsyre og polyglutaminsyre binder fukt, mens metallapplikatoren stimulerer mikrosirkulasjonen og gir en umiddelbar følelse av friskhet. Brukt jevnlig ser øyepartiet glattere og mer uthvilt ut.",
+    ],
+    benefits: [
+      "Bidrar til å dempe poser og hevelse",
+      "Gir intens fukt til den tynne huden rundt øynene",
+      "Støtter en glattere og mer elastisk hud",
+      "Kjølende metallapplikator som frisker opp umiddelbart",
+      "Kan brukes morgen og kveld",
+    ],
+    usage: [
+      "Start med ren, tørr hud og påfør en liten mengde rundt øynene.",
+      "Før metallapplikatoren forsiktig over huden for en kjølende effekt.",
+      "Masser med lette bevegelser for å stimulere mikrosirkulasjonen og dempe poser.",
+      "Bruk morgen og kveld.",
+    ],
+    ingredients: [
+      { name: "Kobberpeptid (Copper Tripeptide-1)", effect: "Støtter hudens fasthet og elastisitet" },
+      { name: "Koffein i liposomer", effect: "Demper poser og gir et mer våkent blikk" },
+      { name: "Oligogeline® (rødalgeekstrakt)", effect: "Legger en fuktbevarende film og glatter huden" },
+      { name: "Hyaluronsyre og polyglutaminsyre", effect: "Binder fukt og gir spenst" },
+      { name: "Bergflette- og tareekstrakt", effect: "Marine og plantebaserte ekstrakter som frisker opp øyepartiet" },
+    ],
+    skinTypes: ["Alle hudtyper", "Trett eller fuktfattig øyeparti"],
+    related: ["FF-039", "FF-027", "FF-026"],
+  },
+  {
+    sku: "FF-039",
+    intro:
+      "Hydrogel Eye Patches er kjølende øyepatcher som fukter, demper poser og frisker synlig opp øyepartiet på 15–20 minutter. Fine før en anledning, etter en kort natt, eller som fast egenpleie noen ganger i uken.",
+    longDesc: [
+      "Patchene er laget i hydrogel som ligger tett mot huden og avgir fukt og aktive ingredienser mens de sitter på. Peptidene palmitoyl tripeptid-1 og palmitoyl tetrapeptid-7 støtter hudens naturlige kollagenprosesser, og centella asiatica roer og styrker den tynne huden under øynene.",
+      "Guaranaekstrakt og en kjølende effekt gir øyepartiet et friskere og mer uthvilt uttrykk. Det som er igjen av serum når du tar patchene av, klapper du lett inn i huden.",
+    ],
+    benefits: [
+      "Gir intens fukt til øyepartiet",
+      "Demper poser og frisker synlig opp",
+      "Gir glattere hudtekstur",
+      "Støtter hudens naturlige kollagenprosesser",
+      "Kjølende og behagelig — virker på 15–20 minutter",
+    ],
+    usage: [
+      "Start med ren, tørr hud rundt øynene.",
+      "Legg én patch under hvert øye og glatt den forsiktig på plass.",
+      "La patchene sitte i 15–20 minutter.",
+      "Ta dem av og klapp resten av serumet lett inn i huden.",
+      "Bruk når øyepartiet trenger en oppfriskning, eller flere ganger i uken for mer intensiv pleie.",
+    ],
+    ingredients: [
+      { name: "Palmitoyl tripeptid-1 og palmitoyl tetrapeptid-7", effect: "Peptider som støtter hudens fasthet og kollagenprosesser" },
+      { name: "Centella asiatica-kompleks", effect: "Roer og styrker huden" },
+      { name: "Guaranaekstrakt", effect: "Naturlig kilde til koffein — frisker opp et trett øyeparti" },
+      { name: "Glyserin", effect: "Binder fukt i huden" },
+    ],
+    skinTypes: ["Alle hudtyper", "Trett eller fuktfattig øyeparti"],
+    related: ["FF-038", "FF-027", "FF-026"],
+  },
 ];

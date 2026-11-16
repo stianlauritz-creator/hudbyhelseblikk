@@ -124,6 +124,28 @@ export const KAMPANJER: Kampanje[] = [
     aktiv: true,
   },
   {
+    // Face Formulas novemberkampanje (plakat i klinikken, Christina 16.11.2026).
+    // SLIK AVSLUTTER DU DEN: sett `aktiv: false` 1. desember 2026.
+    id: "face-formula-oyeprodukter",
+    merke: "Face Formula",
+    merkeFilter: "face-formula",
+    tittel: "Kjøp de to nye øyeproduktene — få Depuff Eye Stick på kjøpet",
+    ingress:
+      "Gi øyepartiet ny energi med kjølende pleie og intens fukt. Kjøper du både Tri-Peptide Eye Cooler og Hydrogel Eye Patches i november, får du Depuff Eye Stick — den oppfriskende stiften med koffein — med på kjøpet.",
+    gave: {
+      navn: "Face Formula Depuff Eye Stick 5 ml",
+      verdi: 449,
+      sku: "FF-027",
+    },
+    vilkar: [
+      "Gjelder ved kjøp av både Tri-Peptide Eye Cooler og Hydrogel Eye Patches",
+      "Gjelder ut november 2026, både i klinikken og i nettbutikken",
+      "Så langt beholdningen rekker",
+    ],
+    merkelapp: "Ut november",
+    aktiv: true,
+  },
+  {
     id: "face-formula-gave",
     merke: "Face Formula",
     merkeFilter: "face-formula",
