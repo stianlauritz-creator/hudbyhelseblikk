@@ -7,6 +7,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import BookingButton from "@/components/BookingButton";
 import { AKTIVE_KAMPANJER } from "@/lib/kampanjer";
 import LaserTeaser from "@/components/LaserTeaser";
+import BlackWeekBanner from "@/components/BlackWeekBanner";
+import { BLACK_WEEK } from "@/lib/black-week";
 import {
   Sparkles,
   Star,
@@ -17,6 +19,8 @@ import {
   Scissors,
   Zap,
 } from "lucide-react";
+
+const stripeKampanje = AKTIVE_KAMPANJER.find((k) => k.id !== "black-week");
 
 const behandlingsKategorier = [
   {
@@ -151,6 +155,21 @@ export default function Home() {
 
         <div className="relative w-full max-w-6xl mx-auto px-6 pt-28 pb-20">
           <div className="max-w-2xl text-center md:text-left">
+          {/* Black Week-merke i heroen — det eneste som synes uten å scrolle.
+              Styres i lib/black-week.ts. */}
+          {BLACK_WEEK.aktiv && (
+            <Link
+              href="/nettbutikk"
+              className="mb-7 inline-flex items-center gap-3 rounded-full bg-[#111111] py-2 pl-2 pr-5 text-sm text-white ring-1 ring-[#e5c78f]/60 transition-colors hover:bg-black"
+            >
+              <span className="rounded-full bg-[#e5c78f] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-[#111111]">
+                Black Week
+              </span>
+              <span>
+                Opptil {BLACK_WEEK.resten} % i nettbutikken →
+              </span>
+            </Link>
+          )}
           <motion.p
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
@@ -204,8 +223,12 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Kampanjestripe — forsvinner når ingen kampanjer er aktive */}
-      {AKTIVE_KAMPANJER.length > 0 && (
+      {/* Black Week — styres i lib/black-week.ts */}
+      <BlackWeekBanner lenke="/nettbutikk" />
+
+      {/* Kampanjestripe — forsvinner når ingen kampanjer er aktive. Black Week
+          har sitt eget banner rett over, så stripen løfter fram den neste. */}
+      {stripeKampanje && (
         <Link
           href="/kampanjer"
           className="group block bg-[#3d4a3e] text-white transition-colors hover:bg-[#36422f]"
@@ -217,7 +240,7 @@ export default function Home() {
               Akkurat nå
             </span>
             <span className="text-sm text-white/80">
-              {AKTIVE_KAMPANJER[0].tittel} —{" "}
+              {stripeKampanje.tittel} —{" "}
               <span className="underline underline-offset-4 transition-colors group-hover:text-[#e5c78f]">
                 se alle kampanjene
               </span>

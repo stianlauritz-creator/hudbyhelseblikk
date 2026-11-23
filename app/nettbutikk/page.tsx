@@ -11,6 +11,7 @@ import KundeklubbPopup from "@/components/KundeklubbPopup";
 import Pris from "@/components/Pris";
 import ButikkAapnerSnart from "@/components/ButikkAapnerSnart";
 import Kampanjer from "@/components/Kampanjer";
+import BlackWeekBanner from "@/components/BlackWeekBanner";
 import { AKTIVE_BUTIKKAMPANJER } from "@/lib/kampanjer";
 import { BUTIKK_APEN } from "@/lib/site";
 import {
@@ -251,6 +252,9 @@ export default function NettbutikkPage() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Black Week — styres i lib/black-week.ts */}
+      <BlackWeekBanner />
 
       {/* Veilednings-banner */}
       <div className="bg-[#3d4a3e] text-white">

@@ -1,0 +1,1416 @@
+[
+  {
+    "productId": "gid://shopify/Product/8179031146605",
+    "tittel": "Exfoliating Cleanser — 200 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523018678381",
+        "sku": "ZO-001",
+        "ordinaer": "645.00",
+        "ny": "580"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031179373",
+    "tittel": "Gentle Cleanser — 200 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523018711149",
+        "sku": "ZO-002",
+        "ordinaer": "645.00",
+        "ny": "580"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031244909",
+    "tittel": "Hydrating Cleanser — 200 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523018776685",
+        "sku": "ZO-003",
+        "ordinaer": "645.00",
+        "ny": "580"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031277677",
+    "tittel": "Calming Toner — 180 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523018809453",
+        "sku": "ZO-004",
+        "ordinaer": "655.00",
+        "ny": "589"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031310445",
+    "tittel": "Exfoliating Polish — 65 g",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523018907757",
+        "sku": "ZO-005",
+        "ordinaer": "895.00",
+        "ny": "805"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031343213",
+    "tittel": "Complexion Renewal Pads — 60 stk",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523018940525",
+        "sku": "ZO-006",
+        "ordinaer": "755.00",
+        "ny": "679"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031375981",
+    "tittel": "Oil Control Pads — 60 stk",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523018973293",
+        "sku": "ZO-007",
+        "ordinaer": "935.00",
+        "ny": "841"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031408749",
+    "tittel": "Exfoliation Accelerator — 100 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019006061",
+        "sku": "ZO-008",
+        "ordinaer": "1075.00",
+        "ny": "967"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031441517",
+    "tittel": "Daily Power Defense — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019038829",
+        "sku": "ZO-009",
+        "ordinaer": "2175.00",
+        "ny": "1957"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031474285",
+    "tittel": "Growth Factor Serum — 30 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019071597",
+        "sku": "ZO-010",
+        "ordinaer": "2125.00",
+        "ny": "1912"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031507053",
+    "tittel": "Wrinkle + Texture Repair — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019104365",
+        "sku": "ZO-011",
+        "ordinaer": "2080.00",
+        "ny": "1872"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031539821",
+    "tittel": "Radical Night Repair — 60 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019137133",
+        "sku": "ZO-012",
+        "ordinaer": "2485.00",
+        "ny": "2236"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031572589",
+    "tittel": "Retinol Skin Brightener 0,5 % — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019169901",
+        "sku": "ZO-013",
+        "ordinaer": "1615.00",
+        "ny": "1453"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031605357",
+    "tittel": "Brightalive Skin Brightener — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019202669",
+        "sku": "ZO-014",
+        "ordinaer": "1735.00",
+        "ny": "1561"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031670893",
+    "tittel": "10% Vitamin C Self-Activating — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019333741",
+        "sku": "ZO-015",
+        "ordinaer": "1450.00",
+        "ny": "1305"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031703661",
+    "tittel": "Firming Serum — 47 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019366509",
+        "sku": "ZO-016",
+        "ordinaer": "2850.00",
+        "ny": "2565"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031736429",
+    "tittel": "Rozatrol — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019399277",
+        "sku": "ZO-017",
+        "ordinaer": "1415.00",
+        "ny": "1273"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031834733",
+    "tittel": "Recovery Crème — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019497581",
+        "sku": "ZO-018",
+        "ordinaer": "1595.00",
+        "ny": "1435"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031867501",
+    "tittel": "Hydrating Crème — 113 g",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019530349",
+        "sku": "ZO-019",
+        "ordinaer": "1295.00",
+        "ny": "1165"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179031965805",
+    "tittel": "Intense Eye Crème — 15 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019628653",
+        "sku": "ZO-020",
+        "ordinaer": "1585.00",
+        "ny": "1426"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032031341",
+    "tittel": "Growth Factor Eye Serum — 15 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019694189",
+        "sku": "ZO-021",
+        "ordinaer": "1525.00",
+        "ny": "1372"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032129645",
+    "tittel": "Sunscreen + Primer SPF 30 — 30 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019792493",
+        "sku": "ZO-022",
+        "ordinaer": "895.00",
+        "ny": "805"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032162413",
+    "tittel": "Daily Sheer SPF 50 — 45 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019825261",
+        "sku": "ZO-023",
+        "ordinaer": "895.00",
+        "ny": "805"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032195181",
+    "tittel": "Daily Gel Cleanser — 200 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019858029",
+        "sku": "FF-001",
+        "ordinaer": "399.00",
+        "ny": "319"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032227949",
+    "tittel": "Face Foam Cleanser — 150 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523019956333",
+        "sku": "FF-002",
+        "ordinaer": "449.00",
+        "ny": "359"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032293485",
+    "tittel": "Purifying Cleanser — 200 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523020021869",
+        "sku": "FF-003",
+        "ordinaer": "579.00",
+        "ny": "463"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032326253",
+    "tittel": "SOS Cleanser — 100 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022348397",
+        "sku": "FF-004",
+        "ordinaer": "590.00",
+        "ny": "472"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032359021",
+    "tittel": "2 in 1 Refining Cleansing Milk — 100 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022381165",
+        "sku": "FF-005",
+        "ordinaer": "595.00",
+        "ny": "476"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032391789",
+    "tittel": "Probiotic Cleansing Mousse — 200 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022413933",
+        "sku": "FF-006",
+        "ordinaer": "699.00",
+        "ny": "559"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032424557",
+    "tittel": "Essential Formula — 100 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022446701",
+        "sku": "FF-007",
+        "ordinaer": "1080.00",
+        "ny": "864"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032457325",
+    "tittel": "Niactil — 100 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022479469",
+        "sku": "FF-008",
+        "ordinaer": "980.00",
+        "ny": "784"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032490093",
+    "tittel": "Vitamin C Booster — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022512237",
+        "sku": "FF-009",
+        "ordinaer": "1070.00",
+        "ny": "856"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032522861",
+    "tittel": "Advanced Vitamin A Serum — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022545005",
+        "sku": "FF-010",
+        "ordinaer": "1490.00",
+        "ny": "1192"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032555629",
+    "tittel": "Clarifying Vitamin A Serum — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022643309",
+        "sku": "FF-011",
+        "ordinaer": "1290.00",
+        "ny": "1032"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032588397",
+    "tittel": "Recovery Boost — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022676077",
+        "sku": "FF-012",
+        "ordinaer": "1190.00",
+        "ny": "952"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032621165",
+    "tittel": "Overnight Smoothing Serum — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022708845",
+        "sku": "FF-013",
+        "ordinaer": "890.00",
+        "ny": "712"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032653933",
+    "tittel": "Blue Serum — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022741613",
+        "sku": "FF-014",
+        "ordinaer": "1390.00",
+        "ny": "1112"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032686701",
+    "tittel": "Pink Serum — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022774381",
+        "sku": "FF-015",
+        "ordinaer": "699.00",
+        "ny": "559"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032719469",
+    "tittel": "Redness Control Serum — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022807149",
+        "sku": "FF-016",
+        "ordinaer": "1290.00",
+        "ny": "1032"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032752237",
+    "tittel": "Oil Control Serum — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022839917",
+        "sku": "FF-017",
+        "ordinaer": "599.00",
+        "ny": "479"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032785005",
+    "tittel": "Acticlear Gel-Cream — 60 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022872685",
+        "sku": "FF-018",
+        "ordinaer": "845.00",
+        "ny": "676"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032817773",
+    "tittel": "SOS Paste — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022905453",
+        "sku": "FF-019",
+        "ordinaer": "790.00",
+        "ny": "632"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032850541",
+    "tittel": "Super Hydration Cream — 100 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022938221",
+        "sku": "FF-020",
+        "ordinaer": "890.00",
+        "ny": "712"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032883309",
+    "tittel": "Balancing Hydration Cream — 60 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523022970989",
+        "sku": "FF-021",
+        "ordinaer": "699.00",
+        "ny": "559"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032916077",
+    "tittel": "Pro Ageing Firming Cream — 50 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023069293",
+        "sku": "FF-022",
+        "ordinaer": "1390.00",
+        "ny": "1112"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179032948845",
+    "tittel": "Restore Balm — 60 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023102061",
+        "sku": "FF-023",
+        "ordinaer": "749.00",
+        "ny": "599"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033014381",
+    "tittel": "Exfoliating Mask — 60 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023167597",
+        "sku": "FF-024",
+        "ordinaer": "549.00",
+        "ny": "439"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033047149",
+    "tittel": "Easy Peel Powder — 60 g",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023200365",
+        "sku": "FF-025",
+        "ordinaer": "649.00",
+        "ny": "519"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033079917",
+    "tittel": "Pro Ageing Eye Cream — 15 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023233133",
+        "sku": "FF-026",
+        "ordinaer": "1190.00",
+        "ny": "952"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033112685",
+    "tittel": "Depuff Eye Stick — 5 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023265901",
+        "sku": "FF-027",
+        "ordinaer": "449.00",
+        "ny": "359"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033145453",
+    "tittel": "Lip Balm — 10 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023298669",
+        "sku": "FF-028",
+        "ordinaer": "249.00",
+        "ny": "199"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033178221",
+    "tittel": "Lip Balm SPF 25 — 10 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023331437",
+        "sku": "FF-029",
+        "ordinaer": "249.00",
+        "ny": "199"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033210989",
+    "tittel": "Smoothing Body Lotion — 200 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023364205",
+        "sku": "FF-030",
+        "ordinaer": "699.00",
+        "ny": "559"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033243757",
+    "tittel": "Firming Body Cream — 200 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023396973",
+        "sku": "FF-031",
+        "ordinaer": "990.00",
+        "ny": "792"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033276525",
+    "tittel": "Nova Cream SPF 30+ — 50 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023429741",
+        "sku": "FF-032",
+        "ordinaer": "790.00",
+        "ny": "632"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033309293",
+    "tittel": "Nova Drops SPF 50+ — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023528045",
+        "sku": "FF-033",
+        "ordinaer": "940.00",
+        "ny": "752"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033342061",
+    "tittel": "Nova BB Cream SPF 25 — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023560813",
+        "sku": "FF-034",
+        "ordinaer": "590.00",
+        "ny": "472"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033374829",
+    "tittel": "Mom & Me SPF 50 — 100 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023593581",
+        "sku": "FF-035",
+        "ordinaer": "980.00",
+        "ny": "784"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033407597",
+    "tittel": "Sunforgettable Total Protection Face Shield SPF 50 — 55 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023626349",
+        "sku": "CS-001",
+        "ordinaer": "775.00",
+        "ny": "620"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033440365",
+    "tittel": "Face Shield Glow SPF 50 — 55 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023659117",
+        "sku": "CS-002",
+        "ordinaer": "775.00",
+        "ny": "620"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033473133",
+    "tittel": "Face Shield Matte SPF 50 — 55 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023691885",
+        "sku": "CS-003",
+        "ordinaer": "775.00",
+        "ny": "620"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033505901",
+    "tittel": "Face Shield Bronze SPF 50 — 55 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023724653",
+        "sku": "CS-004",
+        "ordinaer": "775.00",
+        "ny": "620"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033538669",
+    "tittel": "Face Shield Flex SPF 50 — 55 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023757421",
+        "sku": "CS-005",
+        "ordinaer": "775.00",
+        "ny": "620"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033571437",
+    "tittel": "Brush-On Shield SPF 30 — 6 g",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023790189",
+        "sku": "CS-006",
+        "ordinaer": "595.00",
+        "ny": "476"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033604205",
+    "tittel": "Total Eye 3-in-1 Renewal Therapy SPF 35 — 7 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023822957",
+        "sku": "CS-007",
+        "ordinaer": "1095.00",
+        "ny": "876"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033636973",
+    "tittel": "Even Up Clinical Pigment Perfector SPF 50 — 30 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023921261",
+        "sku": "CS-008",
+        "ordinaer": "1295.00",
+        "ny": "1036"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033669741",
+    "tittel": "All Calm Clinical Redness Corrector SPF 50 — 30 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023954029",
+        "sku": "CS-009",
+        "ordinaer": "1495.00",
+        "ny": "1196"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033702509",
+    "tittel": "Total Protection Color Balm SPF 50 — 9 g",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523023986797",
+        "sku": "CS-010",
+        "ordinaer": "495.00",
+        "ny": "396"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033735277",
+    "tittel": "Peptide Lip Shine SPF 30 — 4 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523024019565",
+        "sku": "CS-011",
+        "ordinaer": "495.00",
+        "ny": "396"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033768045",
+    "tittel": "Barrier Pro Essential Moisturizer — 50 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523024052333",
+        "sku": "CS-012",
+        "ordinaer": "995.00",
+        "ny": "796"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033800813",
+    "tittel": "Pep Up Collagen Boost Face & Neck Serum — 30 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523024085101",
+        "sku": "CS-013",
+        "ordinaer": "1695.00",
+        "ny": "1356"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033833581",
+    "tittel": "Total Protection Sport Stick SPF 50 — 18 g",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523024117869",
+        "sku": "CS-014",
+        "ordinaer": "495.00",
+        "ny": "396"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8179033866349",
+    "tittel": "Total Protection No-Show Mineral Sunscreen SPF 50 — 78 ml",
+    "vendor": "ColoreScience",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45523024150637",
+        "sku": "CS-015",
+        "ordinaer": "895.00",
+        "ny": "716"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103734893",
+    "tittel": "Balancing Cleansing Emulsion — 200 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852459117",
+        "sku": "ZO-024",
+        "ordinaer": "675.00",
+        "ny": "607"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103800429",
+    "tittel": "Dual Action Scrub — 116 g",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852524653",
+        "sku": "ZO-025",
+        "ordinaer": "995.00",
+        "ny": "895"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103833197",
+    "tittel": "Soothing Hydro Mist — 100 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852557421",
+        "sku": "ZO-026",
+        "ordinaer": "895.00",
+        "ny": "805"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103865965",
+    "tittel": "Complexion Clearing Masque — 85 g",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852622957",
+        "sku": "ZO-027",
+        "ordinaer": "675.00",
+        "ny": "607"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103898733",
+    "tittel": "Illuminating AOX Serum — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852655725",
+        "sku": "ZO-028",
+        "ordinaer": "2200.00",
+        "ny": "1980"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103931501",
+    "tittel": "Peptide Facial Refining Concentrate — 30 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852688493",
+        "sku": "ZO-029",
+        "ordinaer": "3100.00",
+        "ny": "2790"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103964269",
+    "tittel": "Enzymatic Peel — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852721261",
+        "sku": "ZO-030",
+        "ordinaer": "1195.00",
+        "ny": "1075"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253103997037",
+    "tittel": "Eye Brightening Crème — 15 g",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852754029",
+        "sku": "ZO-031",
+        "ordinaer": "1695.00",
+        "ny": "1525"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104029805",
+    "tittel": "Complexion Clarifying Serum — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852786797",
+        "sku": "ZO-032",
+        "ordinaer": "1495.00",
+        "ny": "1345"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104062573",
+    "tittel": "Instant Pore Refiner — 29 g",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852819565",
+        "sku": "ZO-033",
+        "ordinaer": "895.00",
+        "ny": "805"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104095341",
+    "tittel": "Neck Complex — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852852333",
+        "sku": "ZO-034",
+        "ordinaer": "1650.00",
+        "ny": "1485"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104128109",
+    "tittel": "Renewal Crème — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852885101",
+        "sku": "ZO-035",
+        "ordinaer": "1495.00",
+        "ny": "1345"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104160877",
+    "tittel": "Smart Tone SPF 50 — 45 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852917869",
+        "sku": "ZO-036",
+        "ordinaer": "695.00",
+        "ny": "625"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104226413",
+    "tittel": "Sheer Fluid Tint SPF 30 — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805852983405",
+        "sku": "ZO-037",
+        "ordinaer": "695.00",
+        "ny": "625"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104291949",
+    "tittel": "Daily Mineral Sunshade SPF 30 — 45 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805853048941",
+        "sku": "ZO-038",
+        "ordinaer": "695.00",
+        "ny": "625"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104357485",
+    "tittel": "Gel Sunscreen SPF 30 — 96 g",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805853114477",
+        "sku": "ZO-039",
+        "ordinaer": "775.00",
+        "ny": "697"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104423021",
+    "tittel": "Skin Brightening Sheet Masque — 3 stk",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805853180013",
+        "sku": "ZO-040",
+        "ordinaer": "495.00",
+        "ny": "445"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104455789",
+    "tittel": "Anti-Aging Program — pakke",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805853212781",
+        "sku": "ZO-041",
+        "ordinaer": "3525.00",
+        "ny": "3172"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/8253104488557",
+    "tittel": "Redness Relief + Barrier Defense Program — pakke",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/45805853245549",
+        "sku": "ZO-042",
+        "ordinaer": "2765.00",
+        "ny": "2488"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15367925792877",
+    "tittel": "Rescue Formula — 150 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/67632619192429",
+        "sku": "FF-036",
+        "ordinaer": "790.00",
+        "ny": "632"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15367925891181",
+    "tittel": "Rescue Formula — 30 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/67632619290733",
+        "sku": "FF-037",
+        "ordinaer": "320.00",
+        "ny": "256"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15402578051181",
+    "tittel": "Retinol Skin Brightener 0,25 % — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/67836121415789",
+        "sku": "ZO-043",
+        "ordinaer": "1495.00",
+        "ny": "1345"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15402578116717",
+    "tittel": "Retinol Skin Brightener 1 % — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/67836121677933",
+        "sku": "ZO-044",
+        "ordinaer": "1735.00",
+        "ny": "1561"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15402578149485",
+    "tittel": "Soothing Ointment — 50 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/67836121710701",
+        "sku": "ZO-045",
+        "ordinaer": "995.00",
+        "ny": "895"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15402578182253",
+    "tittel": "Body Emulsion — 240 ml",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/67836121743469",
+        "sku": "ZO-046",
+        "ordinaer": "995.00",
+        "ny": "895"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15402578247789",
+    "tittel": "Daily Skincare Program — pakke",
+    "vendor": "ZO Skin Health",
+    "sats": 0.1,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/67836121809005",
+        "sku": "ZO-047",
+        "ordinaer": "1225.00",
+        "ny": "1102"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15454986600557",
+    "tittel": "Tri-Peptide Eye Cooler — 15 ml",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/68107012210797",
+        "sku": "FF-038",
+        "ordinaer": "690.00",
+        "ny": "552"
+      }
+    ]
+  },
+  {
+    "productId": "gid://shopify/Product/15454986666093",
+    "tittel": "Hydrogel Eye Patches — 5 par",
+    "vendor": "Face Formula",
+    "sats": 0.2,
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/68107012243565",
+        "sku": "FF-039",
+        "ordinaer": "549.00",
+        "ny": "439"
+      }
+    ]
+  }
+]

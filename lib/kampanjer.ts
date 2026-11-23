@@ -8,6 +8,7 @@
 
 import type { Brand } from "./products";
 import { LASER_KAMPANJE } from "./laser";
+import { BLACK_WEEK } from "./black-week";
 
 export interface Kampanje {
   id: string;
@@ -44,6 +45,24 @@ export interface Kampanje {
 }
 
 export const KAMPANJER: Kampanje[] = [
+  {
+    // Black Week 2026 (Christina, 23.11.2026). Prisene er satt ned i Shopify
+    // med scripts/black-week.mjs. SLIK AVSLUTTER DU DEN: se lib/black-week.ts.
+    id: "black-week",
+    merke: "Black Week",
+    tittel: `${BLACK_WEEK.resten} % på Face Formula og ColoreScience — ${BLACK_WEEK.zo} % på ZO Skin Health`,
+    ingress:
+      "Hele nettbutikken er satt ned under Black Week. Prisene er allerede justert på hvert produkt, så du trenger ingen rabattkode — legg i kurven og bestill som vanlig.",
+    lenke: "/nettbutikk",
+    knapp: "Se tilbudene i nettbutikken",
+    vilkar: [
+      `${BLACK_WEEK.zo} % på alle produkter fra ZO Skin Health`,
+      `${BLACK_WEEK.resten} % på alle produkter fra Face Formula og ColoreScience`,
+      "Gjelder ikke gavekort",
+    ],
+    merkelapp: "Black Week",
+    aktiv: BLACK_WEEK.aktiv,
+  },
   {
     // Lanseringstilbud på laseren. Lagt inn i Timma av Christina 05.11.2026.
     // SLIK AVSLUTTER DU DEN: sett `aktiv: false` på LASER_KAMPANJE i
