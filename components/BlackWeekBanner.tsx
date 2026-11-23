@@ -19,7 +19,7 @@ export default function BlackWeekBanner({ lenke }: { lenke?: string }) {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 text-center lg:flex-row lg:justify-between lg:text-left">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-[#e5c78f]">
-            Tilbud i nettbutikken
+            Tilbud i nettbutikken · ut november
           </p>
           <p
             className="mt-2 text-4xl leading-none sm:text-5xl"

@@ -52,15 +52,16 @@ export const KAMPANJER: Kampanje[] = [
     merke: "Black Week",
     tittel: `${BLACK_WEEK.resten} % på Face Formula og ColoreScience — ${BLACK_WEEK.zo} % på ZO Skin Health`,
     ingress:
-      "Hele nettbutikken er satt ned under Black Week. Prisene er allerede justert på hvert produkt, så du trenger ingen rabattkode — legg i kurven og bestill som vanlig.",
+      "Hele nettbutikken er satt ned ut november. Prisene er allerede justert på hvert produkt, så du trenger ingen rabattkode — legg i kurven og bestill som vanlig.",
     lenke: "/nettbutikk",
     knapp: "Se tilbudene i nettbutikken",
     vilkar: [
       `${BLACK_WEEK.zo} % på alle produkter fra ZO Skin Health`,
       `${BLACK_WEEK.resten} % på alle produkter fra Face Formula og ColoreScience`,
+      "Gjelder ut november 2026, i nettbutikken",
       "Gjelder ikke gavekort",
     ],
-    merkelapp: "Black Week",
+    merkelapp: "Ut november",
     aktiv: BLACK_WEEK.aktiv,
   },
   {

@@ -5,6 +5,8 @@
 // ordinærprisen i «Førpris» og senker salgsprisen, og appen viser da
 // overstrøket pris og avslagsmerke av seg selv (components/Pris.tsx).
 //
+// Gjelder UT NOVEMBER 2026 (Stian, 23.11) — avsluttes 1. desember.
+//
 // SLIK AVSLUTTER DU KAMPANJEN:
 //   1. node --env-file=.env.probe scripts/black-week.mjs --tilbake
 //   2. sett `aktiv: false` under — det tar bort banneret på forsiden og i
