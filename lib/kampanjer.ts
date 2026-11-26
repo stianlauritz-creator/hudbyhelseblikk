@@ -141,7 +141,7 @@ export const KAMPANJER: Kampanje[] = [
       "Så langt beholdningen rekker — kan ikke byttes i penger",
     ],
     merkelapp: "Kun de 20 første",
-    aktiv: true,
+    aktiv: false, // avsluttet 26.11.2026 — alle 20 gavene er delt ut (Christina)
   },
   {
     // Face Formulas novemberkampanje (plakat i klinikken, Christina 16.11.2026).
